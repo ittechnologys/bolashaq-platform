@@ -1,0 +1,1789 @@
+```html
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bolashaq</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'Inter', 'sans-serif']
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body {
+            background-color: #F8FAFC;
+            color: #0F172A;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .brand-logo {
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            background: linear-gradient(135deg, #F59E0B 0%, #EA580C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .fade-in {
+            animation: fadeIn 0.14s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(3px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #F1F5F9; }
+        ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 9999px; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col bg-slate-50 text-slate-900">
+
+    <!-- ЖОҒАРҒЫ НАВИГАЦИЯ ПАНЕЛІ -->
+    <header class="sticky top-0 z-30 bg-white border-b border-slate-200 px-3 sm:px-6 h-14 flex items-center justify-between gap-2">
+        <div class="flex items-center gap-2.5 shrink-0">
+            <button id="mobileMenuBtn" onclick="toggleMobileSidebar()" class="lg:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100" aria-label="Мәзір">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+            <button onclick="goHomeTab()" class="flex items-center gap-2 text-left">
+                <span class="w-7 h-7 rounded-lg bg-gradient-to-br from-amber-500 to-orange-600 text-white font-display font-extrabold text-sm flex items-center justify-center">B</span>
+                <span class="brand-logo text-xl sm:text-2xl leading-none">Bolashaq</span>
+            </button>
+        </div>
+
+        <!-- РӨЛ АУЫСТЫРҒЫШ -->
+        <div class="flex items-center bg-slate-100 p-0.5 rounded-xl border border-slate-200" role="tablist">
+            <button onclick="switchRole('teacher')" id="role-teacher" class="px-2.5 sm:px-3.5 py-1 rounded-lg text-xs font-semibold transition-all">Мұғалім</button>
+            <button onclick="switchRole('student')" id="role-student" class="px-2.5 sm:px-3.5 py-1 rounded-lg text-xs font-semibold transition-all">Оқушы</button>
+            <button onclick="switchRole('admin')" id="role-admin" class="px-2.5 sm:px-3.5 py-1 rounded-lg text-xs font-semibold transition-all">Админ</button>
+        </div>
+
+        <!-- БАЗА МӘРТЕБЕСІ, API КІЛТТЕР ЖӘНЕ ТОКЕН БАЛАНСЫ -->
+        <div class="flex items-center gap-2 shrink-0">
+            <span id="dbStatusBadge" class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-xl border border-slate-200 bg-slate-50 text-[11px] font-semibold text-slate-600">
+                <span id="dbDot" class="w-2 h-2 rounded-full bg-amber-400"></span>
+                <span id="dbStatusText">Firestore</span>
+            </span>
+            <button onclick="openApiModal()" class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl border border-slate-200 hover:border-amber-400 bg-white text-xs font-semibold text-slate-700">
+                <span id="apiDot" class="w-2 h-2 rounded-full bg-amber-400"></span>
+                <span>API</span>
+            </button>
+            <button onclick="openTokenTab()" class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-amber-50 hover:bg-amber-100 border border-amber-200 text-xs font-bold text-amber-800 tabular-nums">
+                <span id="topTokens">2 500</span>
+                <span class="hidden sm:inline font-medium text-amber-700">токен</span>
+            </button>
+            <div class="hidden md:flex items-center gap-2 pl-2 border-l border-slate-200">
+                <div id="topAvatar" class="w-7 h-7 rounded-lg bg-slate-900 text-white text-[11px] font-bold flex items-center justify-center">М</div>
+                <span id="topUserName" class="text-xs font-semibold text-slate-800 max-w-[130px] truncate"></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- НЕГІЗГІ ОРТА -->
+    <div class="flex-1 flex relative">
+        <div id="sidebarBackdrop" onclick="closeMobileSidebar()" class="fixed inset-0 bg-slate-900/40 z-30 hidden lg:hidden"></div>
+
+        <!-- СОЛ ЖАҚ НАВИГАЦИЯ -->
+        <aside id="sidebar" class="fixed lg:static inset-y-0 left-0 z-40 w-64 bg-white border-r border-slate-200 flex flex-col justify-between transform -translate-x-full lg:translate-x-0 transition-transform duration-150 pt-14 lg:pt-0 shrink-0">
+            <div class="p-3 space-y-3 overflow-y-auto flex-1">
+                <div id="sidebarContextBadge" class="px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-700 flex items-center justify-between"></div>
+                <nav id="sidebarNav" class="space-y-1"></nav>
+            </div>
+            <div class="p-3 border-t border-slate-200 bg-slate-50/70 space-y-2">
+                <button onclick="syncWithFirestore(true)" class="w-full py-2 px-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-700">
+                    Базаны жаңарту
+                </button>
+                <button onclick="openApiModal()" class="w-full py-2 px-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-700">
+                    Gemini / ChatGPT API
+                </button>
+            </div>
+        </aside>
+
+        <!-- КОНТЕНТ АЙМАҒЫ -->
+        <main class="flex-1 min-w-0 p-4 sm:p-6 max-w-6xl mx-auto w-full">
+            <div id="viewRoot" class="fade-in"></div>
+        </main>
+    </div>
+
+    <!-- ХАБАРЛАМА КОНТЕЙНЕРІ -->
+    <div id="toastRoot" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <!-- МОДАЛЬДЫ ТЕРЕЗЕ -->
+    <div id="modalRoot" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-900/50">
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-xl max-w-xl w-full overflow-hidden fade-in">
+            <div class="px-5 py-3.5 border-b border-slate-200 flex items-center justify-between">
+                <h3 id="modalHeading" class="text-sm sm:text-base font-bold text-slate-900"></h3>
+                <button onclick="closeModal()" class="p-1 rounded-lg text-slate-400 hover:text-slate-800 hover:bg-slate-100">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div id="modalBody" class="p-5 max-h-[82vh] overflow-y-auto text-sm"></div>
+        </div>
+    </div>
+
+    <!-- FIREBASE FIRESTORE SDK (MODULAR ES MODULE) -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import {
+            getFirestore,
+            doc,
+            getDoc,
+            setDoc,
+            onSnapshot
+        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        // Bolashaq жобасының Firebase конфигурациясы
+        const firebaseConfig = {
+            apiKey: "AIzaSyA1msX0fr0ObBW2lJzQPOVWkK5jXPMYGvY",
+            authDomain: "bolashaq-e214e.firebaseapp.com",
+            projectId: "bolashaq-e214e",
+            storageBucket: "bolashaq-e214e.firebasestorage.app",
+            messagingSenderId: "934825379127",
+            appId: "1:934825379127:web:80046b01de37a8244a86b2",
+            measurementId: "G-HKML76TE8R"
+        };
+
+        const DB_DOC_PATH = ["bolashaq_platform", "main_state"];
+        const LOCAL_CACHE_KEY = "bolashaq_firestore_cache_v1";
+
+        // Бастапқы үлгі деректер (база бос болғанда немесе офлайн кезде қолданылады)
+        const INITIAL_DATA = {
+            scope: {
+                grade: 9,
+                subject: "Физика"
+            },
+            ai: {
+                model: "Gemini", // "Gemini" | "ChatGPT"
+                studioMode: "quiz", // "quiz" | "presentation" | "material"
+                lastOutput: null
+            },
+            users: [
+                { id: "u_t1", name: "Гүлнәр Сәрсенова", role: "teacher", grade: 9, subject: "Физика", tokens: 2500, points: 0 },
+                { id: "u_s1", name: "Алихан Қасымов", role: "student", grade: 9, subject: "Физика", tokens: 1200, points: 140 },
+                { id: "u_a1", name: "Ерлан Нұрғалиев", role: "admin", grade: null, subject: "Басқару", tokens: 10000, points: 0 },
+                { id: "u_s2", name: "Диана Серікқызы", role: "student", grade: 9, subject: "Математика", tokens: 900, points: 110 }
+            ],
+            grades: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+            subjects: ["Математика", "Физика", "Химия", "Биология", "Информатика", "Қазақ тілі", "Тарих"],
+            topics: [
+                {
+                    id: "tp_1",
+                    grade: 9,
+                    subject: "Физика",
+                    title: "Ом заңы (I = U / R)",
+                    summary: "Тізбек бөлігіндегі ток күші ұштарындағы кернеуге тура, кедергіге кері пропорционал.",
+                    formula: "I = U / R",
+                    done: false
+                },
+                {
+                    id: "tp_2",
+                    grade: 9,
+                    subject: "Математика",
+                    title: "Квадрат теңдеулер",
+                    summary: "ax² + bx + c = 0 теңдеуінің түбірлері дискриминант арқылы анықталады.",
+                    formula: "D = b² - 4ac",
+                    done: true
+                }
+            ],
+            presentations: [
+                {
+                    id: "pr_1",
+                    grade: 9,
+                    subject: "Физика",
+                    title: "Электр тогы және Ом заңы",
+                    slides: [
+                        { title: "Негізгі формула", points: ["I = U / R", "U — кернеу (В)", "R — кедергі (Ом)"], note: "Формуланы тақтаға жазыңыз." },
+                        { title: "Параметрлер байланысы", points: ["U артса → I артады", "R артса → I кемиді"], note: "Кедергінің әсерін түсіндіріңіз." }
+                    ]
+                }
+            ],
+            quizzes: [
+                {
+                    id: "qz_1",
+                    grade: 9,
+                    subject: "Физика",
+                    title: "Ом заңы — Жылдам квиз",
+                    timerSec: 20,
+                    assigned: true,
+                    questions: [
+                        { q: "Ток күшінің өлшем бірлігі?", opts: ["Ампер (А)", "Вольт (В)", "Ом (Ом)", "Ватт (Вт)"], ans: 0 },
+                        { q: "U = 12 В, R = 6 Ом болса, ток күші қандай?", opts: ["0.5 А", "2 А", "6 А", "72 А"], ans: 1 },
+                        { q: "Кедергіні 2 есе арттырса, ток күші қалай өзгереді?", opts: ["2 есе артады", "2 есе кемиді", "Өзгермейді", "4 есе артады"], ans: 1 }
+                    ]
+                }
+            ],
+            tasks: [
+                {
+                    id: "tk_1",
+                    grade: 9,
+                    subject: "Физика",
+                    type: "Практикалық",
+                    title: "Тізбек бөлігін есептеу",
+                    prompt: "U = 24 В және R = 8 Ом болғанда I мен P мәндерін жазыңыз.",
+                    status: "pending",
+                    answer: "",
+                    score: null
+                }
+            ],
+            labs: [
+                {
+                    id: "lb_1",
+                    grade: 9,
+                    subject: "Физика",
+                    title: "Ом заңы зертханасы",
+                    instructions: "U және R мәндерін өзгертіп, I көрсеткішін тіркеңіз.",
+                    assigned: true
+                },
+                {
+                    id: "lb_2",
+                    grade: 9,
+                    subject: "Химия",
+                    title: "pH-метрия зертханасы",
+                    instructions: "HCl және NaOH көлемін реттеп, ортаның pH мәнін табыңыз.",
+                    assigned: true
+                }
+            ],
+            submissions: [
+                {
+                    id: "sub_1",
+                    studentName: "Алихан Қасымов",
+                    kind: "Зертхана (Физика)",
+                    title: "Ом заңы зертханасы",
+                    detail: "U=12 В, R=6 Ом → I=2.00 А",
+                    score: 10
+                }
+            ],
+            studentChat: [
+                { role: "ai", model: "Gemini", text: "Сұрағыңызды жазыңыз: тақырып, формула немесе практикалық есеп бойынша көмек беремін." }
+            ],
+            tokenLogs: [
+                { id: "tl_1", user: "Гүлнәр Сәрсенова", role: "Мұғалім", model: "Gemini", spent: 25, action: "Квиз құру" },
+                { id: "tl_2", user: "Алихан Қасымов", role: "Оқушы", model: "Gemini", spent: 12, action: "ЖИ көмек" }
+            ]
+        };
+
+        // Жергілікті интерфейс күйі (рөл, ашық бет, API кілттер)
+        const uiState = {
+            role: "teacher",
+            tabs: {
+                teacher: "ai_studio",
+                student: "topics",
+                admin: "users"
+            },
+            apiKeys: {
+                geminiKey: localStorage.getItem("bolashaq_gemini_key") || "",
+                openaiKey: localStorage.getItem("bolashaq_openai_key") || ""
+            },
+            dbConnected: false,
+            dbError: ""
+        };
+
+        let dbData = loadLocalCache();
+        let firestore = null;
+        let stateDocRef = null;
+        let isWritingToCloud = false;
+
+        function loadLocalCache() {
+            try {
+                const raw = localStorage.getItem(LOCAL_CACHE_KEY);
+                return raw ? { ...structuredClone(INITIAL_DATA), ...JSON.parse(raw) } : structuredClone(INITIAL_DATA);
+            } catch {
+                return structuredClone(INITIAL_DATA);
+            }
+        }
+
+        function saveLocalCache() {
+            try {
+                localStorage.setItem(LOCAL_CACHE_KEY, JSON.stringify(dbData));
+            } catch (e) {
+                console.error("Cache save error:", e);
+            }
+        }
+
+        // Firestore деректерін сақтау және синхрондау
+        async function persistData() {
+            saveLocalCache();
+            syncChrome();
+            if (!stateDocRef) return;
+            try {
+                isWritingToCloud = true;
+                await setDoc(stateDocRef, {
+                    ...dbData,
+                    updatedAt: Date.now()
+                }, { merge: true });
+                uiState.dbConnected = true;
+                uiState.dbError = "";
+                syncChrome();
+            } catch (err) {
+                console.error("Firestore write error:", err);
+                uiState.dbConnected = false;
+                uiState.dbError = err.message || "Жазу қатесі";
+                syncChrome();
+            } finally {
+                setTimeout(() => { isWritingToCloud = false; }, 120);
+            }
+        }
+
+        async function initFirestoreConnection() {
+            try {
+                const app = initializeApp(firebaseConfig);
+                firestore = getFirestore(app);
+                stateDocRef = doc(firestore, DB_DOC_PATH[0], DB_DOC_PATH[1]);
+
+                const snap = await getDoc(stateDocRef);
+                if (!snap.exists()) {
+                    await setDoc(stateDocRef, { ...INITIAL_DATA, updatedAt: Date.now() });
+                    dbData = structuredClone(INITIAL_DATA);
+                    saveLocalCache();
+                } else {
+                    dbData = { ...structuredClone(INITIAL_DATA), ...snap.data() };
+                    saveLocalCache();
+                }
+
+                uiState.dbConnected = true;
+                uiState.dbError = "";
+                renderAll();
+
+                // Нақты уақыттағы тыңдаушы (realtime listener)
+                onSnapshot(stateDocRef, (snapshot) => {
+                    if (isWritingToCloud) return;
+                    if (snapshot.exists()) {
+                        dbData = { ...structuredClone(INITIAL_DATA), ...snapshot.data() };
+                        saveLocalCache();
+                        uiState.dbConnected = true;
+                        uiState.dbError = "";
+                        renderAll();
+                    }
+                }, (err) => {
+                    console.error("Firestore snapshot error:", err);
+                    uiState.dbConnected = false;
+                    uiState.dbError = err.message || "Байланыс қатесі";
+                    syncChrome();
+                });
+            } catch (err) {
+                console.error("Firebase init error:", err);
+                uiState.dbConnected = false;
+                uiState.dbError = err.message || "Қосылу мүмкін емес";
+                renderAll();
+            }
+        }
+
+        window.syncWithFirestore = async function (showToastMsg = false) {
+            if (!stateDocRef) {
+                await initFirestoreConnection();
+                return;
+            }
+            try {
+                const snap = await getDoc(stateDocRef);
+                if (snap.exists()) {
+                    dbData = { ...structuredClone(INITIAL_DATA), ...snap.data() };
+                    saveLocalCache();
+                    uiState.dbConnected = true;
+                    uiState.dbError = "";
+                    renderAll();
+                    if (showToastMsg) toast("Firestore деректері жаңартылды");
+                }
+            } catch (err) {
+                uiState.dbConnected = false;
+                uiState.dbError = err.message || "Жаңарту қатесі";
+                syncChrome();
+                if (showToastMsg) toast("Базамен байланыс жоқ (кэш қолданылуда)");
+            }
+        };
+
+        window.resetPlatformData = async function () {
+            dbData = structuredClone(INITIAL_DATA);
+            await persistData();
+            renderAll();
+            toast("Бастапқы деректер қалпына келтірілді");
+        };
+
+        // =====================================================================
+        // МӘЗІР ЖӘНЕ РӨЛ БАСҚАРУ
+        // =====================================================================
+        const MENU = {
+            teacher: [
+                { id: "scope", label: "Сынып және пән" },
+                { id: "ai_studio", label: "ЖИ", badge: "AI" },
+                { id: "presentations", label: "Презентация" },
+                { id: "interactive", label: "Интерактивті сабақ" },
+                { id: "labs_prac", label: "Зертхана & Практика" },
+                { id: "profile", label: "Жеке кабинет" },
+                { id: "settings", label: "Баптаулар" }
+            ],
+            student: [
+                { id: "topics", label: "Тақырыптар" },
+                { id: "tasks", label: "Тапсырмалар" },
+                { id: "labs", label: "Зертханалық жұмыстар" },
+                { id: "ai_help", label: "ЖИ", badge: "AI" },
+                { id: "profile", label: "Жеке кабинет" },
+                { id: "settings", label: "Баптаулар" }
+            ],
+            admin: [
+                { id: "users", label: "Пайдаланушылар" },
+                { id: "curriculum", label: "Сыныптар & Пәндер" },
+                { id: "tokens", label: "ЖИ & Токендер" },
+                { id: "profile", label: "Жеке кабинет" },
+                { id: "settings", label: "Баптаулар" }
+            ]
+        };
+
+        function currentUser() {
+            const idMap = { teacher: "u_t1", student: "u_s1", admin: "u_a1" };
+            return dbData.users.find(u => u.id === idMap[uiState.role]) || dbData.users[0];
+        }
+
+        window.switchRole = function (role) {
+            uiState.role = role;
+            renderAll();
+            closeMobileSidebar();
+        };
+
+        window.setTab = function (tab) {
+            uiState.tabs[uiState.role] = tab;
+            renderNav();
+            renderView();
+            closeMobileSidebar();
+        };
+
+        window.goHomeTab = function () {
+            setTab(MENU[uiState.role][0].id);
+        };
+
+        window.openTokenTab = function () {
+            if (uiState.role === "admin") setTab("tokens");
+            else if (uiState.role === "teacher") setTab("ai_studio");
+            else setTab("ai_help");
+        };
+
+        function syncChrome() {
+            const u = currentUser();
+            ["teacher", "student", "admin"].forEach(r => {
+                const btn = document.getElementById("role-" + r);
+                if (!btn) return;
+                btn.className = uiState.role === r
+                    ? "px-2.5 sm:px-3.5 py-1 rounded-lg text-xs font-bold bg-white text-slate-900 shadow-2xs transition-all"
+                    : "px-2.5 sm:px-3.5 py-1 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 transition-all";
+            });
+
+            document.getElementById("topTokens").textContent = (u.tokens || 0).toLocaleString("ru-RU");
+            document.getElementById("topUserName").textContent = u.name;
+            document.getElementById("topAvatar").textContent = u.name.split(" ").map(w => w[0]).join("").slice(0, 2);
+
+            const dbDot = document.getElementById("dbDot");
+            const dbStatusText = document.getElementById("dbStatusText");
+            if (uiState.dbConnected) {
+                dbDot.className = "w-2 h-2 rounded-full bg-emerald-500";
+                dbStatusText.textContent = "Firestore";
+            } else {
+                dbDot.className = "w-2 h-2 rounded-full bg-amber-400";
+                dbStatusText.textContent = "Кэш";
+            }
+
+            const hasKey = Boolean(uiState.apiKeys.geminiKey || uiState.apiKeys.openaiKey);
+            document.getElementById("apiDot").className = hasKey
+                ? "w-2 h-2 rounded-full bg-emerald-500"
+                : "w-2 h-2 rounded-full bg-amber-400";
+
+            const roleLabel = { teacher: "Мұғалім", student: "Оқушы", admin: "Админ" }[uiState.role];
+            document.getElementById("sidebarContextBadge").innerHTML = `
+                <span>${roleLabel}</span>
+                <span class="px-2 py-0.5 rounded bg-amber-100 text-amber-900 text-[11px] font-bold">${dbData.scope.grade}-сынып • ${esc(dbData.scope.subject)}</span>
+            `;
+        }
+
+        function renderNav() {
+            const nav = document.getElementById("sidebarNav");
+            const active = uiState.tabs[uiState.role];
+            nav.innerHTML = MENU[uiState.role].map(item => {
+                const isAct = item.id === active;
+                return `
+                    <button onclick="setTab('${item.id}')" class="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs sm:text-sm transition-colors ${
+                        isAct
+                            ? "bg-amber-50 text-amber-950 font-bold border border-amber-200"
+                            : "text-slate-600 hover:bg-slate-100 font-medium"
+                    }">
+                        <span class="truncate">${item.label}</span>
+                        ${item.badge ? `<span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-amber-500 text-white">${item.badge}</span>` : ""}
+                    </button>
+                `;
+            }).join("");
+        }
+
+        function renderAll() {
+            syncChrome();
+            renderNav();
+            renderView();
+        }
+
+        function renderView() {
+            const root = document.getElementById("viewRoot");
+            root.classList.remove("fade-in");
+            void root.offsetWidth;
+            root.classList.add("fade-in");
+
+            const key = `${uiState.role}:${uiState.tabs[uiState.role]}`;
+            const views = {
+                "teacher:scope": viewTeacherScope,
+                "teacher:ai_studio": viewTeacherAI,
+                "teacher:presentations": viewTeacherPresentations,
+                "teacher:interactive": viewTeacherInteractive,
+                "teacher:labs_prac": viewTeacherLabsPrac,
+                "teacher:profile": viewProfile,
+                "teacher:settings": viewSettings,
+
+                "student:topics": viewStudentTopics,
+                "student:tasks": viewStudentTasks,
+                "student:labs": viewStudentLabs,
+                "student:ai_help": viewStudentAI,
+                "student:profile": viewProfile,
+                "student:settings": viewSettings,
+
+                "admin:users": viewAdminUsers,
+                "admin:curriculum": viewAdminCurriculum,
+                "admin:tokens": viewAdminTokens,
+                "admin:profile": viewProfile,
+                "admin:settings": viewSettings
+            };
+            root.innerHTML = (views[key] || viewTeacherAI)();
+        }
+
+        // =====================================================================
+        // МҰҒАЛІМ: СЫНЫП ЖӘНЕ ПӘН (1–11)
+        // =====================================================================
+        function viewTeacherScope() {
+            return `
+                <div class="flex items-center justify-between gap-3 mb-5">
+                    <h1 class="text-xl font-bold text-slate-900">Сынып және пән</h1>
+                    <span class="px-3 py-1 rounded-lg bg-amber-50 border border-amber-200 text-xs font-bold text-amber-900">
+                        ${dbData.scope.grade}-сынып • ${esc(dbData.scope.subject)}
+                    </span>
+                </div>
+
+                <div class="bg-white rounded-2xl border border-slate-200 p-4 mb-4">
+                    <div class="text-xs font-bold text-slate-500 uppercase mb-2.5">Сынып (1–11)</div>
+                    <div class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-11 gap-1.5">
+                        ${dbData.grades.map(g => `
+                            <button onclick="updateScope(${g}, null)" class="py-2 rounded-xl text-xs font-bold border ${
+                                dbData.scope.grade === g
+                                    ? "bg-amber-500 text-white border-amber-500"
+                                    : "bg-slate-50 text-slate-700 border-slate-200 hover:border-amber-400"
+                            }">${g}</button>
+                        `).join("")}
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl border border-slate-200 p-4">
+                    <div class="text-xs font-bold text-slate-500 uppercase mb-2.5">Пән</div>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
+                        ${dbData.subjects.map(s => `
+                            <button onclick="updateScope(null, '${esc(s)}')" class="px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold border text-left ${
+                                dbData.scope.subject === s
+                                    ? "bg-slate-900 text-white border-slate-900"
+                                    : "bg-slate-50 text-slate-800 border-slate-200 hover:border-amber-400"
+                            }">${esc(s)}</button>
+                        `).join("")}
+                    </div>
+                </div>
+            `;
+        }
+
+        window.updateScope = async function (grade, subject) {
+            if (grade !== null) dbData.scope.grade = grade;
+            if (subject !== null) dbData.scope.subject = subject;
+            await persistData();
+            renderView();
+            toast(`${dbData.scope.grade}-сынып • ${dbData.scope.subject}`);
+        };
+
+        // =====================================================================
+        // МҰҒАЛІМ: ЖИ (ПРЕЗЕНТАЦИЯ, ИНТЕРАКТИВТІ КВИЗ, ТАҚЫРЫП/ПРАКТИКА/ЗЕРТХАНА)
+        // =====================================================================
+        function viewTeacherAI() {
+            const u = currentUser();
+            const mode = dbData.ai.studioMode;
+            const out = dbData.ai.lastOutput;
+
+            return `
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+                    <h1 class="text-xl font-bold text-slate-900">ЖИ</h1>
+                    <div class="flex items-center gap-2">
+                        <div class="flex bg-white p-0.5 rounded-xl border border-slate-200">
+                            <button onclick="setAIModel('Gemini')" class="px-3 py-1 rounded-lg text-xs font-bold ${dbData.ai.model === "Gemini" ? "bg-amber-500 text-white" : "text-slate-600"}">Gemini</button>
+                            <button onclick="setAIModel('ChatGPT')" class="px-3 py-1 rounded-lg text-xs font-bold ${dbData.ai.model === "ChatGPT" ? "bg-slate-900 text-white" : "text-slate-600"}">ChatGPT</button>
+                        </div>
+                        <span class="px-3 py-1.5 rounded-xl bg-amber-50 border border-amber-200 text-xs font-bold text-amber-900 tabular-nums">
+                            ${u.tokens} токен
+                        </span>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 mb-5">
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <button onclick="setStudioMode('quiz')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold border ${mode === "quiz" ? "bg-slate-900 text-white border-slate-900" : "bg-slate-50 text-slate-700 border-slate-200"}">Интерактивті квиз</button>
+                        <button onclick="setStudioMode('presentation')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold border ${mode === "presentation" ? "bg-slate-900 text-white border-slate-900" : "bg-slate-50 text-slate-700 border-slate-200"}">Презентация</button>
+                        <button onclick="setStudioMode('material')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold border ${mode === "material" ? "bg-slate-900 text-white border-slate-900" : "bg-slate-50 text-slate-700 border-slate-200"}">Сабақ / Практика / Зертхана</button>
+                    </div>
+
+                    <form onsubmit="runTeacherGeneration(event)" class="grid grid-cols-1 sm:grid-cols-12 gap-3">
+                        <select id="genGrade" class="sm:col-span-2 rounded-xl border border-slate-300 px-3 py-2.5 text-xs font-semibold bg-white">
+                            ${dbData.grades.map(g => `<option value="${g}" ${g === dbData.scope.grade ? "selected" : ""}>${g}-сынып</option>`).join("")}
+                        </select>
+                        <select id="genSubject" class="sm:col-span-3 rounded-xl border border-slate-300 px-3 py-2.5 text-xs font-semibold bg-white">
+                            ${dbData.subjects.map(s => `<option value="${esc(s)}" ${s === dbData.scope.subject ? "selected" : ""}>${esc(s)}</option>`).join("")}
+                        </select>
+                        <input id="genTopic" type="text" required placeholder="Тақырып..." class="sm:col-span-5 rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm">
+                        <button type="submit" id="genSubmitBtn" class="sm:col-span-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold py-2.5 px-4">
+                            Құру
+                        </button>
+                    </form>
+                </div>
+
+                ${out ? renderGeneratedResult(out) : ""}
+            `;
+        }
+
+        window.setAIModel = async function (model) {
+            dbData.ai.model = model;
+            await persistData();
+            renderView();
+        };
+
+        window.setStudioMode = async function (mode) {
+            dbData.ai.studioMode = mode;
+            await persistData();
+            renderView();
+        };
+
+        function renderGeneratedResult(out) {
+            if (out.mode === "quiz") {
+                return `
+                    <div class="bg-white rounded-2xl border border-slate-200 p-5 space-y-4">
+                        <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-100">
+                            <div>
+                                <span class="text-xs font-bold text-amber-700">${out.grade}-сынып • ${esc(out.subject)}</span>
+                                <h2 class="text-base font-bold text-slate-900">${esc(out.title)}</h2>
+                            </div>
+                            <div class="flex gap-2">
+                                <button onclick="saveGeneratedQuiz(true)" class="px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold">Бастау және сақтау</button>
+                                <button onclick="saveGeneratedQuiz(false)" class="px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold">Сақтау</button>
+                            </div>
+                        </div>
+                        <div class="space-y-3">
+                            ${out.questions.map((item, idx) => `
+                                <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+                                    <div class="text-xs sm:text-sm font-bold text-slate-900 mb-2">${idx + 1}. ${esc(item.q)}</div>
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-xs">
+                                        ${item.opts.map((o, oi) => `
+                                            <div class="px-3 py-1.5 rounded-lg border ${oi === item.ans ? "bg-emerald-50 border-emerald-300 text-emerald-900 font-bold" : "bg-white border-slate-200 text-slate-700"}">
+                                                ${String.fromCharCode(65 + oi)}) ${esc(o)}
+                                            </div>
+                                        `).join("")}
+                                    </div>
+                                </div>
+                            `).join("")}
+                        </div>
+                    </div>
+                `;
+            }
+
+            if (out.mode === "presentation") {
+                return `
+                    <div class="bg-white rounded-2xl border border-slate-200 p-5 space-y-4">
+                        <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-100">
+                            <div>
+                                <span class="text-xs font-bold text-amber-700">${out.grade}-сынып • ${esc(out.subject)} • ${out.slides.length} слайд</span>
+                                <h2 class="text-base font-bold text-slate-900">${esc(out.title)}</h2>
+                            </div>
+                            <button onclick="saveGeneratedPresentation()" class="px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold">
+                                Презентацияға сақтау
+                            </button>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            ${out.slides.map((sl, idx) => `
+                                <div class="p-4 rounded-xl bg-slate-900 text-white">
+                                    <div class="text-[11px] font-bold text-amber-400 mb-1">Слайд ${idx + 1}</div>
+                                    <div class="text-sm font-bold mb-2">${esc(sl.title)}</div>
+                                    <ul class="text-xs text-slate-200 space-y-1 list-disc pl-4">
+                                        ${sl.points.map(p => `<li>${esc(p)}</li>`).join("")}
+                                    </ul>
+                                </div>
+                            `).join("")}
+                        </div>
+                    </div>
+                `;
+            }
+
+            return `
+                <div class="bg-white rounded-2xl border border-slate-200 p-5 space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-100">
+                        <div>
+                            <span class="text-xs font-bold text-amber-700">${out.grade}-сынып • ${esc(out.subject)}</span>
+                            <h2 class="text-base font-bold text-slate-900">${esc(out.topicTitle)}</h2>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="publishMaterialAsTopic()" class="px-3 py-1.5 rounded-xl bg-slate-900 text-white text-xs font-bold">+ Тақырып</button>
+                            <button onclick="publishMaterialAsTask()" class="px-3 py-1.5 rounded-xl bg-amber-500 text-white text-xs font-bold">+ Практика</button>
+                            <button onclick="publishMaterialAsLab()" class="px-3 py-1.5 rounded-xl border border-slate-300 text-slate-800 text-xs font-bold">+ Зертхана</button>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+                        <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+                            <div class="font-bold text-slate-900 mb-1">Тақырып</div>
+                            <div class="text-slate-700 mb-2">${esc(out.summary)}</div>
+                            <div class="font-mono font-bold text-amber-800">${esc(out.formula)}</div>
+                        </div>
+                        <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+                            <div class="font-bold text-slate-900 mb-1">Практикалық жұмыс</div>
+                            <div class="text-slate-700">${esc(out.practicalTask)}</div>
+                        </div>
+                        <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+                            <div class="font-bold text-slate-900 mb-1">Виртуалды зертхана</div>
+                            <div class="text-slate-700">${esc(out.labTask)}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        window.runTeacherGeneration = async function (e) {
+            e.preventDefault();
+            const u = currentUser();
+            const spent = 20;
+            if ((u.tokens || 0) < spent) {
+                toast("Токен жеткіліксіз");
+                return;
+            }
+
+            const grade = parseInt(document.getElementById("genGrade").value, 10);
+            const subject = document.getElementById("genSubject").value;
+            const topic = document.getElementById("genTopic").value.trim();
+            const mode = dbData.ai.studioMode;
+            const model = dbData.ai.model;
+
+            dbData.scope = { grade, subject };
+            const btn = document.getElementById("genSubmitBtn");
+            btn.disabled = true;
+            btn.textContent = "...";
+
+            let resultObj = null;
+            try {
+                const rawAi = await callRealAI(model, buildStudioPrompt(mode, grade, subject, topic));
+                if (rawAi) {
+                    const cleaned = rawAi.replace(/```json|```/gi, "").trim();
+                    const parsed = JSON.parse(cleaned);
+                    resultObj = { ...parsed, mode, grade, subject };
+                }
+            } catch {
+                // JSON парсинг немесе API кілт болмағанда құрылымды нәтиже қолданылады
+            }
+
+            if (!resultObj) {
+                resultObj = buildStructuredFallback(mode, grade, subject, topic);
+            }
+
+            u.tokens = Math.max(0, (u.tokens || 0) - spent);
+            dbData.ai.lastOutput = resultObj;
+            dbData.tokenLogs.unshift({
+                id: "tl_" + Date.now(),
+                user: u.name,
+                role: "Мұғалім",
+                model,
+                spent,
+                action: `${grade}-сынып ${subject}: ${topic}`
+            });
+
+            await persistData();
+            renderView();
+            toast(`Дайын (-${spent} токен)`);
+        };
+
+        function buildStudioPrompt(mode, grade, subject, topic) {
+            if (mode === "quiz") {
+                return `Тек қана JSON қайтар: {"title":"${topic} — Квиз","timerSec":20,"questions":[{"q":"Сұрақ","opts":["А","Б","В","Г"],"ans":0}]}. ${grade}-сынып ${subject} пәні бойынша "${topic}" тақырыбына қазақша 4 сұрақ жаса.`;
+            }
+            if (mode === "presentation") {
+                return `Тек қана JSON қайтар: {"title":"${topic}","slides":[{"title":"Слайд","points":["1","2"],"note":"Ескертпе"}]}. ${grade}-сынып ${subject} пәні бойынша "${topic}" тақырыбына қазақша 3 қысқа слайд жаса.`;
+            }
+            return `Тек қана JSON қайтар: {"topicTitle":"${topic}","summary":"Қысқа түсіндірме","formula":"Формула немесе ереже","practicalTask":"Практикалық тапсырма","labTask":"Зертханалық жұмыс"}. ${grade}-сынып ${subject} пәні бойынша қазақша жаз.`;
+        }
+
+        function buildStructuredFallback(mode, grade, subject, topic) {
+            if (mode === "quiz") {
+                return {
+                    mode: "quiz",
+                    grade,
+                    subject,
+                    title: `${topic} — Квиз`,
+                    timerSec: 20,
+                    questions: [
+                        {
+                            q: `${grade}-сынып ${subject}: «${topic}» ұғымының негізгі мәні неде?`,
+                            opts: ["Негізгі заңдылықты анықтау", "Кесте толтыру", "Мәтін көшіру", "Өлшем бірліксіз есептеу"],
+                            ans: 0
+                        },
+                        {
+                            q: `«${topic}» есебін шығарғанда алдымен нені тексеру керек?`,
+                            opts: ["Берілген шамалар мен ХБЖ бірліктерін", "Жауаптың ұзындығын", "Нұсқа ретін", "Кездейсоқ санды"],
+                            ans: 0
+                        },
+                        {
+                            q: `«${topic}» бойынша практикалық нәтиже қайда қолданылады?`,
+                            opts: ["Талдау және есептеуде", "Тек жаттауда", "Қолданылмайды", "Басқа бөлімде"],
+                            ans: 0
+                        }
+                    ]
+                };
+            }
+            if (mode === "presentation") {
+                return {
+                    mode: "presentation",
+                    grade,
+                    subject,
+                    title: `${topic} (${grade}-сынып)`,
+                    slides: [
+                        { title: `${topic} — Кіріспе`, points: [`${subject}, ${grade}-сынып`, "Негізгі ұғымдар мен белгілеулер"], note: "Терминдерді нақтылаңыз." },
+                        { title: "Негізгі заңдылық", points: ["Шамалар арасындағы тәуелділік", "Формула және өлшем бірліктері"], note: "Мысал келтіріңіз." },
+                        { title: "Бекіту", points: ["Интерактивті квиз сұрақтары", "Практикалық тапсырма"], note: "Сыныппен қорытындылаңыз." }
+                    ]
+                };
+            }
+            return {
+                mode: "material",
+                grade,
+                subject,
+                topicTitle: topic,
+                summary: `${grade}-сынып ${subject} пәні бойынша «${topic}» тақырыбының негізгі мазмұны.`,
+                formula: "Негізгі формула / Ереже",
+                practicalTask: `«${topic}» тақырыбына практикалық тапсырманы орындаңыз.`,
+                labTask: `«${topic}» бойынша виртуалды тәжірибе жүргізіп, нәтижесін жазыңыз.`
+            };
+        }
+
+        window.saveGeneratedQuiz = async function (launchNow) {
+            const out = dbData.ai.lastOutput;
+            if (!out || out.mode !== "quiz") return;
+            const newQuiz = {
+                id: "qz_" + Date.now(),
+                grade: out.grade,
+                subject: out.subject,
+                title: out.title,
+                timerSec: out.timerSec || 20,
+                assigned: true,
+                questions: out.questions
+            };
+            dbData.quizzes.unshift(newQuiz);
+            await persistData();
+            toast("Квиз сақталды");
+            setTab("interactive");
+            if (launchNow) setTimeout(() => startQuizRunner(newQuiz.id), 60);
+        };
+
+        window.saveGeneratedPresentation = async function () {
+            const out = dbData.ai.lastOutput;
+            if (!out || out.mode !== "presentation") return;
+            const pres = {
+                id: "pr_" + Date.now(),
+                grade: out.grade,
+                subject: out.subject,
+                title: out.title,
+                slides: out.slides
+            };
+            dbData.presentations.unshift(pres);
+            await persistData();
+            setTab("presentations");
+            setTimeout(() => openSlideDeck(pres.id, 0), 60);
+        };
+
+        window.publishMaterialAsTopic = async function () {
+            const out = dbData.ai.lastOutput;
+            if (!out) return;
+            dbData.topics.unshift({
+                id: "tp_" + Date.now(),
+                grade: out.grade,
+                subject: out.subject,
+                title: out.topicTitle,
+                summary: out.summary,
+                formula: out.formula,
+                done: false
+            });
+            await persistData();
+            toast("Тақырып қосылды");
+        };
+
+        window.publishMaterialAsTask = async function () {
+            const out = dbData.ai.lastOutput;
+            if (!out) return;
+            dbData.tasks.unshift({
+                id: "tk_" + Date.now(),
+                grade: out.grade,
+                subject: out.subject,
+                type: "Практикалық",
+                title: `${out.topicTitle} — Практика`,
+                prompt: out.practicalTask,
+                status: "pending",
+                answer: "",
+                score: null
+            });
+            await persistData();
+            toast("Практикалық жұмыс қосылды");
+        };
+
+        window.publishMaterialAsLab = async function () {
+            const out = dbData.ai.lastOutput;
+            if (!out) return;
+            dbData.labs.unshift({
+                id: "lb_" + Date.now(),
+                grade: out.grade,
+                subject: out.subject,
+                title: `${out.topicTitle} — Зертхана`,
+                instructions: out.labTask,
+                assigned: true
+            });
+            await persistData();
+            toast("Зертханалық жұмыс қосылды");
+        };
+
+        // =====================================================================
+        // МҰҒАЛІМ: ПРЕЗЕНТАЦИЯ ЖӘНЕ ИНТЕРАКТИВТІ КВИЗ ОЙНАТҚЫШЫ
+        // =====================================================================
+        function viewTeacherPresentations() {
+            return `
+                <div class="flex items-center justify-between gap-3 mb-5">
+                    <h1 class="text-xl font-bold text-slate-900">Презентация</h1>
+                    <button onclick="setStudioMode('presentation'); setTab('ai_studio');" class="px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold">+ ЖИ Презентация</button>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    ${dbData.presentations.map(p => `
+                        <div class="bg-white rounded-2xl border border-slate-200 p-4 flex flex-col justify-between">
+                            <div>
+                                <span class="text-xs font-bold text-amber-700">${p.grade}-сынып • ${esc(p.subject)}</span>
+                                <h3 class="text-base font-bold text-slate-900 mt-1">${esc(p.title)}</h3>
+                                <div class="text-xs text-slate-500 mt-1">${p.slides.length} слайд</div>
+                            </div>
+                            <button onclick="openSlideDeck('${p.id}', 0)" class="mt-4 w-full py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold">
+                                Көрсету
+                            </button>
+                        </div>
+                    `).join("")}
+                </div>
+            `;
+        }
+
+        window.openSlideDeck = function (id, idx) {
+            const deck = dbData.presentations.find(p => p.id === id);
+            if (!deck) return;
+            const i = Math.max(0, Math.min(deck.slides.length - 1, idx));
+            const sl = deck.slides[i];
+
+            openModal(
+                `${deck.title} (${i + 1}/${deck.slides.length})`,
+                `
+                <div class="space-y-4">
+                    <div class="bg-slate-900 text-white rounded-2xl p-6 min-h-[210px] flex flex-col justify-between">
+                        <div>
+                            <div class="text-xs font-bold text-amber-400 mb-1">${deck.grade}-сынып • ${esc(deck.subject)}</div>
+                            <h4 class="text-lg font-bold mb-3">${esc(sl.title)}</h4>
+                            <ul class="space-y-1.5 text-sm text-slate-200 list-disc pl-5">
+                                ${sl.points.map(pt => `<li>${esc(pt)}</li>`).join("")}
+                            </ul>
+                        </div>
+                        ${sl.note ? `<div class="mt-4 pt-3 border-t border-slate-800 text-xs text-amber-300">${esc(sl.note)}</div>` : ""}
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <button onclick="openSlideDeck('${deck.id}', ${i - 1})" ${i === 0 ? "disabled" : ""} class="px-4 py-2 rounded-xl border border-slate-200 text-xs font-bold disabled:opacity-40">← Алдыңғы</button>
+                        <span class="text-xs font-bold text-slate-500">${i + 1} / ${deck.slides.length}</span>
+                        <button onclick="openSlideDeck('${deck.id}', ${i + 1})" ${i === deck.slides.length - 1 ? "disabled" : ""} class="px-4 py-2 rounded-xl bg-slate-900 text-white text-xs font-bold disabled:opacity-40">Келесі →</button>
+                    </div>
+                </div>
+                `
+            );
+        };
+
+        let quizSession = null;
+
+        function viewTeacherInteractive() {
+            return `
+                <div class="flex items-center justify-between gap-3 mb-5">
+                    <h1 class="text-xl font-bold text-slate-900">Интерактивті сабақ</h1>
+                    <button onclick="setStudioMode('quiz'); setTab('ai_studio');" class="px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold">+ ЖИ Квиз</button>
+                </div>
+
+                <div id="liveQuizStage" class="mb-5"></div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    ${dbData.quizzes.map(q => `
+                        <div class="bg-white rounded-2xl border border-slate-200 p-4 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between text-xs mb-1">
+                                    <span class="font-bold text-amber-700">${q.grade}-сынып • ${esc(q.subject)}</span>
+                                    <span class="text-slate-500 font-semibold">${q.questions.length} сұрақ</span>
+                                </div>
+                                <h3 class="text-base font-bold text-slate-900">${esc(q.title)}</h3>
+                            </div>
+                            <div class="mt-4 flex gap-2">
+                                <button onclick="startQuizRunner('${q.id}')" class="flex-1 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold">
+                                    Бастау
+                                </button>
+                                <button onclick="toggleQuizAssign('${q.id}')" class="px-3 py-2 rounded-xl border border-slate-200 text-xs font-bold ${q.assigned ? "bg-emerald-50 text-emerald-800 border-emerald-200" : "text-slate-600"}">
+                                    ${q.assigned ? "Оқушыда ✓" : "Беру"}
+                                </button>
+                            </div>
+                        </div>
+                    `).join("")}
+                </div>
+            `;
+        }
+
+        window.toggleQuizAssign = async function (id) {
+            const q = dbData.quizzes.find(x => x.id === id);
+            if (!q) return;
+            q.assigned = !q.assigned;
+            await persistData();
+            renderView();
+            toast(q.assigned ? "Оқушыға берілді" : "Өшірілді");
+        };
+
+        window.startQuizRunner = function (quizId) {
+            const q = dbData.quizzes.find(x => x.id === quizId);
+            if (!q || !q.questions.length) return;
+            quizSession = {
+                quiz: q,
+                index: 0,
+                score: 0,
+                answered: false,
+                selected: null
+            };
+            renderQuizStage();
+        };
+
+        function renderQuizStage() {
+            const stage = document.getElementById("liveQuizStage");
+            if (!stage || !quizSession) return;
+            const { quiz, index, score, answered, selected } = quizSession;
+            const item = quiz.questions[index];
+
+            stage.innerHTML = `
+                <div class="bg-slate-900 text-white rounded-2xl p-5 space-y-4">
+                    <div class="flex items-center justify-between text-xs">
+                        <span class="font-bold text-amber-400">${esc(quiz.title)} • ${index + 1}/${quiz.questions.length}</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-slate-800 font-bold tabular-nums">Ұпай: ${score}</span>
+                    </div>
+
+                    <div class="text-base sm:text-lg font-bold">${esc(item.q)}</div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                        ${item.opts.map((opt, oi) => {
+                            let cls = "bg-slate-800 hover:bg-slate-700 border-slate-700 text-white";
+                            if (answered) {
+                                if (oi === item.ans) cls = "bg-emerald-600 border-emerald-500 text-white font-bold";
+                                else if (oi === selected) cls = "bg-rose-600 border-rose-500 text-white";
+                                else cls = "bg-slate-800/60 border-slate-800 text-slate-400";
+                            }
+                            return `
+                                <button onclick="answerQuizOption(${oi})" ${answered ? "disabled" : ""} class="p-3.5 rounded-xl border text-left text-xs sm:text-sm font-semibold transition-colors ${cls}">
+                                    ${String.fromCharCode(65 + oi)}. ${esc(opt)}
+                                </button>
+                            `;
+                        }).join("")}
+                    </div>
+
+                    ${answered ? `
+                        <div class="flex justify-end pt-1">
+                            <button onclick="nextQuizQuestion()" class="px-5 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold">
+                                ${index + 1 < quiz.questions.length ? "Келесі →" : "Аяқтау"}
+                            </button>
+                        </div>
+                    ` : ""}
+                </div>
+            `;
+        }
+
+        window.answerQuizOption = function (oi) {
+            if (!quizSession || quizSession.answered) return;
+            const item = quizSession.quiz.questions[quizSession.index];
+            quizSession.answered = true;
+            quizSession.selected = oi;
+            if (oi === item.ans) quizSession.score += 100;
+            renderQuizStage();
+        };
+
+        window.nextQuizQuestion = async function () {
+            if (!quizSession) return;
+            if (quizSession.index + 1 < quizSession.quiz.questions.length) {
+                quizSession.index += 1;
+                quizSession.answered = false;
+                quizSession.selected = null;
+                renderQuizStage();
+            } else {
+                const finalScore = quizSession.score;
+                const title = quizSession.quiz.title;
+                const u = currentUser();
+                if (uiState.role === "student") {
+                    u.points = (u.points || 0) + finalScore;
+                }
+                dbData.submissions.unshift({
+                    id: "sub_" + Date.now(),
+                    studentName: u.name,
+                    kind: "Квиз",
+                    title,
+                    detail: `${finalScore} ұпай`,
+                    score: Math.round(finalScore / 30)
+                });
+                quizSession = null;
+                await persistData();
+                renderView();
+                toast(`Нәтиже: ${finalScore} ұпай`);
+            }
+        };
+
+        // =====================================================================
+        // МҰҒАЛІМ: ЗЕРТХАНА & ПРАКТИКА ЖӘНЕ НӘТИЖЕЛЕР
+        // =====================================================================
+        function viewTeacherLabsPrac() {
+            return `
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+                    <h1 class="text-xl font-bold text-slate-900">Зертхана & Практика</h1>
+                    <button onclick="openNewTaskModal()" class="px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold">+ Тапсырма</button>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+                    <div class="bg-white rounded-2xl border border-slate-200 p-4 space-y-3">
+                        <div class="text-xs font-bold uppercase text-slate-500">Тапсырмалар</div>
+                        ${dbData.tasks.map(t => `
+                            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between gap-2">
+                                <div>
+                                    <div class="text-xs font-bold text-amber-700">${t.grade}-сынып • ${esc(t.subject)} • ${esc(t.type)}</div>
+                                    <div class="text-sm font-bold text-slate-900">${esc(t.title)}</div>
+                                    ${t.answer ? `<div class="text-xs font-mono text-slate-700 mt-1">Жауап: ${esc(t.answer)}</div>` : ""}
+                                </div>
+                                <span class="text-xs font-bold px-2.5 py-1 rounded-lg ${t.score !== null ? "bg-emerald-100 text-emerald-800" : "bg-amber-100 text-amber-900"}">
+                                    ${t.score !== null ? `${t.score} балл` : t.status === "submitted" ? "Тексеру" : "Күту"}
+                                </span>
+                            </div>
+                        `).join("")}
+                    </div>
+
+                    <div class="bg-white rounded-2xl border border-slate-200 p-4 space-y-3">
+                        <div class="text-xs font-bold uppercase text-slate-500">Орындалған жұмыстар</div>
+                        ${dbData.submissions.map(s => `
+                            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between gap-2">
+                                <div>
+                                    <div class="text-sm font-bold text-slate-900">${esc(s.studentName)}</div>
+                                    <div class="text-xs text-slate-600">${esc(s.kind)}: ${esc(s.title)} — <span class="font-mono">${esc(s.detail)}</span></div>
+                                </div>
+                                <span class="text-xs font-bold px-2.5 py-1 rounded-lg bg-slate-900 text-white">${s.score}/10</span>
+                            </div>
+                        `).join("")}
+                    </div>
+                </div>
+            `;
+        }
+
+        window.openNewTaskModal = function () {
+            openModal(
+                "Жаңа практикалық жұмыс",
+                `
+                <form onsubmit="addTaskItem(event)" class="space-y-3">
+                    <input id="taskTitleInp" type="text" required placeholder="Атауы" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm">
+                    <textarea id="taskPromptInp" required rows="3" placeholder="Шарты" class="w-full rounded-xl border border-slate-300 p-3 text-sm"></textarea>
+                    <div class="flex justify-end gap-2 pt-2">
+                        <button type="button" onclick="closeModal()" class="px-4 py-2 rounded-xl border border-slate-200 text-xs font-semibold">Жабу</button>
+                        <button type="submit" class="px-4 py-2 rounded-xl bg-amber-500 text-white text-xs font-bold">Сақтау</button>
+                    </div>
+                </form>
+                `
+            );
+        };
+
+        window.addTaskItem = async function (e) {
+            e.preventDefault();
+            dbData.tasks.unshift({
+                id: "tk_" + Date.now(),
+                grade: dbData.scope.grade,
+                subject: dbData.scope.subject,
+                type: "Практикалық",
+                title: document.getElementById("taskTitleInp").value.trim(),
+                prompt: document.getElementById("taskPromptInp").value.trim(),
+                status: "pending",
+                answer: "",
+                score: null
+            });
+            await persistData();
+            closeModal();
+            renderView();
+            toast("Сақталды");
+        };
+
+        // =====================================================================
+        // ОҚУШЫ БӨЛІМДЕРІ
+        // =====================================================================
+        function viewStudentTopics() {
+            return `
+                <h1 class="text-xl font-bold text-slate-900 mb-5">Тақырыптар</h1>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    ${dbData.topics.map(t => `
+                        <div class="bg-white rounded-2xl border border-slate-200 p-4 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between text-xs mb-1">
+                                    <span class="font-bold text-amber-700">${t.grade}-сынып • ${esc(t.subject)}</span>
+                                    <span class="font-bold ${t.done ? "text-emerald-700" : "text-slate-400"}">${t.done ? "✓ Оқылды" : "Жаңа"}</span>
+                                </div>
+                                <h3 class="text-base font-bold text-slate-900">${esc(t.title)}</h3>
+                                <p class="text-xs text-slate-600 mt-1">${esc(t.summary)}</p>
+                                <div class="mt-2 px-2.5 py-1 rounded-lg bg-amber-50 text-amber-950 font-mono text-xs font-bold inline-block">${esc(t.formula)}</div>
+                            </div>
+                            <button onclick="toggleTopicDone('${t.id}')" class="mt-4 w-full py-2 rounded-xl text-xs font-bold ${t.done ? "bg-slate-100 text-slate-700" : "bg-slate-900 text-white"}">
+                                ${t.done ? "Қайта оқу" : "Оқылды деп белгілеу"}
+                            </button>
+                        </div>
+                    `).join("")}
+                </div>
+            `;
+        }
+
+        window.toggleTopicDone = async function (id) {
+            const t = dbData.topics.find(x => x.id === id);
+            if (!t) return;
+            t.done = !t.done;
+            await persistData();
+            renderView();
+        };
+
+        function viewStudentTasks() {
+            const assignedQuizzes = dbData.quizzes.filter(q => q.assigned);
+            return `
+                <h1 class="text-xl font-bold text-slate-900 mb-5">Тапсырмалар</h1>
+
+                <div id="liveQuizStage" class="mb-5"></div>
+
+                <div class="mb-6">
+                    <div class="text-xs font-bold uppercase text-slate-500 mb-2.5">Интерактивті квиздер</div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        ${assignedQuizzes.map(q => `
+                            <div class="bg-white rounded-2xl border border-slate-200 p-4 flex items-center justify-between gap-3">
+                                <div>
+                                    <div class="text-xs font-bold text-amber-700">${q.grade}-сынып • ${esc(q.subject)}</div>
+                                    <div class="text-sm font-bold text-slate-900">${esc(q.title)}</div>
+                                </div>
+                                <button onclick="startQuizRunner('${q.id}')" class="px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold shrink-0">
+                                    Бастау
+                                </button>
+                            </div>
+                        `).join("")}
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <div class="text-xs font-bold uppercase text-slate-500">Практикалық тапсырмалар</div>
+                    ${dbData.tasks.map(t => `
+                        <div class="bg-white rounded-2xl border border-slate-200 p-4">
+                            <div class="flex items-center justify-between text-xs mb-1">
+                                <span class="font-bold text-amber-700">${t.grade}-сынып • ${esc(t.subject)}</span>
+                                <span class="font-bold ${t.status === "submitted" ? "text-emerald-700" : "text-slate-500"}">${t.status === "submitted" ? "Тапсырылды ✓" : "Орындау"}</span>
+                            </div>
+                            <div class="text-sm font-bold text-slate-900">${esc(t.title)}</div>
+                            <div class="text-xs text-slate-600 mt-1">${esc(t.prompt)}</div>
+                            ${t.status !== "submitted" ? `
+                                <form onsubmit="submitStudentTask(event, '${t.id}')" class="mt-3 flex gap-2">
+                                    <input id="ans_${t.id}" type="text" required placeholder="Жауап..." class="flex-1 rounded-xl border border-slate-300 px-3 py-2 text-xs">
+                                    <button type="submit" class="px-4 py-2 rounded-xl bg-slate-900 text-white text-xs font-bold">Жіберу</button>
+                                </form>
+                            ` : `<div class="mt-2 text-xs font-mono bg-slate-50 px-3 py-1.5 rounded-lg border border-slate-200">Жауап: ${esc(t.answer)}</div>`}
+                        </div>
+                    `).join("")}
+                </div>
+            `;
+        }
+
+        window.submitStudentTask = async function (e, id) {
+            e.preventDefault();
+            const t = dbData.tasks.find(x => x.id === id);
+            if (!t) return;
+            const val = document.getElementById("ans_" + id).value.trim();
+            t.answer = val;
+            t.status = "submitted";
+            t.score = 10;
+            dbData.submissions.unshift({
+                id: "sub_" + Date.now(),
+                studentName: currentUser().name,
+                kind: "Практика",
+                title: t.title,
+                detail: val,
+                score: 10
+            });
+            await persistData();
+            renderView();
+            toast("Жауап жіберілді");
+        };
+
+        // ОҚУШЫ: ЗЕРТХАНАЛЫҚ ЖҰМЫСТАР
+        const labSim = {
+            mode: "physics",
+            u: 12,
+            r: 6,
+            acid: 10,
+            base: 10
+        };
+
+        function viewStudentLabs() {
+            const currentA = (labSim.u / labSim.r).toFixed(2);
+            const ph = Math.max(1, Math.min(14, (7 + (labSim.base - labSim.acid) * 0.5))).toFixed(1);
+
+            return `
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+                    <h1 class="text-xl font-bold text-slate-900">Зертханалық жұмыстар</h1>
+                    <div class="flex bg-white p-0.5 rounded-xl border border-slate-200">
+                        <button onclick="labSim.mode='physics'; renderView();" class="px-3 py-1 rounded-lg text-xs font-bold ${labSim.mode === "physics" ? "bg-slate-900 text-white" : "text-slate-600"}">Физика: Ом заңы</button>
+                        <button onclick="labSim.mode='chemistry'; renderView();" class="px-3 py-1 rounded-lg text-xs font-bold ${labSim.mode === "chemistry" ? "bg-slate-900 text-white" : "text-slate-600"}">Химия: pH</button>
+                    </div>
+                </div>
+
+                ${labSim.mode === "physics" ? `
+                    <div class="bg-white rounded-2xl border border-slate-200 p-5 space-y-5">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-3">
+                                <div class="flex justify-between text-xs font-bold"><span>U (Кернеу)</span><span id="simUtxt">${labSim.u} В</span></div>
+                                <input type="range" min="2" max="24" value="${labSim.u}" oninput="labSim.u=+this.value; updatePhysSim();" class="w-full accent-amber-500">
+                                <div class="flex justify-between text-xs font-bold"><span>R (Кедергі)</span><span id="simRtxt">${labSim.r} Ом</span></div>
+                                <input type="range" min="2" max="20" value="${labSim.r}" oninput="labSim.r=+this.value; updatePhysSim();" class="w-full accent-amber-500">
+                            </div>
+                            <div class="p-4 rounded-xl bg-slate-900 text-white flex flex-col justify-center items-center">
+                                <div class="text-xs text-slate-400">Ток күші (I = U / R)</div>
+                                <div id="simItxt" class="text-3xl font-extrabold text-amber-400 tabular-nums mt-1">${currentA} А</div>
+                            </div>
+                        </div>
+                        <button onclick="sendLabResult('Зертхана (Физика)', 'Ом заңы', 'U=' + labSim.u + 'В, R=' + labSim.r + 'Ом → I=' + (labSim.u/labSim.r).toFixed(2) + 'А')" class="px-4 py-2.5 rounded-xl bg-slate-900 text-white text-xs font-bold">
+                            Нәтижені жіберу
+                        </button>
+                    </div>
+                ` : `
+                    <div class="bg-white rounded-2xl border border-slate-200 p-5 space-y-5">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-3">
+                                <div class="flex justify-between text-xs font-bold"><span>HCl</span><span>${labSim.acid} мл</span></div>
+                                <input type="range" min="0" max="20" value="${labSim.acid}" oninput="labSim.acid=+this.value; renderView();" class="w-full accent-rose-500">
+                                <div class="flex justify-between text-xs font-bold"><span>NaOH</span><span>${labSim.base} мл</span></div>
+                                <input type="range" min="0" max="20" value="${labSim.base}" oninput="labSim.base=+this.value; renderView();" class="w-full accent-blue-600">
+                            </div>
+                            <div class="p-4 rounded-xl bg-slate-900 text-white flex flex-col justify-center items-center">
+                                <div class="text-xs text-slate-400">pH көрсеткіші</div>
+                                <div class="text-3xl font-extrabold text-emerald-400 tabular-nums mt-1">${ph}</div>
+                            </div>
+                        </div>
+                        <button onclick="sendLabResult('Зертхана (Химия)', 'pH-метрия', 'HCl=' + labSim.acid + 'мл, NaOH=' + labSim.base + 'мл → pH=' + ph)" class="px-4 py-2.5 rounded-xl bg-slate-900 text-white text-xs font-bold">
+                            Нәтижені жіберу
+                        </button>
+                    </div>
+                `}
+            `;
+        }
+
+        window.updatePhysSim = function () {
+            document.getElementById("simUtxt").textContent = `${labSim.u} В`;
+            document.getElementById("simRtxt").textContent = `${labSim.r} Ом`;
+            document.getElementById("simItxt").textContent = `${(labSim.u / labSim.r).toFixed(2)} А`;
+        };
+
+        window.sendLabResult = async function (kind, title, detail) {
+            dbData.submissions.unshift({
+                id: "sub_" + Date.now(),
+                studentName: currentUser().name,
+                kind,
+                title,
+                detail,
+                score: 10
+            });
+            await persistData();
+            toast("Нәтиже сақталды");
+        };
+
+        // ОҚУШЫ: ЖИ КӨМЕК
+        function viewStudentAI() {
+            const u = currentUser();
+            return `
+                <div class="flex items-center justify-between gap-3 mb-4">
+                    <h1 class="text-xl font-bold text-slate-900">ЖИ (${dbData.ai.model})</h1>
+                    <span class="px-3 py-1 rounded-xl bg-amber-50 border border-amber-200 text-xs font-bold text-amber-900 tabular-nums">${u.tokens} токен</span>
+                </div>
+
+                <div class="bg-white rounded-2xl border border-slate-200 flex flex-col h-[460px] overflow-hidden">
+                    <div class="flex-1 p-4 overflow-y-auto space-y-3">
+                        ${dbData.studentChat.map(m => `
+                            <div class="flex ${m.role === "user" ? "justify-end" : "justify-start"}">
+                                <div class="max-w-lg rounded-2xl px-3.5 py-2.5 text-xs sm:text-sm ${m.role === "user" ? "bg-slate-900 text-white" : "bg-slate-100 text-slate-800 border border-slate-200"}">
+                                    ${esc(m.text)}
+                                </div>
+                            </div>
+                        `).join("")}
+                    </div>
+                    <form onsubmit="askStudentAI(event)" class="p-3 border-t border-slate-200 flex gap-2">
+                        <input id="studentQInput" type="text" required placeholder="Сұрақ..." class="flex-1 rounded-xl border border-slate-300 px-3.5 py-2 text-sm">
+                        <button type="submit" class="px-4 py-2 rounded-xl bg-amber-500 text-white text-xs font-bold">Жіберу</button>
+                    </form>
+                </div>
+            `;
+        }
+
+        window.askStudentAI = async function (e) {
+            e.preventDefault();
+            const u = currentUser();
+            const spent = 10;
+            if ((u.tokens || 0) < spent) {
+                toast("Токен таусылды");
+                return;
+            }
+            const q = document.getElementById("studentQInput").value.trim();
+            if (!q) return;
+
+            dbData.studentChat.push({ role: "user", text: q });
+            const reply = (await callRealAI(dbData.ai.model, `Қысқа әрі нақты қазақша жауап бер: ${q}`))
+                || `«${q}» бойынша қысқа түсіндірме: берілген шамалар мен формуланы нақтылаңыз.`;
+
+            u.tokens = Math.max(0, (u.tokens || 0) - spent);
+            dbData.studentChat.push({ role: "ai", model: dbData.ai.model, text: reply });
+            dbData.tokenLogs.unshift({
+                id: "tl_" + Date.now(),
+                user: u.name,
+                role: "Оқушы",
+                model: dbData.ai.model,
+                spent,
+                action: q.slice(0, 28)
+            });
+            await persistData();
+            renderView();
+        };
+
+        // =====================================================================
+        // АДМИН, КАБИНЕТ ЖӘНЕ БАПТАУЛАР
+        // =====================================================================
+        function viewAdminUsers() {
+            const roleMap = { teacher: "Мұғалім", student: "Оқушы", admin: "Админ" };
+            return `
+                <div class="flex items-center justify-between gap-3 mb-5">
+                    <h1 class="text-xl font-bold text-slate-900">Пайдаланушылар</h1>
+                    <button onclick="openAddUserModal()" class="px-3.5 py-2 rounded-xl bg-slate-900 text-white text-xs font-bold">+ Қосу</button>
+                </div>
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-x-auto">
+                    <table class="w-full text-left text-xs sm:text-sm">
+                        <thead class="bg-slate-50 border-b border-slate-200 text-xs text-slate-500">
+                            <tr>
+                                <th class="py-3 px-4">Аты-жөні</th>
+                                <th class="py-3 px-4">Рөл</th>
+                                <th class="py-3 px-4">Токен</th>
+                                <th class="py-3 px-4 text-right">Лимит</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            ${dbData.users.map(u => `
+                                <tr>
+                                    <td class="py-3 px-4 font-semibold">${esc(u.name)}</td>
+                                    <td class="py-3 px-4">
+                                        <select onchange="changeUserRole('${u.id}', this.value)" class="rounded-lg border border-slate-200 px-2 py-1 text-xs bg-white">
+                                            <option value="student" ${u.role === "student" ? "selected" : ""}>Оқушы</option>
+                                            <option value="teacher" ${u.role === "teacher" ? "selected" : ""}>Мұғалім</option>
+                                            <option value="admin" ${u.role === "admin" ? "selected" : ""}>Админ</option>
+                                        </select>
+                                    </td>
+                                    <td class="py-3 px-4 font-bold text-amber-700 tabular-nums">${u.tokens}</td>
+                                    <td class="py-3 px-4 text-right">
+                                        <button onclick="topUpUserTokens('${u.id}', 1000)" class="px-2.5 py-1 rounded-lg bg-amber-50 hover:bg-amber-100 border border-amber-200 text-xs font-bold text-amber-900">+1000</button>
+                                    </td>
+                                </tr>
+                            `).join("")}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+        }
+
+        window.changeUserRole = async function (id, newRole) {
+            const u = dbData.users.find(x => x.id === id);
+            if (!u) return;
+            u.role = newRole;
+            await persistData();
+            toast("Рөл жаңартылды");
+        };
+
+        window.openAddUserModal = function () {
+            openModal(
+                "Жаңа пайдаланушы",
+                `
+                <form onsubmit="addUserItem(event)" class="space-y-3">
+                    <input id="uName" type="text" required placeholder="Аты-жөні" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm">
+                    <select id="uRole" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm bg-white">
+                        <option value="student">Оқушы</option>
+                        <option value="teacher">Мұғалім</option>
+                    </select>
+                    <input id="uTokens" type="number" value="1000" min="0" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm">
+                    <div class="flex justify-end gap-2 pt-2">
+                        <button type="button" onclick="closeModal()" class="px-4 py-2 rounded-xl border border-slate-200 text-xs font-semibold">Жабу</button>
+                        <button type="submit" class="px-4 py-2 rounded-xl bg-slate-900 text-white text-xs font-bold">Сақтау</button>
+                    </div>
+                </form>
+                `
+            );
+        };
+
+        window.addUserItem = async function (e) {
+            e.preventDefault();
+            dbData.users.push({
+                id: "u_" + Date.now(),
+                name: document.getElementById("uName").value.trim(),
+                role: document.getElementById("uRole").value,
+                grade: 9,
+                subject: "Физика",
+                tokens: parseInt(document.getElementById("uTokens").value, 10) || 1000,
+                points: 0
+            });
+            await persistData();
+            closeModal();
+            renderView();
+            toast("Қосылды");
+        };
+
+        window.topUpUserTokens = async function (id, amt) {
+            const u = dbData.users.find(x => x.id === id);
+            if (!u) return;
+            u.tokens = (u.tokens || 0) + amt;
+            await persistData();
+            renderView();
+            toast(`+${amt} токен`);
+        };
+
+        function viewAdminCurriculum() {
+            return `
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+                    <h1 class="text-xl font-bold text-slate-900">Сыныптар & Пәндер</h1>
+                    <form onsubmit="addSubjectItem(event)" class="flex gap-2">
+                        <input id="subjInp" type="text" required placeholder="Жаңа пән" class="rounded-xl border border-slate-300 px-3 py-1.5 text-xs bg-white">
+                        <button type="submit" class="px-3.5 py-1.5 rounded-xl bg-amber-500 text-white text-xs font-bold">+ Қосу</button>
+                    </form>
+                </div>
+                <div class="bg-white rounded-2xl border border-slate-200 p-4 mb-4">
+                    <div class="text-xs font-bold text-slate-500 uppercase mb-2">Сыныптар</div>
+                    <div class="flex flex-wrap gap-1.5">
+                        ${dbData.grades.map(g => `<span class="px-3 py-1 rounded-lg bg-slate-100 text-xs font-bold text-slate-800">${g}-сынып</span>`).join("")}
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+                    ${dbData.subjects.map(s => `
+                        <div class="bg-white rounded-2xl border border-slate-200 p-4 text-sm font-bold text-slate-800">${esc(s)}</div>
+                    `).join("")}
+                </div>
+            `;
+        }
+
+        window.addSubjectItem = async function (e) {
+            e.preventDefault();
+            const val = document.getElementById("subjInp").value.trim();
+            if (val && !dbData.subjects.includes(val)) {
+                dbData.subjects.push(val);
+                await persistData();
+                renderView();
+                toast("Пән қосылды");
+            }
+        };
+
+        function viewAdminTokens() {
+            return `
+                <div class="flex items-center justify-between gap-3 mb-5">
+                    <h1 class="text-xl font-bold text-slate-900">ЖИ & Токендер</h1>
+                    <button onclick="openApiModal()" class="px-3.5 py-2 rounded-xl bg-slate-900 text-white text-xs font-bold">API кілттер</button>
+                </div>
+                <div class="bg-white rounded-2xl border border-slate-200 overflow-x-auto">
+                    <table class="w-full text-left text-xs sm:text-sm">
+                        <thead class="bg-slate-50 border-b border-slate-200 text-xs text-slate-500">
+                            <tr>
+                                <th class="py-3 px-4">Пайдаланушы</th>
+                                <th class="py-3 px-4">Модель</th>
+                                <th class="py-3 px-4">Әрекет</th>
+                                <th class="py-3 px-4 text-right">Шығын</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            ${dbData.tokenLogs.map(l => `
+                                <tr>
+                                    <td class="py-3 px-4 font-semibold">${esc(l.user)}</td>
+                                    <td class="py-3 px-4">${esc(l.model)}</td>
+                                    <td class="py-3 px-4 text-slate-600">${esc(l.action)}</td>
+                                    <td class="py-3 px-4 text-right font-bold text-amber-700">-${l.spent}</td>
+                                </tr>
+                            `).join("")}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+        }
+
+        function viewProfile() {
+            const u = currentUser();
+            return `
+                <h1 class="text-xl font-bold text-slate-900 mb-5">Жеке кабинет</h1>
+                <div class="bg-white rounded-2xl border border-slate-200 p-5 max-w-lg space-y-3">
+                    <div class="text-lg font-bold text-slate-900">${esc(u.name)}</div>
+                    <div class="text-xs text-slate-500">${u.grade ? u.grade + "-сынып • " : ""}${esc(u.subject)}</div>
+                    <div class="pt-2 flex gap-4 text-sm font-bold">
+                        <span class="text-amber-700">Токен: ${u.tokens}</span>
+                        ${uiState.role === "student" ? `<span class="text-slate-800">Ұпай: ${u.points || 0}</span>` : ""}
+                    </div>
+                </div>
+            `;
+        }
+
+        function viewSettings() {
+            const u = currentUser();
+            return `
+                <h1 class="text-xl font-bold text-slate-900 mb-5">Баптаулар</h1>
+                <div class="bg-white rounded-2xl border border-slate-200 p-5 max-w-lg space-y-4">
+                    <form onsubmit="saveUserName(event)" class="space-y-3">
+                        <label class="block text-xs font-bold text-slate-700">Аты-жөні</label>
+                        <input id="profNameInp" type="text" required value="${esc(u.name)}" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm">
+                        <button type="submit" class="px-4 py-2 rounded-xl bg-slate-900 text-white text-xs font-bold">Сақтау</button>
+                    </form>
+                    <div class="pt-3 border-t border-slate-200 flex justify-between items-center">
+                        <span class="text-xs font-semibold text-slate-600">Жоба: bolashaq-e214e</span>
+                        <button onclick="resetPlatformData()" class="px-3.5 py-1.5 rounded-xl bg-rose-50 text-rose-700 border border-rose-200 text-xs font-bold">Қалпына келтіру</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        window.saveUserName = async function (e) {
+            e.preventDefault();
+            currentUser().name = document.getElementById("profNameInp").value.trim();
+            await persistData();
+            renderView();
+            toast("Сақталды");
+        };
+
+        // =====================================================================
+        // GEMINI / CHATGPT API ШАҚЫРУ ЖӘНЕ МОДАЛЬДЫ ТЕРЕЗЕЛЕР
+        // =====================================================================
+        async function callRealAI(model, prompt) {
+            try {
+                if (model === "Gemini" && uiState.apiKeys.geminiKey) {
+                    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${encodeURIComponent(uiState.apiKeys.geminiKey)}`;
+                    const res = await fetch(url, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+                    });
+                    const data = await res.json();
+                    return data.candidates?.[0]?.content?.parts?.[0]?.text || null;
+                }
+                if (model === "ChatGPT" && uiState.apiKeys.openaiKey) {
+                    const res = await fetch("https://api.openai.com/v1/chat/completions", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${uiState.apiKeys.openaiKey}`
+                        },
+                        body: JSON.stringify({
+                            model: "gpt-4o-mini",
+                            messages: [{ role: "user", content: prompt }]
+                        })
+                    });
+                    const data = await res.json();
+                    return data.choices?.[0]?.message?.content || null;
+                }
+            } catch {
+                return null;
+            }
+            return null;
+        }
+
+        window.openApiModal = function () {
+            openModal(
+                "API кілттер",
+                `
+                <form onsubmit="saveApiKeys(event)" class="space-y-3">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Gemini API Key</label>
+                        <input id="kGem" type="password" value="${esc(uiState.apiKeys.geminiKey)}" placeholder="AIza..." class="w-full rounded-xl border border-slate-300 px-3 py-2 text-xs font-mono">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">OpenAI (ChatGPT) API Key</label>
+                        <input id="kOai" type="password" value="${esc(uiState.apiKeys.openaiKey)}" placeholder="sk-..." class="w-full rounded-xl border border-slate-300 px-3 py-2 text-xs font-mono">
+                    </div>
+                    <div class="flex justify-end gap-2 pt-2">
+                        <button type="button" onclick="closeModal()" class="px-4 py-2 rounded-xl border border-slate-200 text-xs font-semibold">Жабу</button>
+                        <button type="submit" class="px-4 py-2 rounded-xl bg-amber-500 text-white text-xs font-bold">Сақтау</button>
+                    </div>
+                </form>
+                `
+            );
+        };
+
+        window.saveApiKeys = function (e) {
+            e.preventDefault();
+            uiState.apiKeys.geminiKey = document.getElementById("kGem").value.trim();
+            uiState.apiKeys.openaiKey = document.getElementById("kOai").value.trim();
+            localStorage.setItem("bolashaq_gemini_key", uiState.apiKeys.geminiKey);
+            localStorage.setItem("bolashaq_openai_key", uiState.apiKeys.openaiKey);
+            closeModal();
+            syncChrome();
+            toast("API кілттер сақталды");
+        };
+
+        function openModal(heading, html) {
+            document.getElementById("modalHeading").textContent = heading;
+            document.getElementById("modalBody").innerHTML = html;
+            const m = document.getElementById("modalRoot");
+            m.classList.remove("hidden");
+            m.classList.add("flex");
+        }
+
+        window.closeModal = function () {
+            const m = document.getElementById("modalRoot");
+            m.classList.add("hidden");
+            m.classList.remove("flex");
+        };
+
+        function toast(msg) {
+            const root = document.getElementById("toastRoot");
+            const el = document.createElement("div");
+            el.className = "bg-slate-900 text-white text-xs font-bold px-3.5 py-2.5 rounded-xl shadow-lg fade-in";
+            el.textContent = msg;
+            root.appendChild(el);
+            setTimeout(() => el.remove(), 2200);
+        }
+
+        function esc(s) {
+            if (s === null || s === undefined) return "";
+            return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+        }
+
+        window.toggleMobileSidebar = function () {
+            document.getElementById("sidebar").classList.toggle("-translate-x-full");
+            document.getElementById("sidebarBackdrop").classList.toggle("hidden");
+        };
+
+        window.closeMobileSidebar = function () {
+            document.getElementById("sidebar").classList.add("-translate-x-full");
+            document.getElementById("sidebarBackdrop").classList.add("hidden");
+        };
+
+        window.addEventListener("DOMContentLoaded", () => {
+            renderAll();
+            initFirestoreConnection();
+        });
+    </script>
+</body>
+</html>
+```
