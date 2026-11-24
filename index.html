@@ -1,0 +1,2674 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOLASHAQ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'Inter', 'sans-serif']
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.84);
+            --glass-border: rgba(255, 255, 255, 0.95);
+            --liquid-gold: linear-gradient(135deg, #FDE047 0%, #F59E0B 48%, #EA580C 100%);
+        }
+
+        html, body {
+            font-family: 'Inter', sans-serif;
+            background:
+                radial-gradient(circle at 12% 10%, rgba(30, 41, 59, 0.11), transparent 44%),
+                radial-gradient(circle at 88% 14%, rgba(30, 58, 138, 0.12), transparent 45%),
+                linear-gradient(155deg, #EEF2F6 0%, #E2E8F0 52%, #DCE4EE 100%);
+            color: #0F172A;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Сары-қызғылт сары түзу әрі пышный Liquid Glass логотипі */
+        .bolashaq-puffy-logo {
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            font-style: normal;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.22em 0.62em;
+            border-radius: 9999px;
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.72) 0%, rgba(255, 255, 255, 0.08) 46%, rgba(154, 52, 18, 0.34) 100%),
+                var(--liquid-gold);
+            border: 1.5px solid rgba(255, 255, 255, 0.95);
+            box-shadow:
+                inset 0 3px 7px rgba(255, 255, 255, 0.92),
+                inset 0 -5px 12px rgba(124, 45, 18, 0.48),
+                0 10px 24px rgba(234, 88, 12, 0.28),
+                0 2px 6px rgba(15, 23, 42, 0.14);
+            backdrop-filter: blur(14px) saturate(165%);
+            -webkit-backdrop-filter: blur(14px) saturate(165%);
+            transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.22s ease;
+            user-select: none;
+        }
+
+        .bolashaq-puffy-logo::before {
+            content: "";
+            position: absolute;
+            top: 3px;
+            left: 14%;
+            right: 14%;
+            height: 40%;
+            border-radius: 9999px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0) 100%);
+            pointer-events: none;
+        }
+
+        .bolashaq-puffy-logo:hover {
+            transform: translateY(-1.5px) scale(1.03);
+            box-shadow:
+                inset 0 4px 8px rgba(255, 255, 255, 0.96),
+                inset 0 -6px 13px rgba(124, 45, 18, 0.55),
+                0 14px 30px rgba(234, 88, 12, 0.36);
+        }
+
+        .bolashaq-puffy-text {
+            position: relative;
+            z-index: 1;
+            color: #FFFFFF;
+            font-style: normal;
+            text-shadow:
+                0 1px 0 rgba(255, 255, 255, 0.55),
+                0 2px 6px rgba(124, 45, 18, 0.68);
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px) saturate(150%);
+            -webkit-backdrop-filter: blur(16px) saturate(150%);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.92);
+        }
+
+        /* iPhone экран блоктан шыққандағыдай серпімді қону анимациясы */
+        @keyframes iphoneScreenSettle {
+            0% {
+                opacity: 0;
+                transform: scale(1.14) translateY(16px);
+                filter: blur(5px);
+            }
+            65% {
+                opacity: 1;
+                transform: scale(0.985) translateY(-2px);
+                filter: blur(0px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+                filter: blur(0px);
+            }
+        }
+
+        @keyframes iphoneTileSpring {
+            0% {
+                opacity: 0;
+                transform: scale(0.84) translateY(18px);
+            }
+            68% {
+                opacity: 1;
+                transform: scale(1.02) translateY(-2px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @keyframes toastSlide {
+            0% {
+                opacity: 0;
+                transform: translateX(18px) scale(0.96);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+
+        @keyframes spinLoader {
+            to { transform: rotate(360deg); }
+        }
+
+        .anim-iphone-shell {
+            animation: iphoneScreenSettle 0.5s cubic-bezier(0.2, 0.92, 0.25, 1.05) both;
+        }
+
+        .anim-iphone-tile {
+            animation: iphoneTileSpring 0.42s cubic-bezier(0.22, 1.15, 0.36, 1) both;
+        }
+
+        .anim-toast {
+            animation: toastSlide 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .tap-btn {
+            transition: transform 0.1s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .tap-btn:active:not(:disabled) {
+            transform: scale(0.96);
+        }
+
+        .loader-ring {
+            width: 14px;
+            height: 14px;
+            border: 2px solid currentColor;
+            border-right-color: transparent;
+            border-radius: 9999px;
+            display: inline-block;
+            animation: spinLoader 0.6s linear infinite;
+            vertical-align: -2px;
+        }
+
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #E2E8F0; }
+        ::-webkit-scrollbar-thumb { background: #94A3B8; border-radius: 9999px; }
+    </style>
+</head>
+<body class="flex flex-col text-slate-900">
+
+    <!-- =================================================================== -->
+    <!-- 1. БАСТАПҚЫ КІРУ / ТІРКЕЛУ ЭКРАНЫ                                    -->
+    <!-- =================================================================== -->
+    <div id="entryGate" class="fixed inset-0 z-50 overflow-y-auto bg-slate-950/65 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="w-full max-w-3xl rounded-3xl bg-white border border-slate-200 shadow-2xl overflow-hidden grid grid-cols-1 md:grid-cols-12">
+
+            <!-- Сол жақ градиент панель -->
+            <div class="md:col-span-5 bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 text-white p-6 flex flex-col justify-between">
+                <div class="space-y-4">
+                    <span class="bolashaq-puffy-logo text-xl">
+                        <span class="bolashaq-puffy-text">BOLASHAQ</span>
+                    </span>
+                    <div class="text-sm font-bold text-slate-100 leading-snug">
+                        1–11 сынып • Wayground Квиз • Зертхана • ЖИ
+                    </div>
+                    <div class="space-y-2 pt-1 text-xs text-slate-300">
+                        <div class="px-3 py-2 rounded-xl bg-white/5 border border-white/10">1. Тіркелу</div>
+                        <div class="px-3 py-2 rounded-xl bg-white/5 border border-white/10">2. Логин / Пароль немесе Google</div>
+                        <div class="px-3 py-2 rounded-xl bg-white/5 border border-white/10">3. Оқушы • Мұғалім • Админ</div>
+                    </div>
+                </div>
+
+                <div class="pt-5 mt-5 border-t border-white/10 flex items-center justify-between text-[11px] text-slate-400">
+                    <span id="gateDbStatus">Firestore: қосылуда...</span>
+                    <span>bolashaq-e214e</span>
+                </div>
+            </div>
+
+            <!-- Оң жақ панель: Кіру / Тіркелу / Google / Жүйеге өту -->
+            <div class="md:col-span-7 p-6 flex flex-col justify-between bg-white">
+                <div>
+                    <div class="grid grid-cols-2 bg-slate-100 p-1 rounded-2xl border border-slate-200 mb-5">
+                        <button type="button" id="gateTabLogin" data-action="gate-tab" data-mode="login" class="py-2 rounded-xl text-xs sm:text-sm font-bold tap-btn bg-white text-slate-900 shadow-xs">
+                            Кіру
+                        </button>
+                        <button type="button" id="gateTabRegister" data-action="gate-tab" data-mode="register" class="py-2 rounded-xl text-xs sm:text-sm font-bold tap-btn text-slate-600 hover:text-slate-900">
+                            Тіркелу
+                        </button>
+                    </div>
+
+                    <!-- ЛОГИН / ПАРОЛЬМЕН КІРУ ФОРМАСЫ -->
+                    <form id="gateLoginForm" class="space-y-3.5">
+                        <div>
+                            <label for="gLoginEmail" class="block text-xs font-bold text-slate-700 mb-1">Логин (Email)</label>
+                            <input id="gLoginEmail" type="email" required placeholder="name@bolashaq.kz" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm focus:outline-none focus:border-slate-900">
+                        </div>
+                        <div>
+                            <label for="gLoginPass" class="block text-xs font-bold text-slate-700 mb-1">Пароль</label>
+                            <input id="gLoginPass" type="password" required placeholder="••••••••" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm focus:outline-none focus:border-slate-900">
+                        </div>
+                        <button type="submit" id="gLoginBtn" class="w-full py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-sm font-bold tap-btn">
+                            Кіру
+                        </button>
+                    </form>
+
+                    <!-- ТІРКЕЛУ ФОРМАСЫ -->
+                    <form id="gateRegisterForm" class="space-y-3 hidden">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label for="gRegName" class="block text-xs font-bold text-slate-700 mb-1">Аты-жөні</label>
+                                <input id="gRegName" type="text" required placeholder="Аты-жөні" class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:border-slate-900">
+                            </div>
+                            <div>
+                                <label for="gRegRole" class="block text-xs font-bold text-slate-700 mb-1">Рөл</label>
+                                <select id="gRegRole" class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm bg-white font-semibold focus:outline-none focus:border-slate-900">
+                                    <option value="student">Оқушы</option>
+                                    <option value="teacher">Мұғалім</option>
+                                    <option value="admin">Админ</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="gRegGradeRow" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label for="gRegGrade" class="block text-xs font-bold text-slate-700 mb-1">Сынып (1–11)</label>
+                                <select id="gRegGrade" class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm bg-white font-semibold focus:outline-none focus:border-slate-900"></select>
+                            </div>
+                            <div>
+                                <label for="gRegSubject" class="block text-xs font-bold text-slate-700 mb-1">Пән</label>
+                                <select id="gRegSubject" class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm bg-white font-semibold focus:outline-none focus:border-slate-900"></select>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label for="gRegEmail" class="block text-xs font-bold text-slate-700 mb-1">Логин (Email)</label>
+                                <input id="gRegEmail" type="email" required placeholder="name@bolashaq.kz" class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:border-slate-900">
+                            </div>
+                            <div>
+                                <label for="gRegPass" class="block text-xs font-bold text-slate-700 mb-1">Пароль</label>
+                                <input id="gRegPass" type="password" required minlength="6" placeholder="Кемінде 6 таңба" class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:border-slate-900">
+                            </div>
+                        </div>
+                        <button type="submit" id="gRegBtn" class="w-full py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-sm font-bold tap-btn">
+                            Тіркелу
+                        </button>
+                    </form>
+
+                    <!-- GOOGLE АККАУНТТПЕН КІРУ -->
+                    <div class="mt-4 pt-4 border-t border-slate-200">
+                        <button type="button" id="gGoogleBtn" data-action="open-google-chooser" class="w-full py-2.5 px-4 rounded-xl bg-white hover:bg-slate-50 border border-slate-300 text-slate-800 text-sm font-bold flex items-center justify-center gap-2.5 tap-btn">
+                            <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24">
+                                <path fill="#4285F4" d="M23.49 12.27c0-.78-.07-1.53-.2-2.27H12v4.51h6.47c-.29 1.5-1.14 2.76-2.4 3.6v3h3.88c2.27-2.09 3.54-5.17 3.54-8.84z"/>
+                                <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.11-6.72-4.96H1.26v3.1C3.23 21.31 7.29 24 12 24z"/>
+                                <path fill="#FBBC05" d="M5.28 14.29c-.24-.72-.38-1.49-.38-2.29s.14-1.57.38-2.29V6.61H1.26C.46 8.2 0 10.04 0 12s.46 3.8 1.26 5.39l4.02-3.1z"/>
+                                <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.29 0 3.23 2.69 1.26 6.61l4.02 3.1c.95-2.85 3.6-4.96 6.72-4.96z"/>
+                            </svg>
+                            <span>Google-мен кіру</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Төменгі жол: Жүйеге өту -->
+                <div class="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
+                    <span id="gateStatusNote" class="text-xs text-slate-500">Дайын</span>
+                    <button type="button" id="enterSystemBtn" data-action="enter-system" class="px-4 py-2 rounded-xl bg-indigo-950 hover:bg-indigo-900 text-white text-xs font-extrabold tap-btn">
+                        Жүйеге өту →
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- 2. GOOGLE АККАУНТЫН ТАҢДАУ ТЕРЕЗЕСІ                                   -->
+    <!-- =================================================================== -->
+    <div id="googleChooserModal" class="fixed inset-0 z-[60] hidden items-center justify-center p-4 bg-slate-950/65 backdrop-blur-xs">
+        <div class="w-full max-w-md rounded-2xl bg-white border border-slate-200 shadow-2xl overflow-hidden anim-iphone-tile">
+            <div class="px-5 py-4 border-b border-slate-200 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24">
+                        <path fill="#4285F4" d="M23.49 12.27c0-.78-.07-1.53-.2-2.27H12v4.51h6.47c-.29 1.5-1.14 2.76-2.4 3.6v3h3.88c2.27-2.09 3.54-5.17 3.54-8.84z"/>
+                        <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.11-6.72-4.96H1.26v3.1C3.23 21.31 7.29 24 12 24z"/>
+                        <path fill="#FBBC05" d="M5.28 14.29c-.24-.72-.38-1.49-.38-2.29s.14-1.57.38-2.29V6.61H1.26C.46 8.2 0 10.04 0 12s.46 3.8 1.26 5.39l4.02-3.1z"/>
+                        <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.29 0 3.23 2.69 1.26 6.61l4.02 3.1c.95-2.85 3.6-4.96 6.72-4.96z"/>
+                    </svg>
+                    <span class="text-sm font-extrabold text-slate-900">Google аккаунтын таңдаңыз</span>
+                </div>
+                <button type="button" id="googleCloseTopBtn" data-action="close-google-chooser" class="p-1.5 rounded-lg text-slate-400 hover:text-slate-900 hover:bg-slate-100 tap-btn">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="p-4 space-y-2" id="googleAccountOptions"></div>
+
+            <div class="px-5 py-3.5 bg-slate-50 border-t border-slate-200 flex items-center justify-between gap-2">
+                <button type="button" id="googlePopupTriggerBtn" data-action="google-firebase-popup" class="text-xs font-bold text-indigo-900 hover:underline tap-btn">
+                    Google терезесін ашу
+                </button>
+                <div class="flex items-center gap-2">
+                    <button type="button" id="googleCancelBtn" data-action="close-google-chooser" class="px-3.5 py-2 rounded-xl border border-slate-300 bg-white text-xs font-bold text-slate-700 tap-btn">
+                        Болдырмау
+                    </button>
+                    <button type="button" id="googleContinueBtn" data-action="google-continue" class="px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold tap-btn">
+                        Жалғастыру
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- 3. НЕГІЗГІ ЖҮЙЕ ИНТЕРФЕЙСІ                                         -->
+    <!-- =================================================================== -->
+    <div id="mainAppShell" class="min-h-screen flex flex-col">
+        <header class="sticky top-0 z-30 glass-card bg-white/85 border-b border-slate-200/80 px-3 sm:px-6 h-16 flex items-center justify-between gap-2">
+            <div class="flex items-center gap-2.5 shrink-0">
+                <button type="button" id="mobileMenuBtn" data-action="toggle-mobile-nav" class="lg:hidden p-2 rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 tap-btn" aria-label="Мәзір">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+
+                <button type="button" id="brandHomeBtn" data-action="brand-home" class="tap-btn rounded-full focus:outline-none">
+                    <span class="bolashaq-puffy-logo text-base sm:text-xl">
+                        <span class="bolashaq-puffy-text">BOLASHAQ</span>
+                    </span>
+                </button>
+            </div>
+
+            <!-- РӨЛ АУЫСТЫРҒЫШ -->
+            <div class="flex items-center bg-slate-100/90 p-1 rounded-2xl border border-slate-200/80">
+                <button type="button" id="topRoleStudent" data-action="switch-role" data-role="student" class="role-switch-btn px-2.5 sm:px-3.5 py-1.5 rounded-xl text-xs font-bold tap-btn">Оқушы</button>
+                <button type="button" id="topRoleTeacher" data-action="switch-role" data-role="teacher" class="role-switch-btn px-2.5 sm:px-3.5 py-1.5 rounded-xl text-xs font-bold tap-btn">Мұғалім</button>
+                <button type="button" id="topRoleAdmin" data-action="switch-role" data-role="admin" class="role-switch-btn px-2.5 sm:px-3.5 py-1.5 rounded-xl text-xs font-bold tap-btn">Админ</button>
+            </div>
+
+            <!-- БАСҚАРУ БАТЫРМАЛАРЫ -->
+            <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+                <span id="liveSyncBadge" class="hidden xl:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-white border border-slate-200 text-[11px] font-bold text-slate-700">
+                    <span id="liveSyncDot" class="w-2 h-2 rounded-full bg-amber-400"></span>
+                    <span id="liveSyncLabel">Firestore</span>
+                </span>
+
+                <button type="button" id="headerApiBtn" data-action="open-api-modal" class="px-2.5 py-1.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-xs font-bold text-slate-800 flex items-center gap-1.5 tap-btn">
+                    <span id="apiKeyDot" class="w-2 h-2 rounded-full bg-amber-400"></span>
+                    <span>API</span>
+                </button>
+
+                <button type="button" id="headerTokenBtn" data-action="header-tokens" class="px-2.5 py-1.5 rounded-xl bg-amber-50 hover:bg-amber-100 border border-amber-200 text-xs font-extrabold text-amber-950 tabular-nums tap-btn">
+                    <span id="headerTokenCount">0</span>
+                    <span class="hidden sm:inline font-semibold">токен</span>
+                </button>
+
+                <button type="button" id="headerNotifBtn" data-action="toggle-notif-drawer" class="relative p-2 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 tap-btn" aria-label="Хабарламалар">
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+                    </svg>
+                    <span id="unreadNotifBadge" class="hidden absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 rounded-full bg-rose-600 text-white text-[10px] font-extrabold flex items-center justify-center">0</span>
+                </button>
+
+                <button type="button" id="headerAuthBtn" data-action="open-gate-login" class="px-2.5 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold tap-btn">
+                    <span id="headerUserLabel">Кіру</span>
+                </button>
+            </div>
+        </header>
+
+        <div class="flex-1 flex relative">
+            <div id="mobileNavBackdrop" data-action="close-mobile-nav" class="fixed inset-0 bg-slate-950/40 z-30 hidden lg:hidden"></div>
+
+            <aside id="leftSidebar" class="fixed lg:static inset-y-0 left-0 z-40 w-64 glass-card bg-white/90 border-r border-slate-200/80 flex flex-col justify-between transform -translate-x-full lg:translate-x-0 transition-transform duration-200 pt-16 lg:pt-0 shrink-0">
+                <div class="p-3.5 space-y-3 overflow-y-auto flex-1">
+                    <div id="activeScopeCard" class="p-3 rounded-2xl bg-gradient-to-r from-slate-950 to-indigo-950 text-white flex items-center justify-between text-xs"></div>
+                    <nav id="roleMenuList" class="space-y-1"></nav>
+                </div>
+
+                <div class="p-3.5 border-t border-slate-200/80 bg-white/60 space-y-2">
+                    <button type="button" id="sidebarSyncBtn" data-action="sync-store" class="w-full py-2 px-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-xs font-bold text-slate-800 tap-btn">
+                        Синхрондау
+                    </button>
+                    <button type="button" id="sidebarRegBtn" data-action="open-gate-register" class="w-full py-2 px-3 rounded-xl bg-amber-50 hover:bg-amber-100 border border-amber-200 text-xs font-bold text-amber-950 tap-btn">
+                        Тіркелу
+                    </button>
+                </div>
+            </aside>
+
+            <main class="flex-1 min-w-0 p-4 sm:p-6 max-w-6xl mx-auto w-full">
+                <div id="workspaceContent"></div>
+            </main>
+        </div>
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- 4. ХАБАРЛАМАЛАР ПАНЕЛІ, TOAST ЖӘНЕ МОДАЛЬДЫ ТЕРЕЗЕ                 -->
+    <!-- =================================================================== -->
+    <div id="notifDrawer" class="fixed inset-y-0 right-0 z-50 w-full max-w-sm bg-white border-l border-slate-200 shadow-2xl transform translate-x-full transition-transform duration-200 flex flex-col">
+        <div class="px-4 py-3.5 border-b border-slate-200 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <span class="font-bold text-sm text-slate-900">Хабарламалар</span>
+                <span id="drawerNotifCount" class="px-2 py-0.5 rounded-full bg-amber-100 text-amber-900 text-[11px] font-bold">0</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+                <button type="button" id="markAllNotifBtn" data-action="mark-all-notif" class="px-2.5 py-1 rounded-lg text-xs font-bold text-slate-600 hover:bg-slate-100 tap-btn">Оқылды</button>
+                <button type="button" id="closeNotifDrawerBtn" data-action="close-notif-drawer" class="p-1.5 rounded-lg text-slate-500 hover:bg-slate-100 tap-btn">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div id="notifListBody" class="flex-1 overflow-y-auto p-3.5 space-y-2.5"></div>
+    </div>
+
+    <div id="toastStack" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2 max-w-sm w-full pointer-events-none px-3 sm:px-0"></div>
+
+    <div id="dialogOverlay" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/55 backdrop-blur-[2px]">
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-2xl max-w-2xl w-full overflow-hidden anim-iphone-tile">
+            <div class="px-5 py-3.5 border-b border-slate-200 flex items-center justify-between">
+                <h3 id="dialogTitle" class="text-sm sm:text-base font-extrabold text-slate-900"></h3>
+                <button type="button" id="closeDialogBtn" data-action="close-modal" class="p-1.5 rounded-xl text-slate-400 hover:text-slate-900 hover:bg-slate-100 tap-btn">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div id="dialogBody" class="p-5 max-h-[82vh] overflow-y-auto text-sm"></div>
+        </div>
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- 5. FIREBASE v10.14.1 (AUTH + FIRESTORE) & WAYGROUND ПЛАТФОРМАСЫ    -->
+    <!-- =================================================================== -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+        import {
+            getFirestore,
+            doc,
+            getDoc,
+            setDoc,
+            onSnapshot
+        } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+        import {
+            getAuth,
+            onAuthStateChanged,
+            createUserWithEmailAndPassword,
+            signInWithEmailAndPassword,
+            GoogleAuthProvider,
+            signInWithPopup,
+            signInWithRedirect,
+            getRedirectResult,
+            signOut,
+            updateProfile
+        } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA1msX0fr0ObBW2lJzQPOVWkK5jXPMYGvY",
+            authDomain: "bolashaq-e214e.firebaseapp.com",
+            projectId: "bolashaq-e214e",
+            storageBucket: "bolashaq-e214e.firebasestorage.app",
+            messagingSenderId: "934825379127",
+            appId: "1:934825379127:web:80046b01de37a8244a86b2",
+            measurementId: "G-HKML76TE8R"
+        };
+
+        const FIRESTORE_DOC = ["bolashaq_platform", "state_v4"];
+        const STORAGE_KEY = "bolashaq_wayground_state_v4";
+        const CREDS_KEY = "bolashaq_wayground_creds_v4";
+        const SESSION_KEY = "bolashaq_wayground_session_v4";
+
+        const GOOGLE_ACCOUNTS = [
+            { id: "g_1", name: "Әлихан Сәрсенбай", email: "alihan.sarsenbay@gmail.com", role: "student", grade: 9, initials: "ӘС", bg: "bg-indigo-900" },
+            { id: "g_2", name: "Гүлнәр Сәрсенова", email: "gulnar.sarsenova@gmail.com", role: "teacher", grade: null, initials: "ГС", bg: "bg-amber-700" },
+            { id: "g_3", name: "Ерлан Нұрғалиев", email: "erlan.nurgaliyev@gmail.com", role: "admin", grade: null, initials: "ЕН", bg: "bg-slate-800" }
+        ];
+
+        const SEED_STATE = {
+            scope: { grade: 9, subject: "Физика" },
+            ai: { provider: "Gemini", studioKind: "quiz", draftOutput: null },
+            grades: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+            subjects: ["Математика", "Физика", "Химия", "Биология", "Информатика", "Қазақ тілі", "Тарих", "География"],
+            users: [
+                { id: "usr_student_1", name: "Алихан Қасымов", email: "student@bolashaq.kz", role: "student", grade: 9, subject: "Физика", tokens: 2000, points: 420 },
+                { id: "usr_teacher_1", name: "Гүлнәр Сәрсенова", email: "teacher@bolashaq.kz", role: "teacher", grade: 9, subject: "Физика", tokens: 4000, points: 0 },
+                { id: "usr_admin_1", name: "Ерлан Нұрғалиев", email: "admin@bolashaq.kz", role: "admin", grade: null, subject: "Басқару", tokens: 12000, points: 0 }
+            ],
+            topics: [
+                { id: "top_1", grade: 9, subject: "Физика", title: "Ом заңы", summary: "I = U / R — ток күші кернеуге тура, кедергіге кері пропорционал.", formula: "I = U / R", completed: false },
+                { id: "top_2", grade: 9, subject: "Химия", title: "pH шкаласы", summary: "Қышқылдық және сілтілік орта көрсеткіші (0–14).", formula: "pH < 7 • pH = 7 • pH > 7", completed: false },
+                { id: "top_3", grade: 9, subject: "Математика", title: "Квадрат теңдеу", summary: "Дискриминант арқылы түбірлерді табу.", formula: "D = b² - 4ac", completed: false }
+            ],
+            presentations: [
+                {
+                    id: "pres_1",
+                    grade: 9,
+                    subject: "Физика",
+                    title: "Электр тізбегі және Ом заңы",
+                    slides: [
+                        { title: "1-слайд: Шамалар", points: ["I — ток күші (А)", "U — кернеу (В)", "R — кедергі (Ом)"] },
+                        { title: "2-слайд: Формула", points: ["I = U / R", "U = I · R", "R = U / I"] }
+                    ]
+                }
+            ],
+            quizzes: [
+                {
+                    id: "quiz_1",
+                    grade: 9,
+                    subject: "Физика",
+                    title: "Ом заңы — Wayground Квиз",
+                    pin: "482910",
+                    timeLimitSec: 20,
+                    publishedToStudent: true,
+                    questions: [
+                        { q: "Ток күшінің өлшем бірлігі?", opts: ["Ампер (А)", "Вольт (В)", "Ом (Ом)", "Ватт (Вт)"], ans: 0 },
+                        { q: "U = 18 В, R = 9 Ом болса, I қанша?", opts: ["0.5 А", "2 А", "9 А", "162 А"], ans: 1 },
+                        { q: "Кедергі 2 есе артса, ток күші қалай өзгереді?", opts: ["2 есе кемиді", "2 есе артады", "Өзгермейді", "4 есе артады"], ans: 0 }
+                    ]
+                },
+                {
+                    id: "quiz_2",
+                    grade: 9,
+                    subject: "Химия",
+                    title: "Қышқылдар және pH",
+                    pin: "739154",
+                    timeLimitSec: 20,
+                    publishedToStudent: true,
+                    questions: [
+                        { q: "Бейтарап ортаның pH мәні?", opts: ["7", "1", "14", "0"], ans: 0 },
+                        { q: "pH < 7 қандай орта?", opts: ["Қышқылдық", "Сілтілік", "Бейтарап", "Тұзды"], ans: 0 }
+                    ]
+                }
+            ],
+            tasks: [
+                {
+                    id: "tsk_1",
+                    grade: 9,
+                    subject: "Физика",
+                    title: "Тізбек бөлігін есептеу",
+                    description: "U = 24 В және R = 6 Ом кезіндегі ток күшін табыңыз.",
+                    status: "pending",
+                    answer: "",
+                    gradeScore: null
+                }
+            ],
+            submissions: [
+                { id: "sub_1", studentName: "Алихан Қасымов", category: "Квиз", title: "Ом заңы — Wayground Квиз", result: "300 ұпай • 3x серия", score: 10 }
+            ],
+            chatMessages: [
+                { sender: "ai", provider: "Gemini", tokens: 0, text: "Сұрақ немесе тақырып жазыңыз." }
+            ],
+            tokenLogs: [
+                { id: "tlog_1", user: "Гүлнәр Сәрсенова", role: "Мұғалім", provider: "Gemini", spent: 28, action: "Квиз генерациясы" }
+            ],
+            notifications: [
+                { id: "notif_1", title: "BOLASHAQ", body: "Жүйе іске қосылды.", type: "info", time: "Қазір", read: false }
+            ]
+        };
+
+        const appState = {
+            role: "student",
+            activeTab: { student: "topics", teacher: "scope", admin: "users" },
+            apiKeys: {
+                gemini: localStorage.getItem("bolashaq_key_gemini") || "",
+                openai: localStorage.getItem("bolashaq_key_openai") || ""
+            },
+            sessionUser: loadSession(),
+            selectedGoogleId: GOOGLE_ACCOUNTS[0].id,
+            dbOnline: false,
+            suppressSnapshot: false
+        };
+
+        let store = loadLocalStore();
+        let db = null;
+        let auth = null;
+        let stateDoc = null;
+
+        // Wayground-стильдегі квиз ойнатқыш күйі (solo / live + timer + freeze + streak + powerups)
+        let quizEngine = null;
+        let quizTimerId = null;
+
+        function safeClone(obj) {
+            return JSON.parse(JSON.stringify(obj));
+        }
+
+        function loadLocalStore() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                return raw ? { ...safeClone(SEED_STATE), ...JSON.parse(raw) } : safeClone(SEED_STATE);
+            } catch {
+                return safeClone(SEED_STATE);
+            }
+        }
+
+        function saveLocalStore() {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+            } catch {
+                // ignore storage quota errors
+            }
+        }
+
+        function loadSession() {
+            try {
+                const raw = localStorage.getItem(SESSION_KEY);
+                return raw ? JSON.parse(raw) : null;
+            } catch {
+                return null;
+            }
+        }
+
+        function saveSession(sess) {
+            try {
+                if (sess) localStorage.setItem(SESSION_KEY, JSON.stringify(sess));
+                else localStorage.removeItem(SESSION_KEY);
+            } catch {
+                // ignore
+            }
+        }
+
+        function loadCreds() {
+            try {
+                const raw = localStorage.getItem(CREDS_KEY);
+                return raw ? JSON.parse(raw) : [];
+            } catch {
+                return [];
+            }
+        }
+
+        function saveCreds(arr) {
+            try {
+                localStorage.setItem(CREDS_KEY, JSON.stringify(arr));
+            } catch {
+                // ignore
+            }
+        }
+
+        async function persistStore() {
+            saveLocalStore();
+            renderShell();
+            if (!stateDoc) return;
+            try {
+                appState.suppressSnapshot = true;
+                await setDoc(stateDoc, { ...store, updatedAt: Date.now() }, { merge: true });
+                appState.dbOnline = true;
+                renderShell();
+            } catch {
+                appState.dbOnline = false;
+                renderShell();
+            } finally {
+                setTimeout(() => { appState.suppressSnapshot = false; }, 140);
+            }
+        }
+
+        // =====================================================================
+        // ХАБАРЛАМАЛАР ЖӘНЕ TOAST
+        // =====================================================================
+        function notifySystem(title, body, type = "info") {
+            const now = new Date().toLocaleTimeString("kk-KZ", { hour: "2-digit", minute: "2-digit" });
+            store.notifications.unshift({
+                id: "ntf_" + Date.now() + "_" + Math.random().toString(36).slice(2, 6),
+                title,
+                body,
+                type,
+                time: now,
+                read: false
+            });
+            if (store.notifications.length > 40) store.notifications = store.notifications.slice(0, 40);
+            saveLocalStore();
+            renderNotificationsDrawer();
+            showToast(title, body, type);
+        }
+
+        function showToast(title, body, type = "info") {
+            const stack = document.getElementById("toastStack");
+            if (!stack) return;
+            const accent = {
+                success: "border-l-4 border-l-emerald-500",
+                warn: "border-l-4 border-l-amber-400",
+                error: "border-l-4 border-l-rose-500",
+                info: "border-l-4 border-l-indigo-400"
+            }[type] || "border-l-4 border-l-amber-400";
+
+            const card = document.createElement("div");
+            card.className = `anim-toast pointer-events-auto bg-slate-900 text-white rounded-2xl px-4 py-3 shadow-xl border border-slate-800 ${accent}`;
+            card.innerHTML = `
+                <div class="text-xs font-extrabold text-amber-300">${escapeHtml(title)}</div>
+                <div class="text-xs text-slate-200 mt-0.5">${escapeHtml(body)}</div>
+            `;
+            stack.appendChild(card);
+            setTimeout(() => {
+                card.style.opacity = "0";
+                card.style.transform = "translateX(12px)";
+                card.style.transition = "all 0.2s ease";
+                setTimeout(() => card.remove(), 210);
+            }, 2400);
+        }
+
+        function renderNotificationsDrawer() {
+            const unread = store.notifications.filter(n => !n.read).length;
+            const badge = document.getElementById("unreadNotifBadge");
+            const countEl = document.getElementById("drawerNotifCount");
+            const bodyEl = document.getElementById("notifListBody");
+
+            if (badge) {
+                badge.textContent = String(unread);
+                badge.classList.toggle("hidden", unread === 0);
+            }
+            if (countEl) countEl.textContent = String(store.notifications.length);
+            if (bodyEl) {
+                bodyEl.innerHTML = store.notifications.map(n => `
+                    <div data-action="read-notif" data-notif-id="${n.id}" class="p-3 rounded-xl border cursor-pointer tap-btn ${
+                        n.read ? "bg-slate-50 border-slate-200 text-slate-600" : "bg-amber-50/75 border-amber-200 text-slate-900"
+                    }">
+                        <div class="flex items-center justify-between text-[11px] font-bold">
+                            <span class="text-amber-800">${escapeHtml(n.title)}</span>
+                            <span class="text-slate-400">${escapeHtml(n.time)}</span>
+                        </div>
+                        <p class="text-xs mt-1">${escapeHtml(n.body)}</p>
+                    </div>
+                `).join("");
+            }
+        }
+
+        function setNotifDrawerOpen(forceOpen = null) {
+            const drawer = document.getElementById("notifDrawer");
+            if (!drawer) return;
+            const next = forceOpen !== null ? forceOpen : drawer.classList.contains("translate-x-full");
+            drawer.classList.toggle("translate-x-full", !next);
+            if (next) renderNotificationsDrawer();
+        }
+
+        // =====================================================================
+        // КІРУ / ТІРКЕЛУ / GOOGLE ТАҢДАУ / iPHONE АНИМАЦИЯ
+        // =====================================================================
+        function populateGateSelects() {
+            const gEl = document.getElementById("gRegGrade");
+            const sEl = document.getElementById("gRegSubject");
+            if (gEl) {
+                gEl.innerHTML = store.grades.map(g => `<option value="${g}">${g}-сынып</option>`).join("");
+                gEl.value = String(store.scope.grade || 9);
+            }
+            if (sEl) {
+                sEl.innerHTML = store.subjects.map(s => `<option value="${escapeHtml(s)}">${escapeHtml(s)}</option>`).join("");
+                sEl.value = store.scope.subject || "Физика";
+            }
+            const rEl = document.getElementById("gRegRole");
+            const grRow = document.getElementById("gRegGradeRow");
+            if (rEl && grRow) {
+                grRow.classList.toggle("hidden", rEl.value !== "student");
+            }
+        }
+
+        function switchGateMode(mode) {
+            const isLogin = mode === "login";
+            document.getElementById("gateLoginForm").classList.toggle("hidden", !isLogin);
+            document.getElementById("gateRegisterForm").classList.toggle("hidden", isLogin);
+
+            document.getElementById("gateTabLogin").className = `py-2 rounded-xl text-xs sm:text-sm font-bold tap-btn ${
+                isLogin ? "bg-white text-slate-900 shadow-xs" : "text-slate-600 hover:text-slate-900"
+            }`;
+            document.getElementById("gateTabRegister").className = `py-2 rounded-xl text-xs sm:text-sm font-bold tap-btn ${
+                !isLogin ? "bg-white text-slate-900 shadow-xs" : "text-slate-600 hover:text-slate-900"
+            }`;
+        }
+
+        async function handleRegisterSubmit(e) {
+            e.preventDefault();
+            const btn = document.getElementById("gRegBtn");
+            setButtonLoading(btn, true, "Тіркелуде...");
+
+            const name = document.getElementById("gRegName").value.trim();
+            const role = document.getElementById("gRegRole").value;
+            const grade = role === "student" ? parseInt(document.getElementById("gRegGrade").value, 10) : null;
+            const subject = document.getElementById("gRegSubject").value;
+            const email = document.getElementById("gRegEmail").value.trim().toLowerCase();
+            const password = document.getElementById("gRegPass").value;
+
+            const creds = loadCreds().filter(c => c.email !== email);
+            creds.push({ email, password, name, role, grade, subject });
+            saveCreds(creds);
+
+            let uid = "usr_" + Date.now();
+            try {
+                if (auth) {
+                    const uc = await createUserWithEmailAndPassword(auth, email, password);
+                    uid = uc.user.uid;
+                    await updateProfile(uc.user, { displayName: name });
+                }
+            } catch (err) {
+                if (err?.code === "auth/email-already-in-use") {
+                    setButtonLoading(btn, false);
+                    switchGateMode("login");
+                    document.getElementById("gLoginEmail").value = email;
+                    notifySystem("Аккаунт бар", "Логин және парольмен кіріңіз.", "warn");
+                    return;
+                }
+            }
+
+            const userRec = { id: uid, name, email, role, grade, subject, tokens: 2000, points: 0 };
+            store.users = [userRec, ...store.users.filter(u => u.email !== email)];
+            appState.role = role;
+
+            setButtonLoading(btn, false);
+            switchGateMode("login");
+            document.getElementById("gLoginEmail").value = email;
+            document.getElementById("gLoginPass").value = password;
+            document.getElementById("gateStatusNote").textContent = `${name} тіркелді`;
+
+            notifySystem("Тіркелді", `${name} (${roleTitle(role)})`, "success");
+            await persistStore();
+        }
+
+        async function handleLoginSubmit(e) {
+            e.preventDefault();
+            const btn = document.getElementById("gLoginBtn");
+            setButtonLoading(btn, true, "Кіруде...");
+
+            const email = document.getElementById("gLoginEmail").value.trim().toLowerCase();
+            const password = document.getElementById("gLoginPass").value;
+
+            let fbUser = null;
+            try {
+                if (auth) {
+                    const res = await signInWithEmailAndPassword(auth, email, password);
+                    fbUser = res.user;
+                }
+            } catch {
+                // fallback to registered local credentials
+            }
+
+            const creds = loadCreds();
+            const matched = creds.find(c => c.email === email && c.password === password);
+            let prof = store.users.find(u => u.email && u.email.toLowerCase() === email);
+
+            if (!fbUser && !matched && !prof) {
+                setButtonLoading(btn, false);
+                notifySystem("Қате", "Алдымен тіркеліңіз немесе Google-мен кіріңіз.", "error");
+                return;
+            }
+
+            if (!prof) {
+                prof = {
+                    id: fbUser?.uid || ("usr_" + Date.now()),
+                    name: matched?.name || fbUser?.displayName || email.split("@")[0],
+                    email,
+                    role: matched?.role || "student",
+                    grade: matched?.grade ?? 9,
+                    subject: matched?.subject || store.scope.subject,
+                    tokens: 2000,
+                    points: 0
+                };
+                store.users.unshift(prof);
+            }
+
+            appState.role = prof.role || "student";
+            appState.sessionUser = { id: prof.id, name: prof.name, email: prof.email, role: prof.role };
+            saveSession(appState.sessionUser);
+            setButtonLoading(btn, false);
+            unlockWorkspace(`${prof.name} жүйеге кірді`);
+            await persistStore();
+        }
+
+        function openGoogleChooser() {
+            renderGoogleChooserList();
+            const modal = document.getElementById("googleChooserModal");
+            modal.classList.remove("hidden");
+            modal.classList.add("flex");
+        }
+
+        function closeGoogleChooser() {
+            const modal = document.getElementById("googleChooserModal");
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
+        }
+
+        function renderGoogleChooserList() {
+            const box = document.getElementById("googleAccountOptions");
+            if (!box) return;
+            box.innerHTML = GOOGLE_ACCOUNTS.map(acc => {
+                const selected = acc.id === appState.selectedGoogleId;
+                return `
+                    <button type="button" data-action="pick-google-acc" data-google-id="${acc.id}" class="w-full p-3 rounded-xl border text-left flex items-center justify-between gap-3 tap-btn ${
+                        selected ? "bg-indigo-50/80 border-indigo-400" : "bg-white border-slate-200 hover:bg-slate-50"
+                    }">
+                        <div class="flex items-center gap-3 min-w-0">
+                            <div class="w-9 h-9 rounded-full ${acc.bg} text-white text-xs font-extrabold flex items-center justify-center shrink-0">${acc.initials}</div>
+                            <div class="min-w-0">
+                                <div class="text-xs sm:text-sm font-bold text-slate-900 truncate">${escapeHtml(acc.name)}</div>
+                                <div class="text-xs text-slate-500 truncate">${escapeHtml(acc.email)}</div>
+                            </div>
+                        </div>
+                        <span class="px-2 py-0.5 rounded-lg bg-slate-100 text-slate-700 text-[11px] font-bold shrink-0">${roleTitle(acc.role)}</span>
+                    </button>
+                `;
+            }).join("");
+        }
+
+        async function continueWithChosenGoogleAccount() {
+            const acc = GOOGLE_ACCOUNTS.find(a => a.id === appState.selectedGoogleId) || GOOGLE_ACCOUNTS[0];
+            let prof = store.users.find(u => u.email && u.email.toLowerCase() === acc.email.toLowerCase());
+            if (!prof) {
+                prof = {
+                    id: acc.id,
+                    name: acc.name,
+                    email: acc.email,
+                    role: acc.role,
+                    grade: acc.grade,
+                    subject: store.scope.subject,
+                    tokens: 2500,
+                    points: 0
+                };
+                store.users.unshift(prof);
+            }
+            appState.role = prof.role;
+            appState.sessionUser = { id: prof.id, name: prof.name, email: prof.email, role: prof.role };
+            saveSession(appState.sessionUser);
+            closeGoogleChooser();
+            unlockWorkspace(`Google: ${prof.name}`);
+            await persistStore();
+        }
+
+        async function launchFirebaseGoogleSignIn() {
+            const btn = document.getElementById("googlePopupTriggerBtn");
+            setButtonLoading(btn, true, "Google...");
+            try {
+                if (auth) {
+                    const provider = new GoogleAuthProvider();
+                    provider.setCustomParameters({ prompt: "select_account" });
+                    const res = await signInWithPopup(auth, provider);
+                    const gUser = res.user;
+                    const email = (gUser.email || `google_${gUser.uid}@gmail.com`).toLowerCase();
+                    let prof = store.users.find(u => u.email && u.email.toLowerCase() === email);
+                    if (!prof) {
+                        prof = {
+                            id: gUser.uid,
+                            name: gUser.displayName || "Google аккаунт",
+                            email,
+                            role: "student",
+                            grade: 9,
+                            subject: store.scope.subject,
+                            tokens: 2500,
+                            points: 0
+                        };
+                        store.users.unshift(prof);
+                    }
+                    appState.role = prof.role;
+                    appState.sessionUser = { id: prof.id, name: prof.name, email: prof.email, role: prof.role };
+                    saveSession(appState.sessionUser);
+                    setButtonLoading(btn, false);
+                    closeGoogleChooser();
+                    unlockWorkspace(`Google: ${prof.name}`);
+                    await persistStore();
+                    return;
+                }
+            } catch (err) {
+                if (err?.code === "auth/popup-blocked" || err?.code === "auth/operation-not-supported-in-this-environment") {
+                    try {
+                        const provider = new GoogleAuthProvider();
+                        provider.setCustomParameters({ prompt: "select_account" });
+                        await signInWithRedirect(auth, provider);
+                        return;
+                    } catch {
+                        // fallback to chooser modal
+                    }
+                }
+            }
+            setButtonLoading(btn, false);
+            notifySystem("Google", "Аккаунтты таңдап, «Жалғастыру» басыңыз.", "info");
+        }
+
+        function handleEnterSystemButton() {
+            const prof = activeUser();
+            if (!appState.sessionUser) {
+                appState.sessionUser = { id: prof.id, name: prof.name, email: prof.email, role: prof.role };
+                saveSession(appState.sessionUser);
+            }
+            unlockWorkspace(`${prof.name} (${roleTitle(appState.role)})`);
+        }
+
+        function openEntryGate(mode = "login") {
+            populateGateSelects();
+            switchGateMode(mode);
+            const gate = document.getElementById("entryGate");
+            gate.classList.remove("hidden");
+            gate.classList.add("flex");
+        }
+
+        function closeEntryGate() {
+            const gate = document.getElementById("entryGate");
+            gate.classList.add("hidden");
+            gate.classList.remove("flex");
+        }
+
+        // iPhone экран блоктан шыққандағыдай серпімді қону анимациясы
+        function unlockWorkspace(noticeText = "") {
+            closeEntryGate();
+            renderFullUI();
+
+            const shell = document.getElementById("mainAppShell");
+            if (shell) {
+                shell.classList.remove("anim-iphone-shell");
+                void shell.offsetWidth;
+                shell.classList.add("anim-iphone-shell");
+            }
+
+            const tiles = document.querySelectorAll("#workspaceContent .glass-card, #workspaceContent .wayground-card");
+            tiles.forEach((tile, idx) => {
+                tile.classList.remove("anim-iphone-tile");
+                tile.style.animationDelay = `${Math.min(idx * 55, 280)}ms`;
+                void tile.offsetWidth;
+                tile.classList.add("anim-iphone-tile");
+            });
+
+            if (noticeText) {
+                notifySystem("BOLASHAQ", noticeText, "success");
+            }
+        }
+
+        async function logoutAccount() {
+            try {
+                if (auth && auth.currentUser) await signOut(auth);
+            } catch {
+                // ignore
+            }
+            appState.sessionUser = null;
+            saveSession(null);
+            openEntryGate("login");
+        }
+
+        // =====================================================================
+        // FIREBASE INIT & LIVE SYNC
+        // =====================================================================
+        async function initFirebase() {
+            try {
+                const app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+                stateDoc = doc(db, FIRESTORE_DOC[0], FIRESTORE_DOC[1]);
+
+                try {
+                    const redRes = await getRedirectResult(auth);
+                    if (redRes?.user) {
+                        const gUser = redRes.user;
+                        const email = (gUser.email || `google_${gUser.uid}@gmail.com`).toLowerCase();
+                        appState.sessionUser = {
+                            id: gUser.uid,
+                            name: gUser.displayName || "Google аккаунт",
+                            email,
+                            role: "student"
+                        };
+                        saveSession(appState.sessionUser);
+                    }
+                } catch {
+                    // ignore redirect error in local preview
+                }
+
+                onAuthStateChanged(auth, (fbUser) => {
+                    if (fbUser) {
+                        const found = store.users.find(
+                            u => u.id === fbUser.uid || (fbUser.email && u.email?.toLowerCase() === fbUser.email.toLowerCase())
+                        );
+                        appState.sessionUser = {
+                            id: fbUser.uid,
+                            name: fbUser.displayName || found?.name || fbUser.email || "Пайдаланушы",
+                            email: fbUser.email || found?.email || "",
+                            role: found?.role || appState.role
+                        };
+                        saveSession(appState.sessionUser);
+                        appState.role = found?.role || appState.role;
+                        closeEntryGate();
+                        renderFullUI();
+                    }
+                });
+
+                const snap = await getDoc(stateDoc);
+                if (!snap.exists()) {
+                    await setDoc(stateDoc, { ...SEED_STATE, updatedAt: Date.now() });
+                    store = safeClone(SEED_STATE);
+                    saveLocalStore();
+                } else {
+                    store = { ...safeClone(SEED_STATE), ...snap.data() };
+                    saveLocalStore();
+                }
+
+                appState.dbOnline = true;
+                setGateDbText("Firestore: қосылды");
+                renderShell();
+
+                onSnapshot(stateDoc, (docSnap) => {
+                    if (appState.suppressSnapshot) return;
+                    if (docSnap.exists()) {
+                        store = { ...safeClone(SEED_STATE), ...docSnap.data() };
+                        saveLocalStore();
+                        appState.dbOnline = true;
+                        renderFullUI();
+                    }
+                }, () => {
+                    appState.dbOnline = false;
+                    setGateDbText("Локальды база");
+                    renderShell();
+                });
+            } catch {
+                appState.dbOnline = false;
+                setGateDbText("Локальды база");
+                renderShell();
+            }
+        }
+
+        function setGateDbText(t) {
+            const el = document.getElementById("gateDbStatus");
+            if (el) el.textContent = t;
+        }
+
+        // =====================================================================
+        // МӘЗІР ЖӘНЕ РӨЛДЕР
+        // =====================================================================
+        const MENUS = {
+            student: [
+                { id: "topics", label: "Тақырыптар" },
+                { id: "tasks", label: "Тапсырмалар & Квиз" },
+                { id: "labs", label: "Зертхана" },
+                { id: "ai", label: "ЖИ", badge: "AI" },
+                { id: "profile", label: "Кабинет" },
+                { id: "settings", label: "Баптаулар" }
+            ],
+            teacher: [
+                { id: "scope", label: "Сынып & Пән" },
+                { id: "presentations", label: "Презентация" },
+                { id: "interactive", label: "Интерактивті квиз" },
+                { id: "labs", label: "Зертхана" },
+                { id: "practicals", label: "Практика" },
+                { id: "ai", label: "ЖИ", badge: "AI" },
+                { id: "profile", label: "Кабинет" },
+                { id: "settings", label: "Баптаулар" }
+            ],
+            admin: [
+                { id: "users", label: "Қолданушылар" },
+                { id: "curriculum", label: "Сынып & Пән" },
+                { id: "tokens", label: "Токендер" },
+                { id: "profile", label: "Кабинет" },
+                { id: "settings", label: "Баптаулар" }
+            ]
+        };
+
+        function roleTitle(r) {
+            return { student: "Оқушы", teacher: "Мұғалім", admin: "Админ" }[r] || "Пайдаланушы";
+        }
+
+        function activeUser() {
+            if (appState.sessionUser) {
+                const match = store.users.find(
+                    u => u.id === appState.sessionUser.id || (appState.sessionUser.email && u.email?.toLowerCase() === appState.sessionUser.email.toLowerCase())
+                );
+                if (match) return match;
+            }
+            const defaults = { student: "usr_student_1", teacher: "usr_teacher_1", admin: "usr_admin_1" };
+            return store.users.find(u => u.id === defaults[appState.role]) || store.users[0];
+        }
+
+        function switchRole(newRole) {
+            clearQuizTimer();
+            quizEngine = null;
+            appState.role = newRole;
+            renderFullUI();
+            closeMobileNav();
+            notifySystem("Рөл", roleTitle(newRole), "info");
+            persistStore();
+        }
+
+        function switchTab(tabId) {
+            clearQuizTimer();
+            quizEngine = null;
+            appState.activeTab[appState.role] = tabId;
+            renderSidebar();
+            renderPage();
+            closeMobileNav();
+        }
+
+        function renderShell() {
+            const u = activeUser();
+            document.querySelectorAll(".role-switch-btn").forEach(btn => {
+                const active = btn.dataset.role === appState.role;
+                btn.className = active
+                    ? "role-switch-btn px-2.5 sm:px-3.5 py-1.5 rounded-xl text-xs font-extrabold bg-slate-900 text-white shadow-xs tap-btn"
+                    : "role-switch-btn px-2.5 sm:px-3.5 py-1.5 rounded-xl text-xs font-bold text-slate-600 hover:text-slate-900 tap-btn";
+            });
+
+            document.getElementById("headerTokenCount").textContent = (u.tokens || 0).toLocaleString("ru-RU");
+            document.getElementById("headerUserLabel").textContent = appState.sessionUser ? u.name.split(" ")[0] : "Кіру";
+
+            const dot = document.getElementById("liveSyncDot");
+            const lbl = document.getElementById("liveSyncLabel");
+            dot.className = appState.dbOnline ? "w-2 h-2 rounded-full bg-emerald-500" : "w-2 h-2 rounded-full bg-amber-400";
+            lbl.textContent = appState.dbOnline ? "Firestore" : "Локальды";
+
+            const hasKey = Boolean(appState.apiKeys.gemini || appState.apiKeys.openai);
+            document.getElementById("apiKeyDot").className = hasKey ? "w-2 h-2 rounded-full bg-emerald-500" : "w-2 h-2 rounded-full bg-amber-400";
+
+            document.getElementById("activeScopeCard").innerHTML = `
+                <div>
+                    <div class="text-[10px] uppercase tracking-wider text-amber-400 font-bold">${roleTitle(appState.role)}</div>
+                    <div class="font-bold text-xs mt-0.5">${escapeHtml(u.name)}</div>
+                </div>
+                <span class="px-2 py-1 rounded-lg bg-white/10 text-[11px] font-bold text-amber-300">${store.scope.grade}-сынып</span>
+            `;
+
+            renderNotificationsDrawer();
+        }
+
+        function renderSidebar() {
+            const list = document.getElementById("roleMenuList");
+            const active = appState.activeTab[appState.role];
+            list.innerHTML = MENUS[appState.role].map(item => {
+                const isAct = item.id === active;
+                return `
+                    <button type="button" data-action="switch-tab" data-tab-id="${item.id}" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs sm:text-sm tap-btn ${
+                        isAct
+                            ? "bg-gradient-to-r from-amber-500 to-orange-600 text-white font-bold shadow-sm"
+                            : "text-slate-700 hover:bg-white/70 font-semibold"
+                    }">
+                        <span>${escapeHtml(item.label)}</span>
+                        ${item.badge ? `<span class="text-[10px] font-extrabold px-1.5 py-0.5 rounded-md ${isAct ? "bg-white text-amber-800" : "bg-amber-100 text-amber-900"}">${item.badge}</span>` : ""}
+                    </button>
+                `;
+            }).join("");
+        }
+
+        function renderFullUI() {
+            renderShell();
+            renderSidebar();
+            renderPage();
+        }
+
+        function renderPage() {
+            const container = document.getElementById("workspaceContent");
+            const route = `${appState.role}:${appState.activeTab[appState.role]}`;
+            const map = {
+                "student:topics": viewStudentTopics,
+                "student:tasks": viewStudentTasks,
+                "student:labs": viewVirtualLabs,
+                "student:ai": viewAIChatStudio,
+                "student:profile": viewProfile,
+                "student:settings": viewSettings,
+
+                "teacher:scope": viewTeacherScope,
+                "teacher:presentations": viewTeacherPresentations,
+                "teacher:interactive": viewTeacherInteractive,
+                "teacher:labs": viewVirtualLabs,
+                "teacher:practicals": viewTeacherPracticals,
+                "teacher:ai": viewAIChatStudio,
+                "teacher:profile": viewProfile,
+                "teacher:settings": viewSettings,
+
+                "admin:users": viewAdminUsers,
+                "admin:curriculum": viewAdminCurriculum,
+                "admin:tokens": viewAdminTokens,
+                "admin:profile": viewProfile,
+                "admin:settings": viewSettings
+            };
+            container.innerHTML = (map[route] || viewStudentTopics)();
+            if (quizEngine) renderQuizStage();
+        }
+
+        // =====================================================================
+        // БЕТТЕР HTML ГЕНЕРАТОРЛАРЫ
+        // =====================================================================
+        function viewTeacherScope() {
+            return `
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+                    <h1 class="text-xl font-extrabold text-slate-900">Сынып & Пән</h1>
+                    <span class="px-3.5 py-1.5 rounded-xl bg-amber-100 text-amber-950 text-xs font-extrabold">
+                        ${store.scope.grade}-сынып • ${escapeHtml(store.scope.subject)}
+                    </span>
+                </div>
+
+                <div class="glass-card rounded-2xl p-4 sm:p-5 mb-4 anim-iphone-tile">
+                    <div class="text-xs font-extrabold uppercase tracking-wider text-slate-500 mb-3">1–11 сынып</div>
+                    <div class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-11 gap-2">
+                        ${store.grades.map(g => `
+                            <button type="button" data-action="set-grade" data-grade="${g}" class="py-2.5 rounded-xl text-xs font-extrabold border tap-btn ${
+                                store.scope.grade === g
+                                    ? "bg-slate-900 text-white border-slate-900"
+                                    : "bg-white text-slate-800 border-slate-200 hover:border-amber-400"
+                            }">${g}</button>
+                        `).join("")}
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-4 sm:p-5 anim-iphone-tile">
+                    <div class="text-xs font-extrabold uppercase tracking-wider text-slate-500 mb-3">Пәндер</div>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5">
+                        ${store.subjects.map(subj => `
+                            <button type="button" data-action="set-subject" data-subject="${escapeHtml(subj)}" class="px-4 py-3 rounded-xl text-xs sm:text-sm font-bold border text-left tap-btn ${
+                                store.scope.subject === subj
+                                    ? "bg-indigo-950 text-white border-indigo-950"
+                                    : "bg-white text-slate-800 border-slate-200 hover:border-amber-400"
+                            }">${escapeHtml(subj)}</button>
+                        `).join("")}
+                    </div>
+                </div>
+            `;
+        }
+
+        function viewStudentTopics() {
+            return `
+                <div class="flex items-center justify-between gap-3 mb-5">
+                    <h1 class="text-xl font-extrabold text-slate-900">Тақырыптар</h1>
+                    <span class="px-3 py-1 rounded-xl bg-white border border-slate-200 text-xs font-bold">${store.topics.length}</span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    ${store.topics.map((tp, idx) => `
+                        <div class="glass-card rounded-2xl p-5 flex flex-col justify-between anim-iphone-tile" style="animation-delay:${idx * 50}ms">
+                            <div>
+                                <div class="flex items-center justify-between text-xs mb-1.5">
+                                    <span class="font-extrabold text-amber-700">${tp.grade}-сынып • ${escapeHtml(tp.subject)}</span>
+                                    <span class="font-bold ${tp.completed ? "text-emerald-700" : "text-slate-400"}">${tp.completed ? "✓ Оқылды" : ""}</span>
+                                </div>
+                                <h3 class="text-base font-extrabold text-slate-900">${escapeHtml(tp.title)}</h3>
+                                <p class="text-xs sm:text-sm text-slate-600 mt-1.5">${escapeHtml(tp.summary)}</p>
+                                ${tp.formula ? `<div class="mt-3 px-3 py-1.5 rounded-xl bg-amber-50 border border-amber-200 text-amber-950 font-mono text-xs font-bold inline-block">${escapeHtml(tp.formula)}</div>` : ""}
+                            </div>
+                            <button type="button" data-action="toggle-topic" data-topic-id="${tp.id}" class="mt-4 w-full py-2.5 rounded-xl text-xs font-bold tap-btn ${
+                                tp.completed ? "bg-slate-200 text-slate-800" : "bg-slate-900 hover:bg-slate-800 text-white"
+                            }">${tp.completed ? "Қайталау" : "Оқылды"}</button>
+                        </div>
+                    `).join("")}
+                </div>
+            `;
+        }
+
+        function viewStudentTasks() {
+            const quizzes = store.quizzes.filter(q => q.publishedToStudent);
+            return `
+                <h1 class="text-xl font-extrabold text-slate-900 mb-5">Тапсырмалар & Квиз</h1>
+                <div id="waygroundQuizHost" class="mb-5"></div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 mb-6">
+                    ${quizzes.map(q => `
+                        <div class="glass-card rounded-2xl p-4 flex items-center justify-between gap-3 anim-iphone-tile">
+                            <div>
+                                <div class="text-xs font-bold text-amber-700">${q.grade}-сынып • ${escapeHtml(q.subject)} • PIN ${escapeHtml(q.pin || "100")}</div>
+                                <div class="text-sm font-extrabold text-slate-900 mt-0.5">${escapeHtml(q.title)}</div>
+                            </div>
+                            <div class="flex items-center gap-1.5 shrink-0">
+                                <button type="button" data-action="start-quiz" data-quiz-id="${q.id}" data-play-mode="solo" class="px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold tap-btn">Бастау</button>
+                                <button type="button" data-action="start-quiz" data-quiz-id="${q.id}" data-play-mode="live" class="px-3 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold tap-btn">Live</button>
+                            </div>
+                        </div>
+                    `).join("")}
+                </div>
+
+                <div class="space-y-3">
+                    ${store.tasks.map(t => `
+                        <div class="glass-card rounded-2xl p-4 anim-iphone-tile">
+                            <div class="flex items-center justify-between text-xs mb-1">
+                                <span class="font-bold text-amber-700">${t.grade}-сынып • ${escapeHtml(t.subject)}</span>
+                                <span class="font-bold ${t.status === "submitted" ? "text-emerald-700" : "text-slate-500"}">${t.status === "submitted" ? "✓" : ""}</span>
+                            </div>
+                            <div class="text-sm font-extrabold text-slate-900">${escapeHtml(t.title)}</div>
+                            <div class="text-xs sm:text-sm text-slate-600 mt-1">${escapeHtml(t.description)}</div>
+                            ${t.status !== "submitted" ? `
+                                <form data-task-id="${t.id}" class="student-task-form mt-3 flex flex-col sm:flex-row gap-2">
+                                    <input type="text" required placeholder="Жауап..." class="task-answer-input flex-1 rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-xs sm:text-sm">
+                                    <button type="submit" class="px-4 py-2 rounded-xl bg-slate-900 text-white text-xs font-bold tap-btn">Жіберу</button>
+                                </form>
+                            ` : `<div class="mt-2.5 px-3 py-2 rounded-xl bg-white border border-slate-200 font-mono text-xs">${escapeHtml(t.answer)}</div>`}
+                        </div>
+                    `).join("")}
+                </div>
+            `;
+        }
+
+        function viewTeacherPresentations() {
+            return `
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+                    <h1 class="text-xl font-extrabold text-slate-900">Презентация</h1>
+                    <button type="button" data-action="open-new-pres" class="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold tap-btn">+ Қосу</button>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    ${store.presentations.map(p => `
+                        <div class="glass-card rounded-2xl p-4 flex flex-col justify-between anim-iphone-tile">
+                            <div>
+                                <span class="text-xs font-bold text-amber-700">${p.grade}-сынып • ${escapeHtml(p.subject)}</span>
+                                <h3 class="text-base font-extrabold text-slate-900 mt-1">${escapeHtml(p.title)}</h3>
+                                <div class="text-xs text-slate-500 mt-1">${p.slides.length} слайд</div>
+                            </div>
+                            <button type="button" data-action="open-pres" data-pres-id="${p.id}" class="mt-4 w-full py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold tap-btn">Ашу</button>
+                        </div>
+                    `).join("")}
+                </div>
+            `;
+        }
+
+        function viewTeacherInteractive() {
+            return `
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+                    <h1 class="text-xl font-extrabold text-slate-900">Интерактивті квиз</h1>
+                    <button type="button" data-action="open-new-quiz" class="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold tap-btn">+ Квиз</button>
+                </div>
+                <div id="waygroundQuizHost" class="mb-5"></div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    ${store.quizzes.map(q => `
+                        <div class="glass-card rounded-2xl p-4 flex flex-col justify-between anim-iphone-tile">
+                            <div>
+                                <div class="text-xs font-bold text-amber-700">${q.grade}-сынып • ${escapeHtml(q.subject)} • PIN ${escapeHtml(q.pin || "100")}</div>
+                                <h3 class="text-base font-extrabold text-slate-900 mt-0.5">${escapeHtml(q.title)}</h3>
+                                <div class="text-xs text-slate-500 mt-1">${q.questions.length} сұрақ</div>
+                            </div>
+                            <div class="mt-4 flex gap-2">
+                                <button type="button" data-action="start-quiz" data-quiz-id="${q.id}" data-play-mode="solo" class="flex-1 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold tap-btn">Бастау</button>
+                                <button type="button" data-action="start-quiz" data-quiz-id="${q.id}" data-play-mode="live" class="px-3 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold tap-btn">Live</button>
+                                <button type="button" data-action="toggle-pub-quiz" data-quiz-id="${q.id}" class="px-3 py-2.5 rounded-xl border text-xs font-bold tap-btn ${
+                                    q.publishedToStudent ? "bg-emerald-50 text-emerald-800 border-emerald-200" : "bg-white text-slate-700 border-slate-200"
+                                }">${q.publishedToStudent ? "✓" : "Жіберу"}</button>
+                            </div>
+                        </div>
+                    `).join("")}
+                </div>
+            `;
+        }
+
+        // =====================================================================
+        // WAYGROUND КВИЗ ОЙНАТҚЫШ (SOLO / LIVE, ТАЙМЕР, FREEZE, СЕРИЯ, POWER-UPS)
+        // =====================================================================
+        const simLab = { mode: "ohm", volts: 12, ohms: 6, acidMl: 8, baseMl: 8 };
+
+        function clearQuizTimer() {
+            if (quizTimerId) {
+                clearInterval(quizTimerId);
+                quizTimerId = null;
+            }
+        }
+
+        function startWaygroundQuiz(quizId, playMode = "solo") {
+            const qObj = store.quizzes.find(x => x.id === quizId);
+            if (!qObj || !qObj.questions.length) return;
+            clearQuizTimer();
+            quizEngine = {
+                quiz: qObj,
+                playMode: playMode === "live" ? "live" : "solo",
+                qIndex: 0,
+                score: 0,
+                streak: 0,
+                bestStreak: 0,
+                correctCount: 0,
+                timeLeft: qObj.timeLimitSec || 20,
+                frozen: false,
+                locked: false,
+                chosenIdx: null,
+                eliminatedIdx: [],
+                doublePts: false,
+                shieldActive: false,
+                usedDouble: false,
+                usedEliminate: false,
+                usedShield: false,
+                usedFreeze: false,
+                finished: false
+            };
+            renderQuizStage();
+            startQuestionCountdown();
+        }
+
+        function startQuestionCountdown() {
+            clearQuizTimer();
+            quizTimerId = setInterval(() => {
+                if (!quizEngine || quizEngine.locked || quizEngine.finished || quizEngine.frozen) return;
+                quizEngine.timeLeft -= 1;
+                const timerEl = document.getElementById("wgTimerVal");
+                if (timerEl) timerEl.textContent = `${quizEngine.timeLeft}с`;
+                if (quizEngine.timeLeft <= 0) {
+                    clearQuizTimer();
+                    selectQuizOption(-1);
+                }
+            }, 1000);
+        }
+
+        function renderQuizStage() {
+            const host = document.getElementById("waygroundQuizHost");
+            if (!host || !quizEngine) return;
+            const e = quizEngine;
+
+            if (e.finished) {
+                const me = activeUser();
+                const board = [
+                    { name: me.name, score: e.score, streak: `${e.bestStreak}x` },
+                    { name: "Айдана С.", score: Math.max(120, Math.round(e.score * 0.85)), streak: "2x" },
+                    { name: "Данияр Т.", score: Math.max(80, Math.round(e.score * 0.68)), streak: "1x" }
+                ].sort((a, b) => b.score - a.score);
+
+                host.innerHTML = `
+                    <div class="wayground-card bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 text-white rounded-3xl p-5 space-y-4 shadow-2xl anim-iphone-tile">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <div class="text-xs font-extrabold text-amber-400 uppercase">${escapeHtml(e.playMode)} • ${escapeHtml(e.quiz.title)}</div>
+                                <div class="text-2xl font-extrabold mt-0.5 tabular-nums">${e.score} ұпай</div>
+                            </div>
+                            <span class="px-3 py-1.5 rounded-xl bg-amber-500 text-slate-950 text-xs font-extrabold">${e.correctCount}/${e.quiz.questions.length}</span>
+                        </div>
+                        <div class="space-y-2">
+                            ${board.map((row, idx) => `
+                                <div class="flex items-center justify-between px-3.5 py-2.5 rounded-2xl bg-white/10 text-xs">
+                                    <div class="flex items-center gap-2.5 font-bold">
+                                        <span class="w-5 h-5 rounded-full bg-amber-400 text-slate-950 font-extrabold flex items-center justify-center text-[11px]">${idx + 1}</span>
+                                        <span>${escapeHtml(row.name)}</span>
+                                    </div>
+                                    <div class="font-extrabold text-amber-300 tabular-nums">${row.score} • ${row.streak}</div>
+                                </div>
+                            `).join("")}
+                        </div>
+                        <div class="flex justify-end gap-2 pt-1">
+                            <button type="button" data-action="start-quiz" data-quiz-id="${e.quiz.id}" data-play-mode="${e.playMode}" class="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold tap-btn">Қайта</button>
+                            <button type="button" data-action="close-quiz" class="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-white text-xs font-bold tap-btn">Жабу</button>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            const cur = e.quiz.questions[e.qIndex];
+            const mult = e.streak >= 3 ? 2 : (e.streak >= 2 ? 1.5 : 1);
+
+            host.innerHTML = `
+                <div class="wayground-card bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 text-white rounded-3xl p-5 space-y-4 shadow-2xl anim-iphone-tile">
+                    <div class="flex flex-wrap items-center justify-between gap-2 text-xs">
+                        <span class="font-extrabold text-amber-400">${escapeHtml(e.quiz.title)} • ${e.qIndex + 1}/${e.quiz.questions.length} (${e.playMode.toUpperCase()})</span>
+                        <div class="flex items-center gap-2">
+                            <span class="px-2.5 py-1 rounded-lg bg-white/10 font-bold text-amber-300">${e.streak}x серия (${mult}x)</span>
+                            <span id="wgTimerVal" class="px-2.5 py-1 rounded-lg ${e.frozen ? "bg-sky-500/30 border border-sky-300 text-sky-200" : "bg-rose-500/20 border border-rose-400/40 text-white"} font-extrabold tabular-nums">${e.timeLeft}с</span>
+                            <span class="px-3 py-1 rounded-lg bg-amber-500 text-slate-950 font-extrabold tabular-nums">${e.score}</span>
+                        </div>
+                    </div>
+
+                    <!-- Power-ups панелі -->
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <div class="flex flex-wrap items-center gap-2">
+                            <button type="button" data-action="wg-power" data-power="double" ${e.usedDouble || e.locked ? "disabled" : ""} class="px-3 py-1.5 rounded-xl text-xs font-bold tap-btn ${
+                                e.doublePts ? "bg-amber-400 text-slate-950" : "bg-white/10 hover:bg-white/15 text-amber-300 disabled:opacity-40"
+                            }">2x Балл</button>
+                            <button type="button" data-action="wg-power" data-power="fifty" ${e.usedEliminate || e.locked ? "disabled" : ""} class="px-3 py-1.5 rounded-xl text-xs font-bold tap-btn bg-white/10 hover:bg-white/15 text-indigo-300 disabled:opacity-40">50/50</button>
+                            <button type="button" data-action="wg-power" data-power="shield" ${e.usedShield || e.locked ? "disabled" : ""} class="px-3 py-1.5 rounded-xl text-xs font-bold tap-btn ${
+                                e.shieldActive ? "bg-emerald-400 text-slate-950" : "bg-white/10 hover:bg-white/15 text-emerald-300 disabled:opacity-40"
+                            }">Қалқан</button>
+                            <button type="button" data-action="wg-power" data-power="freeze" ${e.usedFreeze || e.locked ? "disabled" : ""} class="px-3 py-1.5 rounded-xl text-xs font-bold tap-btn ${
+                                e.frozen ? "bg-sky-400 text-slate-950" : "bg-white/10 hover:bg-white/15 text-sky-300 disabled:opacity-40"
+                            }">Тоқтату</button>
+                        </div>
+                        <button type="button" data-action="close-quiz" class="text-xs font-bold text-slate-400 hover:text-white tap-btn">Шығу</button>
+                    </div>
+
+                    <div class="text-base sm:text-lg font-extrabold leading-snug">${escapeHtml(cur.q)}</div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                        ${cur.opts.map((opt, idx) => {
+                            const hiddenOpt = e.eliminatedIdx.includes(idx);
+                            let cls = "bg-white/10 hover:bg-white/15 border-white/15 text-white";
+                            if (hiddenOpt) {
+                                cls = "bg-white/5 border-white/5 text-slate-600 line-through pointer-events-none";
+                            } else if (e.locked) {
+                                if (idx === cur.ans) cls = "bg-emerald-600 border-emerald-400 text-white font-bold";
+                                else if (idx === e.chosenIdx) cls = "bg-rose-600 border-rose-400 text-white";
+                                else cls = "bg-white/5 border-white/10 text-slate-400";
+                            }
+                            return `
+                                <button type="button" data-action="wg-answer" data-opt-idx="${idx}" ${e.locked || hiddenOpt ? "disabled" : ""} class="p-3.5 rounded-2xl border text-left text-xs sm:text-sm font-semibold tap-btn ${cls}">
+                                    ${escapeHtml(opt)}
+                                </button>
+                            `;
+                        }).join("")}
+                    </div>
+
+                    ${e.locked ? `
+                        <div class="flex items-center justify-between pt-1">
+                            <span class="text-xs font-bold ${e.chosenIdx === cur.ans ? "text-emerald-400" : "text-rose-400"}">
+                                ${e.chosenIdx === cur.ans ? "✓ Дұрыс" : (e.shieldActive ? "Қалқан сақтады" : "✗ Қате")}
+                            </span>
+                            <button type="button" data-action="wg-next" class="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold tap-btn">
+                                ${e.qIndex + 1 < e.quiz.questions.length ? "Келесі →" : "Аяқтау"}
+                            </button>
+                        </div>
+                    ` : ""}
+                </div>
+            `;
+        }
+
+        function applyQuizPowerup(power) {
+            if (!quizEngine || quizEngine.locked || quizEngine.finished) return;
+            const cur = quizEngine.quiz.questions[quizEngine.qIndex];
+            if (power === "double" && !quizEngine.usedDouble) {
+                quizEngine.usedDouble = true;
+                quizEngine.doublePts = true;
+            } else if (power === "fifty" && !quizEngine.usedEliminate) {
+                quizEngine.usedEliminate = true;
+                const wrong = cur.opts.map((_, i) => i).filter(i => i !== cur.ans);
+                quizEngine.eliminatedIdx = wrong.slice(0, 2);
+            } else if (power === "shield" && !quizEngine.usedShield) {
+                quizEngine.usedShield = true;
+                quizEngine.shieldActive = true;
+            } else if (power === "freeze" && !quizEngine.usedFreeze) {
+                quizEngine.usedFreeze = true;
+                quizEngine.frozen = true;
+            }
+            renderQuizStage();
+        }
+
+        function selectQuizOption(optIdx) {
+            if (!quizEngine || quizEngine.locked || quizEngine.finished) return;
+            clearQuizTimer();
+            const cur = quizEngine.quiz.questions[quizEngine.qIndex];
+            quizEngine.locked = true;
+            quizEngine.chosenIdx = optIdx;
+
+            if (optIdx === cur.ans) {
+                quizEngine.correctCount += 1;
+                quizEngine.streak += 1;
+                quizEngine.bestStreak = Math.max(quizEngine.bestStreak, quizEngine.streak);
+                const speedBonus = Math.max(0, quizEngine.timeLeft * 5);
+                const streakMult = quizEngine.streak >= 3 ? 2 : (quizEngine.streak >= 2 ? 1.5 : 1);
+                const dbl = quizEngine.doublePts ? 2 : 1;
+                quizEngine.score += Math.round((100 + speedBonus) * streakMult * dbl);
+            } else {
+                if (!quizEngine.shieldActive) quizEngine.streak = 0;
+            }
+
+            quizEngine.doublePts = false;
+            renderQuizStage();
+        }
+
+        async function advanceQuizStage() {
+            if (!quizEngine) return;
+            if (quizEngine.qIndex + 1 < quizEngine.quiz.questions.length) {
+                quizEngine.qIndex += 1;
+                quizEngine.timeLeft = quizEngine.quiz.timeLimitSec || 20;
+                quizEngine.frozen = false;
+                quizEngine.locked = false;
+                quizEngine.chosenIdx = null;
+                quizEngine.eliminatedIdx = [];
+                quizEngine.shieldActive = false;
+                renderQuizStage();
+                startQuestionCountdown();
+            } else {
+                clearQuizTimer();
+                quizEngine.finished = true;
+                const finalScore = quizEngine.score;
+                const bestStreak = quizEngine.bestStreak;
+                const title = quizEngine.quiz.title;
+                const u = activeUser();
+                u.points = (u.points || 0) + finalScore;
+                store.submissions.unshift({
+                    id: "sub_" + Date.now(),
+                    studentName: u.name,
+                    category: "Квиз",
+                    title,
+                    result: `${finalScore} ұпай • ${bestStreak}x серия`,
+                    score: Math.min(10, Math.max(1, Math.round(finalScore / 60)))
+                });
+                renderQuizStage();
+                notifySystem("Нәтиже", `${title}: ${finalScore} ұпай`, "success");
+                await persistStore();
+            }
+        }
+
+        // =====================================================================
+        // ВИРТУАЛДЫ ЗЕРТХАНА ЖӘНЕ ПРАКТИКА
+        // =====================================================================
+        function viewVirtualLabs() {
+            const amp = (simLab.volts / simLab.ohms).toFixed(2);
+            const ph = Math.max(1, Math.min(14, 7 + (simLab.baseMl - simLab.acidMl) * 0.5)).toFixed(1);
+            return `
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+                    <h1 class="text-xl font-extrabold text-slate-900">Зертхана</h1>
+                    <div class="flex bg-white p-1 rounded-xl border border-slate-200">
+                        <button type="button" data-action="set-lab-mode" data-lab-mode="ohm" class="px-3 py-1.5 rounded-lg text-xs font-bold tap-btn ${simLab.mode === "ohm" ? "bg-slate-900 text-white" : "text-slate-600"}">Ом заңы</button>
+                        <button type="button" data-action="set-lab-mode" data-lab-mode="ph" class="px-3 py-1.5 rounded-lg text-xs font-bold tap-btn ${simLab.mode === "ph" ? "bg-slate-900 text-white" : "text-slate-600"}">pH</button>
+                    </div>
+                </div>
+                ${simLab.mode === "ohm" ? `
+                    <div class="glass-card rounded-2xl p-5 space-y-5 anim-iphone-tile">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="p-4 rounded-2xl bg-white border border-slate-200 space-y-3">
+                                <div class="flex justify-between text-xs font-bold"><span>U</span><span id="ohmVVal">${simLab.volts} В</span></div>
+                                <input id="ohmVRange" type="range" min="2" max="24" value="${simLab.volts}" class="w-full accent-amber-500">
+                                <div class="flex justify-between text-xs font-bold"><span>R</span><span id="ohmRVal">${simLab.ohms} Ом</span></div>
+                                <input id="ohmRRange" type="range" min="2" max="20" value="${simLab.ohms}" class="w-full accent-amber-500">
+                            </div>
+                            <div class="p-5 rounded-2xl bg-slate-950 text-white flex flex-col items-center justify-center">
+                                <div class="text-xs text-slate-400">I = U / R</div>
+                                <div id="ohmIVal" class="text-3xl font-extrabold text-amber-400 tabular-nums mt-1">${amp} А</div>
+                            </div>
+                        </div>
+                        <button type="button" data-action="submit-ohm" class="px-4 py-2.5 rounded-xl bg-slate-900 text-white text-xs font-bold tap-btn">Жіберу</button>
+                    </div>
+                ` : `
+                    <div class="glass-card rounded-2xl p-5 space-y-5 anim-iphone-tile">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="p-4 rounded-2xl bg-white border border-slate-200 space-y-3">
+                                <div class="flex justify-between text-xs font-bold"><span>HCl</span><span id="phAcidVal">${simLab.acidMl} мл</span></div>
+                                <input id="phAcidRange" type="range" min="0" max="20" value="${simLab.acidMl}" class="w-full accent-rose-500">
+                                <div class="flex justify-between text-xs font-bold"><span>NaOH</span><span id="phBaseVal">${simLab.baseMl} мл</span></div>
+                                <input id="phBaseRange" type="range" min="0" max="20" value="${simLab.baseMl}" class="w-full accent-indigo-600">
+                            </div>
+                            <div class="p-5 rounded-2xl bg-slate-950 text-white flex flex-col items-center justify-center">
+                                <div class="text-xs text-slate-400">pH</div>
+                                <div id="phOutVal" class="text-3xl font-extrabold text-emerald-400 tabular-nums mt-1">${ph}</div>
+                            </div>
+                        </div>
+                        <button type="button" data-action="submit-ph" class="px-4 py-2.5 rounded-xl bg-slate-900 text-white text-xs font-bold tap-btn">Жіберу</button>
+                    </div>
+                `}
+            `;
+        }
+
+        function viewTeacherPracticals() {
+            return `
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+                    <h1 class="text-xl font-extrabold text-slate-900">Практика</h1>
+                    <button type="button" data-action="open-new-prac" class="px-4 py-2.5 rounded-xl bg-amber-500 text-white text-xs font-bold tap-btn">+ Қосу</button>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                    <div class="glass-card rounded-2xl p-4 space-y-3 anim-iphone-tile">
+                        ${store.tasks.map(t => `
+                            <div class="p-3.5 rounded-xl bg-white border border-slate-200">
+                                <div class="text-xs font-bold text-amber-700">${t.grade}-сынып • ${escapeHtml(t.subject)}</div>
+                                <div class="text-sm font-extrabold text-slate-900 mt-0.5">${escapeHtml(t.title)}</div>
+                                <div class="text-xs text-slate-600 mt-1">${escapeHtml(t.description)}</div>
+                                ${t.answer ? `<div class="mt-2 text-xs font-mono text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-lg">${escapeHtml(t.answer)}</div>` : ""}
+                            </div>
+                        `).join("")}
+                    </div>
+                    <div class="glass-card rounded-2xl p-4 space-y-3 anim-iphone-tile">
+                        ${store.submissions.map(s => `
+                            <div class="p-3.5 rounded-xl bg-white border border-slate-200 flex items-center justify-between gap-2">
+                                <div>
+                                    <div class="text-sm font-extrabold text-slate-900">${escapeHtml(s.studentName)}</div>
+                                    <div class="text-xs text-slate-600">${escapeHtml(s.title)} • <span class="font-mono">${escapeHtml(s.result)}</span></div>
+                                </div>
+                                <span class="px-2.5 py-1 rounded-lg bg-slate-900 text-white text-xs font-bold">${s.score}/10</span>
+                            </div>
+                        `).join("")}
+                    </div>
+                </div>
+            `;
+        }
+
+        // =====================================================================
+        // ЖИ ЧАТ & КОНСТРУКТОР (GEMINI & CHATGPT API + ТОКЕН ЕСЕБІ)
+        // =====================================================================
+        function viewAIChatStudio() {
+            const u = activeUser();
+            const prov = store.ai.provider;
+            const kind = store.ai.studioKind;
+            const draft = store.ai.draftOutput;
+
+            return `
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+                    <h1 class="text-xl font-extrabold text-slate-900">ЖИ (${escapeHtml(prov)})</h1>
+                    <div class="flex items-center gap-2">
+                        <div class="flex bg-white p-1 rounded-xl border border-slate-200">
+                            <button type="button" data-action="set-ai-prov" data-prov="Gemini" class="px-3 py-1 rounded-lg text-xs font-bold tap-btn ${prov === "Gemini" ? "bg-amber-500 text-white" : "text-slate-700"}">Gemini</button>
+                            <button type="button" data-action="set-ai-prov" data-prov="ChatGPT" class="px-3 py-1 rounded-lg text-xs font-bold tap-btn ${prov === "ChatGPT" ? "bg-slate-900 text-white" : "text-slate-700"}">ChatGPT</button>
+                        </div>
+                        <span class="px-3 py-1.5 rounded-xl bg-amber-100 text-amber-950 text-xs font-extrabold tabular-nums">
+                            ${(u.tokens || 0).toLocaleString("ru-RU")} токен
+                        </span>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl overflow-hidden mb-5 anim-iphone-tile">
+                    <div class="px-4 py-3 border-b border-slate-200/80 flex items-center justify-between text-xs">
+                        <span class="font-extrabold text-slate-900">${escapeHtml(prov)}</span>
+                        <button type="button" data-action="open-api-modal" class="font-bold text-amber-700 hover:underline tap-btn">API кілт</button>
+                    </div>
+                    <div class="p-4 h-60 overflow-y-auto space-y-3 bg-white/50">
+                        ${store.chatMessages.map(m => `
+                            <div class="flex ${m.sender === "user" ? "justify-end" : "justify-start"}">
+                                <div class="max-w-xl rounded-2xl px-4 py-2.5 text-xs sm:text-sm ${
+                                    m.sender === "user" ? "bg-slate-900 text-white" : "bg-white text-slate-800 border border-slate-200"
+                                }">
+                                    <div>${escapeHtml(m.text)}</div>
+                                    ${m.tokens ? `<div class="mt-1 text-[10px] font-bold opacity-65">${escapeHtml(m.provider || prov)} • -${m.tokens}</div>` : ""}
+                                </div>
+                            </div>
+                        `).join("")}
+                    </div>
+                    <form id="aiChatForm" class="p-3 border-t border-slate-200/80 bg-white flex gap-2">
+                        <input id="aiChatInput" type="text" required placeholder="Хабарлама..." class="flex-1 rounded-xl border border-slate-300 px-3.5 py-2 text-xs sm:text-sm">
+                        <button type="submit" id="aiChatSubmitBtn" class="px-4 py-2 rounded-xl bg-slate-900 text-white text-xs font-bold tap-btn">Жіберу</button>
+                    </form>
+                </div>
+
+                ${appState.role === "teacher" ? `
+                    <div class="glass-card rounded-2xl p-5 mb-5 anim-iphone-tile">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <button type="button" data-action="set-studio-kind" data-skind="quiz" class="px-3.5 py-1.5 rounded-xl text-xs font-bold border tap-btn ${kind === "quiz" ? "bg-slate-900 text-white border-slate-900" : "bg-white text-slate-700 border-slate-200"}">Квиз</button>
+                            <button type="button" data-action="set-studio-kind" data-skind="presentation" class="px-3.5 py-1.5 rounded-xl text-xs font-bold border tap-btn ${kind === "presentation" ? "bg-slate-900 text-white border-slate-900" : "bg-white text-slate-700 border-slate-200"}">Презентация</button>
+                            <button type="button" data-action="set-studio-kind" data-skind="lesson" class="px-3.5 py-1.5 rounded-xl text-xs font-bold border tap-btn ${kind === "lesson" ? "bg-slate-900 text-white border-slate-900" : "bg-white text-slate-700 border-slate-200"}">Сабақ / Практика</button>
+                        </div>
+                        <form id="aiStudioForm" class="grid grid-cols-1 sm:grid-cols-12 gap-2.5">
+                            <select id="stGrade" class="sm:col-span-2 rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-xs font-bold">
+                                ${store.grades.map(g => `<option value="${g}" ${g === store.scope.grade ? "selected" : ""}>${g}-сынып</option>`).join("")}
+                            </select>
+                            <select id="stSubject" class="sm:col-span-3 rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-xs font-bold">
+                                ${store.subjects.map(s => `<option value="${escapeHtml(s)}" ${s === store.scope.subject ? "selected" : ""}>${escapeHtml(s)}</option>`).join("")}
+                            </select>
+                            <input id="stTopic" type="text" required placeholder="Тақырып..." class="sm:col-span-5 rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm">
+                            <button type="submit" id="stGenerateBtn" class="sm:col-span-2 rounded-xl bg-amber-500 text-white text-xs font-bold py-2.5 px-4 tap-btn">Құру</button>
+                        </form>
+                    </div>
+                    ${draft ? renderDraftCard(draft) : ""}
+                ` : ""}
+            `;
+        }
+
+        function renderDraftCard(draft) {
+            if (draft.kind === "quiz") {
+                return `
+                    <div class="glass-card rounded-2xl p-5 space-y-3 anim-iphone-tile">
+                        <div class="flex items-center justify-between gap-2">
+                            <h3 class="text-base font-extrabold text-slate-900">${escapeHtml(draft.title)}</h3>
+                            <button type="button" data-action="save-draft-quiz" class="px-4 py-2 rounded-xl bg-amber-500 text-white text-xs font-bold tap-btn">Сақтау</button>
+                        </div>
+                        ${draft.questions.map((q, i) => `
+                            <div class="p-3 rounded-xl bg-white border border-slate-200 text-xs">
+                                <div class="font-bold">${i + 1}. ${escapeHtml(q.q)}</div>
+                                <div class="text-emerald-700 font-semibold mt-1">${escapeHtml(q.opts[q.ans] || q.opts[0])}</div>
+                            </div>
+                        `).join("")}
+                    </div>
+                `;
+            }
+            if (draft.kind === "presentation") {
+                return `
+                    <div class="glass-card rounded-2xl p-5 space-y-3 anim-iphone-tile">
+                        <div class="flex items-center justify-between gap-2">
+                            <h3 class="text-base font-extrabold text-slate-900">${escapeHtml(draft.title)}</h3>
+                            <button type="button" data-action="save-draft-pres" class="px-4 py-2 rounded-xl bg-slate-900 text-white text-xs font-bold tap-btn">Сақтау</button>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            ${draft.slides.map((s, i) => `
+                                <div class="p-4 rounded-xl bg-slate-950 text-white text-xs">
+                                    <div class="text-amber-400 font-bold mb-1">${i + 1}</div>
+                                    <div class="font-extrabold text-sm mb-1.5">${escapeHtml(s.title)}</div>
+                                    <ul class="list-disc pl-4 space-y-1 text-slate-200">${s.points.map(p => `<li>${escapeHtml(p)}</li>`).join("")}</ul>
+                                </div>
+                            `).join("")}
+                        </div>
+                    </div>
+                `;
+            }
+            return `
+                <div class="glass-card rounded-2xl p-5 space-y-3 anim-iphone-tile">
+                    <div class="flex items-center justify-between gap-2">
+                        <h3 class="text-base font-extrabold text-slate-900">${escapeHtml(draft.topicTitle)}</h3>
+                        <div class="flex gap-2">
+                            <button type="button" data-action="save-draft-topic" class="px-3 py-1.5 rounded-xl bg-slate-900 text-white text-xs font-bold tap-btn">+ Тақырып</button>
+                            <button type="button" data-action="save-draft-prac" class="px-3 py-1.5 rounded-xl bg-amber-500 text-white text-xs font-bold tap-btn">+ Практика</button>
+                        </div>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-700 bg-white p-3.5 rounded-xl border border-slate-200">${escapeHtml(draft.summary)}</p>
+                </div>
+            `;
+        }
+
+        async function callAIProvider(provider, prompt, rawInput) {
+            const est = Math.max(6, Math.ceil((prompt.length + rawInput.length) / 3.4));
+            try {
+                if (provider === "Gemini" && appState.apiKeys.gemini) {
+                    const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${encodeURIComponent(appState.apiKeys.gemini)}`;
+                    const resp = await fetch(endpoint, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+                    });
+                    const data = await resp.json();
+                    const reply = data.candidates?.[0]?.content?.parts?.[0]?.text;
+                    if (reply) {
+                        return { text: reply, tokens: data.usageMetadata?.totalTokenCount || (est + Math.ceil(reply.length / 3.4)), fromApi: true };
+                    }
+                }
+                if (provider === "ChatGPT" && appState.apiKeys.openai) {
+                    const resp = await fetch("https://api.openai.com/v1/chat/completions", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${appState.apiKeys.openai}`
+                        },
+                        body: JSON.stringify({ model: "gpt-4o-mini", messages: [{ role: "user", content: prompt }] })
+                    });
+                    const data = await resp.json();
+                    const reply = data.choices?.[0]?.message?.content;
+                    if (reply) {
+                        return { text: reply, tokens: data.usage?.total_tokens || (est + Math.ceil(reply.length / 3.4)), fromApi: true };
+                    }
+                }
+            } catch {
+                // ignore network error and return deterministic fallback
+            }
+            const fallback = `${provider} (${store.scope.grade}-сынып, ${store.scope.subject}): «${rawInput}» бойынша жауап.`;
+            return { text: fallback, tokens: est + Math.ceil(fallback.length / 3.4), fromApi: false };
+        }
+
+        // =====================================================================
+        // АДМИН, КАБИНЕТ ЖӘНЕ БАПТАУЛАР
+        // =====================================================================
+        function viewAdminUsers() {
+            return `
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+                    <h1 class="text-xl font-extrabold text-slate-900">Қолданушылар</h1>
+                    <button type="button" data-action="adm-open-add-user" class="px-4 py-2.5 rounded-xl bg-slate-900 text-white text-xs font-bold tap-btn">+ Қосу</button>
+                </div>
+                <div class="glass-card rounded-2xl overflow-x-auto anim-iphone-tile">
+                    <table class="w-full text-left text-xs sm:text-sm">
+                        <thead class="bg-white/70 border-b border-slate-200 text-xs text-slate-500">
+                            <tr>
+                                <th class="py-3 px-4">Аты-жөні</th>
+                                <th class="py-3 px-4">Рөл</th>
+                                <th class="py-3 px-4">Токен</th>
+                                <th class="py-3 px-4 text-right">Лимит</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200/70 bg-white/40">
+                            ${store.users.map(u => `
+                                <tr>
+                                    <td class="py-3 px-4 font-bold">${escapeHtml(u.name)}</td>
+                                    <td class="py-3 px-4">
+                                        <select data-uid="${u.id}" class="adm-role-select rounded-lg border border-slate-300 bg-white px-2.5 py-1 text-xs font-semibold">
+                                            <option value="student" ${u.role === "student" ? "selected" : ""}>Оқушы</option>
+                                            <option value="teacher" ${u.role === "teacher" ? "selected" : ""}>Мұғалім</option>
+                                            <option value="admin" ${u.role === "admin" ? "selected" : ""}>Админ</option>
+                                        </select>
+                                    </td>
+                                    <td class="py-3 px-4 font-extrabold text-amber-700 tabular-nums">${(u.tokens || 0).toLocaleString("ru-RU")}</td>
+                                    <td class="py-3 px-4 text-right">
+                                        <button type="button" data-action="adm-add-tokens" data-uid="${u.id}" class="px-3 py-1 rounded-lg bg-amber-100 hover:bg-amber-200 text-amber-950 text-xs font-bold tap-btn">+1000</button>
+                                    </td>
+                                </tr>
+                            `).join("")}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+        }
+
+        function viewAdminCurriculum() {
+            return `
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+                    <h1 class="text-xl font-extrabold text-slate-900">Сынып & Пән</h1>
+                    <form id="admAddSubjForm" class="flex gap-2">
+                        <input id="admSubjInput" type="text" required placeholder="Пән" class="rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-xs font-semibold">
+                        <button type="submit" class="px-4 py-2 rounded-xl bg-amber-500 text-white text-xs font-bold tap-btn">+ Қосу</button>
+                    </form>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 anim-iphone-tile">
+                    ${store.subjects.map(s => `<div class="glass-card rounded-2xl p-4 text-sm font-bold text-slate-900">${escapeHtml(s)}</div>`).join("")}
+                </div>
+            `;
+        }
+
+        function viewAdminTokens() {
+            return `
+                <h1 class="text-xl font-extrabold text-slate-900 mb-5">Токендер</h1>
+                <div class="glass-card rounded-2xl overflow-x-auto anim-iphone-tile">
+                    <table class="w-full text-left text-xs sm:text-sm">
+                        <thead class="bg-white/70 border-b border-slate-200 text-xs text-slate-500">
+                            <tr>
+                                <th class="py-3 px-4">Қолданушы</th>
+                                <th class="py-3 px-4">Модель</th>
+                                <th class="py-3 px-4">Әрекет</th>
+                                <th class="py-3 px-4 text-right">Токен</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200/70 bg-white/40">
+                            ${store.tokenLogs.map(l => `
+                                <tr>
+                                    <td class="py-3 px-4 font-bold">${escapeHtml(l.user)}</td>
+                                    <td class="py-3 px-4">${escapeHtml(l.provider)}</td>
+                                    <td class="py-3 px-4 text-slate-600">${escapeHtml(l.action)}</td>
+                                    <td class="py-3 px-4 text-right font-extrabold text-amber-700">-${l.spent}</td>
+                                </tr>
+                            `).join("")}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+        }
+
+        function viewProfile() {
+            const u = activeUser();
+            return `
+                <h1 class="text-xl font-extrabold text-slate-900 mb-5">Кабинет</h1>
+                <div class="glass-card rounded-2xl p-6 max-w-lg space-y-3 anim-iphone-tile">
+                    <div class="flex items-center justify-between">
+                        <span class="px-2.5 py-1 rounded-lg bg-amber-100 text-amber-950 text-xs font-extrabold">${roleTitle(u.role)}</span>
+                        <span class="text-xs font-bold text-slate-500">${u.grade ? u.grade + "-сынып" : ""}</span>
+                    </div>
+                    <div class="text-lg font-extrabold text-slate-900">${escapeHtml(u.name)}</div>
+                    <div class="text-xs text-slate-600">${escapeHtml(u.email || "")}</div>
+                    <div class="pt-3 border-t border-slate-200/80 flex items-center justify-between">
+                        <span class="text-sm font-extrabold text-amber-800">${(u.tokens || 0).toLocaleString("ru-RU")} токен</span>
+                        <button type="button" data-action="open-gate-login" class="px-3.5 py-2 rounded-xl bg-slate-900 text-white text-xs font-bold tap-btn">Ауыстыру</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function viewSettings() {
+            const u = activeUser();
+            return `
+                <h1 class="text-xl font-extrabold text-slate-900 mb-5">Баптаулар</h1>
+                <div class="glass-card rounded-2xl p-6 max-w-lg space-y-4 anim-iphone-tile">
+                    <form id="settingsNameForm" class="space-y-3">
+                        <label for="settingsNameInput" class="block text-xs font-bold text-slate-700">Аты-жөні</label>
+                        <input id="settingsNameInput" type="text" required value="${escapeHtml(u.name)}" class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-sm">
+                        <button type="submit" class="px-4 py-2 rounded-xl bg-slate-900 text-white text-xs font-bold tap-btn">Сақтау</button>
+                    </form>
+                    <div class="pt-4 border-t border-slate-200/80 flex flex-wrap items-center justify-between gap-2">
+                        <button type="button" data-action="open-api-modal" class="px-3.5 py-2 rounded-xl bg-amber-50 border border-amber-200 text-amber-950 text-xs font-bold tap-btn">API</button>
+                        <button type="button" data-action="logout" class="px-3.5 py-2 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs font-bold tap-btn">Шығу</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function showSlideDeck(presId, idx) {
+            const deck = store.presentations.find(p => p.id === presId);
+            if (!deck) return;
+            const i = Math.max(0, Math.min(deck.slides.length - 1, idx));
+            const sl = deck.slides[i];
+            openModal(`${deck.title} (${i + 1}/${deck.slides.length})`, `
+                <div class="space-y-4">
+                    <div class="bg-slate-950 text-white rounded-2xl p-6 min-h-[190px] flex flex-col justify-between">
+                        <div>
+                            <div class="text-xs font-bold text-amber-400 mb-1">${deck.grade}-сынып • ${escapeHtml(deck.subject)}</div>
+                            <h4 class="text-lg font-extrabold mb-3">${escapeHtml(sl.title)}</h4>
+                            <ul class="space-y-1.5 text-sm text-slate-200 list-disc pl-5">${sl.points.map(pt => `<li>${escapeHtml(pt)}</li>`).join("")}</ul>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <button type="button" data-action="slide-step" data-pres-id="${presId}" data-slide-idx="${i - 1}" ${i === 0 ? "disabled" : ""} class="px-4 py-2 rounded-xl border border-slate-200 text-xs font-bold tap-btn disabled:opacity-40">←</button>
+                        <span class="text-xs font-bold text-slate-500">${i + 1} / ${deck.slides.length}</span>
+                        <button type="button" data-action="slide-step" data-pres-id="${presId}" data-slide-idx="${i + 1}" ${i === deck.slides.length - 1 ? "disabled" : ""} class="px-4 py-2 rounded-xl bg-slate-900 text-white text-xs font-bold tap-btn disabled:opacity-40">→</button>
+                    </div>
+                </div>
+            `);
+        }
+
+        function openApiKeyModal() {
+            openModal("API кілттері", `
+                <form id="saveApiKeysForm" class="space-y-3.5">
+                    <div>
+                        <label for="modalGeminiKey" class="block text-xs font-bold text-slate-700 mb-1">Gemini API Key</label>
+                        <input id="modalGeminiKey" type="password" value="${escapeHtml(appState.apiKeys.gemini)}" placeholder="AIza..." class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-xs font-mono">
+                    </div>
+                    <div>
+                        <label for="modalOpenaiKey" class="block text-xs font-bold text-slate-700 mb-1">OpenAI API Key</label>
+                        <input id="modalOpenaiKey" type="password" value="${escapeHtml(appState.apiKeys.openai)}" placeholder="sk-..." class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-xs font-mono">
+                    </div>
+                    <div class="flex justify-end gap-2 pt-2">
+                        <button type="button" data-action="close-modal" class="px-4 py-2 rounded-xl border border-slate-200 text-xs font-bold tap-btn">Жабу</button>
+                        <button type="submit" class="px-4 py-2 rounded-xl bg-amber-500 text-white text-xs font-bold tap-btn">Сақтау</button>
+                    </div>
+                </form>
+            `);
+        }
+
+        function openNewPresentationModal() {
+            openModal("Жаңа презентация", `
+                <form id="createPresForm" class="space-y-3">
+                    <input id="newPresTitle" type="text" required placeholder="Атауы" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm">
+                    <input id="newPresSlide1" type="text" required placeholder="1-слайд" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm">
+                    <textarea id="newPresPts" rows="3" required placeholder="Тезистер" class="w-full rounded-xl border border-slate-300 p-3 text-sm"></textarea>
+                    <div class="flex justify-end gap-2 pt-2">
+                        <button type="button" data-action="close-modal" class="px-4 py-2 rounded-xl border border-slate-200 text-xs font-bold tap-btn">Жабу</button>
+                        <button type="submit" class="px-4 py-2 rounded-xl bg-amber-500 text-white text-xs font-bold tap-btn">Сақтау</button>
+                    </div>
+                </form>
+            `);
+        }
+
+        function openNewQuizModal() {
+            openModal("Жаңа квиз", `
+                <form id="createQuizForm" class="space-y-3">
+                    <input id="newQzTitle" type="text" required placeholder="Квиз атауы" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm">
+                    <input id="newQzQ" type="text" required placeholder="Сұрақ" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm">
+                    <div class="grid grid-cols-2 gap-2">
+                        <input id="newQzO0" type="text" required placeholder="А (дұрыс)" class="rounded-xl border border-slate-300 px-3 py-2 text-xs">
+                        <input id="newQzO1" type="text" required placeholder="Б" class="rounded-xl border border-slate-300 px-3 py-2 text-xs">
+                        <input id="newQzO2" type="text" required placeholder="В" class="rounded-xl border border-slate-300 px-3 py-2 text-xs">
+                        <input id="newQzO3" type="text" required placeholder="Г" class="rounded-xl border border-slate-300 px-3 py-2 text-xs">
+                    </div>
+                    <div class="flex justify-end gap-2 pt-2">
+                        <button type="button" data-action="close-modal" class="px-4 py-2 rounded-xl border border-slate-200 text-xs font-bold tap-btn">Жабу</button>
+                        <button type="submit" class="px-4 py-2 rounded-xl bg-amber-500 text-white text-xs font-bold tap-btn">Сақтау</button>
+                    </div>
+                </form>
+            `);
+        }
+
+        function openNewPracticalModal() {
+            openModal("Жаңа практика", `
+                <form id="createPracForm" class="space-y-3">
+                    <input id="newPracTitle" type="text" required placeholder="Атауы" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm">
+                    <textarea id="newPracDesc" rows="3" required placeholder="Шарты" class="w-full rounded-xl border border-slate-300 p-3 text-sm"></textarea>
+                    <div class="flex justify-end gap-2 pt-2">
+                        <button type="button" data-action="close-modal" class="px-4 py-2 rounded-xl border border-slate-200 text-xs font-bold tap-btn">Жабу</button>
+                        <button type="submit" class="px-4 py-2 rounded-xl bg-amber-500 text-white text-xs font-bold tap-btn">Сақтау</button>
+                    </div>
+                </form>
+            `);
+        }
+
+        function openAdminAddUserModal() {
+            openModal("Қолданушы қосу", `
+                <form id="admCreateUserForm" class="space-y-3">
+                    <input id="admNewUName" type="text" required placeholder="Аты-жөні" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm">
+                    <input id="admNewUEmail" type="email" required placeholder="Email" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm">
+                    <select id="admNewURole" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm bg-white">
+                        <option value="student">Оқушы</option>
+                        <option value="teacher">Мұғалім</option>
+                        <option value="admin">Админ</option>
+                    </select>
+                    <input id="admNewUTokens" type="number" min="0" value="1500" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm">
+                    <div class="flex justify-end gap-2 pt-2">
+                        <button type="button" data-action="close-modal" class="px-4 py-2 rounded-xl border border-slate-200 text-xs font-bold tap-btn">Жабу</button>
+                        <button type="submit" class="px-4 py-2 rounded-xl bg-slate-900 text-white text-xs font-bold tap-btn">Қосу</button>
+                    </div>
+                </form>
+            `);
+        }
+
+        // =====================================================================
+        // ОҚИҒАЛАРДЫ ДЕЛЕГАЦИЯЛАУ (DOCUMENT CLICK, INPUT, CHANGE, SUBMIT)
+        // =====================================================================
+        function setButtonLoading(btn, isLoading, text = "") {
+            if (!btn) return;
+            if (isLoading) {
+                if (!btn.dataset.origHtml) btn.dataset.origHtml = btn.innerHTML;
+                btn.disabled = true;
+                btn.innerHTML = `<span class="loader-ring mr-1.5"></span><span>${escapeHtml(text)}</span>`;
+            } else {
+                btn.disabled = false;
+                if (btn.dataset.origHtml) {
+                    btn.innerHTML = btn.dataset.origHtml;
+                    delete btn.dataset.origHtml;
+                }
+            }
+        }
+
+        function openModal(title, html) {
+            document.getElementById("dialogTitle").textContent = title;
+            document.getElementById("dialogBody").innerHTML = html;
+            const ov = document.getElementById("dialogOverlay");
+            ov.classList.remove("hidden");
+            ov.classList.add("flex");
+        }
+
+        function closeModal() {
+            const ov = document.getElementById("dialogOverlay");
+            ov.classList.add("hidden");
+            ov.classList.remove("flex");
+        }
+
+        function toggleMobileNav() {
+            document.getElementById("leftSidebar").classList.toggle("-translate-x-full");
+            document.getElementById("mobileNavBackdrop").classList.toggle("hidden");
+        }
+
+        function closeMobileNav() {
+            document.getElementById("leftSidebar").classList.add("-translate-x-full");
+            document.getElementById("mobileNavBackdrop").classList.add("hidden");
+        }
+
+        function escapeHtml(v) {
+            if (v === null || v === undefined) return "";
+            return String(v)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;");
+        }
+
+        function bindDelegatedEvents() {
+            document.addEventListener("click", async (e) => {
+                const target = e.target.closest("[data-action]");
+                if (!target) return;
+                const action = target.dataset.action;
+
+                switch (action) {
+                    case "gate-tab":
+                        switchGateMode(target.dataset.mode);
+                        break;
+                    case "open-google-chooser":
+                        openGoogleChooser();
+                        break;
+                    case "close-google-chooser":
+                        closeGoogleChooser();
+                        break;
+                    case "pick-google-acc":
+                        appState.selectedGoogleId = target.dataset.googleId;
+                        renderGoogleChooserList();
+                        break;
+                    case "google-continue":
+                        await continueWithChosenGoogleAccount();
+                        break;
+                    case "google-firebase-popup":
+                        await launchFirebaseGoogleSignIn();
+                        break;
+                    case "enter-system":
+                        handleEnterSystemButton();
+                        break;
+                    case "toggle-mobile-nav":
+                        toggleMobileNav();
+                        break;
+                    case "close-mobile-nav":
+                        closeMobileNav();
+                        break;
+                    case "brand-home":
+                        switchTab(MENUS[appState.role][0].id);
+                        break;
+                    case "switch-role":
+                        switchRole(target.dataset.role);
+                        break;
+                    case "switch-tab":
+                        switchTab(target.dataset.tabId);
+                        break;
+                    case "open-api-modal":
+                        openApiKeyModal();
+                        break;
+                    case "header-tokens":
+                        switchTab(appState.role === "admin" ? "tokens" : "ai");
+                        break;
+                    case "toggle-notif-drawer":
+                        setNotifDrawerOpen();
+                        break;
+                    case "close-notif-drawer":
+                        setNotifDrawerOpen(false);
+                        break;
+                    case "mark-all-notif":
+                        store.notifications.forEach(n => { n.read = true; });
+                        renderNotificationsDrawer();
+                        await persistStore();
+                        break;
+                    case "read-notif": {
+                        const item = store.notifications.find(n => n.id === target.dataset.notifId);
+                        if (item) item.read = true;
+                        renderNotificationsDrawer();
+                        await persistStore();
+                        break;
+                    }
+                    case "open-gate-login":
+                        openEntryGate("login");
+                        break;
+                    case "open-gate-register":
+                        openEntryGate("register");
+                        break;
+                    case "sync-store": {
+                        const btn = document.getElementById("sidebarSyncBtn");
+                        setButtonLoading(btn, true, "...");
+                        if (stateDoc) {
+                            try {
+                                const snap = await getDoc(stateDoc);
+                                if (snap.exists()) {
+                                    store = { ...safeClone(SEED_STATE), ...snap.data() };
+                                    saveLocalStore();
+                                    appState.dbOnline = true;
+                                }
+                            } catch {
+                                // ignore
+                            }
+                        }
+                        renderFullUI();
+                        setButtonLoading(btn, false);
+                        notifySystem("Синхрондау", "Жаңартылды.", "success");
+                        break;
+                    }
+                    case "close-modal":
+                        closeModal();
+                        break;
+                    case "set-grade":
+                        store.scope.grade = parseInt(target.dataset.grade, 10);
+                        renderFullUI();
+                        notifySystem("Сынып", `${store.scope.grade}-сынып`, "info");
+                        await persistStore();
+                        break;
+                    case "set-subject":
+                        store.scope.subject = target.dataset.subject;
+                        renderFullUI();
+                        notifySystem("Пән", store.scope.subject, "info");
+                        await persistStore();
+                        break;
+                    case "toggle-topic": {
+                        const tp = store.topics.find(x => x.id === target.dataset.topicId);
+                        if (tp) {
+                            tp.completed = !tp.completed;
+                            renderPage();
+                            notifySystem("Тақырып", tp.title, "success");
+                            await persistStore();
+                        }
+                        break;
+                    }
+                    case "start-quiz":
+                        startWaygroundQuiz(target.dataset.quizId, target.dataset.playMode || "solo");
+                        break;
+                    case "close-quiz":
+                        clearQuizTimer();
+                        quizEngine = null;
+                        renderPage();
+                        break;
+                    case "wg-power":
+                        applyQuizPowerup(target.dataset.power);
+                        break;
+                    case "wg-answer":
+                        selectQuizOption(parseInt(target.dataset.optIdx, 10));
+                        break;
+                    case "wg-next":
+                        await advanceQuizStage();
+                        break;
+                    case "toggle-pub-quiz": {
+                        const q = store.quizzes.find(x => x.id === target.dataset.quizId);
+                        if (q) {
+                            q.publishedToStudent = !q.publishedToStudent;
+                            renderPage();
+                            await persistStore();
+                        }
+                        break;
+                    }
+                    case "open-new-pres":
+                        openNewPresentationModal();
+                        break;
+                    case "open-pres":
+                        showSlideDeck(target.dataset.presId, 0);
+                        break;
+                    case "slide-step":
+                        showSlideDeck(target.dataset.presId, parseInt(target.dataset.slideIdx, 10));
+                        break;
+                    case "open-new-quiz":
+                        openNewQuizModal();
+                        break;
+                    case "open-new-prac":
+                        openNewPracticalModal();
+                        break;
+                    case "set-lab-mode":
+                        simLab.mode = target.dataset.labMode;
+                        renderPage();
+                        break;
+                    case "submit-ohm": {
+                        const resStr = `U=${simLab.volts}В, R=${simLab.ohms}Ом → I=${(simLab.volts / simLab.ohms).toFixed(2)}А`;
+                        store.submissions.unshift({ id: "sub_" + Date.now(), studentName: activeUser().name, category: "Зертхана", title: "Ом заңы", result: resStr, score: 10 });
+                        notifySystem("Зертхана", resStr, "success");
+                        await persistStore();
+                        break;
+                    }
+                    case "submit-ph": {
+                        const ph = Math.max(1, Math.min(14, 7 + (simLab.baseMl - simLab.acidMl) * 0.5)).toFixed(1);
+                        const resStr = `HCl=${simLab.acidMl}мл, NaOH=${simLab.baseMl}мл → pH=${ph}`;
+                        store.submissions.unshift({ id: "sub_" + Date.now(), studentName: activeUser().name, category: "Зертхана", title: "pH", result: resStr, score: 10 });
+                        notifySystem("Зертхана", resStr, "success");
+                        await persistStore();
+                        break;
+                    }
+                    case "set-ai-prov":
+                        store.ai.provider = target.dataset.prov;
+                        renderPage();
+                        notifySystem("ЖИ", store.ai.provider, "info");
+                        await persistStore();
+                        break;
+                    case "set-studio-kind":
+                        store.ai.studioKind = target.dataset.skind;
+                        renderPage();
+                        break;
+                    case "save-draft-quiz": {
+                        const d = store.ai.draftOutput;
+                        if (d) {
+                            store.quizzes.unshift({ id: "quiz_" + Date.now(), grade: d.grade, subject: d.subject, title: d.title, pin: String(Math.floor(100000 + Math.random() * 900000)), timeLimitSec: 20, publishedToStudent: true, questions: d.questions });
+                            await persistStore();
+                            switchTab("interactive");
+                        }
+                        break;
+                    }
+                    case "save-draft-pres": {
+                        const d = store.ai.draftOutput;
+                        if (d) {
+                            store.presentations.unshift({ id: "pres_" + Date.now(), grade: d.grade, subject: d.subject, title: d.title, slides: d.slides });
+                            await persistStore();
+                            switchTab("presentations");
+                        }
+                        break;
+                    }
+                    case "save-draft-topic": {
+                        const d = store.ai.draftOutput;
+                        if (d) {
+                            store.topics.unshift({ id: "top_" + Date.now(), grade: d.grade, subject: d.subject, title: d.topicTitle, summary: d.summary, formula: d.formula || "", completed: false });
+                            notifySystem("Сақталды", d.topicTitle, "success");
+                            await persistStore();
+                        }
+                        break;
+                    }
+                    case "save-draft-prac": {
+                        const d = store.ai.draftOutput;
+                        if (d) {
+                            store.tasks.unshift({ id: "tsk_" + Date.now(), grade: d.grade, subject: d.subject, title: d.topicTitle, description: d.summary, status: "pending", answer: "", gradeScore: null });
+                            notifySystem("Сақталды", d.topicTitle, "success");
+                            await persistStore();
+                        }
+                        break;
+                    }
+                    case "adm-open-add-user":
+                        openAdminAddUserModal();
+                        break;
+                    case "adm-add-tokens": {
+                        const u = store.users.find(x => x.id === target.dataset.uid);
+                        if (u) {
+                            u.tokens = (u.tokens || 0) + 1000;
+                            renderFullUI();
+                            notifySystem("Токен", "+1000", "success");
+                            await persistStore();
+                        }
+                        break;
+                    }
+                    case "logout":
+                        await logoutAccount();
+                        break;
+                }
+            });
+
+            document.addEventListener("input", (e) => {
+                const id = e.target.id;
+                if (id === "ohmVRange" || id === "ohmRRange") {
+                    simLab.volts = parseInt(document.getElementById("ohmVRange")?.value || simLab.volts, 10);
+                    simLab.ohms = parseInt(document.getElementById("ohmRRange")?.value || simLab.ohms, 10);
+                    const vEl = document.getElementById("ohmVVal");
+                    const rEl = document.getElementById("ohmRVal");
+                    const iEl = document.getElementById("ohmIVal");
+                    if (vEl) vEl.textContent = `${simLab.volts} В`;
+                    if (rEl) rEl.textContent = `${simLab.ohms} Ом`;
+                    if (iEl) iEl.textContent = `${(simLab.volts / simLab.ohms).toFixed(2)} А`;
+                } else if (id === "phAcidRange" || id === "phBaseRange") {
+                    simLab.acidMl = parseInt(document.getElementById("phAcidRange")?.value || simLab.acidMl, 10);
+                    simLab.baseMl = parseInt(document.getElementById("phBaseRange")?.value || simLab.baseMl, 10);
+                    const aEl = document.getElementById("phAcidVal");
+                    const bEl = document.getElementById("phBaseVal");
+                    const pEl = document.getElementById("phOutVal");
+                    if (aEl) aEl.textContent = `${simLab.acidMl} мл`;
+                    if (bEl) bEl.textContent = `${simLab.baseMl} мл`;
+                    if (pEl) pEl.textContent = Math.max(1, Math.min(14, 7 + (simLab.baseMl - simLab.acidMl) * 0.5)).toFixed(1);
+                }
+            });
+
+            document.addEventListener("change", async (e) => {
+                if (e.target.id === "gRegRole") {
+                    populateGateSelects();
+                } else if (e.target.classList.contains("adm-role-select")) {
+                    const u = store.users.find(x => x.id === e.target.dataset.uid);
+                    if (u) {
+                        u.role = e.target.value;
+                        renderShell();
+                        notifySystem("Рөл", `${u.name} → ${roleTitle(u.role)}`, "info");
+                        await persistStore();
+                    }
+                }
+            });
+
+            document.addEventListener("submit", async (e) => {
+                const form = e.target;
+                if (form.id === "gateLoginForm") {
+                    await handleLoginSubmit(e);
+                } else if (form.id === "gateRegisterForm") {
+                    await handleRegisterSubmit(e);
+                } else if (form.classList.contains("student-task-form")) {
+                    e.preventDefault();
+                    const t = store.tasks.find(x => x.id === form.dataset.taskId);
+                    if (!t) return;
+                    const ans = form.querySelector(".task-answer-input").value.trim();
+                    t.answer = ans;
+                    t.status = "submitted";
+                    t.gradeScore = 10;
+                    store.submissions.unshift({ id: "sub_" + Date.now(), studentName: activeUser().name, category: "Тапсырма", title: t.title, result: ans, score: 10 });
+                    renderPage();
+                    notifySystem("Жіберілді", t.title, "success");
+                    await persistStore();
+                } else if (form.id === "createPresForm") {
+                    e.preventDefault();
+                    const title = document.getElementById("newPresTitle").value.trim();
+                    const s1 = document.getElementById("newPresSlide1").value.trim();
+                    const pts = document.getElementById("newPresPts").value.split("\n").map(x => x.trim()).filter(Boolean);
+                    store.presentations.unshift({ id: "pres_" + Date.now(), grade: store.scope.grade, subject: store.scope.subject, title, slides: [{ title: s1, points: pts.length ? pts : ["Тезис"] }] });
+                    closeModal();
+                    renderPage();
+                    notifySystem("Сақталды", title, "success");
+                    await persistStore();
+                } else if (form.id === "createQuizForm") {
+                    e.preventDefault();
+                    const title = document.getElementById("newQzTitle").value.trim();
+                    const qText = document.getElementById("newQzQ").value.trim();
+                    const opts = [
+                        document.getElementById("newQzO0").value.trim(),
+                        document.getElementById("newQzO1").value.trim(),
+                        document.getElementById("newQzO2").value.trim(),
+                        document.getElementById("newQzO3").value.trim()
+                    ];
+                    store.quizzes.unshift({ id: "quiz_" + Date.now(), grade: store.scope.grade, subject: store.scope.subject, title, pin: String(Math.floor(100000 + Math.random() * 900000)), timeLimitSec: 20, publishedToStudent: true, questions: [{ q: qText, opts, ans: 0 }] });
+                    closeModal();
+                    renderPage();
+                    notifySystem("Квиз", title, "success");
+                    await persistStore();
+                } else if (form.id === "createPracForm") {
+                    e.preventDefault();
+                    const title = document.getElementById("newPracTitle").value.trim();
+                    const description = document.getElementById("newPracDesc").value.trim();
+                    store.tasks.unshift({ id: "tsk_" + Date.now(), grade: store.scope.grade, subject: store.scope.subject, title, description, status: "pending", answer: "", gradeScore: null });
+                    closeModal();
+                    renderPage();
+                    notifySystem("Практика", title, "success");
+                    await persistStore();
+                } else if (form.id === "aiChatForm") {
+                    e.preventDefault();
+                    const u = activeUser();
+                    if ((u.tokens || 0) <= 0) {
+                        notifySystem("Токен", "0 токен", "error");
+                        return;
+                    }
+                    const inp = document.getElementById("aiChatInput");
+                    const txt = inp.value.trim();
+                    if (!txt) return;
+                    inp.value = "";
+                    store.chatMessages.push({ sender: "user", text: txt });
+                    renderPage();
+                    setButtonLoading(document.getElementById("aiChatSubmitBtn"), true, "...");
+                    const prompt = `${store.scope.grade}-сынып ${store.scope.subject}: ${txt}`;
+                    const res = await callAIProvider(store.ai.provider, prompt, txt);
+                    const spent = Math.min(u.tokens, res.tokens);
+                    u.tokens = Math.max(0, (u.tokens || 0) - spent);
+                    store.chatMessages.push({ sender: "ai", provider: store.ai.provider, tokens: spent, text: res.text });
+                    store.tokenLogs.unshift({ id: "tlog_" + Date.now(), user: u.name, role: roleTitle(appState.role), provider: store.ai.provider, spent, action: txt.slice(0, 32) });
+                    renderPage();
+                    notifySystem("Токен", `-${spent}`, "info");
+                    await persistStore();
+                } else if (form.id === "aiStudioForm") {
+                    e.preventDefault();
+                    const u = activeUser();
+                    if ((u.tokens || 0) <= 0) {
+                        notifySystem("Токен", "0 токен", "error");
+                        return;
+                    }
+                    const grade = parseInt(document.getElementById("stGrade").value, 10);
+                    const subject = document.getElementById("stSubject").value;
+                    const topic = document.getElementById("stTopic").value.trim();
+                    const kind = store.ai.studioKind;
+                    const prov = store.ai.provider;
+                    store.scope = { grade, subject };
+                    setButtonLoading(document.getElementById("stGenerateBtn"), true, "...");
+                    const prompt = kind === "quiz"
+                        ? `JSON only: {"title":"${topic}","questions":[{"q":"Сұрақ","opts":["А","Б","В","Г"],"ans":0}]}. ${grade}-сынып ${subject}: ${topic}.`
+                        : kind === "presentation"
+                        ? `JSON only: {"title":"${topic}","slides":[{"title":"Слайд","points":["1","2"]}]}. ${grade}-сынып ${subject}: ${topic}.`
+                        : `JSON only: {"topicTitle":"${topic}","summary":"Мазмұны","formula":""}. ${grade}-сынып ${subject}: ${topic}.`;
+                    const aiRes = await callAIProvider(prov, prompt, topic);
+                    const spent = Math.min(u.tokens, aiRes.tokens);
+                    let parsed = null;
+                    if (aiRes.fromApi && aiRes.text) {
+                        try {
+                            parsed = { ...JSON.parse(aiRes.text.replace(/```json|```/gi, "").trim()), kind, grade, subject };
+                        } catch {
+                            parsed = null;
+                        }
+                    }
+                    if (!parsed) {
+                        if (kind === "quiz") {
+                            parsed = { kind: "quiz", grade, subject, title: `${topic} — Квиз`, questions: [{ q: `${topic} (${grade}-сынып)`, opts: ["А", "Б", "В", "Г"], ans: 0 }] };
+                        } else if (kind === "presentation") {
+                            parsed = { kind: "presentation", grade, subject, title: topic, slides: [{ title: topic, points: [`${grade}-сынып`, subject] }] };
+                        } else {
+                            parsed = { kind: "lesson", grade, subject, topicTitle: topic, summary: `${grade}-сынып ${subject}: ${topic}.`, formula: "" };
+                        }
+                    }
+                    u.tokens = Math.max(0, (u.tokens || 0) - spent);
+                    store.ai.draftOutput = parsed;
+                    store.tokenLogs.unshift({ id: "tlog_" + Date.now(), user: u.name, role: "Мұғалім", provider: prov, spent, action: topic });
+                    renderPage();
+                    notifySystem("Дайын", `-${spent} токен`, "success");
+                    await persistStore();
+                } else if (form.id === "admCreateUserForm") {
+                    e.preventDefault();
+                    const name = document.getElementById("admNewUName").value.trim();
+                    const email = document.getElementById("admNewUEmail").value.trim().toLowerCase();
+                    const role = document.getElementById("admNewURole").value;
+                    const tokens = parseInt(document.getElementById("admNewUTokens").value, 10) || 1500;
+                    store.users.unshift({ id: "usr_" + Date.now(), name, email, role, grade: role === "student" ? 9 : null, subject: store.scope.subject, tokens, points: 0 });
+                    closeModal();
+                    renderFullUI();
+                    notifySystem("Қосылды", name, "success");
+                    await persistStore();
+                } else if (form.id === "admAddSubjForm") {
+                    e.preventDefault();
+                    const val = document.getElementById("admSubjInput").value.trim();
+                    if (val && !store.subjects.includes(val)) store.subjects.push(val);
+                    renderPage();
+                    notifySystem("Пән", val, "success");
+                    await persistStore();
+                } else if (form.id === "settingsNameForm") {
+                    e.preventDefault();
+                    const u = activeUser();
+                    u.name = document.getElementById("settingsNameInput").value.trim();
+                    renderFullUI();
+                    notifySystem("Сақталды", u.name, "success");
+                    await persistStore();
+                } else if (form.id === "saveApiKeysForm") {
+                    e.preventDefault();
+                    appState.apiKeys.gemini = document.getElementById("modalGeminiKey").value.trim();
+                    appState.apiKeys.openai = document.getElementById("modalOpenaiKey").value.trim();
+                    localStorage.setItem("bolashaq_key_gemini", appState.apiKeys.gemini);
+                    localStorage.setItem("bolashaq_key_openai", appState.apiKeys.openai);
+                    closeModal();
+                    renderShell();
+                    notifySystem("API", "Сақталды.", "success");
+                }
+            });
+        }
+
+        window.addEventListener("DOMContentLoaded", () => {
+            populateGateSelects();
+            switchGateMode("login");
+            bindDelegatedEvents();
+            renderFullUI();
+            if (!appState.sessionUser) {
+                openEntryGate("login");
+            } else {
+                closeEntryGate();
+            }
+            initFirebase();
+        });
+    </script>
+</body>
+</html>
