@@ -1,10 +1,10 @@
-```html
+
 <!DOCTYPE html>
 <html lang="kk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BOLASHAQ — Білім беру платформасы</title>
+    <title>BOLASHAQ</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,19 +23,17 @@
     </script>
     <style>
         :root {
-            --glass-bg: rgba(255, 255, 255, 0.72);
-            --glass-border: rgba(255, 255, 255, 0.85);
-            --gold-grad: linear-gradient(135deg, #FDE047 0%, #F59E0B 48%, #EA580C 100%);
-            --state-navy: #0F172A;
-            --state-blue: #1D4ED8;
+            --glass-bg: rgba(255, 255, 255, 0.78);
+            --glass-border: rgba(255, 255, 255, 0.9);
+            --gold-grad: linear-gradient(135deg, #FDE047 0%, #F59E0B 50%, #EA580C 100%);
         }
 
         body {
             font-family: 'Inter', sans-serif;
             background:
-                radial-gradient(circle at 12% 8%, rgba(251, 191, 36, 0.16), transparent 36%),
-                radial-gradient(circle at 88% 14%, rgba(29, 78, 216, 0.08), transparent 38%),
-                #F8FAFC;
+                radial-gradient(circle at 10% 10%, rgba(15, 23, 42, 0.08), transparent 42%),
+                radial-gradient(circle at 90% 15%, rgba(30, 64, 175, 0.09), transparent 44%),
+                linear-gradient(155deg, #F1F5F9 0%, #E2E8F0 52%, #E8EEF5 100%);
             color: #0F172A;
             overflow-x: hidden;
         }
@@ -44,21 +42,21 @@
         .bolashaq-liquid-logo {
             font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
             font-weight: 800;
-            letter-spacing: 0.04em;
+            letter-spacing: 0.05em;
             position: relative;
             display: inline-flex;
             align-items: center;
-            padding: 0.18em 0.52em;
+            padding: 0.2em 0.56em;
             border-radius: 9999px;
             background:
-                linear-gradient(180deg, rgba(255, 255, 255, 0.65) 0%, rgba(255, 255, 255, 0.06) 46%, rgba(180, 83, 9, 0.22) 100%),
+                linear-gradient(180deg, rgba(255, 255, 255, 0.68) 0%, rgba(255, 255, 255, 0.06) 46%, rgba(154, 52, 18, 0.28) 100%),
                 var(--gold-grad);
-            border: 1.5px solid rgba(255, 255, 255, 0.9);
+            border: 1.5px solid rgba(255, 255, 255, 0.92);
             box-shadow:
-                inset 0 3px 6px rgba(255, 255, 255, 0.85),
-                inset 0 -5px 10px rgba(154, 52, 18, 0.42),
-                0 8px 22px rgba(234, 88, 12, 0.28),
-                0 2px 6px rgba(15, 23, 42, 0.08);
+                inset 0 3px 6px rgba(255, 255, 255, 0.88),
+                inset 0 -5px 11px rgba(124, 45, 18, 0.45),
+                0 10px 24px rgba(234, 88, 12, 0.26),
+                0 2px 6px rgba(15, 23, 42, 0.12);
             backdrop-filter: blur(14px) saturate(160%);
             -webkit-backdrop-filter: blur(14px) saturate(160%);
             transition: transform 0.24s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.24s ease;
@@ -69,20 +67,20 @@
             content: "";
             position: absolute;
             top: 3px;
-            left: 12%;
-            right: 12%;
-            height: 42%;
+            left: 13%;
+            right: 13%;
+            height: 40%;
             border-radius: 9999px;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.78) 0%, rgba(255, 255, 255, 0) 100%);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0) 100%);
             pointer-events: none;
         }
 
         .bolashaq-liquid-logo:hover {
             transform: translateY(-1.5px) scale(1.03);
             box-shadow:
-                inset 0 4px 8px rgba(255, 255, 255, 0.92),
-                inset 0 -6px 12px rgba(154, 52, 18, 0.48),
-                0 12px 28px rgba(234, 88, 12, 0.36);
+                inset 0 4px 8px rgba(255, 255, 255, 0.94),
+                inset 0 -6px 12px rgba(124, 45, 18, 0.52),
+                0 14px 30px rgba(234, 88, 12, 0.34);
         }
 
         .bolashaq-logo-text {
@@ -91,34 +89,55 @@
             color: #FFFFFF;
             text-shadow:
                 0 1px 0 rgba(255, 255, 255, 0.55),
-                0 2px 4px rgba(124, 45, 18, 0.55);
+                0 2px 5px rgba(124, 45, 18, 0.65);
         }
 
-        /* Liquid Glass панельдер */
         .liquid-glass {
             background: var(--glass-bg);
-            backdrop-filter: blur(16px) saturate(150%);
-            -webkit-backdrop-filter: blur(16px) saturate(150%);
+            backdrop-filter: blur(16px) saturate(145%);
+            -webkit-backdrop-filter: blur(16px) saturate(145%);
             border: 1px solid var(--glass-border);
-            box-shadow: 0 8px 28px rgba(15, 23, 42, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            box-shadow: 0 8px 26px rgba(15, 23, 42, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.9);
         }
 
-        /* Жүйе анимациялары */
-        @keyframes sysFadeUp {
+        /* iPhone экран блоктан шыққандағы иконка/блоктардың қону анимациясы */
+        @keyframes iosUnlockSettle {
             0% {
                 opacity: 0;
-                transform: translateY(10px) scale(0.99);
+                transform: scale(1.16) translateY(14px);
+                filter: blur(4px);
+            }
+            65% {
+                opacity: 1;
+                transform: scale(0.985) translateY(-2px);
+                filter: blur(0px);
             }
             100% {
                 opacity: 1;
-                transform: translateY(0) scale(1);
+                transform: scale(1) translateY(0);
+                filter: blur(0px);
+            }
+        }
+
+        @keyframes iosItemPop {
+            0% {
+                opacity: 0;
+                transform: scale(0.84) translateY(18px);
+            }
+            70% {
+                opacity: 1;
+                transform: scale(1.02) translateY(-2px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
             }
         }
 
         @keyframes toastSlideIn {
             0% {
                 opacity: 0;
-                transform: translateX(22px) scale(0.96);
+                transform: translateX(20px) scale(0.96);
             }
             100% {
                 opacity: 1;
@@ -126,17 +145,16 @@
             }
         }
 
-        @keyframes sheenSweep {
-            0% { transform: translateX(-140%) skewX(-18deg); }
-            100% { transform: translateX(240%) skewX(-18deg); }
-        }
-
         @keyframes spinRing {
             to { transform: rotate(360deg); }
         }
 
-        .anim-view {
-            animation: sysFadeUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) both;
+        .anim-unlock-shell {
+            animation: iosUnlockSettle 0.48s cubic-bezier(0.2, 0.9, 0.25, 1.05) both;
+        }
+
+        .anim-ios-card {
+            animation: iosItemPop 0.42s cubic-bezier(0.22, 1.15, 0.36, 1) both;
         }
 
         .anim-toast {
@@ -144,29 +162,11 @@
         }
 
         .btn-tactile {
-            position: relative;
-            overflow: hidden;
             transition: transform 0.12s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
         }
 
-        .btn-tactile::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 45%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.32), transparent);
-            transform: translateX(-140%) skewX(-18deg);
-            pointer-events: none;
-        }
-
-        .btn-tactile:hover::after {
-            animation: sheenSweep 0.65s ease;
-        }
-
         .btn-tactile:active:not(:disabled) {
-            transform: scale(0.965);
+            transform: scale(0.96);
         }
 
         .spinner-dot {
@@ -181,8 +181,8 @@
         }
 
         ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: #F1F5F9; }
-        ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 9999px; }
+        ::-webkit-scrollbar-track { background: #E2E8F0; }
+        ::-webkit-scrollbar-thumb { background: #94A3B8; border-radius: 9999px; }
     </style>
 </head>
 <body class="min-h-screen flex flex-col text-slate-900">
@@ -190,145 +190,119 @@
     <!-- =================================================================== -->
     <!-- 1. КІРУ / ТІРКЕЛУ ЭКРАНЫ (САЙТҚА КІРГЕНДЕ БІРІНШІ АШЫЛАДЫ)         -->
     <!-- =================================================================== -->
-    <div id="entryGate" class="fixed inset-0 z-50 overflow-y-auto bg-slate-950/55 backdrop-blur-md flex items-center justify-center p-4">
-        <div class="w-full max-w-4xl rounded-3xl liquid-glass bg-white/95 border border-white shadow-2xl overflow-hidden anim-view grid grid-cols-1 lg:grid-cols-12">
+    <div id="entryGate" class="fixed inset-0 z-50 overflow-y-auto bg-slate-950/60 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="w-full max-w-3xl rounded-3xl bg-white border border-slate-200 shadow-2xl overflow-hidden grid grid-cols-1 md:grid-cols-12">
 
-            <!-- Мемлекеттік деңгейдегі сол жақ панель -->
-            <div class="lg:col-span-5 bg-slate-900 text-white p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden">
-                <div class="absolute -top-20 -right-20 w-56 h-56 rounded-full bg-amber-400/20 blur-2xl pointer-events-none"></div>
-                <div class="absolute -bottom-24 -left-16 w-64 h-64 rounded-full bg-blue-600/25 blur-2xl pointer-events-none"></div>
-
-                <div class="relative z-10 space-y-5">
-                    <div class="flex items-center justify-between gap-2">
-                        <span class="bolashaq-liquid-logo text-xl sm:text-2xl">
-                            <span class="bolashaq-logo-text">BOLASHAQ</span>
-                        </span>
-                        <span class="px-2.5 py-1 rounded-full bg-white/10 border border-white/15 text-[11px] font-semibold text-amber-300">
-                            Мемлекеттік платформа
-                        </span>
+            <!-- Сол жақ панель: Терең көк-графит градиент -->
+            <div class="md:col-span-5 bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 text-white p-6 flex flex-col justify-between">
+                <div class="space-y-4">
+                    <span class="bolashaq-liquid-logo text-xl">
+                        <span class="bolashaq-logo-text">BOLASHAQ</span>
+                    </span>
+                    <div class="text-sm font-bold text-slate-100 leading-snug">
+                        1–11 сынып оқулықтары, интерактивті сабақтар және ЖИ студиясы
                     </div>
-
-                    <div class="space-y-2 pt-1">
-                        <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight leading-snug">
-                            Бірыңғай цифрлық оқу және интерактивті сабақ жүйесі
-                        </h1>
-                        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                            1–11 сынып оқушылары, мұғалімдері және әкімшілікке арналған квиздер, презентациялар, виртуалды зертхана және ЖИ көмекші.
-                        </p>
-                    </div>
-
-                    <div class="space-y-2.5 pt-2 text-xs text-slate-200">
-                        <div class="flex items-center gap-2.5 bg-white/5 border border-white/10 rounded-xl px-3 py-2">
-                            <span class="w-2 h-2 rounded-full bg-amber-400"></span>
-                            <span>1. Тіркелу → 2. Логин & Пароль немесе Google</span>
-                        </div>
-                        <div class="flex items-center gap-2.5 bg-white/5 border border-white/10 rounded-xl px-3 py-2">
-                            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-                            <span>Firebase Auth & Firestore ('bolashaq-e214e')</span>
-                        </div>
-                        <div class="flex items-center gap-2.5 bg-white/5 border border-white/10 rounded-xl px-3 py-2">
-                            <span class="w-2 h-2 rounded-full bg-sky-400"></span>
-                            <span>Gemini & ChatGPT API + Жүйелік хабарламалар</span>
-                        </div>
+                    <div class="space-y-2 pt-1 text-xs text-slate-300">
+                        <div class="px-3 py-2 rounded-xl bg-white/5 border border-white/10">1. Тіркелу</div>
+                        <div class="px-3 py-2 rounded-xl bg-white/5 border border-white/10">2. Логин / Пароль немесе Google</div>
+                        <div class="px-3 py-2 rounded-xl bg-white/5 border border-white/10">3. Оқушы • Мұғалім • Админ</div>
                     </div>
                 </div>
 
-                <div class="relative z-10 pt-6 mt-6 border-t border-white/10 flex items-center justify-between text-[11px] text-slate-400">
-                    <span id="gateDbStatus">База: қосылуда...</span>
-                    <span>v2.5 • BOLASHAQ</span>
+                <div class="pt-5 mt-5 border-t border-white/10 flex items-center justify-between text-[11px] text-slate-400">
+                    <span id="gateDbStatus">Firestore: қосылуда...</span>
+                    <span>bolashaq-e214e</span>
                 </div>
             </div>
 
-            <!-- Оң жақ форма: Тіркелу / Логин-Пароль / Google -->
-            <div class="lg:col-span-7 p-6 sm:p-8 flex flex-col justify-between bg-white">
+            <!-- Оң жақ панель: Қойындылар, Формалар және Жүйеге өту -->
+            <div class="md:col-span-7 p-6 flex flex-col justify-between bg-white">
                 <div>
-                    <!-- Қойындылар -->
-                    <div class="grid grid-cols-2 bg-slate-100 p-1 rounded-2xl border border-slate-200 mb-6">
-                        <button type="button" id="gateTabRegister" onclick="setGateMode('register')" class="py-2 rounded-xl text-xs sm:text-sm font-bold btn-tactile bg-white text-slate-900 shadow-xs">
-                            Тіркелу
+                    <!-- Қойындылар: Кіру / Тіркелу -->
+                    <div class="grid grid-cols-2 bg-slate-100 p-1 rounded-2xl border border-slate-200 mb-5">
+                        <button type="button" id="gateTabLogin" onclick="setGateMode('login')" class="py-2 rounded-xl text-xs sm:text-sm font-bold btn-tactile bg-white text-slate-900 shadow-xs">
+                            Кіру
                         </button>
-                        <button type="button" id="gateTabLogin" onclick="setGateMode('login')" class="py-2 rounded-xl text-xs sm:text-sm font-bold btn-tactile text-slate-600 hover:text-slate-900">
-                            Логин / Парольмен кіру
+                        <button type="button" id="gateTabRegister" onclick="setGateMode('register')" class="py-2 rounded-xl text-xs sm:text-sm font-bold btn-tactile text-slate-600 hover:text-slate-900">
+                            Тіркелу
                         </button>
                     </div>
 
-                    <!-- ТІРКЕЛУ ФОРМАСЫ -->
-                    <form id="gateRegisterForm" onsubmit="submitGateRegister(event)" class="space-y-3.5">
+                    <!-- ЛОГИН / ПАРОЛЬМЕН КІРУ -->
+                    <form id="gateLoginForm" onsubmit="submitGateLogin(event)" class="space-y-3.5">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Логин (Email)</label>
+                            <input id="gLoginEmail" type="email" required placeholder="name@bolashaq.kz" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm focus:outline-none focus:border-slate-900">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Пароль</label>
+                            <input id="gLoginPass" type="password" required placeholder="••••••••" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm focus:outline-none focus:border-slate-900">
+                        </div>
+                        <button type="submit" id="gLoginBtn" class="w-full py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-sm font-bold btn-tactile">
+                            Кіру
+                        </button>
+                    </form>
+
+                    <!-- ТІРКЕЛУ -->
+                    <form id="gateRegisterForm" onsubmit="submitGateRegister(event)" class="space-y-3 hidden">
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <div>
                                 <label class="block text-xs font-bold text-slate-700 mb-1">Аты-жөні</label>
-                                <input id="gRegName" type="text" required placeholder="Мысалы: Әлихан Сәрсенбай" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm focus:outline-none focus:border-amber-500">
+                                <input id="gRegName" type="text" required placeholder="Аты-жөні" class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:border-slate-900">
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-slate-700 mb-1">Рөл</label>
-                                <select id="gRegRole" onchange="onGateRoleChange()" class="w-full rounded-xl border border-slate-300 px-3 py-2.5 text-sm bg-white font-semibold focus:outline-none focus:border-amber-500">
+                                <select id="gRegRole" onchange="onGateRoleChange()" class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm bg-white font-semibold focus:outline-none focus:border-slate-900">
                                     <option value="student">Оқушы</option>
                                     <option value="teacher">Мұғалім</option>
                                     <option value="admin">Админ</option>
                                 </select>
                             </div>
                         </div>
-
                         <div id="gRegGradeRow" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <div>
                                 <label class="block text-xs font-bold text-slate-700 mb-1">Сынып (1–11)</label>
-                                <select id="gRegGrade" class="w-full rounded-xl border border-slate-300 px-3 py-2.5 text-sm bg-white font-semibold focus:outline-none focus:border-amber-500"></select>
+                                <select id="gRegGrade" class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm bg-white font-semibold focus:outline-none focus:border-slate-900"></select>
                             </div>
                             <div>
-                                <label class="block text-xs font-bold text-slate-700 mb-1">Негізгі пән</label>
-                                <select id="gRegSubject" class="w-full rounded-xl border border-slate-300 px-3 py-2.5 text-sm bg-white font-semibold focus:outline-none focus:border-amber-500"></select>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Пән</label>
+                                <select id="gRegSubject" class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm bg-white font-semibold focus:outline-none focus:border-slate-900"></select>
                             </div>
                         </div>
-
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <div>
-                                <label class="block text-xs font-bold text-slate-700 mb-1">Email (Логин)</label>
-                                <input id="gRegEmail" type="email" required placeholder="user@bolashaq.kz" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm focus:outline-none focus:border-amber-500">
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Логин (Email)</label>
+                                <input id="gRegEmail" type="email" required placeholder="name@bolashaq.kz" class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:border-slate-900">
                             </div>
                             <div>
-                                <label class="block text-xs font-bold text-slate-700 mb-1">Құпиясөз (Пароль)</label>
-                                <input id="gRegPass" type="password" required minlength="6" placeholder="Кемінде 6 таңба" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm focus:outline-none focus:border-amber-500">
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Пароль</label>
+                                <input id="gRegPass" type="password" required minlength="6" placeholder="Кемінде 6 таңба" class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:border-slate-900">
                             </div>
                         </div>
-
-                        <button type="submit" id="gRegBtn" class="w-full py-3 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-sm font-bold shadow-md shadow-amber-500/20 btn-tactile">
-                            Аккаунт тіркеу
-                        </button>
-                    </form>
-
-                    <!-- ЛОГИН / ПАРОЛЬМЕН КІРУ ФОРМАСЫ -->
-                    <form id="gateLoginForm" onsubmit="submitGateLogin(event)" class="space-y-4 hidden">
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 mb-1">Email (Логин)</label>
-                            <input id="gLoginEmail" type="email" required placeholder="user@bolashaq.kz" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm focus:outline-none focus:border-amber-500">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 mb-1">Құпиясөз (Пароль)</label>
-                            <input id="gLoginPass" type="password" required placeholder="••••••••" class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm focus:outline-none focus:border-amber-500">
-                        </div>
-                        <button type="submit" id="gLoginBtn" class="w-full py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-sm font-bold btn-tactile">
-                            Логин және парольмен кіру
+                        <button type="submit" id="gRegBtn" class="w-full py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-sm font-bold btn-tactile">
+                            Тіркелу
                         </button>
                     </form>
 
                     <!-- GOOGLE АККАУНТТПЕН КІРУ -->
-                    <div class="mt-5 pt-4 border-t border-slate-200 space-y-2.5">
-                        <button type="button" id="gGoogleBtn" onclick="loginWithGoogleAction(this)" class="w-full py-2.5 px-4 rounded-xl bg-white hover:bg-slate-50 border border-slate-300 text-slate-800 text-sm font-bold flex items-center justify-center gap-2.5 btn-tactile">
+                    <div class="mt-4 pt-4 border-t border-slate-200">
+                        <button type="button" id="gGoogleBtn" onclick="openGoogleAccountChooser()" class="w-full py-2.5 px-4 rounded-xl bg-white hover:bg-slate-50 border border-slate-300 text-slate-800 text-sm font-bold flex items-center justify-center gap-2.5 btn-tactile">
                             <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24">
                                 <path fill="#4285F4" d="M23.49 12.27c0-.78-.07-1.53-.2-2.27H12v4.51h6.47c-.29 1.5-1.14 2.76-2.4 3.6v3h3.88c2.27-2.09 3.54-5.17 3.54-8.84z"/>
                                 <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.11-6.72-4.96H1.26v3.1C3.23 21.31 7.29 24 12 24z"/>
                                 <path fill="#FBBC05" d="M5.28 14.29c-.24-.72-.38-1.49-.38-2.29s.14-1.57.38-2.29V6.61H1.26C.46 8.2 0 10.04 0 12s.46 3.8 1.26 5.39l4.02-3.1z"/>
                                 <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.29 0 3.23 2.69 1.26 6.61l4.02 3.1c.95-2.85 3.6-4.96 6.72-4.96z"/>
                             </svg>
-                            <span>Google аккаунтпен кіру</span>
+                            <span>Google-мен кіру</span>
                         </button>
                     </div>
                 </div>
 
-                <div class="mt-6 pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-500">
-                    <span id="gateHintText">Тіркелгеннен кейін логин/парольмен кіруге болады.</span>
-                    <button type="button" onclick="enterWorkspacePreview()" class="font-bold text-amber-700 hover:text-amber-800 underline btn-tactile">
-                        Жүйеге өту
+                <!-- Төменгі жол: Жүйеге өту кнопкасы -->
+                <div class="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
+                    <span id="gateStatusNote" class="text-xs text-slate-500">Логин/пароль немесе Google</span>
+                    <button type="button" id="enterSystemBtn" onclick="enterSystemNow()" class="px-4 py-2 rounded-xl bg-indigo-950 hover:bg-indigo-900 text-white text-xs font-extrabold btn-tactile">
+                        Жүйеге өту →
                     </button>
                 </div>
             </div>
@@ -336,101 +310,137 @@
     </div>
 
     <!-- =================================================================== -->
-    <!-- 2. НЕГІЗГІ ЖҮЙЕ ИНТЕРФЕЙСІ                                         -->
+    <!-- 2. GOOGLE АККАУНТЫН ТАҢДАУ ТЕРЕЗЕСІ ("Google аккаунтын таңдаңыз")    -->
     <!-- =================================================================== -->
-    <header class="sticky top-0 z-30 liquid-glass bg-white/85 border-b border-slate-200/80 px-3 sm:px-6 h-16 flex items-center justify-between gap-2">
-        <div class="flex items-center gap-2.5 shrink-0">
-            <button type="button" onclick="toggleMobileNav()" class="lg:hidden p-2 rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 btn-tactile" aria-label="Мәзір">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
-                </svg>
-            </button>
-
-            <button type="button" onclick="goDefaultTab()" class="btn-tactile rounded-full focus:outline-none">
-                <span class="bolashaq-liquid-logo text-base sm:text-xl">
-                    <span class="bolashaq-logo-text">BOLASHAQ</span>
-                </span>
-            </button>
-        </div>
-
-        <!-- РӨЛ АУЫСТЫРҒЫШ -->
-        <div class="flex items-center bg-slate-100/90 p-1 rounded-2xl border border-slate-200/80" role="tablist">
-            <button type="button" id="topRoleStudent" onclick="selectRole('student')" class="px-2.5 sm:px-3.5 py-1.5 rounded-xl text-xs font-bold btn-tactile">Оқушы</button>
-            <button type="button" id="topRoleTeacher" onclick="selectRole('teacher')" class="px-2.5 sm:px-3.5 py-1.5 rounded-xl text-xs font-bold btn-tactile">Мұғалім</button>
-            <button type="button" id="topRoleAdmin" onclick="selectRole('admin')" class="px-2.5 sm:px-3.5 py-1.5 rounded-xl text-xs font-bold btn-tactile">Админ</button>
-        </div>
-
-        <!-- ЖҮЙЕЛІК ХАБАРЛАМАЛАР, API, ТОКЕН, АККАУНТ -->
-        <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
-            <span id="liveSyncBadge" class="hidden xl:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-white border border-slate-200 text-[11px] font-bold text-slate-700">
-                <span id="liveSyncDot" class="w-2 h-2 rounded-full bg-amber-400"></span>
-                <span id="liveSyncLabel">Firestore</span>
-            </span>
-
-            <button type="button" onclick="openApiSettingsModal()" class="px-2.5 py-1.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-xs font-bold text-slate-800 flex items-center gap-1.5 btn-tactile">
-                <span id="apiKeyDot" class="w-2 h-2 rounded-full bg-amber-400"></span>
-                <span>API</span>
-            </button>
-
-            <button type="button" onclick="jumpToTokensView()" class="px-2.5 py-1.5 rounded-xl bg-amber-50 hover:bg-amber-100 border border-amber-200 text-xs font-extrabold text-amber-950 tabular-nums btn-tactile">
-                <span id="headerTokenCount">0</span>
-                <span class="hidden sm:inline font-semibold">токен</span>
-            </button>
-
-            <!-- ЖҮЙЕЛІК ХАБАРЛАМАЛАР ҚОҢЫРАУЫ -->
-            <button type="button" onclick="toggleNotificationsDrawer()" class="relative p-2 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 btn-tactile" aria-label="Жүйелік хабарламалар">
-                <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
-                </svg>
-                <span id="unreadNotifBadge" class="hidden absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 rounded-full bg-rose-600 text-white text-[10px] font-extrabold flex items-center justify-center">0</span>
-            </button>
-
-            <button type="button" onclick="reopenEntryGate('login')" class="px-2.5 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold btn-tactile">
-                <span id="headerUserLabel">Кіру</span>
-            </button>
-        </div>
-    </header>
-
-    <!-- НЕГІЗГІ КОНТЕЙНЕР -->
-    <div class="flex-1 flex relative">
-        <div id="mobileNavBackdrop" onclick="closeMobileNav()" class="fixed inset-0 bg-slate-950/40 z-30 hidden lg:hidden"></div>
-
-        <!-- СОЛ ЖАҚ НАВИГАЦИЯ -->
-        <aside id="leftSidebar" class="fixed lg:static inset-y-0 left-0 z-40 w-64 liquid-glass bg-white/90 border-r border-slate-200/80 flex flex-col justify-between transform -translate-x-full lg:translate-x-0 transition-transform duration-200 pt-16 lg:pt-0 shrink-0">
-            <div class="p-3.5 space-y-3 overflow-y-auto flex-1">
-                <div id="activeScopeCard" class="p-3 rounded-2xl bg-slate-900 text-white flex items-center justify-between text-xs"></div>
-                <nav id="roleMenuList" class="space-y-1"></nav>
-            </div>
-
-            <div class="p-3.5 border-t border-slate-200/80 bg-white/60 space-y-2">
-                <button type="button" onclick="manualRefreshState(this)" class="w-full py-2 px-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-xs font-bold text-slate-800 btn-tactile">
-                    Базаны синхрондау
-                </button>
-                <button type="button" onclick="reopenEntryGate('register')" class="w-full py-2 px-3 rounded-xl bg-amber-50 hover:bg-amber-100 border border-amber-200 text-xs font-bold text-amber-950 btn-tactile">
-                    Жаңа тіркелу / Аккаунт
+    <div id="googleChooserModal" class="fixed inset-0 z-[60] hidden items-center justify-center p-4 bg-slate-950/65 backdrop-blur-xs">
+        <div class="w-full max-w-md rounded-2xl bg-white border border-slate-200 shadow-2xl overflow-hidden anim-ios-card">
+            <div class="px-5 py-4 border-b border-slate-200 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24">
+                        <path fill="#4285F4" d="M23.49 12.27c0-.78-.07-1.53-.2-2.27H12v4.51h6.47c-.29 1.5-1.14 2.76-2.4 3.6v3h3.88c2.27-2.09 3.54-5.17 3.54-8.84z"/>
+                        <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.11-6.72-4.96H1.26v3.1C3.23 21.31 7.29 24 12 24z"/>
+                        <path fill="#FBBC05" d="M5.28 14.29c-.24-.72-.38-1.49-.38-2.29s.14-1.57.38-2.29V6.61H1.26C.46 8.2 0 10.04 0 12s.46 3.8 1.26 5.39l4.02-3.1z"/>
+                        <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.29 0 3.23 2.69 1.26 6.61l4.02 3.1c.95-2.85 3.6-4.96 6.72-4.96z"/>
+                    </svg>
+                    <span class="text-sm font-extrabold text-slate-900">Google аккаунтын таңдаңыз</span>
+                </div>
+                <button type="button" onclick="closeGoogleAccountChooser()" class="p-1.5 rounded-lg text-slate-400 hover:text-slate-900 hover:bg-slate-100 btn-tactile">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
                 </button>
             </div>
-        </aside>
 
-        <!-- ОРТАЛЫҚ ЖҰМЫС АЛАҢЫ -->
-        <main class="flex-1 min-w-0 p-4 sm:p-6 max-w-6xl mx-auto w-full">
-            <div id="workspaceContent" class="anim-view"></div>
-        </main>
+            <div class="p-4 space-y-2" id="googleAccountOptions"></div>
+
+            <div class="px-5 py-3.5 bg-slate-50 border-t border-slate-200 flex items-center justify-between gap-2">
+                <button type="button" onclick="triggerFirebaseGooglePopup()" class="text-xs font-bold text-indigo-900 hover:underline btn-tactile">
+                    Басқа Google аккаунт
+                </button>
+                <div class="flex items-center gap-2">
+                    <button type="button" onclick="closeGoogleAccountChooser()" class="px-3.5 py-2 rounded-xl border border-slate-300 bg-white text-xs font-bold text-slate-700 btn-tactile">
+                        Болдырмау
+                    </button>
+                    <button type="button" id="googleContinueBtn" onclick="confirmSelectedGoogleAccount()" class="px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold btn-tactile">
+                        Жалғастыру
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- =================================================================== -->
-    <!-- 3. ЖҮЙЕЛІК ХАБАРЛАМАЛАР ПАНЕЛІ (DRAWER) ЖӘНЕ TOAST ХАБАРЛАМАЛАР   -->
+    <!-- 3. НЕГІЗГІ ЖҮЙЕ ИНТЕРФЕЙСІ                                         -->
+    <!-- =================================================================== -->
+    <div id="mainAppShell" class="min-h-screen flex flex-col">
+        <header class="sticky top-0 z-30 liquid-glass bg-white/85 border-b border-slate-200/80 px-3 sm:px-6 h-16 flex items-center justify-between gap-2">
+            <div class="flex items-center gap-2.5 shrink-0">
+                <button type="button" onclick="toggleMobileNav()" class="lg:hidden p-2 rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 btn-tactile" aria-label="Мәзір">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+
+                <button type="button" onclick="goDefaultTab()" class="btn-tactile rounded-full focus:outline-none">
+                    <span class="bolashaq-liquid-logo text-base sm:text-xl">
+                        <span class="bolashaq-logo-text">BOLASHAQ</span>
+                    </span>
+                </button>
+            </div>
+
+            <!-- РӨЛ АУЫСТЫРҒЫШ -->
+            <div class="flex items-center bg-slate-100/90 p-1 rounded-2xl border border-slate-200/80">
+                <button type="button" id="topRoleStudent" onclick="selectRole('student')" class="px-2.5 sm:px-3.5 py-1.5 rounded-xl text-xs font-bold btn-tactile">Оқушы</button>
+                <button type="button" id="topRoleTeacher" onclick="selectRole('teacher')" class="px-2.5 sm:px-3.5 py-1.5 rounded-xl text-xs font-bold btn-tactile">Мұғалім</button>
+                <button type="button" id="topRoleAdmin" onclick="selectRole('admin')" class="px-2.5 sm:px-3.5 py-1.5 rounded-xl text-xs font-bold btn-tactile">Админ</button>
+            </div>
+
+            <!-- БАСҚАРУ БАТЫРМАЛАРЫ -->
+            <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+                <span id="liveSyncBadge" class="hidden xl:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-white border border-slate-200 text-[11px] font-bold text-slate-700">
+                    <span id="liveSyncDot" class="w-2 h-2 rounded-full bg-amber-400"></span>
+                    <span id="liveSyncLabel">Firestore</span>
+                </span>
+
+                <button type="button" onclick="openApiSettingsModal()" class="px-2.5 py-1.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-xs font-bold text-slate-800 flex items-center gap-1.5 btn-tactile">
+                    <span id="apiKeyDot" class="w-2 h-2 rounded-full bg-amber-400"></span>
+                    <span>API</span>
+                </button>
+
+                <button type="button" onclick="jumpToTokensView()" class="px-2.5 py-1.5 rounded-xl bg-amber-50 hover:bg-amber-100 border border-amber-200 text-xs font-extrabold text-amber-950 tabular-nums btn-tactile">
+                    <span id="headerTokenCount">0</span>
+                    <span class="hidden sm:inline font-semibold">токен</span>
+                </button>
+
+                <button type="button" onclick="toggleNotificationsDrawer()" class="relative p-2 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 btn-tactile" aria-label="Хабарламалар">
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+                    </svg>
+                    <span id="unreadNotifBadge" class="hidden absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 rounded-full bg-rose-600 text-white text-[10px] font-extrabold flex items-center justify-center">0</span>
+                </button>
+
+                <button type="button" onclick="reopenEntryGate('login')" class="px-2.5 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold btn-tactile">
+                    <span id="headerUserLabel">Кіру</span>
+                </button>
+            </div>
+        </header>
+
+        <div class="flex-1 flex relative">
+            <div id="mobileNavBackdrop" onclick="closeMobileNav()" class="fixed inset-0 bg-slate-950/40 z-30 hidden lg:hidden"></div>
+
+            <aside id="leftSidebar" class="fixed lg:static inset-y-0 left-0 z-40 w-64 liquid-glass bg-white/90 border-r border-slate-200/80 flex flex-col justify-between transform -translate-x-full lg:translate-x-0 transition-transform duration-200 pt-16 lg:pt-0 shrink-0">
+                <div class="p-3.5 space-y-3 overflow-y-auto flex-1">
+                    <div id="activeScopeCard" class="p-3 rounded-2xl bg-gradient-to-r from-slate-900 to-indigo-950 text-white flex items-center justify-between text-xs"></div>
+                    <nav id="roleMenuList" class="space-y-1"></nav>
+                </div>
+
+                <div class="p-3.5 border-t border-slate-200/80 bg-white/60 space-y-2">
+                    <button type="button" onclick="manualRefreshState(this)" class="w-full py-2 px-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-xs font-bold text-slate-800 btn-tactile">
+                        Синхрондау
+                    </button>
+                    <button type="button" onclick="reopenEntryGate('register')" class="w-full py-2 px-3 rounded-xl bg-amber-50 hover:bg-amber-100 border border-amber-200 text-xs font-bold text-amber-950 btn-tactile">
+                        Тіркелу
+                    </button>
+                </div>
+            </aside>
+
+            <main class="flex-1 min-w-0 p-4 sm:p-6 max-w-6xl mx-auto w-full">
+                <div id="workspaceContent"></div>
+            </main>
+        </div>
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- 4. ХАБАРЛАМАЛАР ПАНЕЛІ, TOAST ЖӘНЕ МОДАЛЬДЫ ТЕРЕЗЕ                 -->
     <!-- =================================================================== -->
     <div id="notifDrawer" class="fixed inset-y-0 right-0 z-50 w-full max-w-sm bg-white border-l border-slate-200 shadow-2xl transform translate-x-full transition-transform duration-200 flex flex-col">
         <div class="px-4 py-3.5 border-b border-slate-200 flex items-center justify-between">
             <div class="flex items-center gap-2">
-                <span class="font-bold text-sm text-slate-900">Жүйелік хабарламалар</span>
+                <span class="font-bold text-sm text-slate-900">Хабарламалар</span>
                 <span id="drawerNotifCount" class="px-2 py-0.5 rounded-full bg-amber-100 text-amber-900 text-[11px] font-bold">0</span>
             </div>
             <div class="flex items-center gap-1.5">
-                <button type="button" onclick="markAllNotificationsRead()" class="px-2.5 py-1 rounded-lg text-xs font-bold text-slate-600 hover:bg-slate-100 btn-tactile">
-                    Оқылды
-                </button>
+                <button type="button" onclick="markAllNotificationsRead()" class="px-2.5 py-1 rounded-lg text-xs font-bold text-slate-600 hover:bg-slate-100 btn-tactile">Оқылды</button>
                 <button type="button" onclick="toggleNotificationsDrawer(false)" class="p-1.5 rounded-lg text-slate-500 hover:bg-slate-100 btn-tactile">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
@@ -443,9 +453,8 @@
 
     <div id="toastStack" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2 max-w-sm w-full pointer-events-none px-3 sm:px-0"></div>
 
-    <!-- МОДАЛЬДЫ ТЕРЕЗЕ -->
     <div id="dialogOverlay" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/55 backdrop-blur-[2px]">
-        <div class="bg-white rounded-2xl border border-slate-200 shadow-2xl max-w-2xl w-full overflow-hidden anim-view">
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-2xl max-w-2xl w-full overflow-hidden anim-ios-card">
             <div class="px-5 py-3.5 border-b border-slate-200 flex items-center justify-between">
                 <h3 id="dialogTitle" class="text-sm sm:text-base font-extrabold text-slate-900"></h3>
                 <button type="button" onclick="closeDialog()" class="p-1.5 rounded-xl text-slate-400 hover:text-slate-900 hover:bg-slate-100 btn-tactile">
@@ -459,7 +468,7 @@
     </div>
 
     <!-- =================================================================== -->
-    <!-- 4. FIREBASE v10.14.1 (AUTH + FIRESTORE) & ПЛАТФОРМА ЛОГИКАСЫ      -->
+    <!-- 5. FIREBASE v10.14.1 (AUTH + FIRESTORE) & ПЛАТФОРМА ЛОГИКАСЫ      -->
     <!-- =================================================================== -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
@@ -492,36 +501,21 @@
         };
 
         const FIRESTORE_DOC = ["bolashaq_platform", "state_v2"];
-        const STORAGE_KEY = "bolashaq_state_v25";
-        const AUTH_CREDENTIALS_KEY = "bolashaq_registered_accounts_v1";
-        const SESSION_KEY = "bolashaq_active_session_v1";
+        const STORAGE_KEY = "bolashaq_state_v26";
+        const AUTH_CREDENTIALS_KEY = "bolashaq_accounts_v26";
+        const SESSION_KEY = "bolashaq_session_v26";
+
+        const GOOGLE_ACCOUNTS = [
+            { id: "g_acc_1", name: "Әлихан Сәрсенбай", email: "alihan.sarsenbay@gmail.com", role: "student", grade: 9, avatarBg: "bg-indigo-900", initials: "ӘС" },
+            { id: "g_acc_2", name: "Гүлнәр Сәрсенова", email: "gulnar.sarsenova@gmail.com", role: "teacher", grade: null, avatarBg: "bg-amber-700", initials: "ГС" },
+            { id: "g_acc_3", name: "Ерлан Нұрғалиев", email: "erlan.nurgaliyev@gmail.com", role: "admin", grade: null, avatarBg: "bg-slate-800", initials: "ЕН" }
+        ];
 
         const SEED_STATE = {
-            scope: {
-                grade: 9,
-                subject: "Физика"
-            },
-            ai: {
-                provider: "Gemini",
-                studioKind: "quiz",
-                draftOutput: null
-            },
-            settings: {
-                soundAlerts: true,
-                compactMotion: false,
-                autoSync: true
-            },
+            scope: { grade: 9, subject: "Физика" },
+            ai: { provider: "Gemini", studioKind: "quiz", draftOutput: null },
             grades: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
-            subjects: [
-                "Математика",
-                "Физика",
-                "Химия",
-                "Биология",
-                "Информатика",
-                "Қазақ тілі",
-                "Дүниежүзі тарихы",
-                "География"
-            ],
+            subjects: ["Математика", "Физика", "Химия", "Биология", "Информатика", "Қазақ тілі", "Дүниежүзі тарихы", "География"],
             users: [
                 { id: "usr_student_1", name: "Алихан Қасымов", email: "student@bolashaq.kz", role: "student", grade: 9, subject: "Физика", tokens: 1500, points: 180 },
                 { id: "usr_teacher_1", name: "Гүлнәр Сәрсенова", email: "teacher@bolashaq.kz", role: "teacher", grade: 9, subject: "Физика", tokens: 3000, points: 0 },
@@ -533,7 +527,7 @@
                     grade: 9,
                     subject: "Физика",
                     title: "Ом заңы (I = U / R)",
-                    summary: "Тізбек бөлігіндегі ток күші ұштарындағы кернеуге тура, кедергіге кері пропорционал.",
+                    summary: "Тізбек бөлігіндегі ток күші кернеуге тура, кедергіге кері пропорционал.",
                     formula: "I = U / R",
                     completed: false
                 },
@@ -541,9 +535,9 @@
                     id: "top_2",
                     grade: 9,
                     subject: "Химия",
-                    title: "Қышқылдар мен сілтілердің pH шкаласы",
-                    summary: "Ортаның қышқылдық немесе сілтілік дәрежесі 0–14 аралығындағы pH мәнімен сипатталады.",
-                    formula: "pH < 7 (қышқыл), pH = 7 (бейтарап), pH > 7 (сілті)",
+                    title: "pH шкаласы",
+                    summary: "0–14 аралығындағы қышқылдық және сілтілік көрсеткіш.",
+                    formula: "pH < 7 • pH = 7 • pH > 7",
                     completed: false
                 }
             ],
@@ -554,8 +548,8 @@
                     subject: "Физика",
                     title: "Электр тізбегі және Ом заңы",
                     slides: [
-                        { title: "1-слайд: Негізгі шамалар", points: ["I — ток күші (А)", "U — кернеу (В)", "R — кедергі (Ом)"], tip: "Өлшем бірліктерін ХБЖ-ға келтіріңіз." },
-                        { title: "2-слайд: Ом заңының формуласы", points: ["I = U / R", "U = I · R", "R = U / I"], tip: "Үшбұрыш ережесін көрсетіңіз." }
+                        { title: "1-слайд: Шамалар", points: ["I — ток күші (А)", "U — кернеу (В)", "R — кедергі (Ом)"], tip: "ХБЖ бірліктерін тексеріңіз." },
+                        { title: "2-слайд: Формула", points: ["I = U / R", "U = I · R", "R = U / I"], tip: "Есеп шығару үлгісі." }
                     ]
                 }
             ],
@@ -564,13 +558,11 @@
                     id: "quiz_1",
                     grade: 9,
                     subject: "Физика",
-                    title: "Ом заңы — Интерактивті квиз",
-                    timerSec: 20,
+                    title: "Ом заңы — Квиз",
                     publishedToStudent: true,
                     questions: [
                         { q: "Ток күшінің өлшем бірлігі?", opts: ["Ампер (А)", "Вольт (В)", "Ом (Ом)", "Ватт (Вт)"], ans: 0 },
-                        { q: "U = 18 В, R = 9 Ом болса, ток күші қанша?", opts: ["0.5 А", "2 А", "9 А", "162 А"], ans: 1 },
-                        { q: "Кернеуді 2 есе арттырса, ток күші қалай өзгереді?", opts: ["2 есе артады", "2 есе кемиді", "Өзгермейді", "4 есе кемиді"], ans: 0 }
+                        { q: "U = 18 В, R = 9 Ом болса, I қанша?", opts: ["0.5 А", "2 А", "9 А", "162 А"], ans: 1 }
                     ]
                 }
             ],
@@ -579,77 +571,36 @@
                     id: "tsk_1",
                     grade: 9,
                     subject: "Физика",
-                    kind: "Практикалық жұмыс",
-                    title: "Тізбек бөлігін есептеу",
-                    description: "U = 24 В және R = 6 Ом кезінде ток күші (I) мен қуатты (P) табыңыз.",
+                    title: "Тізбек бөлігі",
+                    description: "U = 24 В, R = 6 Ом кезінде I табыңыз.",
                     status: "pending",
                     answer: "",
                     gradeScore: null
                 }
             ],
-            labs: [
-                {
-                    id: "lab_1",
-                    grade: 9,
-                    subject: "Физика",
-                    title: "Ом заңы виртуалды зертханасы",
-                    instructions: "U кернеуі мен R кедергісін өзгертіп, I ток күшінің өзгерісін тіркеңіз.",
-                    assigned: true
-                },
-                {
-                    id: "lab_2",
-                    grade: 9,
-                    subject: "Химия",
-                    title: "Қышқыл және сілті pH зертханасы",
-                    instructions: "HCl және NaOH көлемін реттеп, ерітіндінің pH мәнін анықтаңыз.",
-                    assigned: true
-                }
-            ],
             submissions: [
-                {
-                    id: "sub_1",
-                    studentName: "Алихан Қасымов",
-                    category: "Зертхана (Физика)",
-                    title: "Ом заңы зертханасы",
-                    result: "U=12В, R=6Ом → I=2.00А",
-                    score: 10
-                }
+                { id: "sub_1", studentName: "Алихан Қасымов", category: "Зертхана", title: "Ом заңы", result: "U=12В, R=6Ом → I=2.00А", score: 10 }
             ],
             chatMessages: [
-                {
-                    sender: "ai",
-                    provider: "Gemini",
-                    tokens: 0,
-                    text: "BOLASHAQ ЖИ ассистенті дайын. Сабақ жоспары, презентация, квиз, практика немесе зертхана бойынша сұрақ қойыңыз."
-                }
+                { sender: "ai", provider: "Gemini", tokens: 0, text: "Сұрақ немесе тақырып жазыңыз." }
             ],
             tokenLogs: [
-                { id: "tlog_1", user: "Гүлнәр Сәрсенова", role: "Мұғалім", provider: "Gemini", spent: 28, action: "Интерактивті квиз" }
+                { id: "tlog_1", user: "Гүлнәр Сәрсенова", role: "Мұғалім", provider: "Gemini", spent: 24, action: "Квиз құру" }
             ],
             notifications: [
-                {
-                    id: "notif_1",
-                    title: "BOLASHAQ жүйесі іске қосылды",
-                    body: "Тіркелу, логин/пароль немесе Google арқылы кіріп, 1–11 сынып материалдарымен жұмыс істеңіз.",
-                    type: "system",
-                    time: "Жаңа",
-                    read: false
-                }
+                { id: "notif_1", title: "BOLASHAQ", body: "Жүйе дайын.", type: "info", time: "Қазір", read: false }
             ]
         };
 
         const appState = {
             role: "student",
-            activeTab: {
-                student: "topics",
-                teacher: "scope",
-                admin: "users"
-            },
+            activeTab: { student: "topics", teacher: "scope", admin: "users" },
             apiKeys: {
                 gemini: localStorage.getItem("bolashaq_key_gemini") || "",
                 openai: localStorage.getItem("bolashaq_key_openai") || ""
             },
             sessionUser: loadSession(),
+            selectedGoogleId: GOOGLE_ACCOUNTS[0].id,
             dbOnline: false,
             suppressSnapshot: false
         };
@@ -671,8 +622,8 @@
         function saveLocalStore() {
             try {
                 localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
-            } catch (e) {
-                console.error(e);
+            } catch {
+                // ignore
             }
         }
 
@@ -728,7 +679,9 @@
             }
         }
 
-        // Жүйелік хабарлама қосу функциясы
+        // =====================================================================
+        // ЖҮЙЕЛІК ХАБАРЛАМАЛАР
+        // =====================================================================
         function pushSystemNotification(title, body, type = "info") {
             const nowStr = new Date().toLocaleTimeString("kk-KZ", { hour: "2-digit", minute: "2-digit" });
             store.notifications.unshift({
@@ -739,9 +692,7 @@
                 time: nowStr,
                 read: false
             });
-            if (store.notifications.length > 40) {
-                store.notifications = store.notifications.slice(0, 40);
-            }
+            if (store.notifications.length > 40) store.notifications = store.notifications.slice(0, 40);
             renderNotificationsUI();
             renderToast(title, body, type);
         }
@@ -749,26 +700,26 @@
         function renderToast(title, message, type = "info") {
             const stack = document.getElementById("toastStack");
             if (!stack) return;
-            const accent = {
+            const borderCls = {
                 success: "border-l-4 border-l-emerald-500",
                 warn: "border-l-4 border-l-amber-500",
                 error: "border-l-4 border-l-rose-500",
-                info: "border-l-4 border-l-blue-600"
+                info: "border-l-4 border-l-indigo-400"
             }[type] || "border-l-4 border-l-amber-500";
 
             const el = document.createElement("div");
-            el.className = `anim-toast pointer-events-auto bg-slate-900 text-white rounded-2xl px-4 py-3 shadow-xl border border-slate-800 ${accent}`;
+            el.className = `anim-toast pointer-events-auto bg-slate-900 text-white rounded-2xl px-4 py-3 shadow-xl border border-slate-800 ${borderCls}`;
             el.innerHTML = `
                 <div class="text-xs font-extrabold text-amber-300">${escapeHtml(title)}</div>
-                <div class="text-xs text-slate-200 mt-0.5 leading-snug">${escapeHtml(message)}</div>
+                <div class="text-xs text-slate-200 mt-0.5">${escapeHtml(message)}</div>
             `;
             stack.appendChild(el);
             setTimeout(() => {
                 el.style.opacity = "0";
-                el.style.transform = "translateX(14px)";
+                el.style.transform = "translateX(12px)";
                 el.style.transition = "all 0.2s ease";
                 setTimeout(() => el.remove(), 210);
-            }, 3000);
+            }, 2600);
         }
 
         function renderNotificationsUI() {
@@ -782,17 +733,16 @@
                 badge.classList.toggle("hidden", unread === 0);
             }
             if (drawerCount) drawerCount.textContent = String(store.notifications.length);
-
             if (listBody) {
                 listBody.innerHTML = store.notifications.map(n => `
                     <div onclick="readSingleNotification('${n.id}')" class="p-3 rounded-xl border cursor-pointer btn-tactile ${
                         n.read ? "bg-slate-50 border-slate-200 text-slate-600" : "bg-amber-50/70 border-amber-200 text-slate-900"
                     }">
-                        <div class="flex items-center justify-between gap-2 text-[11px] font-bold">
+                        <div class="flex items-center justify-between text-[11px] font-bold">
                             <span class="text-amber-800">${escapeHtml(n.title)}</span>
-                            <span class="text-slate-400 shrink-0">${escapeHtml(n.time)}</span>
+                            <span class="text-slate-400">${escapeHtml(n.time)}</span>
                         </div>
-                        <p class="text-xs mt-1 leading-relaxed">${escapeHtml(n.body)}</p>
+                        <p class="text-xs mt-1">${escapeHtml(n.body)}</p>
                     </div>
                 `).join("");
             }
@@ -801,8 +751,7 @@
         window.toggleNotificationsDrawer = function (forceOpen = null) {
             const drawer = document.getElementById("notifDrawer");
             if (!drawer) return;
-            const isClosed = drawer.classList.contains("translate-x-full");
-            const shouldOpen = forceOpen !== null ? forceOpen : isClosed;
+            const shouldOpen = forceOpen !== null ? forceOpen : drawer.classList.contains("translate-x-full");
             drawer.classList.toggle("translate-x-full", !shouldOpen);
             if (shouldOpen) renderNotificationsUI();
         };
@@ -821,39 +770,46 @@
         };
 
         // =====================================================================
-        // КІРУ / ТІРКЕЛУ ЭКРАНЫНЫҢ ФУНКЦИЯЛАРЫ
+        // КІРУ / ТІРКЕЛУ, GOOGLE АККАУНТ ТАҢДАУ ЖӘНЕ iPHONE-UNLOCK АНИМАЦИЯСЫ
         // =====================================================================
         function populateEntrySelectors() {
-            const gradeSel = document.getElementById("gRegGrade");
-            const subjSel = document.getElementById("gRegSubject");
-            if (gradeSel) {
-                gradeSel.innerHTML = store.grades.map(g => `<option value="${g}">${g}-сынып</option>`).join("");
-                gradeSel.value = String(store.scope.grade || 9);
+            const gSel = document.getElementById("gRegGrade");
+            const sSel = document.getElementById("gRegSubject");
+            if (gSel) {
+                gSel.innerHTML = store.grades.map(g => `<option value="${g}">${g}-сынып</option>`).join("");
+                gSel.value = String(store.scope.grade || 9);
             }
-            if (subjSel) {
-                subjSel.innerHTML = store.subjects.map(s => `<option value="${escapeHtml(s)}">${escapeHtml(s)}</option>`).join("");
-                subjSel.value = store.scope.subject || "Физика";
+            if (sSel) {
+                sSel.innerHTML = store.subjects.map(s => `<option value="${escapeHtml(s)}">${escapeHtml(s)}</option>`).join("");
+                sSel.value = store.scope.subject || "Физика";
             }
         }
 
         window.setGateMode = function (mode) {
-            const isReg = mode === "register";
-            document.getElementById("gateRegisterForm").classList.toggle("hidden", !isReg);
-            document.getElementById("gateLoginForm").classList.toggle("hidden", isReg);
+            const isLogin = mode === "login";
+            const loginForm = document.getElementById("gateLoginForm");
+            const regForm = document.getElementById("gateRegisterForm");
+            if (loginForm) loginForm.classList.toggle("hidden", !isLogin);
+            if (regForm) regForm.classList.toggle("hidden", isLogin);
 
-            const regTab = document.getElementById("gateTabRegister");
             const loginTab = document.getElementById("gateTabLogin");
-            regTab.className = `py-2 rounded-xl text-xs sm:text-sm font-bold btn-tactile ${
-                isReg ? "bg-white text-slate-900 shadow-xs" : "text-slate-600 hover:text-slate-900"
-            }`;
-            loginTab.className = `py-2 rounded-xl text-xs sm:text-sm font-bold btn-tactile ${
-                !isReg ? "bg-white text-slate-900 shadow-xs" : "text-slate-600 hover:text-slate-900"
-            }`;
+            const regTab = document.getElementById("gateTabRegister");
+            if (loginTab) {
+                loginTab.className = `py-2 rounded-xl text-xs sm:text-sm font-bold btn-tactile ${
+                    isLogin ? "bg-white text-slate-900 shadow-xs" : "text-slate-600 hover:text-slate-900"
+                }`;
+            }
+            if (regTab) {
+                regTab.className = `py-2 rounded-xl text-xs sm:text-sm font-bold btn-tactile ${
+                    !isLogin ? "bg-white text-slate-900 shadow-xs" : "text-slate-600 hover:text-slate-900"
+                }`;
+            }
         };
 
         window.onGateRoleChange = function () {
-            const roleVal = document.getElementById("gRegRole").value;
-            document.getElementById("gRegGradeRow").classList.toggle("hidden", roleVal !== "student");
+            const roleVal = document.getElementById("gRegRole")?.value;
+            const gradeRow = document.getElementById("gRegGradeRow");
+            if (gradeRow) gradeRow.classList.toggle("hidden", roleVal !== "student");
         };
 
         window.submitGateRegister = async function (e) {
@@ -884,33 +840,22 @@
                     setBusy(btn, false);
                     setGateMode("login");
                     document.getElementById("gLoginEmail").value = email;
-                    pushSystemNotification("Аккаунт бар", "Бұл email тіркелген. Логин және парольмен кіріңіз.", "warn");
+                    pushSystemNotification("Тіркелген", "Логин және парольмен кіріңіз.", "warn");
                     return;
                 }
             }
 
-            const newUser = {
-                id: uid,
-                name,
-                email,
-                role,
-                grade,
-                subject,
-                tokens: 2000,
-                points: 0
-            };
+            const newUser = { id: uid, name, email, role, grade, subject, tokens: 2000, points: 0 };
             store.users = [newUser, ...store.users.filter(u => u.email !== email)];
             appState.role = role;
-            if (grade) store.scope.grade = grade;
-            if (subject) store.scope.subject = subject;
 
             setBusy(btn, false);
             setGateMode("login");
             document.getElementById("gLoginEmail").value = email;
             document.getElementById("gLoginPass").value = password;
-            document.getElementById("gateHintText").textContent = "Тіркелу өтті! Енді логин/парольмен кіріңіз немесе бірден өтіңіз.";
+            document.getElementById("gateStatusNote").textContent = `${name} тіркелді`;
 
-            pushSystemNotification("Тіркелу сәтті өтті", `${name} (${roleLabel(role)}) тіркелді. Енді логин/парольмен кіруге болады.`, "success");
+            pushSystemNotification("Тіркелді", `${name} (${roleLabel(role)})`, "success");
             await syncStateToCloud();
         };
 
@@ -922,38 +867,34 @@
             const email = document.getElementById("gLoginEmail").value.trim().toLowerCase();
             const password = document.getElementById("gLoginPass").value;
 
-            let authenticatedUser = null;
+            let fbUser = null;
             try {
                 if (auth) {
                     const res = await signInWithEmailAndPassword(auth, email, password);
-                    authenticatedUser = {
-                        uid: res.user.uid,
-                        email: res.user.email || email,
-                        name: res.user.displayName || email.split("@")[0]
-                    };
+                    fbUser = res.user;
                 }
             } catch {
-                // Тіркелген жергілікті аккаунт арқылы тексеру
+                // Тіркелген аккаунттар тізімінен тексеру
             }
 
             const creds = loadRegisteredCredentials();
-            const localMatch = creds.find(c => c.email === email && c.password === password);
+            const matchedCred = creds.find(c => c.email === email && c.password === password);
             let profile = store.users.find(u => u.email && u.email.toLowerCase() === email);
 
-            if (!authenticatedUser && !localMatch && !profile) {
+            if (!fbUser && !matchedCred && !profile) {
                 setBusy(btn, false);
-                pushSystemNotification("Кіру қатесі", "Алдымен «Тіркелу» бөлімінен аккаунт ашыңыз немесе Google қолданыңыз.", "error");
+                pushSystemNotification("Қате", "Алдымен тіркеліңіз немесе Google-мен кіріңіз.", "error");
                 return;
             }
 
             if (!profile) {
                 profile = {
-                    id: authenticatedUser?.uid || ("usr_" + Date.now()),
-                    name: localMatch?.name || authenticatedUser?.name || email.split("@")[0],
+                    id: fbUser?.uid || ("usr_" + Date.now()),
+                    name: matchedCred?.name || fbUser?.displayName || email.split("@")[0],
                     email,
-                    role: localMatch?.role || "student",
-                    grade: localMatch?.grade ?? 9,
-                    subject: localMatch?.subject || store.scope.subject,
+                    role: matchedCred?.role || "student",
+                    grade: matchedCred?.grade ?? 9,
+                    subject: matchedCred?.subject || store.scope.subject,
                     tokens: 2000,
                     points: 0
                 };
@@ -961,84 +902,125 @@
             }
 
             appState.role = profile.role || "student";
-            appState.sessionUser = {
-                id: profile.id,
-                name: profile.name,
-                email: profile.email,
-                role: profile.role,
-                method: "password"
-            };
+            appState.sessionUser = { id: profile.id, name: profile.name, email: profile.email, role: profile.role };
             saveSession(appState.sessionUser);
             setBusy(btn, false);
-            hideEntryGate();
-            renderAll();
-            pushSystemNotification("Жүйеге кірдіңіз", `Қош келдіңіз, ${profile.name}!`, "success");
+            enterWorkspaceWithUnlockAnimation(`${profile.name} жүйеге кірді`);
             await syncStateToCloud();
         };
 
-        window.loginWithGoogleAction = async function (btnEl = null) {
-            setBusy(btnEl, true, "Google...");
+        // Google аккаунтын таңдау терезесін ашу
+        window.openGoogleAccountChooser = function () {
+            renderGoogleAccountOptions();
+            const modal = document.getElementById("googleChooserModal");
+            modal.classList.remove("hidden");
+            modal.classList.add("flex");
+        };
+
+        window.closeGoogleAccountChooser = function () {
+            const modal = document.getElementById("googleChooserModal");
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
+        };
+
+        function renderGoogleAccountOptions() {
+            const box = document.getElementById("googleAccountOptions");
+            if (!box) return;
+            box.innerHTML = GOOGLE_ACCOUNTS.map(acc => {
+                const isSel = acc.id === appState.selectedGoogleId;
+                return `
+                    <button type="button" onclick="selectGoogleAccountOption('${acc.id}')" class="w-full p-3 rounded-xl border text-left flex items-center justify-between gap-3 btn-tactile ${
+                        isSel ? "bg-indigo-50/80 border-indigo-400" : "bg-white border-slate-200 hover:bg-slate-50"
+                    }">
+                        <div class="flex items-center gap-3 min-w-0">
+                            <div class="w-9 h-9 rounded-full ${acc.avatarBg} text-white text-xs font-extrabold flex items-center justify-center shrink-0">
+                                ${acc.initials}
+                            </div>
+                            <div class="min-w-0">
+                                <div class="text-xs sm:text-sm font-bold text-slate-900 truncate">${escapeHtml(acc.name)}</div>
+                                <div class="text-xs text-slate-500 truncate">${escapeHtml(acc.email)}</div>
+                            </div>
+                        </div>
+                        <span class="px-2 py-0.5 rounded-lg bg-slate-100 text-slate-700 text-[11px] font-bold shrink-0">
+                            ${roleLabel(acc.role)}
+                        </span>
+                    </button>
+                `;
+            }).join("");
+        }
+
+        window.selectGoogleAccountOption = function (id) {
+            appState.selectedGoogleId = id;
+            renderGoogleAccountOptions();
+        };
+
+        window.confirmSelectedGoogleAccount = async function () {
+            const chosen = GOOGLE_ACCOUNTS.find(a => a.id === appState.selectedGoogleId) || GOOGLE_ACCOUNTS[0];
+            let profile = store.users.find(u => u.email && u.email.toLowerCase() === chosen.email.toLowerCase());
+            if (!profile) {
+                profile = {
+                    id: chosen.id,
+                    name: chosen.name,
+                    email: chosen.email,
+                    role: chosen.role,
+                    grade: chosen.grade,
+                    subject: store.scope.subject,
+                    tokens: 2500,
+                    points: 0
+                };
+                store.users.unshift(profile);
+            }
+            appState.role = profile.role || "student";
+            appState.sessionUser = { id: profile.id, name: profile.name, email: profile.email, role: profile.role };
+            saveSession(appState.sessionUser);
+            closeGoogleAccountChooser();
+            enterWorkspaceWithUnlockAnimation(`Google: ${profile.name}`);
+            await syncStateToCloud();
+        };
+
+        window.triggerFirebaseGooglePopup = async function () {
             try {
                 if (auth) {
                     const provider = new GoogleAuthProvider();
                     const res = await signInWithPopup(auth, provider);
                     const gUser = res.user;
-                    const email = (gUser.email || `google_${gUser.uid}@bolashaq.kz`).toLowerCase();
-                    let profile = store.users.find(u => u.id === gUser.uid || (u.email && u.email.toLowerCase() === email));
+                    const email = (gUser.email || `google_${gUser.uid}@gmail.com`).toLowerCase();
+                    let profile = store.users.find(u => u.email && u.email.toLowerCase() === email);
                     if (!profile) {
-                        const selectedRole = document.getElementById("gRegRole")?.value || "student";
-                        const selectedGrade = selectedRole === "student" ? (parseInt(document.getElementById("gRegGrade")?.value, 10) || 9) : null;
                         profile = {
                             id: gUser.uid,
-                            name: gUser.displayName || "Google қолданушысы",
+                            name: gUser.displayName || "Google аккаунт",
                             email,
-                            role: selectedRole,
-                            grade: selectedGrade,
+                            role: "student",
+                            grade: 9,
                             subject: store.scope.subject,
-                            tokens: 2000,
+                            tokens: 2500,
                             points: 0
                         };
                         store.users.unshift(profile);
                     }
-                    appState.role = profile.role || "student";
-                    appState.sessionUser = { id: profile.id, name: profile.name, email: profile.email, role: profile.role, method: "google" };
+                    appState.role = profile.role;
+                    appState.sessionUser = { id: profile.id, name: profile.name, email: profile.email, role: profile.role };
                     saveSession(appState.sessionUser);
-                    setBusy(btnEl, false);
-                    hideEntryGate();
-                    renderAll();
-                    pushSystemNotification("Google арқылы кірдіңіз", `${profile.name} жүйеге қосылды.`, "success");
+                    closeGoogleAccountChooser();
+                    enterWorkspaceWithUnlockAnimation(`Google: ${profile.name}`);
                     await syncStateToCloud();
                     return;
                 }
             } catch {
-                // Popup немесе орта шектеуі болса, жылдам Google сессиясымен кіргіземіз
+                // Popup жабылса немесе бұғатталса таңдау терезесінде қалады
             }
-
-            const gProfile = {
-                id: "usr_google_demo",
-                name: "Google Қолданушы",
-                email: "google.user@bolashaq.kz",
-                role: document.getElementById("gRegRole")?.value || "student",
-                grade: 9,
-                subject: store.scope.subject,
-                tokens: 2000,
-                points: 0
-            };
-            if (!store.users.some(u => u.id === gProfile.id)) store.users.unshift(gProfile);
-            appState.role = gProfile.role;
-            appState.sessionUser = { id: gProfile.id, name: gProfile.name, email: gProfile.email, role: gProfile.role, method: "google" };
-            saveSession(appState.sessionUser);
-            setBusy(btnEl, false);
-            hideEntryGate();
-            renderAll();
-            pushSystemNotification("Google аккаунтпен кіру", `${gProfile.name} жүйеге кірді.`, "success");
-            await syncStateToCloud();
+            pushSystemNotification("Google", "Тізімнен аккаунт таңдап, «Жалғастыру» басыңыз.", "info");
         };
 
-        window.enterWorkspacePreview = function () {
-            hideEntryGate();
-            renderAll();
-            pushSystemNotification("BOLASHAQ", "Жұмыс кеңістігі ашылды.", "info");
+        // "Жүйеге өту" батырмасы
+        window.enterSystemNow = function () {
+            const prof = currentProfile();
+            if (!appState.sessionUser) {
+                appState.sessionUser = { id: prof.id, name: prof.name, email: prof.email, role: prof.role };
+                saveSession(appState.sessionUser);
+            }
+            enterWorkspaceWithUnlockAnimation(`${prof.name} (${roleLabel(appState.role)})`);
         };
 
         window.reopenEntryGate = function (mode = "login") {
@@ -1055,6 +1037,31 @@
             gate.classList.remove("flex");
         }
 
+        // iPhone блоктан шыққандағы иконка/блоктардың қону анимациясымен жүйеге кіру
+        function enterWorkspaceWithUnlockAnimation(noticeText = "") {
+            hideEntryGate();
+            renderAll();
+
+            const shell = document.getElementById("mainAppShell");
+            if (shell) {
+                shell.classList.remove("anim-unlock-shell");
+                void shell.offsetWidth;
+                shell.classList.add("anim-unlock-shell");
+            }
+
+            const cards = document.querySelectorAll("#workspaceContent .liquid-glass, #workspaceContent .bg-slate-900");
+            cards.forEach((el, idx) => {
+                el.classList.remove("anim-ios-card");
+                el.style.animationDelay = `${Math.min(idx * 55, 280)}ms`;
+                void el.offsetWidth;
+                el.classList.add("anim-ios-card");
+            });
+
+            if (noticeText) {
+                pushSystemNotification("BOLASHAQ", noticeText, "success");
+            }
+        }
+
         window.signOutAccount = async function () {
             try {
                 if (auth && auth.currentUser) await signOut(auth);
@@ -1063,7 +1070,6 @@
             }
             appState.sessionUser = null;
             saveSession(null);
-            pushSystemNotification("Шығу", "Аккаунттан шықтыңыз.", "info");
             reopenEntryGate("login");
         };
 
@@ -1086,8 +1092,7 @@
                             id: fbUser.uid,
                             name: fbUser.displayName || found?.name || fbUser.email || "Пайдаланушы",
                             email: fbUser.email || found?.email || "",
-                            role: found?.role || appState.role,
-                            method: "firebase"
+                            role: found?.role || appState.role
                         };
                         saveSession(appState.sessionUser);
                         appState.role = found?.role || appState.role;
@@ -1107,8 +1112,8 @@
                 }
 
                 appState.dbOnline = true;
-                updateGateDbBadge("Firestore қосылды (bolashaq-e214e)");
-                renderAll();
+                setGateDbLabel("Firestore: қосылды");
+                renderShell();
 
                 onSnapshot(stateDoc, (docSnap) => {
                     if (appState.suppressSnapshot) return;
@@ -1120,23 +1125,23 @@
                     }
                 }, () => {
                     appState.dbOnline = false;
-                    updateGateDbBadge("Жергілікті режим белсенді");
+                    setGateDbLabel("Локальды база");
                     renderShell();
                 });
             } catch {
                 appState.dbOnline = false;
-                updateGateDbBadge("Жергілікті режим белсенді");
-                renderAll();
+                setGateDbLabel("Локальды база");
+                renderShell();
             }
         }
 
-        function updateGateDbBadge(txt) {
+        function setGateDbLabel(txt) {
             const el = document.getElementById("gateDbStatus");
             if (el) el.textContent = txt;
         }
 
         window.manualRefreshState = async function (btnEl = null) {
-            setBusy(btnEl, true, "Жүктелуде...");
+            setBusy(btnEl, true, "...");
             if (stateDoc) {
                 try {
                     const snap = await getDoc(stateDoc);
@@ -1151,7 +1156,7 @@
             }
             renderAll();
             setBusy(btnEl, false);
-            pushSystemNotification("Синхрондау", "База деректері жаңартылды.", "success");
+            pushSystemNotification("Синхрондау", "Жаңартылды.", "success");
         };
 
         // =====================================================================
@@ -1161,26 +1166,26 @@
             student: [
                 { id: "topics", label: "Тақырыптар" },
                 { id: "tasks", label: "Тапсырмалар" },
-                { id: "labs", label: "Зертханалық жұмыстар" },
+                { id: "labs", label: "Зертхана" },
                 { id: "ai", label: "ЖИ", badge: "AI" },
-                { id: "profile", label: "Жеке кабинет" },
+                { id: "profile", label: "Кабинет" },
                 { id: "settings", label: "Баптаулар" }
             ],
             teacher: [
-                { id: "scope", label: "Сынып және пән" },
+                { id: "scope", label: "Сынып & Пән" },
                 { id: "presentations", label: "Презентация" },
                 { id: "interactive", label: "Интерактивті сабақ" },
-                { id: "labs", label: "Виртуалды зертхана" },
-                { id: "practicals", label: "Практикалық жұмыс" },
+                { id: "labs", label: "Зертхана" },
+                { id: "practicals", label: "Практика" },
                 { id: "ai", label: "ЖИ", badge: "AI" },
-                { id: "profile", label: "Жеке кабинет" },
+                { id: "profile", label: "Кабинет" },
                 { id: "settings", label: "Баптаулар" }
             ],
             admin: [
-                { id: "users", label: "Пайдаланушылар & Рөлдер" },
-                { id: "curriculum", label: "Сыныптар & Пәндер" },
-                { id: "tokens", label: "Токендер & Хабарламалар" },
-                { id: "profile", label: "Жеке кабинет" },
+                { id: "users", label: "Қолданушылар" },
+                { id: "curriculum", label: "Сынып & Пән" },
+                { id: "tokens", label: "Токендер" },
+                { id: "profile", label: "Кабинет" },
                 { id: "settings", label: "Баптаулар" }
             ]
         };
@@ -1196,19 +1201,15 @@
                 );
                 if (match) return match;
             }
-            const defaultIds = {
-                student: "usr_student_1",
-                teacher: "usr_teacher_1",
-                admin: "usr_admin_1"
-            };
-            return store.users.find(u => u.id === defaultIds[appState.role]) || store.users[0];
+            const defaults = { student: "usr_student_1", teacher: "usr_teacher_1", admin: "usr_admin_1" };
+            return store.users.find(u => u.id === defaults[appState.role]) || store.users[0];
         }
 
         window.selectRole = function (role) {
             appState.role = role;
             renderAll();
             closeMobileNav();
-            pushSystemNotification("Рөл ауыстырылды", `${roleLabel(role)} панелі ашылды.`, "info");
+            pushSystemNotification("Рөл", `${roleLabel(role)}`, "info");
             syncStateToCloud();
         };
 
@@ -1230,14 +1231,12 @@
 
         function renderShell() {
             const prof = currentProfile();
-
-            const roleButtons = {
+            const map = {
                 student: document.getElementById("topRoleStudent"),
                 teacher: document.getElementById("topRoleTeacher"),
                 admin: document.getElementById("topRoleAdmin")
             };
-
-            Object.entries(roleButtons).forEach(([r, btn]) => {
+            Object.entries(map).forEach(([r, btn]) => {
                 if (!btn) return;
                 btn.className = appState.role === r
                     ? "px-2.5 sm:px-3.5 py-1.5 rounded-xl text-xs font-extrabold bg-slate-900 text-white shadow-xs btn-tactile"
@@ -1245,33 +1244,22 @@
             });
 
             document.getElementById("headerTokenCount").textContent = (prof.tokens || 0).toLocaleString("ru-RU");
-            document.getElementById("headerUserLabel").textContent = appState.sessionUser
-                ? prof.name.split(" ")[0]
-                : "Кіру / Тіркелу";
+            document.getElementById("headerUserLabel").textContent = appState.sessionUser ? prof.name.split(" ")[0] : "Кіру";
 
             const dot = document.getElementById("liveSyncDot");
             const lbl = document.getElementById("liveSyncLabel");
-            if (appState.dbOnline) {
-                dot.className = "w-2 h-2 rounded-full bg-emerald-500";
-                lbl.textContent = "Firestore";
-            } else {
-                dot.className = "w-2 h-2 rounded-full bg-amber-400";
-                lbl.textContent = "Локальды";
-            }
+            dot.className = appState.dbOnline ? "w-2 h-2 rounded-full bg-emerald-500" : "w-2 h-2 rounded-full bg-amber-400";
+            lbl.textContent = appState.dbOnline ? "Firestore" : "Локальды";
 
-            const hasApiKey = Boolean(appState.apiKeys.gemini || appState.apiKeys.openai);
-            document.getElementById("apiKeyDot").className = hasApiKey
-                ? "w-2 h-2 rounded-full bg-emerald-500"
-                : "w-2 h-2 rounded-full bg-amber-400";
+            const hasKey = Boolean(appState.apiKeys.gemini || appState.apiKeys.openai);
+            document.getElementById("apiKeyDot").className = hasKey ? "w-2 h-2 rounded-full bg-emerald-500" : "w-2 h-2 rounded-full bg-amber-400";
 
             document.getElementById("activeScopeCard").innerHTML = `
                 <div>
                     <div class="text-[10px] uppercase tracking-wider text-amber-400 font-bold">${roleLabel(appState.role)}</div>
                     <div class="font-bold text-xs mt-0.5">${escapeHtml(prof.name)}</div>
                 </div>
-                <span class="px-2 py-1 rounded-lg bg-white/10 text-[11px] font-bold text-amber-300">
-                    ${store.scope.grade}-сынып
-                </span>
+                <span class="px-2 py-1 rounded-lg bg-white/10 text-[11px] font-bold text-amber-300">${store.scope.grade}-сынып</span>
             `;
 
             renderNotificationsUI();
@@ -1285,11 +1273,11 @@
                 return `
                     <button type="button" onclick="selectTab('${item.id}')" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs sm:text-sm btn-tactile ${
                         isActive
-                            ? "bg-amber-500 text-white font-bold shadow-sm shadow-amber-500/20"
-                            : "text-slate-700 hover:bg-slate-100 font-semibold"
+                            ? "bg-gradient-to-r from-amber-500 to-orange-600 text-white font-bold shadow-sm"
+                            : "text-slate-700 hover:bg-white/70 font-semibold"
                     }">
-                        <span class="truncate">${escapeHtml(item.label)}</span>
-                        ${item.badge ? `<span class="text-[10px] font-extrabold px-1.5 py-0.5 rounded-md ${isActive ? "bg-white text-amber-700" : "bg-amber-100 text-amber-900"}">${item.badge}</span>` : ""}
+                        <span>${escapeHtml(item.label)}</span>
+                        ${item.badge ? `<span class="text-[10px] font-extrabold px-1.5 py-0.5 rounded-md ${isActive ? "bg-white text-amber-800" : "bg-amber-100 text-amber-900"}">${item.badge}</span>` : ""}
                     </button>
                 `;
             }).join("");
@@ -1303,13 +1291,8 @@
 
         function renderActivePage() {
             const target = document.getElementById("workspaceContent");
-            target.classList.remove("anim-view");
-            void target.offsetWidth;
-            target.classList.add("anim-view");
-
             const route = `${appState.role}:${appState.activeTab[appState.role]}`;
-            const pageMap = {
-                // Оқушы
+            const pages = {
                 "student:topics": pageStudentTopics,
                 "student:tasks": pageStudentTasks,
                 "student:labs": pageVirtualLabs,
@@ -1317,7 +1300,6 @@
                 "student:profile": pageProfile,
                 "student:settings": pageSettings,
 
-                // Мұғалім
                 "teacher:scope": pageTeacherScope,
                 "teacher:presentations": pageTeacherPresentations,
                 "teacher:interactive": pageTeacherInteractive,
@@ -1327,15 +1309,13 @@
                 "teacher:profile": pageProfile,
                 "teacher:settings": pageSettings,
 
-                // Админ
                 "admin:users": pageAdminUsers,
                 "admin:curriculum": pageAdminCurriculum,
-                "admin:tokens": pageAdminTokensAndNotices,
+                "admin:tokens": pageAdminTokens,
                 "admin:profile": pageProfile,
                 "admin:settings": pageSettings
             };
-
-            target.innerHTML = (pageMap[route] || pageStudentTopics)();
+            target.innerHTML = (pages[route] || pageStudentTopics)();
         }
 
         // =====================================================================
@@ -1344,35 +1324,32 @@
         function pageTeacherScope() {
             return `
                 <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
-                    <div>
-                        <h1 class="text-xl font-extrabold text-slate-900">Сыныпты және пәнді таңдау</h1>
-                        <p class="text-xs text-slate-500 mt-0.5">Таңдалған сынып пен пән барлық материал мен ЖИ құралдарына қолданылады.</p>
-                    </div>
+                    <h1 class="text-xl font-extrabold text-slate-900">Сынып & Пән</h1>
                     <span class="px-3.5 py-1.5 rounded-xl bg-amber-100 text-amber-950 text-xs font-extrabold">
                         ${store.scope.grade}-сынып • ${escapeHtml(store.scope.subject)}
                     </span>
                 </div>
 
-                <div class="liquid-glass rounded-2xl p-4 sm:p-5 mb-4">
-                    <div class="text-xs font-extrabold uppercase tracking-wider text-slate-500 mb-3">Сынып (1–11)</div>
+                <div class="liquid-glass rounded-2xl p-4 sm:p-5 mb-4 anim-ios-card">
+                    <div class="text-xs font-extrabold uppercase tracking-wider text-slate-500 mb-3">1–11 сынып</div>
                     <div class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-11 gap-2">
                         ${store.grades.map(g => `
                             <button type="button" onclick="applyScopeChange(${g}, null)" class="py-2.5 rounded-xl text-xs font-extrabold border btn-tactile ${
                                 store.scope.grade === g
-                                    ? "bg-amber-500 text-white border-amber-500 shadow-sm"
+                                    ? "bg-slate-900 text-white border-slate-900"
                                     : "bg-white text-slate-800 border-slate-200 hover:border-amber-400"
                             }">${g}</button>
                         `).join("")}
                     </div>
                 </div>
 
-                <div class="liquid-glass rounded-2xl p-4 sm:p-5">
+                <div class="liquid-glass rounded-2xl p-4 sm:p-5 anim-ios-card">
                     <div class="text-xs font-extrabold uppercase tracking-wider text-slate-500 mb-3">Пәндер</div>
                     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5">
                         ${store.subjects.map(subj => `
                             <button type="button" onclick="applyScopeChange(null, '${escapeHtml(subj)}')" class="px-4 py-3 rounded-xl text-xs sm:text-sm font-bold border text-left btn-tactile ${
                                 store.scope.subject === subj
-                                    ? "bg-slate-900 text-white border-slate-900"
+                                    ? "bg-indigo-950 text-white border-indigo-950"
                                     : "bg-white text-slate-800 border-slate-200 hover:border-amber-400"
                             }">${escapeHtml(subj)}</button>
                         `).join("")}
@@ -1385,7 +1362,7 @@
             if (grade !== null) store.scope.grade = grade;
             if (subject !== null) store.scope.subject = subject;
             renderAll();
-            pushSystemNotification("Бағыт өзгертілді", `${store.scope.grade}-сынып • ${store.scope.subject} таңдалды.`, "info");
+            pushSystemNotification("Бағыт", `${store.scope.grade}-сынып • ${store.scope.subject}`, "info");
             syncStateToCloud();
         };
 
@@ -1393,26 +1370,24 @@
             return `
                 <div class="flex items-center justify-between gap-3 mb-5">
                     <h1 class="text-xl font-extrabold text-slate-900">Тақырыптар</h1>
-                    <span class="px-3 py-1 rounded-xl bg-white border border-slate-200 text-xs font-bold text-slate-700">
-                        Барлығы: ${store.topics.length}
-                    </span>
+                    <span class="px-3 py-1 rounded-xl bg-white border border-slate-200 text-xs font-bold">${store.topics.length}</span>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    ${store.topics.map(tp => `
-                        <div class="liquid-glass rounded-2xl p-5 flex flex-col justify-between">
+                    ${store.topics.map((tp, i) => `
+                        <div class="liquid-glass rounded-2xl p-5 flex flex-col justify-between anim-ios-card" style="animation-delay:${i * 50}ms">
                             <div>
                                 <div class="flex items-center justify-between text-xs mb-1.5">
                                     <span class="font-extrabold text-amber-700">${tp.grade}-сынып • ${escapeHtml(tp.subject)}</span>
-                                    <span class="font-bold ${tp.completed ? "text-emerald-700" : "text-slate-400"}">${tp.completed ? "✓ Оқылды" : "Жаңа"}</span>
+                                    <span class="font-bold ${tp.completed ? "text-emerald-700" : "text-slate-400"}">${tp.completed ? "✓ Оқылды" : ""}</span>
                                 </div>
                                 <h3 class="text-base font-extrabold text-slate-900">${escapeHtml(tp.title)}</h3>
-                                <p class="text-xs sm:text-sm text-slate-600 mt-1.5 leading-relaxed">${escapeHtml(tp.summary)}</p>
+                                <p class="text-xs sm:text-sm text-slate-600 mt-1.5">${escapeHtml(tp.summary)}</p>
                                 ${tp.formula ? `<div class="mt-3 px-3 py-1.5 rounded-xl bg-amber-50 border border-amber-200 text-amber-950 font-mono text-xs font-bold inline-block">${escapeHtml(tp.formula)}</div>` : ""}
                             </div>
                             <button type="button" onclick="toggleTopicCompleted('${tp.id}')" class="mt-4 w-full py-2.5 rounded-xl text-xs font-bold btn-tactile ${
                                 tp.completed ? "bg-slate-200 text-slate-800" : "bg-slate-900 hover:bg-slate-800 text-white"
                             }">
-                                ${tp.completed ? "Қайта оқу" : "Оқылды деп белгілеу"}
+                                ${tp.completed ? "Қайталау" : "Оқылды"}
                             </button>
                         </div>
                     `).join("")}
@@ -1425,7 +1400,7 @@
             if (!tp) return;
             tp.completed = !tp.completed;
             renderActivePage();
-            pushSystemNotification("Тақырып күйі", `${tp.title} — ${tp.completed ? "оқылды" : "жаңартылды"}.`, "success");
+            pushSystemNotification("Тақырып", `${tp.title}`, "success");
             syncStateToCloud();
         };
 
@@ -1435,40 +1410,35 @@
                 <h1 class="text-xl font-extrabold text-slate-900 mb-5">Тапсырмалар</h1>
                 <div id="quizPlayerHost" class="mb-5"></div>
 
-                <div class="mb-6">
-                    <div class="text-xs font-extrabold uppercase tracking-wider text-slate-500 mb-2.5">Интерактивті квиздер</div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
-                        ${quizzes.map(q => `
-                            <div class="liquid-glass rounded-2xl p-4 flex items-center justify-between gap-3">
-                                <div>
-                                    <div class="text-xs font-bold text-amber-700">${q.grade}-сынып • ${escapeHtml(q.subject)}</div>
-                                    <div class="text-sm font-extrabold text-slate-900 mt-0.5">${escapeHtml(q.title)}</div>
-                                    <div class="text-[11px] text-slate-500 mt-0.5">${q.questions.length} сұрақ</div>
-                                </div>
-                                <button type="button" onclick="launchQuizPlayer('${q.id}')" class="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold shrink-0 btn-tactile">
-                                    Бастау
-                                </button>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 mb-6">
+                    ${quizzes.map(q => `
+                        <div class="liquid-glass rounded-2xl p-4 flex items-center justify-between gap-3 anim-ios-card">
+                            <div>
+                                <div class="text-xs font-bold text-amber-700">${q.grade}-сынып • ${escapeHtml(q.subject)}</div>
+                                <div class="text-sm font-extrabold text-slate-900 mt-0.5">${escapeHtml(q.title)}</div>
                             </div>
-                        `).join("")}
-                    </div>
+                            <button type="button" onclick="launchQuizPlayer('${q.id}')" class="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold btn-tactile">
+                                Бастау
+                            </button>
+                        </div>
+                    `).join("")}
                 </div>
 
                 <div class="space-y-3">
-                    <div class="text-xs font-extrabold uppercase tracking-wider text-slate-500 mb-2">Практикалық тапсырмалар</div>
                     ${store.tasks.map(t => `
-                        <div class="liquid-glass rounded-2xl p-4">
+                        <div class="liquid-glass rounded-2xl p-4 anim-ios-card">
                             <div class="flex items-center justify-between text-xs mb-1">
                                 <span class="font-bold text-amber-700">${t.grade}-сынып • ${escapeHtml(t.subject)}</span>
-                                <span class="font-bold ${t.status === "submitted" ? "text-emerald-700" : "text-slate-500"}">${t.status === "submitted" ? "Тапсырылды ✓" : "Орындау"}</span>
+                                <span class="font-bold ${t.status === "submitted" ? "text-emerald-700" : "text-slate-500"}">${t.status === "submitted" ? "✓" : ""}</span>
                             </div>
                             <div class="text-sm font-extrabold text-slate-900">${escapeHtml(t.title)}</div>
                             <div class="text-xs sm:text-sm text-slate-600 mt-1">${escapeHtml(t.description)}</div>
                             ${t.status !== "submitted" ? `
                                 <form onsubmit="sendStudentTaskAnswer(event, '${t.id}')" class="mt-3 flex flex-col sm:flex-row gap-2">
-                                    <input id="taskAns_${t.id}" type="text" required placeholder="Жауапты енгізіңіз..." class="flex-1 rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-xs sm:text-sm focus:outline-none focus:border-amber-500">
-                                    <button type="submit" class="px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold btn-tactile">Жіберу</button>
+                                    <input id="taskAns_${t.id}" type="text" required placeholder="Жауап..." class="flex-1 rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-xs sm:text-sm">
+                                    <button type="submit" class="px-4 py-2 rounded-xl bg-slate-900 text-white text-xs font-bold btn-tactile">Жіберу</button>
                                 </form>
-                            ` : `<div class="mt-2.5 px-3 py-2 rounded-xl bg-white border border-slate-200 font-mono text-xs text-slate-800">Жауап: ${escapeHtml(t.answer)}</div>`}
+                            ` : `<div class="mt-2.5 px-3 py-2 rounded-xl bg-white border border-slate-200 font-mono text-xs">${escapeHtml(t.answer)}</div>`}
                         </div>
                     `).join("")}
                 </div>
@@ -1486,13 +1456,13 @@
             store.submissions.unshift({
                 id: "sub_" + Date.now(),
                 studentName: currentProfile().name,
-                category: "Практикалық жұмыс",
+                category: "Тапсырма",
                 title: t.title,
                 result: ans,
                 score: 10
             });
             renderActivePage();
-            pushSystemNotification("Тапсырма тапсырылды", `${t.title} бойынша жауап жіберілді.`, "success");
+            pushSystemNotification("Жіберілді", `${t.title}`, "success");
             await syncStateToCloud();
         };
 
@@ -1500,22 +1470,17 @@
             return `
                 <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
                     <h1 class="text-xl font-extrabold text-slate-900">Презентация</h1>
-                    <button type="button" onclick="openCreatePresentationModal()" class="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold btn-tactile">
-                        + Жаңа презентация
-                    </button>
+                    <button type="button" onclick="openCreatePresentationModal()" class="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold btn-tactile">+ Қосу</button>
                 </div>
-
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     ${store.presentations.map(p => `
-                        <div class="liquid-glass rounded-2xl p-4 flex flex-col justify-between">
+                        <div class="liquid-glass rounded-2xl p-4 flex flex-col justify-between anim-ios-card">
                             <div>
                                 <span class="text-xs font-bold text-amber-700">${p.grade}-сынып • ${escapeHtml(p.subject)}</span>
                                 <h3 class="text-base font-extrabold text-slate-900 mt-1">${escapeHtml(p.title)}</h3>
                                 <div class="text-xs text-slate-500 mt-1">${p.slides.length} слайд</div>
                             </div>
-                            <button type="button" onclick="showPresentationDeck('${p.id}', 0)" class="mt-4 w-full py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold btn-tactile">
-                                Ашу
-                            </button>
+                            <button type="button" onclick="showPresentationDeck('${p.id}', 0)" class="mt-4 w-full py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold btn-tactile">Ашу</button>
                         </div>
                     `).join("")}
                 </div>
@@ -1524,14 +1489,14 @@
 
         window.openCreatePresentationModal = function () {
             openDialog(
-                "Жаңа презентация құру",
+                "Жаңа презентация",
                 `
                 <form onsubmit="createPresentationItem(event)" class="space-y-3">
-                    <input id="presTitleInput" type="text" required placeholder="Презентация тақырыбы" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm">
-                    <input id="presSlideTitleInput" type="text" required placeholder="1-слайд тақырыбы" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm">
-                    <textarea id="presPointsInput" rows="3" required placeholder="Негізгі тезистер (әр жолға бір ой)" class="w-full rounded-xl border border-slate-300 p-3 text-sm"></textarea>
+                    <input id="presTitleInput" type="text" required placeholder="Атауы" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm">
+                    <input id="presSlideTitleInput" type="text" required placeholder="1-слайд" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm">
+                    <textarea id="presPointsInput" rows="3" required placeholder="Тезистер" class="w-full rounded-xl border border-slate-300 p-3 text-sm"></textarea>
                     <div class="flex justify-end gap-2 pt-2">
-                        <button type="button" onclick="closeDialog()" class="px-4 py-2 rounded-xl border border-slate-200 text-xs font-bold btn-tactile">Болдырмау</button>
+                        <button type="button" onclick="closeDialog()" class="px-4 py-2 rounded-xl border border-slate-200 text-xs font-bold btn-tactile">Жабу</button>
                         <button type="submit" class="px-4 py-2 rounded-xl bg-amber-500 text-white text-xs font-bold btn-tactile">Сақтау</button>
                     </div>
                 </form>
@@ -1549,11 +1514,11 @@
                 grade: store.scope.grade,
                 subject: store.scope.subject,
                 title,
-                slides: [{ title: sTitle, points: pts.length ? pts : ["Негізгі тезис"], tip: "Талқылау сұрағын қойыңыз." }]
+                slides: [{ title: sTitle, points: pts.length ? pts : ["Тезис"], tip: "" }]
             });
             closeDialog();
             renderActivePage();
-            pushSystemNotification("Презентация құрылды", `"${title}" сақталды.`, "success");
+            pushSystemNotification("Сақталды", title, "success");
             await syncStateToCloud();
         };
 
@@ -1562,12 +1527,11 @@
             if (!deck) return;
             const i = Math.max(0, Math.min(deck.slides.length - 1, idx));
             const sl = deck.slides[i];
-
             openDialog(
                 `${deck.title} (${i + 1}/${deck.slides.length})`,
                 `
                 <div class="space-y-4">
-                    <div class="bg-slate-900 text-white rounded-2xl p-6 min-h-[210px] flex flex-col justify-between">
+                    <div class="bg-slate-900 text-white rounded-2xl p-6 min-h-[200px] flex flex-col justify-between">
                         <div>
                             <div class="text-xs font-bold text-amber-400 mb-1">${deck.grade}-сынып • ${escapeHtml(deck.subject)}</div>
                             <h4 class="text-lg font-extrabold mb-3">${escapeHtml(sl.title)}</h4>
@@ -1575,12 +1539,11 @@
                                 ${sl.points.map(pt => `<li>${escapeHtml(pt)}</li>`).join("")}
                             </ul>
                         </div>
-                        ${sl.tip ? `<div class="mt-4 pt-3 border-t border-slate-800 text-xs text-amber-300">${escapeHtml(sl.tip)}</div>` : ""}
                     </div>
                     <div class="flex items-center justify-between">
-                        <button type="button" onclick="showPresentationDeck('${deck.id}', ${i - 1})" ${i === 0 ? "disabled" : ""} class="px-4 py-2 rounded-xl border border-slate-200 text-xs font-bold btn-tactile disabled:opacity-40">← Алдыңғы</button>
+                        <button type="button" onclick="showPresentationDeck('${deck.id}', ${i - 1})" ${i === 0 ? "disabled" : ""} class="px-4 py-2 rounded-xl border border-slate-200 text-xs font-bold btn-tactile disabled:opacity-40">←</button>
                         <span class="text-xs font-bold text-slate-500">${i + 1} / ${deck.slides.length}</span>
-                        <button type="button" onclick="showPresentationDeck('${deck.id}', ${i + 1})" ${i === deck.slides.length - 1 ? "disabled" : ""} class="px-4 py-2 rounded-xl bg-slate-900 text-white text-xs font-bold btn-tactile disabled:opacity-40">Келесі →</button>
+                        <button type="button" onclick="showPresentationDeck('${deck.id}', ${i + 1})" ${i === deck.slides.length - 1 ? "disabled" : ""} class="px-4 py-2 rounded-xl bg-slate-900 text-white text-xs font-bold btn-tactile disabled:opacity-40">→</button>
                     </div>
                 </div>
                 `
@@ -1592,33 +1555,22 @@
         function pageTeacherInteractive() {
             return `
                 <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
-                    <h1 class="text-xl font-extrabold text-slate-900">Интерактивті сабақ (Квиз)</h1>
-                    <button type="button" onclick="openCreateQuizModal()" class="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold btn-tactile">
-                        + Жаңа квиз
-                    </button>
+                    <h1 class="text-xl font-extrabold text-slate-900">Интерактивті сабақ</h1>
+                    <button type="button" onclick="openCreateQuizModal()" class="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold btn-tactile">+ Квиз</button>
                 </div>
-
                 <div id="quizPlayerHost" class="mb-5"></div>
-
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     ${store.quizzes.map(q => `
-                        <div class="liquid-glass rounded-2xl p-4 flex flex-col justify-between">
+                        <div class="liquid-glass rounded-2xl p-4 flex flex-col justify-between anim-ios-card">
                             <div>
-                                <div class="flex items-center justify-between text-xs mb-1">
-                                    <span class="font-bold text-amber-700">${q.grade}-сынып • ${escapeHtml(q.subject)}</span>
-                                    <span class="text-slate-500 font-semibold">${q.questions.length} сұрақ</span>
-                                </div>
-                                <h3 class="text-base font-extrabold text-slate-900">${escapeHtml(q.title)}</h3>
+                                <div class="text-xs font-bold text-amber-700">${q.grade}-сынып • ${escapeHtml(q.subject)}</div>
+                                <h3 class="text-base font-extrabold text-slate-900 mt-0.5">${escapeHtml(q.title)}</h3>
                             </div>
                             <div class="mt-4 flex gap-2">
-                                <button type="button" onclick="launchQuizPlayer('${q.id}')" class="flex-1 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold btn-tactile">
-                                    Бастау
-                                </button>
+                                <button type="button" onclick="launchQuizPlayer('${q.id}')" class="flex-1 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold btn-tactile">Бастау</button>
                                 <button type="button" onclick="toggleQuizPublish('${q.id}')" class="px-3.5 py-2.5 rounded-xl border text-xs font-bold btn-tactile ${
                                     q.publishedToStudent ? "bg-emerald-50 text-emerald-800 border-emerald-200" : "bg-white text-slate-700 border-slate-200"
-                                }">
-                                    ${q.publishedToStudent ? "Оқушыда ✓" : "Жіберу"}
-                                </button>
+                                }">${q.publishedToStudent ? "✓" : "Жіберу"}</button>
                             </div>
                         </div>
                     `).join("")}
@@ -1628,16 +1580,16 @@
 
         window.openCreateQuizModal = function () {
             openDialog(
-                "Жаңа интерактивті квиз",
+                "Жаңа квиз",
                 `
                 <form onsubmit="createQuizItem(event)" class="space-y-3">
                     <input id="qzTitle" type="text" required placeholder="Квиз атауы" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm">
-                    <input id="qzQuestion" type="text" required placeholder="Сұрақ мәтіні" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm">
+                    <input id="qzQuestion" type="text" required placeholder="Сұрақ" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm">
                     <div class="grid grid-cols-2 gap-2">
-                        <input id="qzOpt0" type="text" required placeholder="А) Дұрыс жауап" class="rounded-xl border border-slate-300 px-3 py-2 text-xs">
-                        <input id="qzOpt1" type="text" required placeholder="Б) Нұсқа" class="rounded-xl border border-slate-300 px-3 py-2 text-xs">
-                        <input id="qzOpt2" type="text" required placeholder="В) Нұсқа" class="rounded-xl border border-slate-300 px-3 py-2 text-xs">
-                        <input id="qzOpt3" type="text" required placeholder="Г) Нұсқа" class="rounded-xl border border-slate-300 px-3 py-2 text-xs">
+                        <input id="qzOpt0" type="text" required placeholder="А (дұрыс)" class="rounded-xl border border-slate-300 px-3 py-2 text-xs">
+                        <input id="qzOpt1" type="text" required placeholder="Б" class="rounded-xl border border-slate-300 px-3 py-2 text-xs">
+                        <input id="qzOpt2" type="text" required placeholder="В" class="rounded-xl border border-slate-300 px-3 py-2 text-xs">
+                        <input id="qzOpt3" type="text" required placeholder="Г" class="rounded-xl border border-slate-300 px-3 py-2 text-xs">
                     </div>
                     <div class="flex justify-end gap-2 pt-2">
                         <button type="button" onclick="closeDialog()" class="px-4 py-2 rounded-xl border border-slate-200 text-xs font-bold btn-tactile">Жабу</button>
@@ -1663,13 +1615,12 @@
                 grade: store.scope.grade,
                 subject: store.scope.subject,
                 title,
-                timerSec: 20,
                 publishedToStudent: true,
                 questions: [{ q: qText, opts, ans: 0 }]
             });
             closeDialog();
             renderActivePage();
-            pushSystemNotification("Квиз құрылды", `"${title}" оқушыларға қолжетімді.`, "success");
+            pushSystemNotification("Квиз", title, "success");
             await syncStateToCloud();
         };
 
@@ -1678,7 +1629,6 @@
             if (!q) return;
             q.publishedToStudent = !q.publishedToStudent;
             renderActivePage();
-            pushSystemNotification("Квиз күйі", `${q.title} — ${q.publishedToStudent ? "оқушыларға берілді" : "жасырылды"}.`, "info");
             await syncStateToCloud();
         };
 
@@ -1694,12 +1644,11 @@
             if (!host || !activeQuizRun) return;
             const { quiz, idx, points, locked, chosen } = activeQuizRun;
             const curQ = quiz.questions[idx];
-
             host.innerHTML = `
-                <div class="bg-slate-900 text-white rounded-2xl p-5 space-y-4 anim-view shadow-xl">
+                <div class="bg-slate-900 text-white rounded-2xl p-5 space-y-4 shadow-xl anim-ios-card">
                     <div class="flex items-center justify-between text-xs">
                         <span class="font-bold text-amber-400">${escapeHtml(quiz.title)} • ${idx + 1}/${quiz.questions.length}</span>
-                        <span class="px-3 py-1 rounded-lg bg-slate-800 font-extrabold tabular-nums">Ұпай: ${points}</span>
+                        <span class="px-3 py-1 rounded-lg bg-slate-800 font-extrabold tabular-nums">${points}</span>
                     </div>
                     <div class="text-base sm:text-lg font-extrabold">${escapeHtml(curQ.q)}</div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -1710,17 +1659,13 @@
                                 else if (oi === chosen) cls = "bg-rose-600 border-rose-500 text-white";
                                 else cls = "bg-slate-800/50 border-slate-800 text-slate-400";
                             }
-                            return `
-                                <button type="button" onclick="pickQuizAnswer(${oi})" ${locked ? "disabled" : ""} class="p-3.5 rounded-xl border text-left text-xs sm:text-sm font-semibold btn-tactile ${cls}">
-                                    ${String.fromCharCode(65 + oi)}. ${escapeHtml(opt)}
-                                </button>
-                            `;
+                            return `<button type="button" onclick="pickQuizAnswer(${oi})" ${locked ? "disabled" : ""} class="p-3.5 rounded-xl border text-left text-xs sm:text-sm font-semibold btn-tactile ${cls}">${escapeHtml(opt)}</button>`;
                         }).join("")}
                     </div>
                     ${locked ? `
                         <div class="flex justify-end">
-                            <button type="button" onclick="advanceQuizPlayer()" class="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold btn-tactile">
-                                ${idx + 1 < quiz.questions.length ? "Келесі сұрақ →" : "Аяқтау"}
+                            <button type="button" onclick="advanceQuizPlayer()" class="px-5 py-2.5 rounded-xl bg-amber-500 text-white text-xs font-bold btn-tactile">
+                                ${idx + 1 < quiz.questions.length ? "Келесі →" : "Аяқтау"}
                             </button>
                         </div>
                     ` : ""}
@@ -1748,75 +1693,68 @@
                 const earned = activeQuizRun.points;
                 const qTitle = activeQuizRun.quiz.title;
                 const prof = currentProfile();
-                if (appState.role === "student") prof.points = (prof.points || 0) + earned;
                 store.submissions.unshift({
                     id: "sub_" + Date.now(),
                     studentName: prof.name,
-                    category: "Интерактивті квиз",
+                    category: "Квиз",
                     title: qTitle,
                     result: `${earned} ұпай`,
-                    score: Math.min(10, Math.max(1, Math.round(earned / 30)))
+                    score: Math.min(10, Math.max(1, Math.round(earned / 20)))
                 });
                 activeQuizRun = null;
                 renderActivePage();
-                pushSystemNotification("Квиз аяқталды", `${qTitle}: ${earned} ұпай жиналды.`, "success");
+                pushSystemNotification("Нәтиже", `${qTitle}: ${earned} ұпай`, "success");
                 await syncStateToCloud();
             }
         };
 
         // =====================================================================
-        // ВИРТУАЛДЫ ЗЕРТХАНА ЖӘНЕ ПРАКТИКАЛЫҚ ЖҰМЫС
+        // ВИРТУАЛДЫ ЗЕРТХАНА ЖӘНЕ ПРАКТИКА
         // =====================================================================
         const simState = { mode: "ohm", volts: 12, ohms: 6, acidMl: 8, baseMl: 8 };
 
         function pageVirtualLabs() {
             const currentAmp = (simState.volts / simState.ohms).toFixed(2);
             const phVal = Math.max(1, Math.min(14, 7 + (simState.baseMl - simState.acidMl) * 0.5)).toFixed(1);
-
             return `
                 <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
-                    <h1 class="text-xl font-extrabold text-slate-900">Виртуалды зертхана</h1>
+                    <h1 class="text-xl font-extrabold text-slate-900">Зертхана</h1>
                     <div class="flex bg-white p-1 rounded-xl border border-slate-200">
-                        <button type="button" onclick="simState.mode='ohm'; renderActivePage();" class="px-3 py-1.5 rounded-lg text-xs font-bold btn-tactile ${simState.mode === "ohm" ? "bg-slate-900 text-white" : "text-slate-600"}">Физика: Ом заңы</button>
-                        <button type="button" onclick="simState.mode='ph'; renderActivePage();" class="px-3 py-1.5 rounded-lg text-xs font-bold btn-tactile ${simState.mode === "ph" ? "bg-slate-900 text-white" : "text-slate-600"}">Химия: pH</button>
+                        <button type="button" onclick="simState.mode='ohm'; renderActivePage();" class="px-3 py-1.5 rounded-lg text-xs font-bold btn-tactile ${simState.mode === "ohm" ? "bg-slate-900 text-white" : "text-slate-600"}">Ом заңы</button>
+                        <button type="button" onclick="simState.mode='ph'; renderActivePage();" class="px-3 py-1.5 rounded-lg text-xs font-bold btn-tactile ${simState.mode === "ph" ? "bg-slate-900 text-white" : "text-slate-600"}">pH</button>
                     </div>
                 </div>
-
                 ${simState.mode === "ohm" ? `
-                    <div class="liquid-glass rounded-2xl p-5 space-y-5">
+                    <div class="liquid-glass rounded-2xl p-5 space-y-5 anim-ios-card">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div class="p-4 rounded-2xl bg-white border border-slate-200 space-y-3">
-                                <div class="flex justify-between text-xs font-bold"><span>Кернеу (U)</span><span id="lblVolts">${simState.volts} В</span></div>
+                                <div class="flex justify-between text-xs font-bold"><span>U</span><span id="lblVolts">${simState.volts} В</span></div>
                                 <input type="range" min="2" max="24" value="${simState.volts}" oninput="simState.volts=+this.value; refreshOhmDisplay();" class="w-full accent-amber-500">
-                                <div class="flex justify-between text-xs font-bold"><span>Кедергі (R)</span><span id="lblOhms">${simState.ohms} Ом</span></div>
+                                <div class="flex justify-between text-xs font-bold"><span>R</span><span id="lblOhms">${simState.ohms} Ом</span></div>
                                 <input type="range" min="2" max="20" value="${simState.ohms}" oninput="simState.ohms=+this.value; refreshOhmDisplay();" class="w-full accent-amber-500">
                             </div>
                             <div class="p-5 rounded-2xl bg-slate-900 text-white flex flex-col items-center justify-center">
-                                <div class="text-xs text-slate-400">Ток күші (I = U / R)</div>
+                                <div class="text-xs text-slate-400">I = U / R</div>
                                 <div id="lblAmp" class="text-3xl font-extrabold text-amber-400 tabular-nums mt-1">${currentAmp} А</div>
                             </div>
                         </div>
-                        <button type="button" onclick="submitLabObservation('Зертхана (Физика)', 'Ом заңы', 'U=' + simState.volts + 'В, R=' + simState.ohms + 'Ом → I=' + (simState.volts/simState.ohms).toFixed(2) + 'А')" class="px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold btn-tactile">
-                            Нәтижені жіберу
-                        </button>
+                        <button type="button" onclick="submitLabObservation('Ом заңы', 'U=' + simState.volts + 'В, R=' + simState.ohms + 'Ом → I=' + (simState.volts/simState.ohms).toFixed(2) + 'А')" class="px-4 py-2.5 rounded-xl bg-slate-900 text-white text-xs font-bold btn-tactile">Жіберу</button>
                     </div>
                 ` : `
-                    <div class="liquid-glass rounded-2xl p-5 space-y-5">
+                    <div class="liquid-glass rounded-2xl p-5 space-y-5 anim-ios-card">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div class="p-4 rounded-2xl bg-white border border-slate-200 space-y-3">
-                                <div class="flex justify-between text-xs font-bold"><span>HCl қышқылы</span><span>${simState.acidMl} мл</span></div>
+                                <div class="flex justify-between text-xs font-bold"><span>HCl</span><span>${simState.acidMl} мл</span></div>
                                 <input type="range" min="0" max="20" value="${simState.acidMl}" oninput="simState.acidMl=+this.value; renderActivePage();" class="w-full accent-rose-500">
-                                <div class="flex justify-between text-xs font-bold"><span>NaOH сілтісі</span><span>${simState.baseMl} мл</span></div>
-                                <input type="range" min="0" max="20" value="${simState.baseMl}" oninput="simState.baseMl=+this.value; renderActivePage();" class="w-full accent-blue-600">
+                                <div class="flex justify-between text-xs font-bold"><span>NaOH</span><span>${simState.baseMl} мл</span></div>
+                                <input type="range" min="0" max="20" value="${simState.baseMl}" oninput="simState.baseMl=+this.value; renderActivePage();" class="w-full accent-indigo-600">
                             </div>
                             <div class="p-5 rounded-2xl bg-slate-900 text-white flex flex-col items-center justify-center">
-                                <div class="text-xs text-slate-400">pH көрсеткіші</div>
+                                <div class="text-xs text-slate-400">pH</div>
                                 <div class="text-3xl font-extrabold text-emerald-400 tabular-nums mt-1">${phVal}</div>
                             </div>
                         </div>
-                        <button type="button" onclick="submitLabObservation('Зертхана (Химия)', 'pH зертханасы', 'HCl=' + simState.acidMl + 'мл, NaOH=' + simState.baseMl + 'мл → pH=' + phVal)" class="px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold btn-tactile">
-                            Нәтижені жіберу
-                        </button>
+                        <button type="button" onclick="submitLabObservation('pH зертханасы', 'HCl=' + simState.acidMl + 'мл, NaOH=' + simState.baseMl + 'мл → pH=' + phVal)" class="px-4 py-2.5 rounded-xl bg-slate-900 text-white text-xs font-bold btn-tactile">Жіберу</button>
                     </div>
                 `}
             `;
@@ -1828,48 +1766,42 @@
             document.getElementById("lblAmp").textContent = `${(simState.volts / simState.ohms).toFixed(2)} А`;
         };
 
-        window.submitLabObservation = async function (category, title, result) {
+        window.submitLabObservation = async function (title, result) {
             store.submissions.unshift({
                 id: "sub_" + Date.now(),
                 studentName: currentProfile().name,
-                category,
+                category: "Зертхана",
                 title,
                 result,
                 score: 10
             });
-            pushSystemNotification("Зертхана нәтижесі", `${title}: ${result}`, "success");
+            pushSystemNotification("Зертхана", result, "success");
             await syncStateToCloud();
         };
 
         function pageTeacherPracticals() {
             return `
                 <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
-                    <h1 class="text-xl font-extrabold text-slate-900">Практикалық жұмыс</h1>
-                    <button type="button" onclick="openAddPracticalModal()" class="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold btn-tactile">
-                        + Тапсырма қосу
-                    </button>
+                    <h1 class="text-xl font-extrabold text-slate-900">Практика</h1>
+                    <button type="button" onclick="openAddPracticalModal()" class="px-4 py-2.5 rounded-xl bg-amber-500 text-white text-xs font-bold btn-tactile">+ Қосу</button>
                 </div>
-
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                    <div class="liquid-glass rounded-2xl p-4 space-y-3">
-                        <div class="text-xs font-extrabold uppercase text-slate-500">Тапсырмалар</div>
+                    <div class="liquid-glass rounded-2xl p-4 space-y-3 anim-ios-card">
                         ${store.tasks.map(t => `
                             <div class="p-3.5 rounded-xl bg-white border border-slate-200">
                                 <div class="text-xs font-bold text-amber-700">${t.grade}-сынып • ${escapeHtml(t.subject)}</div>
                                 <div class="text-sm font-extrabold text-slate-900 mt-0.5">${escapeHtml(t.title)}</div>
                                 <div class="text-xs text-slate-600 mt-1">${escapeHtml(t.description)}</div>
-                                ${t.answer ? `<div class="mt-2 text-xs font-mono text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-lg">Оқушы жауабы: ${escapeHtml(t.answer)}</div>` : ""}
+                                ${t.answer ? `<div class="mt-2 text-xs font-mono text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-lg">${escapeHtml(t.answer)}</div>` : ""}
                             </div>
                         `).join("")}
                     </div>
-
-                    <div class="liquid-glass rounded-2xl p-4 space-y-3">
-                        <div class="text-xs font-extrabold uppercase text-slate-500">Тіркелген нәтижелер</div>
+                    <div class="liquid-glass rounded-2xl p-4 space-y-3 anim-ios-card">
                         ${store.submissions.map(s => `
                             <div class="p-3.5 rounded-xl bg-white border border-slate-200 flex items-center justify-between gap-2">
                                 <div>
                                     <div class="text-sm font-extrabold text-slate-900">${escapeHtml(s.studentName)}</div>
-                                    <div class="text-xs text-slate-600">${escapeHtml(s.category)}: ${escapeHtml(s.title)} • <span class="font-mono">${escapeHtml(s.result)}</span></div>
+                                    <div class="text-xs text-slate-600">${escapeHtml(s.title)} • <span class="font-mono">${escapeHtml(s.result)}</span></div>
                                 </div>
                                 <span class="px-2.5 py-1 rounded-lg bg-slate-900 text-white text-xs font-bold">${s.score}/10</span>
                             </div>
@@ -1881,11 +1813,11 @@
 
         window.openAddPracticalModal = function () {
             openDialog(
-                "Жаңа практикалық жұмыс",
+                "Жаңа практика",
                 `
                 <form onsubmit="savePracticalTask(event)" class="space-y-3">
-                    <input id="pracTitle" type="text" required placeholder="Тапсырма атауы" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm">
-                    <textarea id="pracDesc" rows="3" required placeholder="Тапсырма шарты" class="w-full rounded-xl border border-slate-300 p-3 text-sm"></textarea>
+                    <input id="pracTitle" type="text" required placeholder="Атауы" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm">
+                    <textarea id="pracDesc" rows="3" required placeholder="Шарты" class="w-full rounded-xl border border-slate-300 p-3 text-sm"></textarea>
                     <div class="flex justify-end gap-2 pt-2">
                         <button type="button" onclick="closeDialog()" class="px-4 py-2 rounded-xl border border-slate-200 text-xs font-bold btn-tactile">Жабу</button>
                         <button type="submit" class="px-4 py-2 rounded-xl bg-amber-500 text-white text-xs font-bold btn-tactile">Сақтау</button>
@@ -1903,7 +1835,6 @@
                 id: "tsk_" + Date.now(),
                 grade: store.scope.grade,
                 subject: store.scope.subject,
-                kind: "Практикалық жұмыс",
                 title,
                 description,
                 status: "pending",
@@ -1912,8 +1843,23 @@
             });
             closeDialog();
             renderActivePage();
-            pushSystemNotification("Практикалық тапсырма", `"${title}" қосылды.`, "success");
+            pushSystemNotification("Практика", title, "success");
             await syncStateToCloud();
         };
 
-        // =================================================
+        // =====================================================================
+        // ЖИ ЧАТ & КОНСТРУКТОР (GEMINI & CHATGPT API + ТОКЕН ЕСЕБІ)
+        // =====================================================================
+        function pageAIChatStudio() {
+            const prof = currentProfile();
+            const provider = store.ai.provider;
+            const kind = store.ai.studioKind;
+            const draft = store.ai.draftOutput;
+
+            return `
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+                    <h1 class="text-xl font-extrabold text-slate-900">ЖИ (${escapeHtml(provider)})</h1>
+                    <div class="flex items-center gap-2">
+                        <div class="flex bg-white p-1 rounded-xl border border-slate-200">
+                            <button type="button" onclick="chooseAIProvider('Gemini')" class="px-3 py-1 rounded-lg text-xs font-bold btn-tactile ${provider === "Gemini" ? "bg-amber-500 text-white" : "text-slate-700"}">Gemini</button>
+                            <button type="button" onclick="chooseAIProvider('ChatGPT')" class="px-3 py-1 rounded-lg text-xs font-bold btn-tactile ${provider === "ChatGPT" ? "bg-slat
