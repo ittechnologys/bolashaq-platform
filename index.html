@@ -22,27 +22,96 @@
         };
     </script>
     <style>
+        :root {
+            --bolashaq-grad: linear-gradient(135deg, #FBBF24 0%, #F59E0B 48%, #EA580C 100%);
+        }
+
         body {
             background-color: #F8FAFC;
             color: #0F172A;
             font-family: 'Inter', sans-serif;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
-        .brand-logo {
+
+        /* Bolashaq сары-қызғылт сары айқын логотипі */
+        .bolashaq-puffy-wordmark {
             font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
             font-weight: 800;
-            letter-spacing: -0.03em;
-            background: linear-gradient(135deg, #F59E0B 0%, #EA580C 100%);
+            letter-spacing: -0.025em;
+            background: var(--bolashaq-grad);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 6px rgba(234, 88, 12, 0.22));
+            transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), filter 0.2s ease;
         }
-        .fade-in {
-            animation: fadeIn 0.14s ease-out forwards;
+
+        .bolashaq-puffy-wordmark:hover {
+            transform: translateY(-1px) scale(1.015);
+            filter: drop-shadow(0 4px 10px rgba(234, 88, 12, 0.32));
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(3px); }
-            to { opacity: 1; transform: translateY(0); }
+
+        .bolashaq-emblem {
+            background: var(--bolashaq-grad);
+            box-shadow:
+                inset 0 2px 3px rgba(255, 255, 255, 0.55),
+                inset 0 -3px 5px rgba(154, 52, 18, 0.38),
+                0 4px 12px rgba(234, 88, 12, 0.25);
+            transition: transform 0.18s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.18s ease;
         }
+
+        .bolashaq-emblem:hover {
+            transform: scale(1.05);
+        }
+
+        /* Жүйенің арнайы анимациялары */
+        @keyframes bolashaqEnter {
+            0% {
+                opacity: 0;
+                transform: translateY(8px) scale(0.992);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.25); }
+            50% { box-shadow: 0 0 0 6px rgba(245, 158, 11, 0); }
+        }
+
+        @keyframes spinFast {
+            to { transform: rotate(360deg); }
+        }
+
+        .anim-enter {
+            animation: bolashaqEnter 0.24s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .anim-glow {
+            animation: pulseGlow 2.4s infinite;
+        }
+
+        .btn-press {
+            transition: transform 0.12s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .btn-press:active:not(:disabled) {
+            transform: scale(0.965);
+        }
+
+        .btn-spinner {
+            width: 14px;
+            height: 14px;
+            border: 2px solid currentColor;
+            border-right-color: transparent;
+            border-radius: 9999px;
+            display: inline-block;
+            animation: spinFast 0.6s linear infinite;
+            vertical-align: -2px;
+        }
+
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: #F1F5F9; }
         ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 9999px; }
@@ -50,45 +119,47 @@
 </head>
 <body class="min-h-screen flex flex-col bg-slate-50 text-slate-900">
 
-    <!-- ЖОҒАРҒЫ НАВИГАЦИЯ ПАНЕЛІ -->
-    <header class="sticky top-0 z-30 bg-white border-b border-slate-200 px-3 sm:px-6 h-14 flex items-center justify-between gap-2">
+    <!-- ЖОҒАРҒЫ ПАНЕЛЬ -->
+    <header class="sticky top-0 z-30 bg-white/95 backdrop-blur border-b border-slate-200 px-3 sm:px-6 h-14 flex items-center justify-between gap-2">
         <div class="flex items-center gap-2.5 shrink-0">
-            <button id="mobileMenuBtn" onclick="toggleMobileSidebar()" class="lg:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100" aria-label="Мәзір">
+            <button id="mobileMenuBtn" onclick="toggleMobileSidebar()" class="lg:hidden p-2 rounded-xl text-slate-600 hover:bg-slate-100 btn-press" aria-label="Мәзір">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
                 </svg>
             </button>
-            <button onclick="goHomeTab()" class="flex items-center gap-2 text-left">
-                <span class="w-7 h-7 rounded-lg bg-gradient-to-br from-amber-500 to-orange-600 text-white font-display font-extrabold text-sm flex items-center justify-center">B</span>
-                <span class="brand-logo text-xl sm:text-2xl leading-none">Bolashaq</span>
+            <button onclick="goHomeTab()" class="flex items-center gap-2 text-left btn-press">
+                <span class="w-8 h-8 rounded-xl bolashaq-emblem text-white font-display font-extrabold text-base flex items-center justify-center">B</span>
+                <span class="bolashaq-puffy-wordmark text-xl sm:text-2xl leading-none">Bolashaq</span>
             </button>
         </div>
 
         <!-- РӨЛ АУЫСТЫРҒЫШ -->
         <div class="flex items-center bg-slate-100 p-0.5 rounded-xl border border-slate-200" role="tablist">
-            <button onclick="switchRole('teacher')" id="role-teacher" class="px-2.5 sm:px-3.5 py-1 rounded-lg text-xs font-semibold transition-all">Мұғалім</button>
-            <button onclick="switchRole('student')" id="role-student" class="px-2.5 sm:px-3.5 py-1 rounded-lg text-xs font-semibold transition-all">Оқушы</button>
-            <button onclick="switchRole('admin')" id="role-admin" class="px-2.5 sm:px-3.5 py-1 rounded-lg text-xs font-semibold transition-all">Админ</button>
+            <button onclick="switchRoleInstant('teacher')" id="role-teacher" class="px-2.5 sm:px-3.5 py-1 rounded-lg text-xs font-semibold btn-press">Мұғалім</button>
+            <button onclick="switchRoleInstant('student')" id="role-student" class="px-2.5 sm:px-3.5 py-1 rounded-lg text-xs font-semibold btn-press">Оқушы</button>
+            <button onclick="switchRoleInstant('admin')" id="role-admin" class="px-2.5 sm:px-3.5 py-1 rounded-lg text-xs font-semibold btn-press">Админ</button>
         </div>
 
-        <!-- БАЗА МӘРТЕБЕСІ, API КІЛТТЕР ЖӘНЕ ТОКЕН БАЛАНСЫ -->
-        <div class="flex items-center gap-2 shrink-0">
-            <span id="dbStatusBadge" class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-xl border border-slate-200 bg-slate-50 text-[11px] font-semibold text-slate-600">
+        <!-- БАЗА, AUTH, API КІЛТТЕР ЖӘНЕ ТОКЕН БАЛАНСЫ -->
+        <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+            <span id="dbStatusBadge" class="hidden md:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-xl border border-slate-200 bg-slate-50 text-[11px] font-semibold text-slate-600">
                 <span id="dbDot" class="w-2 h-2 rounded-full bg-amber-400"></span>
                 <span id="dbStatusText">Firestore</span>
             </span>
-            <button onclick="openApiModal()" class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl border border-slate-200 hover:border-amber-400 bg-white text-xs font-semibold text-slate-700">
+
+            <button onclick="openApiModal()" class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl border border-slate-200 hover:border-amber-400 bg-white text-xs font-semibold text-slate-700 btn-press">
                 <span id="apiDot" class="w-2 h-2 rounded-full bg-amber-400"></span>
                 <span>API</span>
             </button>
-            <button onclick="openTokenTab()" class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-amber-50 hover:bg-amber-100 border border-amber-200 text-xs font-bold text-amber-800 tabular-nums">
-                <span id="topTokens">2 500</span>
-                <span class="hidden sm:inline font-medium text-amber-700">токен</span>
+
+            <button onclick="openTokenTab()" class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-amber-50 hover:bg-amber-100 border border-amber-200 text-xs font-bold text-amber-900 tabular-nums btn-press">
+                <span id="topTokens">0</span>
+                <span class="hidden sm:inline font-medium text-amber-800">токен</span>
             </button>
-            <div class="hidden md:flex items-center gap-2 pl-2 border-l border-slate-200">
-                <div id="topAvatar" class="w-7 h-7 rounded-lg bg-slate-900 text-white text-[11px] font-bold flex items-center justify-center">М</div>
-                <span id="topUserName" class="text-xs font-semibold text-slate-800 max-w-[130px] truncate"></span>
-            </div>
+
+            <button onclick="openAuthModal('login')" id="authActionBtn" class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold btn-press">
+                <span id="authBtnLabel">Кіру</span>
+            </button>
         </div>
     </header>
 
@@ -97,16 +168,16 @@
         <div id="sidebarBackdrop" onclick="closeMobileSidebar()" class="fixed inset-0 bg-slate-900/40 z-30 hidden lg:hidden"></div>
 
         <!-- СОЛ ЖАҚ НАВИГАЦИЯ -->
-        <aside id="sidebar" class="fixed lg:static inset-y-0 left-0 z-40 w-64 bg-white border-r border-slate-200 flex flex-col justify-between transform -translate-x-full lg:translate-x-0 transition-transform duration-150 pt-14 lg:pt-0 shrink-0">
+        <aside id="sidebar" class="fixed lg:static inset-y-0 left-0 z-40 w-64 bg-white border-r border-slate-200 flex flex-col justify-between transform -translate-x-full lg:translate-x-0 transition-transform duration-200 pt-14 lg:pt-0 shrink-0">
             <div class="p-3 space-y-3 overflow-y-auto flex-1">
                 <div id="sidebarContextBadge" class="px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-700 flex items-center justify-between"></div>
                 <nav id="sidebarNav" class="space-y-1"></nav>
             </div>
             <div class="p-3 border-t border-slate-200 bg-slate-50/70 space-y-2">
-                <button onclick="syncWithFirestore(true)" class="w-full py-2 px-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-700">
+                <button onclick="syncWithFirestore(true, this)" class="w-full py-2 px-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-700 btn-press">
                     Базаны жаңарту
                 </button>
-                <button onclick="openApiModal()" class="w-full py-2 px-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-700">
+                <button onclick="openApiModal()" class="w-full py-2 px-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-700 btn-press">
                     Gemini / ChatGPT API
                 </button>
             </div>
@@ -114,7 +185,7 @@
 
         <!-- КОНТЕНТ АЙМАҒЫ -->
         <main class="flex-1 min-w-0 p-4 sm:p-6 max-w-6xl mx-auto w-full">
-            <div id="viewRoot" class="fade-in"></div>
+            <div id="viewRoot" class="anim-enter"></div>
         </main>
     </div>
 
@@ -122,11 +193,11 @@
     <div id="toastRoot" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2 pointer-events-none"></div>
 
     <!-- МОДАЛЬДЫ ТЕРЕЗЕ -->
-    <div id="modalRoot" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-900/50">
-        <div class="bg-white rounded-2xl border border-slate-200 shadow-xl max-w-xl w-full overflow-hidden fade-in">
+    <div id="modalRoot" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-900/50 backdrop-blur-[1px]">
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-xl max-w-xl w-full overflow-hidden anim-enter">
             <div class="px-5 py-3.5 border-b border-slate-200 flex items-center justify-between">
                 <h3 id="modalHeading" class="text-sm sm:text-base font-bold text-slate-900"></h3>
-                <button onclick="closeModal()" class="p-1 rounded-lg text-slate-400 hover:text-slate-800 hover:bg-slate-100">
+                <button onclick="closeModal()" class="p-1.5 rounded-lg text-slate-400 hover:text-slate-800 hover:bg-slate-100 btn-press">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
                     </svg>
@@ -136,7 +207,7 @@
         </div>
     </div>
 
-    <!-- FIREBASE FIRESTORE SDK (MODULAR ES MODULE) -->
+    <!-- FIREBASE FIRESTORE & AUTH SDK -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
         import {
@@ -146,8 +217,17 @@
             setDoc,
             onSnapshot
         } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+        import {
+            getAuth,
+            onAuthStateChanged,
+            createUserWithEmailAndPassword,
+            signInWithEmailAndPassword,
+            GoogleAuthProvider,
+            signInWithPopup,
+            signOut,
+            updateProfile
+        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-        // Bolashaq жобасының Firebase конфигурациясы
         const firebaseConfig = {
             apiKey: "AIzaSyA1msX0fr0ObBW2lJzQPOVWkK5jXPMYGvY",
             authDomain: "bolashaq-e214e.firebaseapp.com",
@@ -159,24 +239,23 @@
         };
 
         const DB_DOC_PATH = ["bolashaq_platform", "main_state"];
-        const LOCAL_CACHE_KEY = "bolashaq_firestore_cache_v1";
+        const LOCAL_CACHE_KEY = "bolashaq_cache_v2";
+        const ONBOARDED_KEY = "bolashaq_onboarded_v1";
 
-        // Бастапқы үлгі деректер (база бос болғанда немесе офлайн кезде қолданылады)
         const INITIAL_DATA = {
             scope: {
                 grade: 9,
                 subject: "Физика"
             },
             ai: {
-                model: "Gemini", // "Gemini" | "ChatGPT"
-                studioMode: "quiz", // "quiz" | "presentation" | "material"
+                model: "Gemini",
+                studioMode: "quiz",
                 lastOutput: null
             },
             users: [
-                { id: "u_t1", name: "Гүлнәр Сәрсенова", role: "teacher", grade: 9, subject: "Физика", tokens: 2500, points: 0 },
-                { id: "u_s1", name: "Алихан Қасымов", role: "student", grade: 9, subject: "Физика", tokens: 1200, points: 140 },
-                { id: "u_a1", name: "Ерлан Нұрғалиев", role: "admin", grade: null, subject: "Басқару", tokens: 10000, points: 0 },
-                { id: "u_s2", name: "Диана Серікқызы", role: "student", grade: 9, subject: "Математика", tokens: 900, points: 110 }
+                { id: "u_t1", name: "Гүлнәр Сәрсенова", email: "teacher@bolashaq.kz", role: "teacher", grade: 9, subject: "Физика", tokens: 2500, points: 0 },
+                { id: "u_s1", name: "Алихан Қасымов", email: "student@bolashaq.kz", role: "student", grade: 9, subject: "Физика", tokens: 1200, points: 140 },
+                { id: "u_a1", name: "Ерлан Нұрғалиев", email: "admin@bolashaq.kz", role: "admin", grade: null, subject: "Басқару", tokens: 10000, points: 0 }
             ],
             grades: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
             subjects: ["Математика", "Физика", "Химия", "Биология", "Информатика", "Қазақ тілі", "Тарих"],
@@ -189,15 +268,6 @@
                     summary: "Тізбек бөлігіндегі ток күші ұштарындағы кернеуге тура, кедергіге кері пропорционал.",
                     formula: "I = U / R",
                     done: false
-                },
-                {
-                    id: "tp_2",
-                    grade: 9,
-                    subject: "Математика",
-                    title: "Квадрат теңдеулер",
-                    summary: "ax² + bx + c = 0 теңдеуінің түбірлері дискриминант арқылы анықталады.",
-                    formula: "D = b² - 4ac",
-                    done: true
                 }
             ],
             presentations: [
@@ -268,16 +338,19 @@
                     score: 10
                 }
             ],
-            studentChat: [
-                { role: "ai", model: "Gemini", text: "Сұрағыңызды жазыңыз: тақырып, формула немесе практикалық есеп бойынша көмек беремін." }
+            aiChat: [
+                {
+                    role: "ai",
+                    model: "Gemini",
+                    tokensUsed: 0,
+                    text: "Сәлеметсіз бе! Сабақ жоспары, презентация, квиз, практикалық немесе зертханалық жұмыс бойынша нақты сұрақ қойыңыз."
+                }
             ],
             tokenLogs: [
-                { id: "tl_1", user: "Гүлнәр Сәрсенова", role: "Мұғалім", model: "Gemini", spent: 25, action: "Квиз құру" },
-                { id: "tl_2", user: "Алихан Қасымов", role: "Оқушы", model: "Gemini", spent: 12, action: "ЖИ көмек" }
+                { id: "tl_1", user: "Гүлнәр Сәрсенова", role: "Мұғалім", model: "Gemini", spent: 25, action: "Квиз құру" }
             ]
         };
 
-        // Жергілікті интерфейс күйі (рөл, ашық бет, API кілттер)
         const uiState = {
             role: "teacher",
             tabs: {
@@ -289,12 +362,20 @@
                 geminiKey: localStorage.getItem("bolashaq_gemini_key") || "",
                 openaiKey: localStorage.getItem("bolashaq_openai_key") || ""
             },
+            authUser: null,
+            pendingRegistration: {
+                name: "",
+                role: "student",
+                grade: 9,
+                subject: "Физика"
+            },
             dbConnected: false,
             dbError: ""
         };
 
         let dbData = loadLocalCache();
         let firestore = null;
+        let auth = null;
         let stateDocRef = null;
         let isWritingToCloud = false;
 
@@ -311,26 +392,21 @@
             try {
                 localStorage.setItem(LOCAL_CACHE_KEY, JSON.stringify(dbData));
             } catch (e) {
-                console.error("Cache save error:", e);
+                console.error("Cache error:", e);
             }
         }
 
-        // Firestore деректерін сақтау және синхрондау
         async function persistData() {
             saveLocalCache();
             syncChrome();
             if (!stateDocRef) return;
             try {
                 isWritingToCloud = true;
-                await setDoc(stateDocRef, {
-                    ...dbData,
-                    updatedAt: Date.now()
-                }, { merge: true });
+                await setDoc(stateDocRef, { ...dbData, updatedAt: Date.now() }, { merge: true });
                 uiState.dbConnected = true;
                 uiState.dbError = "";
                 syncChrome();
             } catch (err) {
-                console.error("Firestore write error:", err);
                 uiState.dbConnected = false;
                 uiState.dbError = err.message || "Жазу қатесі";
                 syncChrome();
@@ -339,11 +415,47 @@
             }
         }
 
-        async function initFirestoreConnection() {
+        async function initFirebase() {
             try {
                 const app = initializeApp(firebaseConfig);
                 firestore = getFirestore(app);
+                auth = getAuth(app);
                 stateDocRef = doc(firestore, DB_DOC_PATH[0], DB_DOC_PATH[1]);
+
+                onAuthStateChanged(auth, async (user) => {
+                    uiState.authUser = user;
+                    if (user) {
+                        localStorage.setItem(ONBOARDED_KEY, "1");
+                        let existing = dbData.users.find(
+                            u => u.id === user.uid || (user.email && u.email === user.email)
+                        );
+                        if (!existing) {
+                            const reg = uiState.pendingRegistration;
+                            existing = {
+                                id: user.uid,
+                                name: user.displayName || reg.name || (user.email ? user.email.split("@")[0] : "Пайдаланушы"),
+                                email: user.email || "",
+                                role: reg.role || uiState.role,
+                                grade: (reg.role || uiState.role) === "student" ? (reg.grade || 9) : null,
+                                subject: reg.subject || dbData.scope.subject,
+                                tokens: 2000,
+                                points: 0
+                            };
+                            dbData.users.unshift(existing);
+                            uiState.role = existing.role;
+                            await persistData();
+                        } else {
+                            uiState.role = existing.role || uiState.role;
+                            syncChrome();
+                        }
+                        renderAll();
+                    } else {
+                        syncChrome();
+                        if (!localStorage.getItem(ONBOARDED_KEY)) {
+                            openAuthModal("register");
+                        }
+                    }
+                });
 
                 const snap = await getDoc(stateDocRef);
                 if (!snap.exists()) {
@@ -359,7 +471,6 @@
                 uiState.dbError = "";
                 renderAll();
 
-                // Нақты уақыттағы тыңдаушы (realtime listener)
                 onSnapshot(stateDocRef, (snapshot) => {
                     if (isWritingToCloud) return;
                     if (snapshot.exists()) {
@@ -370,22 +481,22 @@
                         renderAll();
                     }
                 }, (err) => {
-                    console.error("Firestore snapshot error:", err);
                     uiState.dbConnected = false;
                     uiState.dbError = err.message || "Байланыс қатесі";
                     syncChrome();
                 });
             } catch (err) {
-                console.error("Firebase init error:", err);
                 uiState.dbConnected = false;
                 uiState.dbError = err.message || "Қосылу мүмкін емес";
                 renderAll();
             }
         }
 
-        window.syncWithFirestore = async function (showToastMsg = false) {
+        window.syncWithFirestore = async function (showMsg = false, btnEl = null) {
+            setButtonLoading(btnEl, true, "Жүктелуде...");
             if (!stateDocRef) {
-                await initFirestoreConnection();
+                await initFirebase();
+                setButtonLoading(btnEl, false);
                 return;
             }
             try {
@@ -394,27 +505,253 @@
                     dbData = { ...structuredClone(INITIAL_DATA), ...snap.data() };
                     saveLocalCache();
                     uiState.dbConnected = true;
-                    uiState.dbError = "";
                     renderAll();
-                    if (showToastMsg) toast("Firestore деректері жаңартылды");
+                    if (showMsg) toast("База жаңартылды");
                 }
-            } catch (err) {
+            } catch {
                 uiState.dbConnected = false;
-                uiState.dbError = err.message || "Жаңарту қатесі";
                 syncChrome();
-                if (showToastMsg) toast("Базамен байланыс жоқ (кэш қолданылуда)");
+                if (showMsg) toast("Кэш деректері көрсетілуде");
+            } finally {
+                setButtonLoading(btnEl, false);
             }
         };
 
-        window.resetPlatformData = async function () {
-            dbData = structuredClone(INITIAL_DATA);
+        // =====================================================================
+        // ТІРКЕЛУ ЖӘНЕ КІРУ (EMAIL/PASSWORD + GOOGLE)
+        // =====================================================================
+        window.openAuthModal = function (mode = "register") {
+            const reg = uiState.pendingRegistration;
+            const isReg = mode === "register";
+
+            openModal(
+                isReg ? "Тіркелу — Bolashaq" : "Жүйеге кіру — Bolashaq",
+                `
+                <div class="space-y-4">
+                    <div class="grid grid-cols-2 bg-slate-100 p-1 rounded-xl border border-slate-200">
+                        <button type="button" onclick="openAuthModal('register')" class="py-1.5 rounded-lg text-xs font-bold btn-press ${isReg ? "bg-white text-slate-900 shadow-2xs" : "text-slate-600"}">
+                            1. Тіркелу
+                        </button>
+                        <button type="button" onclick="openAuthModal('login')" class="py-1.5 rounded-lg text-xs font-bold btn-press ${!isReg ? "bg-white text-slate-900 shadow-2xs" : "text-slate-600"}">
+                            2. Кіру (Логин / Google)
+                        </button>
+                    </div>
+
+                    ${isReg ? `
+                        <form onsubmit="handleRegisterSubmit(event)" class="space-y-3">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Аты-жөні</label>
+                                <input id="regName" type="text" required value="${esc(reg.name)}" placeholder="Мысалы: Айдана Нұрланқызы" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm focus:outline-none focus:border-amber-500">
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 mb-1">Рөл</label>
+                                    <select id="regRole" onchange="toggleRegGradeField()" class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm bg-white">
+                                        <option value="student" ${reg.role === "student" ? "selected" : ""}>Оқушы</option>
+                                        <option value="teacher" ${reg.role === "teacher" ? "selected" : ""}>Мұғалім</option>
+                                        <option value="admin" ${reg.role === "admin" ? "selected" : ""}>Админ</option>
+                                    </select>
+                                </div>
+                                <div id="regGradeWrap" class="${reg.role === "student" ? "" : "hidden"}">
+                                    <label class="block text-xs font-bold text-slate-700 mb-1">Сынып (1–11)</label>
+                                    <select id="regGrade" class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm bg-white">
+                                        ${dbData.grades.map(g => `<option value="${g}" ${g === (reg.grade || 9) ? "selected" : ""}>${g}-сынып</option>`).join("")}
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Email</label>
+                                <input id="regEmail" type="email" required placeholder="name@example.com" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm focus:outline-none focus:border-amber-500">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Құпиясөз (кемінде 6 таңба)</label>
+                                <input id="regPassword" type="password" required minlength="6" placeholder="••••••••" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm focus:outline-none focus:border-amber-500">
+                            </div>
+                            <button type="submit" id="regSubmitBtn" class="w-full py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs sm:text-sm font-bold btn-press">
+                                Тіркелу және жалғастыру
+                            </button>
+                        </form>
+                    ` : `
+                        <form onsubmit="handleEmailLoginSubmit(event)" class="space-y-3">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Email</label>
+                                <input id="loginEmail" type="email" required placeholder="name@example.com" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm focus:outline-none focus:border-amber-500">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Құпиясөз</label>
+                                <input id="loginPassword" type="password" required placeholder="••••••••" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm focus:outline-none focus:border-amber-500">
+                            </div>
+                            <button type="submit" id="loginSubmitBtn" class="w-full py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs sm:text-sm font-bold btn-press">
+                                Логин және құпиясөзбен кіру
+                            </button>
+                        </form>
+                    `}
+
+                    <div class="relative py-1">
+                        <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-slate-200"></div></div>
+                        <div class="relative flex justify-center text-xs"><span class="bg-white px-2 text-slate-400">немесе</span></div>
+                    </div>
+
+                    <button type="button" id="googleSignInBtn" onclick="handleGoogleSignIn(this)" class="w-full py-2.5 px-4 rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-800 text-xs sm:text-sm font-bold flex items-center justify-center gap-2 btn-press">
+                        <span>Google аккаунтымен кіру</span>
+                    </button>
+                </div>
+                `
+            );
+        };
+
+        window.toggleRegGradeField = function () {
+            const roleEl = document.getElementById("regRole");
+            const wrapEl = document.getElementById("regGradeWrap");
+            if (!roleEl || !wrapEl) return;
+            wrapEl.classList.toggle("hidden", roleEl.value !== "student");
+        };
+
+        window.handleRegisterSubmit = async function (e) {
+            e.preventDefault();
+            const btn = document.getElementById("regSubmitBtn");
+            setButtonLoading(btn, true, "Тіркелуде...");
+
+            const name = document.getElementById("regName").value.trim();
+            const role = document.getElementById("regRole").value;
+            const gradeEl = document.getElementById("regGrade");
+            const grade = role === "student" && gradeEl ? parseInt(gradeEl.value, 10) : null;
+            const email = document.getElementById("regEmail").value.trim();
+            const password = document.getElementById("regPassword").value;
+
+            uiState.pendingRegistration = { name, role, grade, subject: dbData.scope.subject };
+            uiState.role = role;
+            localStorage.setItem(ONBOARDED_KEY, "1");
+
+            try {
+                if (auth) {
+                    const cred = await createUserWithEmailAndPassword(auth, email, password);
+                    await updateProfile(cred.user, { displayName: name });
+                    const newProfile = {
+                        id: cred.user.uid,
+                        name,
+                        email,
+                        role,
+                        grade,
+                        subject: dbData.scope.subject,
+                        tokens: 2000,
+                        points: 0
+                    };
+                    dbData.users = [newProfile, ...dbData.users.filter(u => u.id !== cred.user.uid && u.email !== email)];
+                    await persistData();
+                    closeModal();
+                    renderAll();
+                    toast("Тіркелу сәтті аяқталды");
+                    return;
+                }
+            } catch (err) {
+                const msg = err.code === "auth/email-already-in-use"
+                    ? "Бұл email тіркелген. «Кіру» қойындысынан кіріңіз."
+                    : (err.message || "Тіркелу қатесі");
+                toast(msg);
+                setButtonLoading(btn, false);
+                return;
+            }
+
+            const localUser = {
+                id: "u_" + Date.now(),
+                name,
+                email,
+                role,
+                grade,
+                subject: dbData.scope.subject,
+                tokens: 2000,
+                points: 0
+            };
+            dbData.users.unshift(localUser);
             await persistData();
+            closeModal();
             renderAll();
-            toast("Бастапқы деректер қалпына келтірілді");
+            toast("Тіркелу сақталды");
+        };
+
+        window.handleEmailLoginSubmit = async function (e) {
+            e.preventDefault();
+            const btn = document.getElementById("loginSubmitBtn");
+            setButtonLoading(btn, true, "Кіруде...");
+
+            const email = document.getElementById("loginEmail").value.trim();
+            const password = document.getElementById("loginPassword").value;
+            localStorage.setItem(ONBOARDED_KEY, "1");
+
+            try {
+                if (auth) {
+                    await signInWithEmailAndPassword(auth, email, password);
+                    closeModal();
+                    toast("Жүйеге кірдіңіз");
+                    return;
+                }
+            } catch (err) {
+                toast(err.code === "auth/invalid-credential" ? "Email немесе құпиясөз қате" : (err.message || "Кіру қатесі"));
+                setButtonLoading(btn, false);
+                return;
+            }
+
+            const found = dbData.users.find(u => u.email === email);
+            if (found) uiState.role = found.role;
+            closeModal();
+            renderAll();
+            toast("Кірдіңіз");
+        };
+
+        window.handleGoogleSignIn = async function (btnEl = null) {
+            setButtonLoading(btnEl, true, "Google...");
+            localStorage.setItem(ONBOARDED_KEY, "1");
+            try {
+                if (auth) {
+                    const provider = new GoogleAuthProvider();
+                    const res = await signInWithPopup(auth, provider);
+                    const user = res.user;
+                    const reg = uiState.pendingRegistration;
+                    const existing = dbData.users.find(u => u.id === user.uid || (user.email && u.email === user.email));
+                    if (!existing) {
+                        dbData.users.unshift({
+                            id: user.uid,
+                            name: user.displayName || reg.name || "Google қолданушы",
+                            email: user.email || "",
+                            role: reg.role || uiState.role,
+                            grade: (reg.role || uiState.role) === "student" ? (reg.grade || 9) : null,
+                            subject: dbData.scope.subject,
+                            tokens: 2000,
+                            points: 0
+                        });
+                        await persistData();
+                    } else {
+                        uiState.role = existing.role || uiState.role;
+                    }
+                    closeModal();
+                    renderAll();
+                    toast("Google арқылы кірдіңіз");
+                    return;
+                }
+            } catch (err) {
+                toast(err.message || "Google кіру қатесі");
+            } finally {
+                setButtonLoading(btnEl, false);
+            }
+        };
+
+        window.handleSignOut = async function () {
+            try {
+                if (auth && uiState.authUser) {
+                    await signOut(auth);
+                }
+            } catch {
+                // ignore
+            }
+            uiState.authUser = null;
+            syncChrome();
+            toast("Шықтыңыз");
+            openAuthModal("login");
         };
 
         // =====================================================================
-        // МӘЗІР ЖӘНЕ РӨЛ БАСҚАРУ
+        // МӘЗІР ЖӘНЕ ЛЕЗДЕ ЖАУАП БЕРЕТІН РӨЛ/БЕТ АУЫСТЫРУ
         // =====================================================================
         const MENU = {
             teacher: [
@@ -444,14 +781,23 @@
         };
 
         function currentUser() {
+            if (uiState.authUser) {
+                const matched = dbData.users.find(
+                    u => u.id === uiState.authUser.uid || (uiState.authUser.email && u.email === uiState.authUser.email)
+                );
+                if (matched) return matched;
+            }
             const idMap = { teacher: "u_t1", student: "u_s1", admin: "u_a1" };
             return dbData.users.find(u => u.id === idMap[uiState.role]) || dbData.users[0];
         }
 
-        window.switchRole = function (role) {
+        // Кнопка басылған сәтте бірден визуалды күй жаңарады
+        window.switchRoleInstant = function (role) {
             uiState.role = role;
             renderAll();
             closeMobileSidebar();
+            toast({ teacher: "Мұғалім панелі", student: "Оқушы панелі", admin: "Админ панелі" }[role]);
+            persistData();
         };
 
         window.setTab = function (tab) {
@@ -477,13 +823,12 @@
                 const btn = document.getElementById("role-" + r);
                 if (!btn) return;
                 btn.className = uiState.role === r
-                    ? "px-2.5 sm:px-3.5 py-1 rounded-lg text-xs font-bold bg-white text-slate-900 shadow-2xs transition-all"
-                    : "px-2.5 sm:px-3.5 py-1 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 transition-all";
+                    ? "px-2.5 sm:px-3.5 py-1 rounded-lg text-xs font-bold bg-white text-slate-900 shadow-2xs btn-press"
+                    : "px-2.5 sm:px-3.5 py-1 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 btn-press";
             });
 
             document.getElementById("topTokens").textContent = (u.tokens || 0).toLocaleString("ru-RU");
-            document.getElementById("topUserName").textContent = u.name;
-            document.getElementById("topAvatar").textContent = u.name.split(" ").map(w => w[0]).join("").slice(0, 2);
+            document.getElementById("authBtnLabel").textContent = uiState.authUser ? u.name.split(" ")[0] : "Тіркелу / Кіру";
 
             const dbDot = document.getElementById("dbDot");
             const dbStatusText = document.getElementById("dbStatusText");
@@ -502,8 +847,8 @@
 
             const roleLabel = { teacher: "Мұғалім", student: "Оқушы", admin: "Админ" }[uiState.role];
             document.getElementById("sidebarContextBadge").innerHTML = `
-                <span>${roleLabel}</span>
-                <span class="px-2 py-0.5 rounded bg-amber-100 text-amber-900 text-[11px] font-bold">${dbData.scope.grade}-сынып • ${esc(dbData.scope.subject)}</span>
+                <span class="font-bold text-slate-900">${roleLabel}</span>
+                <span class="px-2 py-0.5 rounded-lg bg-amber-100 text-amber-900 text-[11px] font-bold">${dbData.scope.grade}-сынып • ${esc(dbData.scope.subject)}</span>
             `;
         }
 
@@ -513,7 +858,7 @@
             nav.innerHTML = MENU[uiState.role].map(item => {
                 const isAct = item.id === active;
                 return `
-                    <button onclick="setTab('${item.id}')" class="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs sm:text-sm transition-colors ${
+                    <button onclick="setTab('${item.id}')" class="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs sm:text-sm btn-press ${
                         isAct
                             ? "bg-amber-50 text-amber-950 font-bold border border-amber-200"
                             : "text-slate-600 hover:bg-slate-100 font-medium"
@@ -533,9 +878,9 @@
 
         function renderView() {
             const root = document.getElementById("viewRoot");
-            root.classList.remove("fade-in");
+            root.classList.remove("anim-enter");
             void root.offsetWidth;
-            root.classList.add("fade-in");
+            root.classList.add("anim-enter");
 
             const key = `${uiState.role}:${uiState.tabs[uiState.role]}`;
             const views = {
@@ -570,7 +915,7 @@
             return `
                 <div class="flex items-center justify-between gap-3 mb-5">
                     <h1 class="text-xl font-bold text-slate-900">Сынып және пән</h1>
-                    <span class="px-3 py-1 rounded-lg bg-amber-50 border border-amber-200 text-xs font-bold text-amber-900">
+                    <span class="px-3 py-1 rounded-xl bg-amber-50 border border-amber-200 text-xs font-bold text-amber-900">
                         ${dbData.scope.grade}-сынып • ${esc(dbData.scope.subject)}
                     </span>
                 </div>
@@ -579,9 +924,9 @@
                     <div class="text-xs font-bold text-slate-500 uppercase mb-2.5">Сынып (1–11)</div>
                     <div class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-11 gap-1.5">
                         ${dbData.grades.map(g => `
-                            <button onclick="updateScope(${g}, null)" class="py-2 rounded-xl text-xs font-bold border ${
+                            <button onclick="updateScope(${g}, null)" class="py-2 rounded-xl text-xs font-bold border btn-press ${
                                 dbData.scope.grade === g
-                                    ? "bg-amber-500 text-white border-amber-500"
+                                    ? "bg-amber-500 text-white border-amber-500 shadow-xs"
                                     : "bg-slate-50 text-slate-700 border-slate-200 hover:border-amber-400"
                             }">${g}</button>
                         `).join("")}
@@ -592,7 +937,7 @@
                     <div class="text-xs font-bold text-slate-500 uppercase mb-2.5">Пән</div>
                     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
                         ${dbData.subjects.map(s => `
-                            <button onclick="updateScope(null, '${esc(s)}')" class="px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold border text-left ${
+                            <button onclick="updateScope(null, '${esc(s)}')" class="px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold border text-left btn-press ${
                                 dbData.scope.subject === s
                                     ? "bg-slate-900 text-white border-slate-900"
                                     : "bg-slate-50 text-slate-800 border-slate-200 hover:border-amber-400"
@@ -603,16 +948,16 @@
             `;
         }
 
-        window.updateScope = async function (grade, subject) {
+        window.updateScope = function (grade, subject) {
             if (grade !== null) dbData.scope.grade = grade;
             if (subject !== null) dbData.scope.subject = subject;
-            await persistData();
-            renderView();
+            renderAll();
             toast(`${dbData.scope.grade}-сынып • ${dbData.scope.subject}`);
+            persistData();
         };
 
         // =====================================================================
-        // МҰҒАЛІМ: ЖИ (ПРЕЗЕНТАЦИЯ, ИНТЕРАКТИВТІ КВИЗ, ТАҚЫРЫП/ПРАКТИКА/ЗЕРТХАНА)
+        // МҰҒАЛІМ: ЖИ ЧАТЫ & КОНСТРУКТОР (ПРЕЗЕНТАЦИЯ, КВИЗ, МАТЕРИАЛ)
         // =====================================================================
         function viewTeacherAI() {
             const u = currentUser();
@@ -624,8 +969,8 @@
                     <h1 class="text-xl font-bold text-slate-900">ЖИ</h1>
                     <div class="flex items-center gap-2">
                         <div class="flex bg-white p-0.5 rounded-xl border border-slate-200">
-                            <button onclick="setAIModel('Gemini')" class="px-3 py-1 rounded-lg text-xs font-bold ${dbData.ai.model === "Gemini" ? "bg-amber-500 text-white" : "text-slate-600"}">Gemini</button>
-                            <button onclick="setAIModel('ChatGPT')" class="px-3 py-1 rounded-lg text-xs font-bold ${dbData.ai.model === "ChatGPT" ? "bg-slate-900 text-white" : "text-slate-600"}">ChatGPT</button>
+                            <button onclick="setAIModel('Gemini')" class="px-3 py-1 rounded-lg text-xs font-bold btn-press ${dbData.ai.model === "Gemini" ? "bg-amber-500 text-white" : "text-slate-600"}">Gemini</button>
+                            <button onclick="setAIModel('ChatGPT')" class="px-3 py-1 rounded-lg text-xs font-bold btn-press ${dbData.ai.model === "ChatGPT" ? "bg-slate-900 text-white" : "text-slate-600"}">ChatGPT</button>
                         </div>
                         <span class="px-3 py-1.5 rounded-xl bg-amber-50 border border-amber-200 text-xs font-bold text-amber-900 tabular-nums">
                             ${u.tokens} токен
@@ -633,11 +978,40 @@
                     </div>
                 </div>
 
+                <!-- ЖИ ЧАТ (ШЫНАЙЫ API + ТОКЕН ЕСЕБІ) -->
+                <div class="bg-white rounded-2xl border border-slate-200 mb-5 overflow-hidden">
+                    <div class="px-4 py-2.5 border-b border-slate-100 flex items-center justify-between text-xs">
+                        <span class="font-bold text-slate-800">ЖИ Чат (${esc(dbData.ai.model)})</span>
+                        <span class="text-slate-500">${dbData.scope.grade}-сынып • ${esc(dbData.scope.subject)}</span>
+                    </div>
+                    <div id="teacherChatScroll" class="p-4 max-h-64 overflow-y-auto space-y-2.5">
+                        ${dbData.aiChat.map(m => `
+                            <div class="flex ${m.role === "user" ? "justify-end" : "justify-start"}">
+                                <div class="max-w-xl rounded-2xl px-3.5 py-2.5 text-xs sm:text-sm leading-relaxed ${
+                                    m.role === "user"
+                                        ? "bg-slate-900 text-white"
+                                        : "bg-slate-100 text-slate-800 border border-slate-200"
+                                }">
+                                    <div>${esc(m.text)}</div>
+                                    ${m.tokensUsed ? `<div class="mt-1 text-[10px] font-semibold opacity-70">${esc(m.model || "AI")} • ${m.tokensUsed} токен</div>` : ""}
+                                </div>
+                            </div>
+                        `).join("")}
+                    </div>
+                    <form onsubmit="sendTeacherChatMessage(event)" class="p-3 border-t border-slate-200 flex gap-2">
+                        <input id="teacherChatInp" type="text" required placeholder="Жазбаша сұрақ немесе тапсырма..." class="flex-1 rounded-xl border border-slate-300 px-3.5 py-2 text-xs sm:text-sm focus:outline-none focus:border-amber-500">
+                        <button type="submit" id="teacherChatBtn" class="px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold btn-press">
+                            Жіберу
+                        </button>
+                    </form>
+                </div>
+
+                <!-- САБАҚ / КВИЗ / ПРЕЗЕНТАЦИЯ ГЕНЕРАТОРЫ -->
                 <div class="bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 mb-5">
                     <div class="flex flex-wrap gap-2 mb-4">
-                        <button onclick="setStudioMode('quiz')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold border ${mode === "quiz" ? "bg-slate-900 text-white border-slate-900" : "bg-slate-50 text-slate-700 border-slate-200"}">Интерактивті квиз</button>
-                        <button onclick="setStudioMode('presentation')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold border ${mode === "presentation" ? "bg-slate-900 text-white border-slate-900" : "bg-slate-50 text-slate-700 border-slate-200"}">Презентация</button>
-                        <button onclick="setStudioMode('material')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold border ${mode === "material" ? "bg-slate-900 text-white border-slate-900" : "bg-slate-50 text-slate-700 border-slate-200"}">Сабақ / Практика / Зертхана</button>
+                        <button onclick="setStudioMode('quiz')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold border btn-press ${mode === "quiz" ? "bg-slate-900 text-white border-slate-900" : "bg-slate-50 text-slate-700 border-slate-200"}">Интерактивті квиз</button>
+                        <button onclick="setStudioMode('presentation')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold border btn-press ${mode === "presentation" ? "bg-slate-900 text-white border-slate-900" : "bg-slate-50 text-slate-700 border-slate-200"}">Презентация</button>
+                        <button onclick="setStudioMode('material')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold border btn-press ${mode === "material" ? "bg-slate-900 text-white border-slate-900" : "bg-slate-50 text-slate-700 border-slate-200"}">Сабақ / Практика / Зертхана</button>
                     </div>
 
                     <form onsubmit="runTeacherGeneration(event)" class="grid grid-cols-1 sm:grid-cols-12 gap-3">
@@ -647,8 +1021,8 @@
                         <select id="genSubject" class="sm:col-span-3 rounded-xl border border-slate-300 px-3 py-2.5 text-xs font-semibold bg-white">
                             ${dbData.subjects.map(s => `<option value="${esc(s)}" ${s === dbData.scope.subject ? "selected" : ""}>${esc(s)}</option>`).join("")}
                         </select>
-                        <input id="genTopic" type="text" required placeholder="Тақырып..." class="sm:col-span-5 rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm">
-                        <button type="submit" id="genSubmitBtn" class="sm:col-span-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold py-2.5 px-4">
+                        <input id="genTopic" type="text" required placeholder="Тақырып..." class="sm:col-span-5 rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm focus:outline-none focus:border-amber-500">
+                        <button type="submit" id="genSubmitBtn" class="sm:col-span-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold py-2.5 px-4 btn-press">
                             Құру
                         </button>
                     </form>
@@ -658,30 +1032,74 @@
             `;
         }
 
-        window.setAIModel = async function (model) {
+        window.setAIModel = function (model) {
             dbData.ai.model = model;
-            await persistData();
-            renderView();
+            renderAll();
+            toast(`Модель: ${model}`);
+            persistData();
         };
 
-        window.setStudioMode = async function (mode) {
+        window.setStudioMode = function (mode) {
             dbData.ai.studioMode = mode;
+            renderView();
+            persistData();
+        };
+
+        window.sendTeacherChatMessage = async function (e) {
+            e.preventDefault();
+            const inp = document.getElementById("teacherChatInp");
+            const btn = document.getElementById("teacherChatBtn");
+            const msg = inp.value.trim();
+            if (!msg) return;
+
+            const u = currentUser();
+            if ((u.tokens || 0) <= 0) {
+                toast("Токен таусылды");
+                return;
+            }
+
+            inp.value = "";
+            dbData.aiChat.push({ role: "user", text: msg });
+            renderView();
+            setButtonLoading(document.getElementById("teacherChatBtn"), true, "...");
+
+            const prompt = `${dbData.scope.grade}-сынып ${dbData.scope.subject} пәні мұғаліміне арналған нақты, құрылымды жауап бер (артық кіріспе сөзсіз): ${msg}`;
+            const aiResult = await callRealAIWithTokens(dbData.ai.model, prompt, msg);
+
+            const spent = Math.min(u.tokens, aiResult.tokensUsed);
+            u.tokens = Math.max(0, (u.tokens || 0) - spent);
+            dbData.aiChat.push({
+                role: "ai",
+                model: dbData.ai.model,
+                tokensUsed: spent,
+                text: aiResult.text
+            });
+            dbData.tokenLogs.unshift({
+                id: "tl_" + Date.now(),
+                user: u.name,
+                role: "Мұғалім",
+                model: dbData.ai.model,
+                spent,
+                action: msg.slice(0, 32)
+            });
+
             await persistData();
             renderView();
+            toast(`Жауап дайын (-${spent} токен)`);
         };
 
         function renderGeneratedResult(out) {
             if (out.mode === "quiz") {
                 return `
-                    <div class="bg-white rounded-2xl border border-slate-200 p-5 space-y-4">
+                    <div class="bg-white rounded-2xl border border-slate-200 p-5 space-y-4 anim-enter">
                         <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-100">
                             <div>
                                 <span class="text-xs font-bold text-amber-700">${out.grade}-сынып • ${esc(out.subject)}</span>
                                 <h2 class="text-base font-bold text-slate-900">${esc(out.title)}</h2>
                             </div>
                             <div class="flex gap-2">
-                                <button onclick="saveGeneratedQuiz(true)" class="px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold">Бастау және сақтау</button>
-                                <button onclick="saveGeneratedQuiz(false)" class="px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold">Сақтау</button>
+                                <button onclick="saveGeneratedQuiz(true)" class="px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold btn-press">Бастау және сақтау</button>
+                                <button onclick="saveGeneratedQuiz(false)" class="px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold btn-press">Сақтау</button>
                             </div>
                         </div>
                         <div class="space-y-3">
@@ -704,13 +1122,13 @@
 
             if (out.mode === "presentation") {
                 return `
-                    <div class="bg-white rounded-2xl border border-slate-200 p-5 space-y-4">
+                    <div class="bg-white rounded-2xl border border-slate-200 p-5 space-y-4 anim-enter">
                         <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-100">
                             <div>
                                 <span class="text-xs font-bold text-amber-700">${out.grade}-сынып • ${esc(out.subject)} • ${out.slides.length} слайд</span>
                                 <h2 class="text-base font-bold text-slate-900">${esc(out.title)}</h2>
                             </div>
-                            <button onclick="saveGeneratedPresentation()" class="px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold">
+                            <button onclick="saveGeneratedPresentation()" class="px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold btn-press">
                                 Презентацияға сақтау
                             </button>
                         </div>
@@ -730,16 +1148,16 @@
             }
 
             return `
-                <div class="bg-white rounded-2xl border border-slate-200 p-5 space-y-4">
+                <div class="bg-white rounded-2xl border border-slate-200 p-5 space-y-4 anim-enter">
                     <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-100">
                         <div>
                             <span class="text-xs font-bold text-amber-700">${out.grade}-сынып • ${esc(out.subject)}</span>
                             <h2 class="text-base font-bold text-slate-900">${esc(out.topicTitle)}</h2>
                         </div>
                         <div class="flex flex-wrap gap-2">
-                            <button onclick="publishMaterialAsTopic()" class="px-3 py-1.5 rounded-xl bg-slate-900 text-white text-xs font-bold">+ Тақырып</button>
-                            <button onclick="publishMaterialAsTask()" class="px-3 py-1.5 rounded-xl bg-amber-500 text-white text-xs font-bold">+ Практика</button>
-                            <button onclick="publishMaterialAsLab()" class="px-3 py-1.5 rounded-xl border border-slate-300 text-slate-800 text-xs font-bold">+ Зертхана</button>
+                            <button onclick="publishMaterialAsTopic()" class="px-3 py-1.5 rounded-xl bg-slate-900 text-white text-xs font-bold btn-press">+ Тақырып</button>
+                            <button onclick="publishMaterialAsTask()" class="px-3 py-1.5 rounded-xl bg-amber-500 text-white text-xs font-bold btn-press">+ Практика</button>
+                            <button onclick="publishMaterialAsLab()" class="px-3 py-1.5 rounded-xl border border-slate-300 text-slate-800 text-xs font-bold btn-press">+ Зертхана</button>
                         </div>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
@@ -764,8 +1182,7 @@
         window.runTeacherGeneration = async function (e) {
             e.preventDefault();
             const u = currentUser();
-            const spent = 20;
-            if ((u.tokens || 0) < spent) {
+            if ((u.tokens || 0) <= 0) {
                 toast("Токен жеткіліксіз");
                 return;
             }
@@ -778,49 +1195,51 @@
 
             dbData.scope = { grade, subject };
             const btn = document.getElementById("genSubmitBtn");
-            btn.disabled = true;
-            btn.textContent = "...";
+            setButtonLoading(btn, true, "...");
 
             let resultObj = null;
+            let tokensSpent = 20;
+
             try {
-                const rawAi = await callRealAI(model, buildStudioPrompt(mode, grade, subject, topic));
-                if (rawAi) {
-                    const cleaned = rawAi.replace(/```json|```/gi, "").trim();
+                const rawRes = await callRealAIWithTokens(model, buildStudioPrompt(mode, grade, subject, topic), topic);
+                tokensSpent = Math.min(u.tokens, rawRes.tokensUsed);
+                if (rawRes.usedRealApi && rawRes.text) {
+                    const cleaned = rawRes.text.replace(/```json|```/gi, "").trim();
                     const parsed = JSON.parse(cleaned);
                     resultObj = { ...parsed, mode, grade, subject };
                 }
             } catch {
-                // JSON парсинг немесе API кілт болмағанда құрылымды нәтиже қолданылады
+                // fallback
             }
 
             if (!resultObj) {
                 resultObj = buildStructuredFallback(mode, grade, subject, topic);
             }
 
-            u.tokens = Math.max(0, (u.tokens || 0) - spent);
+            u.tokens = Math.max(0, (u.tokens || 0) - tokensSpent);
             dbData.ai.lastOutput = resultObj;
             dbData.tokenLogs.unshift({
                 id: "tl_" + Date.now(),
                 user: u.name,
                 role: "Мұғалім",
                 model,
-                spent,
+                spent: tokensSpent,
                 action: `${grade}-сынып ${subject}: ${topic}`
             });
 
             await persistData();
             renderView();
-            toast(`Дайын (-${spent} токен)`);
+            toast(`Дайын (-${tokensSpent} токен)`);
         };
 
         function buildStudioPrompt(mode, grade, subject, topic) {
             if (mode === "quiz") {
-                return `Тек қана JSON қайтар: {"title":"${topic} — Квиз","timerSec":20,"questions":[{"q":"Сұрақ","opts":["А","Б","В","Г"],"ans":0}]}. ${grade}-сынып ${subject} пәні бойынша "${topic}" тақырыбына қазақша 4 сұрақ жаса.`;
+                return `Тек қана JSON қайтар: {"title":"${topic} — Квиз","timerSec":20,"questions":[{"q":"Сұрақ","opts":["А","Б","В","Г"],"ans":0}]}. ${grade}-сынып ${subject} пәні бойынша "${topic}" тақырыбына қазақша 4 нақты сұрақ жаса.`;
             }
             if (mode === "presentation") {
-                return `Тек қана JSON қайтар: {"title":"${topic}","slides":[{"title":"Слайд","points":["1","2"],"note":"Ескертпе"}]}. ${grade}-сынып ${subject} пәні бойынша "${topic}" тақырыбына қазақша 3 қысқа слайд жаса.`;
+                return `Тек қана JSON қайтар: {"title":"${topic}","slides":[{"title":"Слайд","points":["1","2"],"note":"Ескертпе"}]}. ${grade}-сынып ${subject} пәні бойынша "${topic}" тақырыбына қазақша 3 жүйелі слайд жаса.`;
             }
-            return `Тек қана JSON қайтар: {"topicTitle":"${topic}","summary":"Қысқа түсіндірме","formula":"Формула немесе ереже","practicalTask":"Практикалық тапсырма","labTask":"Зертханалық жұмыс"}. ${grade}-сынып ${subject} пәні бойынша қазақша жаз.`;
+            return `Тек қана JSON қайтар: {"topicTitle":"${topic}","summary":"Қысқа нақты түсіндірме","formula":"Формула немесе ереже","practicalTask":"Практикалық тапсырма","labTask":"Зертханалық жұмыс"}. ${grade}-сынып ${subject} пәні бойынша қазақша жаз.`;
         }
 
         function buildStructuredFallback(mode, grade, subject, topic) {
@@ -833,18 +1252,18 @@
                     timerSec: 20,
                     questions: [
                         {
-                            q: `${grade}-сынып ${subject}: «${topic}» ұғымының негізгі мәні неде?`,
-                            opts: ["Негізгі заңдылықты анықтау", "Кесте толтыру", "Мәтін көшіру", "Өлшем бірліксіз есептеу"],
+                            q: `${grade}-сынып ${subject}: «${topic}» ұғымының негізгі мағынасы қандай?`,
+                            opts: ["Негізгі заңдылықты талдау", "Кесте толтыру", "Мәтін көшіру", "Өлшемсіз сан жазу"],
                             ans: 0
                         },
                         {
-                            q: `«${topic}» есебін шығарғанда алдымен нені тексеру керек?`,
-                            opts: ["Берілген шамалар мен ХБЖ бірліктерін", "Жауаптың ұзындығын", "Нұсқа ретін", "Кездейсоқ санды"],
+                            q: `«${topic}» бойынша есеп шығарғанда алдымен нені ескеру керек?`,
+                            opts: ["Бастапқы шамалар мен бірліктерді", "Нұсқа санын", "Мәтін ұзындығын", "Кездейсоқ мәнді"],
                             ans: 0
                         },
                         {
-                            q: `«${topic}» бойынша практикалық нәтиже қайда қолданылады?`,
-                            opts: ["Талдау және есептеуде", "Тек жаттауда", "Қолданылмайды", "Басқа бөлімде"],
+                            q: `«${topic}» нәтижесін практикада қалай дәлелдеуге болады?`,
+                            opts: ["Тәжірибе мен есептеу арқылы", "Болжаммен ғана", "Қолданбай", "Басқа пәнмен"],
                             ans: 0
                         }
                     ]
@@ -857,9 +1276,9 @@
                     subject,
                     title: `${topic} (${grade}-сынып)`,
                     slides: [
-                        { title: `${topic} — Кіріспе`, points: [`${subject}, ${grade}-сынып`, "Негізгі ұғымдар мен белгілеулер"], note: "Терминдерді нақтылаңыз." },
-                        { title: "Негізгі заңдылық", points: ["Шамалар арасындағы тәуелділік", "Формула және өлшем бірліктері"], note: "Мысал келтіріңіз." },
-                        { title: "Бекіту", points: ["Интерактивті квиз сұрақтары", "Практикалық тапсырма"], note: "Сыныппен қорытындылаңыз." }
+                        { title: `${topic} — Негізгі ұғым`, points: [`${subject}, ${grade}-сынып`, "Негізгі терминдер мен белгілеулер"], note: "Негізгі анықтаманы бекітіңіз." },
+                        { title: "Заңдылық пен формула", points: ["Шамалар байланысы", "Есептеу тәртібі"], note: "Мысал келтіріңіз." },
+                        { title: "Қорытынды және бақылау", points: ["Интерактивті сұрақтар", "Практикалық бекіту"], note: "Қорытынды жасаңыз." }
                     ]
                 };
             }
@@ -868,10 +1287,10 @@
                 grade,
                 subject,
                 topicTitle: topic,
-                summary: `${grade}-сынып ${subject} пәні бойынша «${topic}» тақырыбының негізгі мазмұны.`,
+                summary: `${grade}-сынып ${subject} пәні бойынша «${topic}» тақырыбының нақты түсіндірмесі.`,
                 formula: "Негізгі формула / Ереже",
-                practicalTask: `«${topic}» тақырыбына практикалық тапсырманы орындаңыз.`,
-                labTask: `«${topic}» бойынша виртуалды тәжірибе жүргізіп, нәтижесін жазыңыз.`
+                practicalTask: `«${topic}» бойынша 2 есеп шығарып, қорытынды жазыңыз.`,
+                labTask: `«${topic}» параметрлерін өзгертіп, бақылау нәтижесін тіркеңіз.`
             };
         }
 
@@ -960,13 +1379,13 @@
         };
 
         // =====================================================================
-        // МҰҒАЛІМ: ПРЕЗЕНТАЦИЯ ЖӘНЕ ИНТЕРАКТИВТІ КВИЗ ОЙНАТҚЫШЫ
+        // ПРЕЗЕНТАЦИЯ ЖӘНЕ QUIZIZZ ОЙНАТҚЫШЫ
         // =====================================================================
         function viewTeacherPresentations() {
             return `
                 <div class="flex items-center justify-between gap-3 mb-5">
                     <h1 class="text-xl font-bold text-slate-900">Презентация</h1>
-                    <button onclick="setStudioMode('presentation'); setTab('ai_studio');" class="px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold">+ ЖИ Презентация</button>
+                    <button onclick="setStudioMode('presentation'); setTab('ai_studio');" class="px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold btn-press">+ ЖИ Презентация</button>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     ${dbData.presentations.map(p => `
@@ -976,7 +1395,7 @@
                                 <h3 class="text-base font-bold text-slate-900 mt-1">${esc(p.title)}</h3>
                                 <div class="text-xs text-slate-500 mt-1">${p.slides.length} слайд</div>
                             </div>
-                            <button onclick="openSlideDeck('${p.id}', 0)" class="mt-4 w-full py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold">
+                            <button onclick="openSlideDeck('${p.id}', 0)" class="mt-4 w-full py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold btn-press">
                                 Көрсету
                             </button>
                         </div>
@@ -1006,9 +1425,9 @@
                         ${sl.note ? `<div class="mt-4 pt-3 border-t border-slate-800 text-xs text-amber-300">${esc(sl.note)}</div>` : ""}
                     </div>
                     <div class="flex items-center justify-between">
-                        <button onclick="openSlideDeck('${deck.id}', ${i - 1})" ${i === 0 ? "disabled" : ""} class="px-4 py-2 rounded-xl border border-slate-200 text-xs font-bold disabled:opacity-40">← Алдыңғы</button>
+                        <button onclick="openSlideDeck('${deck.id}', ${i - 1})" ${i === 0 ? "disabled" : ""} class="px-4 py-2 rounded-xl border border-slate-200 text-xs font-bold btn-press disabled:opacity-40">← Алдыңғы</button>
                         <span class="text-xs font-bold text-slate-500">${i + 1} / ${deck.slides.length}</span>
-                        <button onclick="openSlideDeck('${deck.id}', ${i + 1})" ${i === deck.slides.length - 1 ? "disabled" : ""} class="px-4 py-2 rounded-xl bg-slate-900 text-white text-xs font-bold disabled:opacity-40">Келесі →</button>
+                        <button onclick="openSlideDeck('${deck.id}', ${i + 1})" ${i === deck.slides.length - 1 ? "disabled" : ""} class="px-4 py-2 rounded-xl bg-slate-900 text-white text-xs font-bold btn-press disabled:opacity-40">Келесі →</button>
                     </div>
                 </div>
                 `
@@ -1021,7 +1440,7 @@
             return `
                 <div class="flex items-center justify-between gap-3 mb-5">
                     <h1 class="text-xl font-bold text-slate-900">Интерактивті сабақ</h1>
-                    <button onclick="setStudioMode('quiz'); setTab('ai_studio');" class="px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold">+ ЖИ Квиз</button>
+                    <button onclick="setStudioMode('quiz'); setTab('ai_studio');" class="px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold btn-press">+ ЖИ Квиз</button>
                 </div>
 
                 <div id="liveQuizStage" class="mb-5"></div>
@@ -1037,10 +1456,10 @@
                                 <h3 class="text-base font-bold text-slate-900">${esc(q.title)}</h3>
                             </div>
                             <div class="mt-4 flex gap-2">
-                                <button onclick="startQuizRunner('${q.id}')" class="flex-1 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold">
+                                <button onclick="startQuizRunner('${q.id}')" class="flex-1 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold btn-press">
                                     Бастау
                                 </button>
-                                <button onclick="toggleQuizAssign('${q.id}')" class="px-3 py-2 rounded-xl border border-slate-200 text-xs font-bold ${q.assigned ? "bg-emerald-50 text-emerald-800 border-emerald-200" : "text-slate-600"}">
+                                <button onclick="toggleQuizAssign('${q.id}')" class="px-3 py-2 rounded-xl border border-slate-200 text-xs font-bold btn-press ${q.assigned ? "bg-emerald-50 text-emerald-800 border-emerald-200" : "text-slate-600"}">
                                     ${q.assigned ? "Оқушыда ✓" : "Беру"}
                                 </button>
                             </div>
@@ -1050,25 +1469,19 @@
             `;
         }
 
-        window.toggleQuizAssign = async function (id) {
+        window.toggleQuizAssign = function (id) {
             const q = dbData.quizzes.find(x => x.id === id);
             if (!q) return;
             q.assigned = !q.assigned;
-            await persistData();
             renderView();
             toast(q.assigned ? "Оқушыға берілді" : "Өшірілді");
+            persistData();
         };
 
         window.startQuizRunner = function (quizId) {
             const q = dbData.quizzes.find(x => x.id === quizId);
             if (!q || !q.questions.length) return;
-            quizSession = {
-                quiz: q,
-                index: 0,
-                score: 0,
-                answered: false,
-                selected: null
-            };
+            quizSession = { quiz: q, index: 0, score: 0, answered: false, selected: null };
             renderQuizStage();
         };
 
@@ -1079,7 +1492,7 @@
             const item = quiz.questions[index];
 
             stage.innerHTML = `
-                <div class="bg-slate-900 text-white rounded-2xl p-5 space-y-4">
+                <div class="bg-slate-900 text-white rounded-2xl p-5 space-y-4 anim-enter">
                     <div class="flex items-center justify-between text-xs">
                         <span class="font-bold text-amber-400">${esc(quiz.title)} • ${index + 1}/${quiz.questions.length}</span>
                         <span class="px-2.5 py-1 rounded-lg bg-slate-800 font-bold tabular-nums">Ұпай: ${score}</span>
@@ -1096,7 +1509,7 @@
                                 else cls = "bg-slate-800/60 border-slate-800 text-slate-400";
                             }
                             return `
-                                <button onclick="answerQuizOption(${oi})" ${answered ? "disabled" : ""} class="p-3.5 rounded-xl border text-left text-xs sm:text-sm font-semibold transition-colors ${cls}">
+                                <button onclick="answerQuizOption(${oi})" ${answered ? "disabled" : ""} class="p-3.5 rounded-xl border text-left text-xs sm:text-sm font-semibold btn-press ${cls}">
                                     ${String.fromCharCode(65 + oi)}. ${esc(opt)}
                                 </button>
                             `;
@@ -1105,7 +1518,7 @@
 
                     ${answered ? `
                         <div class="flex justify-end pt-1">
-                            <button onclick="nextQuizQuestion()" class="px-5 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold">
+                            <button onclick="nextQuizQuestion()" class="px-5 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold btn-press">
                                 ${index + 1 < quiz.questions.length ? "Келесі →" : "Аяқтау"}
                             </button>
                         </div>
@@ -1134,9 +1547,7 @@
                 const finalScore = quizSession.score;
                 const title = quizSession.quiz.title;
                 const u = currentUser();
-                if (uiState.role === "student") {
-                    u.points = (u.points || 0) + finalScore;
-                }
+                if (uiState.role === "student") u.points = (u.points || 0) + finalScore;
                 dbData.submissions.unshift({
                     id: "sub_" + Date.now(),
                     studentName: u.name,
@@ -1153,13 +1564,13 @@
         };
 
         // =====================================================================
-        // МҰҒАЛІМ: ЗЕРТХАНА & ПРАКТИКА ЖӘНЕ НӘТИЖЕЛЕР
+        // ЗЕРТХАНА & ПРАКТИКА
         // =====================================================================
         function viewTeacherLabsPrac() {
             return `
                 <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
                     <h1 class="text-xl font-bold text-slate-900">Зертхана & Практика</h1>
-                    <button onclick="openNewTaskModal()" class="px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold">+ Тапсырма</button>
+                    <button onclick="openNewTaskModal()" class="px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold btn-press">+ Тапсырма</button>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
@@ -1203,8 +1614,8 @@
                     <input id="taskTitleInp" type="text" required placeholder="Атауы" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm">
                     <textarea id="taskPromptInp" required rows="3" placeholder="Шарты" class="w-full rounded-xl border border-slate-300 p-3 text-sm"></textarea>
                     <div class="flex justify-end gap-2 pt-2">
-                        <button type="button" onclick="closeModal()" class="px-4 py-2 rounded-xl border border-slate-200 text-xs font-semibold">Жабу</button>
-                        <button type="submit" class="px-4 py-2 rounded-xl bg-amber-500 text-white text-xs font-bold">Сақтау</button>
+                        <button type="button" onclick="closeModal()" class="px-4 py-2 rounded-xl border border-slate-200 text-xs font-semibold btn-press">Жабу</button>
+                        <button type="submit" class="px-4 py-2 rounded-xl bg-amber-500 text-white text-xs font-bold btn-press">Сақтау</button>
                     </div>
                 </form>
                 `
@@ -1224,10 +1635,10 @@
                 answer: "",
                 score: null
             });
-            await persistData();
             closeModal();
             renderView();
             toast("Сақталды");
+            await persistData();
         };
 
         // =====================================================================
@@ -1248,7 +1659,7 @@
                                 <p class="text-xs text-slate-600 mt-1">${esc(t.summary)}</p>
                                 <div class="mt-2 px-2.5 py-1 rounded-lg bg-amber-50 text-amber-950 font-mono text-xs font-bold inline-block">${esc(t.formula)}</div>
                             </div>
-                            <button onclick="toggleTopicDone('${t.id}')" class="mt-4 w-full py-2 rounded-xl text-xs font-bold ${t.done ? "bg-slate-100 text-slate-700" : "bg-slate-900 text-white"}">
+                            <button onclick="toggleTopicDone('${t.id}')" class="mt-4 w-full py-2 rounded-xl text-xs font-bold btn-press ${t.done ? "bg-slate-100 text-slate-700" : "bg-slate-900 text-white"}">
                                 ${t.done ? "Қайта оқу" : "Оқылды деп белгілеу"}
                             </button>
                         </div>
@@ -1257,12 +1668,12 @@
             `;
         }
 
-        window.toggleTopicDone = async function (id) {
+        window.toggleTopicDone = function (id) {
             const t = dbData.topics.find(x => x.id === id);
             if (!t) return;
             t.done = !t.done;
-            await persistData();
             renderView();
+            persistData();
         };
 
         function viewStudentTasks() {
@@ -1281,7 +1692,7 @@
                                     <div class="text-xs font-bold text-amber-700">${q.grade}-сынып • ${esc(q.subject)}</div>
                                     <div class="text-sm font-bold text-slate-900">${esc(q.title)}</div>
                                 </div>
-                                <button onclick="startQuizRunner('${q.id}')" class="px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold shrink-0">
+                                <button onclick="startQuizRunner('${q.id}')" class="px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold shrink-0 btn-press">
                                     Бастау
                                 </button>
                             </div>
@@ -1302,7 +1713,7 @@
                             ${t.status !== "submitted" ? `
                                 <form onsubmit="submitStudentTask(event, '${t.id}')" class="mt-3 flex gap-2">
                                     <input id="ans_${t.id}" type="text" required placeholder="Жауап..." class="flex-1 rounded-xl border border-slate-300 px-3 py-2 text-xs">
-                                    <button type="submit" class="px-4 py-2 rounded-xl bg-slate-900 text-white text-xs font-bold">Жіберу</button>
+                                    <button type="submit" class="px-4 py-2 rounded-xl bg-slate-900 text-white text-xs font-bold btn-press">Жіберу</button>
                                 </form>
                             ` : `<div class="mt-2 text-xs font-mono bg-slate-50 px-3 py-1.5 rounded-lg border border-slate-200">Жауап: ${esc(t.answer)}</div>`}
                         </div>
@@ -1327,19 +1738,12 @@
                 detail: val,
                 score: 10
             });
-            await persistData();
             renderView();
             toast("Жауап жіберілді");
+            await persistData();
         };
 
-        // ОҚУШЫ: ЗЕРТХАНАЛЫҚ ЖҰМЫСТАР
-        const labSim = {
-            mode: "physics",
-            u: 12,
-            r: 6,
-            acid: 10,
-            base: 10
-        };
+        const labSim = { mode: "physics", u: 12, r: 6, acid: 10, base: 10 };
 
         function viewStudentLabs() {
             const currentA = (labSim.u / labSim.r).toFixed(2);
@@ -1349,8 +1753,8 @@
                 <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
                     <h1 class="text-xl font-bold text-slate-900">Зертханалық жұмыстар</h1>
                     <div class="flex bg-white p-0.5 rounded-xl border border-slate-200">
-                        <button onclick="labSim.mode='physics'; renderView();" class="px-3 py-1 rounded-lg text-xs font-bold ${labSim.mode === "physics" ? "bg-slate-900 text-white" : "text-slate-600"}">Физика: Ом заңы</button>
-                        <button onclick="labSim.mode='chemistry'; renderView();" class="px-3 py-1 rounded-lg text-xs font-bold ${labSim.mode === "chemistry" ? "bg-slate-900 text-white" : "text-slate-600"}">Химия: pH</button>
+                        <button onclick="labSim.mode='physics'; renderView();" class="px-3 py-1 rounded-lg text-xs font-bold btn-press ${labSim.mode === "physics" ? "bg-slate-900 text-white" : "text-slate-600"}">Физика: Ом заңы</button>
+                        <button onclick="labSim.mode='chemistry'; renderView();" class="px-3 py-1 rounded-lg text-xs font-bold btn-press ${labSim.mode === "chemistry" ? "bg-slate-900 text-white" : "text-slate-600"}">Химия: pH</button>
                     </div>
                 </div>
 
@@ -1368,7 +1772,7 @@
                                 <div id="simItxt" class="text-3xl font-extrabold text-amber-400 tabular-nums mt-1">${currentA} А</div>
                             </div>
                         </div>
-                        <button onclick="sendLabResult('Зертхана (Физика)', 'Ом заңы', 'U=' + labSim.u + 'В, R=' + labSim.r + 'Ом → I=' + (labSim.u/labSim.r).toFixed(2) + 'А')" class="px-4 py-2.5 rounded-xl bg-slate-900 text-white text-xs font-bold">
+                        <button onclick="sendLabResult('Зертхана (Физика)', 'Ом заңы', 'U=' + labSim.u + 'В, R=' + labSim.r + 'Ом → I=' + (labSim.u/labSim.r).toFixed(2) + 'А')" class="px-4 py-2.5 rounded-xl bg-slate-900 text-white text-xs font-bold btn-press">
                             Нәтижені жіберу
                         </button>
                     </div>
@@ -1386,7 +1790,7 @@
                                 <div class="text-3xl font-extrabold text-emerald-400 tabular-nums mt-1">${ph}</div>
                             </div>
                         </div>
-                        <button onclick="sendLabResult('Зертхана (Химия)', 'pH-метрия', 'HCl=' + labSim.acid + 'мл, NaOH=' + labSim.base + 'мл → pH=' + ph)" class="px-4 py-2.5 rounded-xl bg-slate-900 text-white text-xs font-bold">
+                        <button onclick="sendLabResult('Зертхана (Химия)', 'pH-метрия', 'HCl=' + labSim.acid + 'мл, NaOH=' + labSim.base + 'мл → pH=' + ph)" class="px-4 py-2.5 rounded-xl bg-slate-900 text-white text-xs font-bold btn-press">
                             Нәтижені жіберу
                         </button>
                     </div>
@@ -1409,32 +1813,39 @@
                 detail,
                 score: 10
             });
+            toast("Нәтиже жіберілді");
             await persistData();
-            toast("Нәтиже сақталды");
         };
 
-        // ОҚУШЫ: ЖИ КӨМЕК
+        // ОҚУШЫ: ЖИ ЧАТЫ
         function viewStudentAI() {
             const u = currentUser();
             return `
-                <div class="flex items-center justify-between gap-3 mb-4">
-                    <h1 class="text-xl font-bold text-slate-900">ЖИ (${dbData.ai.model})</h1>
-                    <span class="px-3 py-1 rounded-xl bg-amber-50 border border-amber-200 text-xs font-bold text-amber-900 tabular-nums">${u.tokens} токен</span>
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+                    <h1 class="text-xl font-bold text-slate-900">ЖИ (${esc(dbData.ai.model)})</h1>
+                    <div class="flex items-center gap-2">
+                        <div class="flex bg-white p-0.5 rounded-xl border border-slate-200">
+                            <button onclick="setAIModel('Gemini')" class="px-2.5 py-1 rounded-lg text-xs font-bold btn-press ${dbData.ai.model === "Gemini" ? "bg-amber-500 text-white" : "text-slate-600"}">Gemini</button>
+                            <button onclick="setAIModel('ChatGPT')" class="px-2.5 py-1 rounded-lg text-xs font-bold btn-press ${dbData.ai.model === "ChatGPT" ? "bg-slate-900 text-white" : "text-slate-600"}">ChatGPT</button>
+                        </div>
+                        <span class="px-3 py-1 rounded-xl bg-amber-50 border border-amber-200 text-xs font-bold text-amber-900 tabular-nums">${u.tokens} токен</span>
+                    </div>
                 </div>
 
                 <div class="bg-white rounded-2xl border border-slate-200 flex flex-col h-[460px] overflow-hidden">
                     <div class="flex-1 p-4 overflow-y-auto space-y-3">
-                        ${dbData.studentChat.map(m => `
+                        ${dbData.aiChat.map(m => `
                             <div class="flex ${m.role === "user" ? "justify-end" : "justify-start"}">
                                 <div class="max-w-lg rounded-2xl px-3.5 py-2.5 text-xs sm:text-sm ${m.role === "user" ? "bg-slate-900 text-white" : "bg-slate-100 text-slate-800 border border-slate-200"}">
-                                    ${esc(m.text)}
+                                    <div>${esc(m.text)}</div>
+                                    ${m.tokensUsed ? `<div class="mt-1 text-[10px] font-semibold opacity-70">${esc(m.model || "AI")} • ${m.tokensUsed} токен</div>` : ""}
                                 </div>
                             </div>
                         `).join("")}
                     </div>
                     <form onsubmit="askStudentAI(event)" class="p-3 border-t border-slate-200 flex gap-2">
-                        <input id="studentQInput" type="text" required placeholder="Сұрақ..." class="flex-1 rounded-xl border border-slate-300 px-3.5 py-2 text-sm">
-                        <button type="submit" class="px-4 py-2 rounded-xl bg-amber-500 text-white text-xs font-bold">Жіберу</button>
+                        <input id="studentQInput" type="text" required placeholder="Сұрақ..." class="flex-1 rounded-xl border border-slate-300 px-3.5 py-2 text-sm focus:outline-none focus:border-amber-500">
+                        <button type="submit" id="studentAskBtn" class="px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold btn-press">Жіберу</button>
                     </form>
                 </div>
             `;
@@ -1443,41 +1854,55 @@
         window.askStudentAI = async function (e) {
             e.preventDefault();
             const u = currentUser();
-            const spent = 10;
-            if ((u.tokens || 0) < spent) {
+            if ((u.tokens || 0) <= 0) {
                 toast("Токен таусылды");
                 return;
             }
-            const q = document.getElementById("studentQInput").value.trim();
+            const inp = document.getElementById("studentQInput");
+            const q = inp.value.trim();
             if (!q) return;
 
-            dbData.studentChat.push({ role: "user", text: q });
-            const reply = (await callRealAI(dbData.ai.model, `Қысқа әрі нақты қазақша жауап бер: ${q}`))
-                || `«${q}» бойынша қысқа түсіндірме: берілген шамалар мен формуланы нақтылаңыз.`;
+            inp.value = "";
+            dbData.aiChat.push({ role: "user", text: q });
+            renderView();
+            setButtonLoading(document.getElementById("studentAskBtn"), true, "...");
 
+            const aiResult = await callRealAIWithTokens(
+                dbData.ai.model,
+                `Оқушыға түсінікті, нақты қазақша жауап бер: ${q}`,
+                q
+            );
+
+            const spent = Math.min(u.tokens, aiResult.tokensUsed);
             u.tokens = Math.max(0, (u.tokens || 0) - spent);
-            dbData.studentChat.push({ role: "ai", model: dbData.ai.model, text: reply });
+            dbData.aiChat.push({
+                role: "ai",
+                model: dbData.ai.model,
+                tokensUsed: spent,
+                text: aiResult.text
+            });
             dbData.tokenLogs.unshift({
                 id: "tl_" + Date.now(),
                 user: u.name,
                 role: "Оқушы",
                 model: dbData.ai.model,
                 spent,
-                action: q.slice(0, 28)
+                action: q.slice(0, 30)
             });
+
             await persistData();
             renderView();
+            toast(`Жауап дайын (-${spent} токен)`);
         };
 
         // =====================================================================
         // АДМИН, КАБИНЕТ ЖӘНЕ БАПТАУЛАР
         // =====================================================================
         function viewAdminUsers() {
-            const roleMap = { teacher: "Мұғалім", student: "Оқушы", admin: "Админ" };
             return `
                 <div class="flex items-center justify-between gap-3 mb-5">
                     <h1 class="text-xl font-bold text-slate-900">Пайдаланушылар</h1>
-                    <button onclick="openAddUserModal()" class="px-3.5 py-2 rounded-xl bg-slate-900 text-white text-xs font-bold">+ Қосу</button>
+                    <button onclick="openAddUserModal()" class="px-3.5 py-2 rounded-xl bg-slate-900 text-white text-xs font-bold btn-press">+ Қосу</button>
                 </div>
                 <div class="bg-white rounded-2xl border border-slate-200 overflow-x-auto">
                     <table class="w-full text-left text-xs sm:text-sm">
@@ -1497,293 +1922,4 @@
                                         <select onchange="changeUserRole('${u.id}', this.value)" class="rounded-lg border border-slate-200 px-2 py-1 text-xs bg-white">
                                             <option value="student" ${u.role === "student" ? "selected" : ""}>Оқушы</option>
                                             <option value="teacher" ${u.role === "teacher" ? "selected" : ""}>Мұғалім</option>
-                                            <option value="admin" ${u.role === "admin" ? "selected" : ""}>Админ</option>
-                                        </select>
-                                    </td>
-                                    <td class="py-3 px-4 font-bold text-amber-700 tabular-nums">${u.tokens}</td>
-                                    <td class="py-3 px-4 text-right">
-                                        <button onclick="topUpUserTokens('${u.id}', 1000)" class="px-2.5 py-1 rounded-lg bg-amber-50 hover:bg-amber-100 border border-amber-200 text-xs font-bold text-amber-900">+1000</button>
-                                    </td>
-                                </tr>
-                            `).join("")}
-                        </tbody>
-                    </table>
-                </div>
-            `;
-        }
-
-        window.changeUserRole = async function (id, newRole) {
-            const u = dbData.users.find(x => x.id === id);
-            if (!u) return;
-            u.role = newRole;
-            await persistData();
-            toast("Рөл жаңартылды");
-        };
-
-        window.openAddUserModal = function () {
-            openModal(
-                "Жаңа пайдаланушы",
-                `
-                <form onsubmit="addUserItem(event)" class="space-y-3">
-                    <input id="uName" type="text" required placeholder="Аты-жөні" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm">
-                    <select id="uRole" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm bg-white">
-                        <option value="student">Оқушы</option>
-                        <option value="teacher">Мұғалім</option>
-                    </select>
-                    <input id="uTokens" type="number" value="1000" min="0" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm">
-                    <div class="flex justify-end gap-2 pt-2">
-                        <button type="button" onclick="closeModal()" class="px-4 py-2 rounded-xl border border-slate-200 text-xs font-semibold">Жабу</button>
-                        <button type="submit" class="px-4 py-2 rounded-xl bg-slate-900 text-white text-xs font-bold">Сақтау</button>
-                    </div>
-                </form>
-                `
-            );
-        };
-
-        window.addUserItem = async function (e) {
-            e.preventDefault();
-            dbData.users.push({
-                id: "u_" + Date.now(),
-                name: document.getElementById("uName").value.trim(),
-                role: document.getElementById("uRole").value,
-                grade: 9,
-                subject: "Физика",
-                tokens: parseInt(document.getElementById("uTokens").value, 10) || 1000,
-                points: 0
-            });
-            await persistData();
-            closeModal();
-            renderView();
-            toast("Қосылды");
-        };
-
-        window.topUpUserTokens = async function (id, amt) {
-            const u = dbData.users.find(x => x.id === id);
-            if (!u) return;
-            u.tokens = (u.tokens || 0) + amt;
-            await persistData();
-            renderView();
-            toast(`+${amt} токен`);
-        };
-
-        function viewAdminCurriculum() {
-            return `
-                <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
-                    <h1 class="text-xl font-bold text-slate-900">Сыныптар & Пәндер</h1>
-                    <form onsubmit="addSubjectItem(event)" class="flex gap-2">
-                        <input id="subjInp" type="text" required placeholder="Жаңа пән" class="rounded-xl border border-slate-300 px-3 py-1.5 text-xs bg-white">
-                        <button type="submit" class="px-3.5 py-1.5 rounded-xl bg-amber-500 text-white text-xs font-bold">+ Қосу</button>
-                    </form>
-                </div>
-                <div class="bg-white rounded-2xl border border-slate-200 p-4 mb-4">
-                    <div class="text-xs font-bold text-slate-500 uppercase mb-2">Сыныптар</div>
-                    <div class="flex flex-wrap gap-1.5">
-                        ${dbData.grades.map(g => `<span class="px-3 py-1 rounded-lg bg-slate-100 text-xs font-bold text-slate-800">${g}-сынып</span>`).join("")}
-                    </div>
-                </div>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-                    ${dbData.subjects.map(s => `
-                        <div class="bg-white rounded-2xl border border-slate-200 p-4 text-sm font-bold text-slate-800">${esc(s)}</div>
-                    `).join("")}
-                </div>
-            `;
-        }
-
-        window.addSubjectItem = async function (e) {
-            e.preventDefault();
-            const val = document.getElementById("subjInp").value.trim();
-            if (val && !dbData.subjects.includes(val)) {
-                dbData.subjects.push(val);
-                await persistData();
-                renderView();
-                toast("Пән қосылды");
-            }
-        };
-
-        function viewAdminTokens() {
-            return `
-                <div class="flex items-center justify-between gap-3 mb-5">
-                    <h1 class="text-xl font-bold text-slate-900">ЖИ & Токендер</h1>
-                    <button onclick="openApiModal()" class="px-3.5 py-2 rounded-xl bg-slate-900 text-white text-xs font-bold">API кілттер</button>
-                </div>
-                <div class="bg-white rounded-2xl border border-slate-200 overflow-x-auto">
-                    <table class="w-full text-left text-xs sm:text-sm">
-                        <thead class="bg-slate-50 border-b border-slate-200 text-xs text-slate-500">
-                            <tr>
-                                <th class="py-3 px-4">Пайдаланушы</th>
-                                <th class="py-3 px-4">Модель</th>
-                                <th class="py-3 px-4">Әрекет</th>
-                                <th class="py-3 px-4 text-right">Шығын</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-slate-100">
-                            ${dbData.tokenLogs.map(l => `
-                                <tr>
-                                    <td class="py-3 px-4 font-semibold">${esc(l.user)}</td>
-                                    <td class="py-3 px-4">${esc(l.model)}</td>
-                                    <td class="py-3 px-4 text-slate-600">${esc(l.action)}</td>
-                                    <td class="py-3 px-4 text-right font-bold text-amber-700">-${l.spent}</td>
-                                </tr>
-                            `).join("")}
-                        </tbody>
-                    </table>
-                </div>
-            `;
-        }
-
-        function viewProfile() {
-            const u = currentUser();
-            return `
-                <h1 class="text-xl font-bold text-slate-900 mb-5">Жеке кабинет</h1>
-                <div class="bg-white rounded-2xl border border-slate-200 p-5 max-w-lg space-y-3">
-                    <div class="text-lg font-bold text-slate-900">${esc(u.name)}</div>
-                    <div class="text-xs text-slate-500">${u.grade ? u.grade + "-сынып • " : ""}${esc(u.subject)}</div>
-                    <div class="pt-2 flex gap-4 text-sm font-bold">
-                        <span class="text-amber-700">Токен: ${u.tokens}</span>
-                        ${uiState.role === "student" ? `<span class="text-slate-800">Ұпай: ${u.points || 0}</span>` : ""}
-                    </div>
-                </div>
-            `;
-        }
-
-        function viewSettings() {
-            const u = currentUser();
-            return `
-                <h1 class="text-xl font-bold text-slate-900 mb-5">Баптаулар</h1>
-                <div class="bg-white rounded-2xl border border-slate-200 p-5 max-w-lg space-y-4">
-                    <form onsubmit="saveUserName(event)" class="space-y-3">
-                        <label class="block text-xs font-bold text-slate-700">Аты-жөні</label>
-                        <input id="profNameInp" type="text" required value="${esc(u.name)}" class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm">
-                        <button type="submit" class="px-4 py-2 rounded-xl bg-slate-900 text-white text-xs font-bold">Сақтау</button>
-                    </form>
-                    <div class="pt-3 border-t border-slate-200 flex justify-between items-center">
-                        <span class="text-xs font-semibold text-slate-600">Жоба: bolashaq-e214e</span>
-                        <button onclick="resetPlatformData()" class="px-3.5 py-1.5 rounded-xl bg-rose-50 text-rose-700 border border-rose-200 text-xs font-bold">Қалпына келтіру</button>
-                    </div>
-                </div>
-            `;
-        }
-
-        window.saveUserName = async function (e) {
-            e.preventDefault();
-            currentUser().name = document.getElementById("profNameInp").value.trim();
-            await persistData();
-            renderView();
-            toast("Сақталды");
-        };
-
-        // =====================================================================
-        // GEMINI / CHATGPT API ШАҚЫРУ ЖӘНЕ МОДАЛЬДЫ ТЕРЕЗЕЛЕР
-        // =====================================================================
-        async function callRealAI(model, prompt) {
-            try {
-                if (model === "Gemini" && uiState.apiKeys.geminiKey) {
-                    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${encodeURIComponent(uiState.apiKeys.geminiKey)}`;
-                    const res = await fetch(url, {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
-                    });
-                    const data = await res.json();
-                    return data.candidates?.[0]?.content?.parts?.[0]?.text || null;
-                }
-                if (model === "ChatGPT" && uiState.apiKeys.openaiKey) {
-                    const res = await fetch("https://api.openai.com/v1/chat/completions", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                            "Authorization": `Bearer ${uiState.apiKeys.openaiKey}`
-                        },
-                        body: JSON.stringify({
-                            model: "gpt-4o-mini",
-                            messages: [{ role: "user", content: prompt }]
-                        })
-                    });
-                    const data = await res.json();
-                    return data.choices?.[0]?.message?.content || null;
-                }
-            } catch {
-                return null;
-            }
-            return null;
-        }
-
-        window.openApiModal = function () {
-            openModal(
-                "API кілттер",
-                `
-                <form onsubmit="saveApiKeys(event)" class="space-y-3">
-                    <div>
-                        <label class="block text-xs font-bold text-slate-700 mb-1">Gemini API Key</label>
-                        <input id="kGem" type="password" value="${esc(uiState.apiKeys.geminiKey)}" placeholder="AIza..." class="w-full rounded-xl border border-slate-300 px-3 py-2 text-xs font-mono">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-slate-700 mb-1">OpenAI (ChatGPT) API Key</label>
-                        <input id="kOai" type="password" value="${esc(uiState.apiKeys.openaiKey)}" placeholder="sk-..." class="w-full rounded-xl border border-slate-300 px-3 py-2 text-xs font-mono">
-                    </div>
-                    <div class="flex justify-end gap-2 pt-2">
-                        <button type="button" onclick="closeModal()" class="px-4 py-2 rounded-xl border border-slate-200 text-xs font-semibold">Жабу</button>
-                        <button type="submit" class="px-4 py-2 rounded-xl bg-amber-500 text-white text-xs font-bold">Сақтау</button>
-                    </div>
-                </form>
-                `
-            );
-        };
-
-        window.saveApiKeys = function (e) {
-            e.preventDefault();
-            uiState.apiKeys.geminiKey = document.getElementById("kGem").value.trim();
-            uiState.apiKeys.openaiKey = document.getElementById("kOai").value.trim();
-            localStorage.setItem("bolashaq_gemini_key", uiState.apiKeys.geminiKey);
-            localStorage.setItem("bolashaq_openai_key", uiState.apiKeys.openaiKey);
-            closeModal();
-            syncChrome();
-            toast("API кілттер сақталды");
-        };
-
-        function openModal(heading, html) {
-            document.getElementById("modalHeading").textContent = heading;
-            document.getElementById("modalBody").innerHTML = html;
-            const m = document.getElementById("modalRoot");
-            m.classList.remove("hidden");
-            m.classList.add("flex");
-        }
-
-        window.closeModal = function () {
-            const m = document.getElementById("modalRoot");
-            m.classList.add("hidden");
-            m.classList.remove("flex");
-        };
-
-        function toast(msg) {
-            const root = document.getElementById("toastRoot");
-            const el = document.createElement("div");
-            el.className = "bg-slate-900 text-white text-xs font-bold px-3.5 py-2.5 rounded-xl shadow-lg fade-in";
-            el.textContent = msg;
-            root.appendChild(el);
-            setTimeout(() => el.remove(), 2200);
-        }
-
-        function esc(s) {
-            if (s === null || s === undefined) return "";
-            return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
-        }
-
-        window.toggleMobileSidebar = function () {
-            document.getElementById("sidebar").classList.toggle("-translate-x-full");
-            document.getElementById("sidebarBackdrop").classList.toggle("hidden");
-        };
-
-        window.closeMobileSidebar = function () {
-            document.getElementById("sidebar").classList.add("-translate-x-full");
-            document.getElementById("sidebarBackdrop").classList.add("hidden");
-        };
-
-        window.addEventListener("DOMContentLoaded", () => {
-            renderAll();
-            initFirestoreConnection();
-        });
-    </script>
-</body>
-</html>
-```
+                                 
