@@ -9,82 +9,87 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-obsidian: #0B111E;
-            --bg-surface: #111827;
-            --bg-card: rgba(17, 24, 39, 0.88);
-            --border-subtle: rgba(255, 255, 255, 0.09);
-            --emerald-accent: #10B981;
-            --gold-accent: #F59E0B;
-        }
-
         html, body {
             font-family: 'Inter', sans-serif;
             background:
-                radial-gradient(circle at 12% 8%, rgba(16, 185, 129, 0.12), transparent 38%),
-                radial-gradient(circle at 88% 12%, rgba(245, 158, 11, 0.11), transparent 40%),
-                linear-gradient(160deg, #070B14 0%, #0B111E 50%, #0F172A 100%);
+                radial-gradient(circle at 14% 8%, rgba(16, 185, 129, 0.14), transparent 36%),
+                radial-gradient(circle at 86% 12%, rgba(99, 102, 241, 0.14), transparent 38%),
+                linear-gradient(160deg, #060911 0%, #0B111E 54%, #0E1629 100%);
             color: #F8FAFC;
             min-height: 100vh;
             overflow-x: hidden;
         }
 
         .glass-panel {
-            background: rgba(17, 24, 39, 0.84);
-            backdrop-filter: blur(18px) saturate(145%);
-            -webkit-backdrop-filter: blur(18px) saturate(145%);
+            background: rgba(15, 23, 42, 0.82);
+            backdrop-filter: blur(20px) saturate(150%);
+            -webkit-backdrop-filter: blur(20px) saturate(150%);
             border: 1px solid rgba(255, 255, 255, 0.09);
             box-shadow: 0 12px 32px rgba(0, 0, 0, 0.36);
         }
 
         .glass-elevated {
-            background: rgba(15, 23, 42, 0.92);
-            backdrop-filter: blur(20px) saturate(150%);
-            -webkit-backdrop-filter: blur(20px) saturate(150%);
-            border: 1px solid rgba(255, 255, 255, 0.11);
+            background: rgba(13, 20, 36, 0.94);
+            backdrop-filter: blur(24px) saturate(160%);
+            -webkit-backdrop-filter: blur(24px) saturate(160%);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        /* iPhone Liquid Glass капсуласы және логотип */
+        .liquid-glass-pill {
+            position: relative;
+            background: linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.14) 0%,
+                rgba(255, 255, 255, 0.05) 48%,
+                rgba(255, 255, 255, 0.09) 100%
+            );
+            backdrop-filter: blur(22px) saturate(185%);
+            -webkit-backdrop-filter: blur(22px) saturate(185%);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            box-shadow:
+                inset 0 1px 1px rgba(255, 255, 255, 0.35),
+                inset 0 -1px 2px rgba(0, 0, 0, 0.35),
+                0 8px 20px rgba(0, 0, 0, 0.32);
+        }
+
+        .liquid-glass-logo {
+            position: relative;
+            background: linear-gradient(
+                145deg,
+                rgba(16, 185, 129, 0.24) 0%,
+                rgba(99, 102, 241, 0.22) 55%,
+                rgba(255, 255, 255, 0.12) 100%
+            );
+            backdrop-filter: blur(20px) saturate(185%);
+            -webkit-backdrop-filter: blur(20px) saturate(185%);
+            border: 1px solid rgba(52, 211, 153, 0.38);
+            box-shadow:
+                inset 0 1.5px 1.5px rgba(255, 255, 255, 0.42),
+                inset 0 -2px 4px rgba(16, 185, 129, 0.25),
+                0 8px 22px rgba(16, 185, 129, 0.16);
         }
 
         .brand-wordmark {
             font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
             font-weight: 800;
             letter-spacing: 0.09em;
-            background: linear-gradient(135deg, #F8FAFC 0%, #E2E8F0 55%, #FCD34D 100%);
+            background: linear-gradient(135deg, #FFFFFF 0%, #6EE7B7 52%, #818CF8 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         /* iPhone экран блоктан шыққандағыдай серпімді қону анимациясы */
         @keyframes iphoneUnlockSettle {
-            0% {
-                opacity: 0;
-                transform: scale(1.12) translateY(18px);
-                filter: blur(6px);
-            }
-            65% {
-                opacity: 1;
-                transform: scale(0.99) translateY(-2px);
-                filter: blur(0);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-                filter: blur(0);
-            }
+            0% { opacity: 0; transform: scale(1.09) translateY(14px); filter: blur(6px); }
+            65% { opacity: 1; transform: scale(0.992) translateY(-2px); filter: blur(0); }
+            100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
         }
 
         @keyframes iphoneTileSpring {
-            0% {
-                opacity: 0;
-                transform: scale(0.86) translateY(18px);
-            }
-            70% {
-                opacity: 1;
-                transform: scale(1.015) translateY(-2px);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
+            0% { opacity: 0; transform: scale(0.9) translateY(14px); }
+            72% { opacity: 1; transform: scale(1.01) translateY(-2px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
         }
 
         @keyframes toastIn {
@@ -96,25 +101,22 @@
             to { transform: rotate(360deg); }
         }
 
-        .anim-unlock {
-            animation: iphoneUnlockSettle 0.52s cubic-bezier(0.2, 0.92, 0.25, 1.04) both;
+        @keyframes barPulse {
+            0%, 100% { opacity: 0.92; }
+            50% { opacity: 0.52; }
         }
 
-        .anim-tile {
-            animation: iphoneTileSpring 0.42s cubic-bezier(0.22, 1.15, 0.36, 1) both;
-        }
-
-        .anim-toast {
-            animation: toastIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
-        }
+        .anim-unlock { animation: iphoneUnlockSettle 0.5s cubic-bezier(0.2, 0.92, 0.25, 1.04) both; }
+        .anim-tile { animation: iphoneTileSpring 0.4s cubic-bezier(0.22, 1.15, 0.36, 1) both; }
+        .anim-toast { animation: toastIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) both; }
+        .net-live-dot { animation: barPulse 2.2s ease-in-out infinite; }
 
         .tap-btn {
             transition: transform 0.1s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
+            cursor: pointer;
+            user-select: none;
         }
-
-        .tap-btn:active:not(:disabled) {
-            transform: scale(0.965);
-        }
+        .tap-btn:active:not(:disabled) { transform: scale(0.965); }
 
         .spinner {
             width: 14px;
@@ -128,33 +130,33 @@
         }
 
         ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: #0B111E; }
+        ::-webkit-scrollbar-track { background: #070B14; }
         ::-webkit-scrollbar-thumb { background: #334155; border-radius: 9999px; }
     </style>
 </head>
 <body class="flex flex-col antialiased selection:bg-emerald-500/30 selection:text-emerald-200">
 
     <!-- =================================================================== -->
-    <!-- 1. БАСТАПҚЫ КІРУ / ТІРКЕЛУ ЭКРАНЫ (НАҚТЫ FIREBASE AUTH)             -->
+    <!-- 1. БАСТАПҚЫ КІРУ / ТЕЛЕФОН / ТІРКЕЛУ ЭКРАНЫ                         -->
     <!-- =================================================================== -->
-    <div id="authGate" class="fixed inset-0 z-50 overflow-y-auto bg-[#070B14]/90 backdrop-blur-xl flex items-center justify-center p-4">
+    <div id="authGate" class="fixed inset-0 z-50 overflow-y-auto bg-[#060911]/92 backdrop-blur-2xl flex items-center justify-center p-4">
         <div class="w-full max-w-3xl rounded-3xl glass-elevated shadow-2xl overflow-hidden grid grid-cols-1 md:grid-cols-12">
 
             <!-- Сол жақ бренд және статус бөлімі -->
-            <div class="md:col-span-5 bg-gradient-to-br from-[#0B111E] via-[#111827] to-[#064E3B]/50 p-6 sm:p-7 flex flex-col justify-between border-b md:border-b-0 md:border-r border-white/10">
+            <div class="md:col-span-5 bg-gradient-to-br from-[#080D19] via-[#0F172A] to-[#064E3B]/45 p-6 sm:p-7 flex flex-col justify-between border-b md:border-b-0 md:border-r border-white/10">
                 <div class="space-y-5">
                     <div class="flex items-center gap-3">
-                        <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-amber-500/20 border border-emerald-400/30 flex items-center justify-center shadow-lg">
+                        <div class="w-11 h-11 rounded-2xl liquid-glass-logo flex items-center justify-center">
                             <svg class="w-6 h-6" viewBox="0 0 32 32" fill="none">
                                 <defs>
-                                    <linearGradient id="bolashaqEmblemGrad1" x1="4" y1="4" x2="28" y2="28" gradientUnits="userSpaceOnUse">
-                                        <stop offset="0%" stop-color="#10B981"/>
-                                        <stop offset="100%" stop-color="#F59E0B"/>
+                                    <linearGradient id="bHexGrad1" x1="4" y1="4" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0%" stop-color="#34D399"/>
+                                        <stop offset="100%" stop-color="#818CF8"/>
                                     </linearGradient>
                                 </defs>
-                                <polygon points="16,2 28,9 28,23 16,30 4,23 4,9" stroke="url(#bolashaqEmblemGrad1)" stroke-width="2.2" fill="rgba(16,185,129,0.08)"/>
-                                <path d="M11 10.5H17.5C19.433 10.5 21 12.067 21 14C21 15.1 20.48 16.08 19.68 16.72C20.78 17.34 21.5 18.5 21.5 19.85C21.5 21.86 19.86 23.5 17.85 23.5H11V10.5Z" stroke="#F8FAFC" stroke-width="2" stroke-linejoin="round"/>
-                                <path d="M11 16.8H18.2" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/>
+                                <polygon points="16,2 28,9 28,23 16,30 4,23 4,9" stroke="url(#bHexGrad1)" stroke-width="2.2" fill="rgba(16,185,129,0.12)"/>
+                                <path d="M11 10.5H17.5C19.433 10.5 21 12.067 21 14C21 15.1 20.48 16.08 19.68 16.72C20.78 17.34 21.5 18.5 21.5 19.85C21.5 21.86 19.86 23.5 17.85 23.5H11V10.5Z" stroke="#ECFDF5" stroke-width="2" stroke-linejoin="round"/>
+                                <path d="M11 16.8H18.2" stroke="#6EE7B7" stroke-width="2" stroke-linecap="round"/>
                             </svg>
                         </div>
                         <div>
@@ -170,57 +172,101 @@
                         </div>
                         <div class="px-3.5 py-2.5 rounded-xl bg-white/[0.04] border border-white/[0.07] flex items-center justify-between">
                             <span>ЖИ ядросы</span>
-                            <span class="text-amber-400 font-bold">Gemini • GPT</span>
+                            <span class="text-indigo-300 font-bold">Gemini • GPT</span>
                         </div>
                         <div class="px-3.5 py-2.5 rounded-xl bg-white/[0.04] border border-white/[0.07] flex items-center justify-between">
-                            <span>Медиа & Экран</span>
-                            <span class="text-slate-200 font-bold">Фото • Видео</span>
+                            <span>Кіру әдістері</span>
+                            <span class="text-slate-200 font-bold">Email • SMS • Google</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="pt-6 mt-6 border-t border-white/10 flex items-center justify-between text-[11px] text-slate-400">
-                    <span id="gateFirebaseState" class="flex items-center gap-1.5">
+                <div class="pt-6 mt-6 border-t border-white/10 flex items-center justify-between gap-2 text-[11px] text-slate-400">
+                    <span class="flex items-center gap-1.5 shrink-0">
                         <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
                         <span>bolashaq-e214e</span>
                     </span>
-                    <div id="gateNetIndicator" class="flex items-center gap-1.5 text-slate-200 font-semibold"></div>
+                    <div id="gateNetIndicator" class="liquid-glass-pill px-2.5 py-1 rounded-full flex items-center gap-1.5 text-slate-100 font-semibold"></div>
                 </div>
             </div>
 
             <!-- Оң жақ формалар бөлімі -->
-            <div class="md:col-span-7 p-6 sm:p-7 flex flex-col justify-between bg-[#0F172A]/95">
+            <div class="md:col-span-7 p-6 sm:p-7 flex flex-col justify-between bg-[#0B1222]/95">
                 <div>
-                    <div class="grid grid-cols-2 bg-slate-950/90 p-1 rounded-2xl border border-white/10 mb-5">
+                    <!-- 3 ҚОЙЫНДЫ: КІРУ | ТЕЛЕФОН | ТІРКЕЛУ -->
+                    <div class="grid grid-cols-3 bg-slate-950/90 p-1 rounded-2xl border border-white/10 mb-5">
                         <button type="button" data-action="auth-tab" data-mode="login" id="authTabLogin" class="py-2 rounded-xl text-xs sm:text-sm font-bold tap-btn bg-emerald-500 text-slate-950">
                             Кіру
+                        </button>
+                        <button type="button" data-action="auth-tab" data-mode="phone" id="authTabPhone" class="py-2 rounded-xl text-xs sm:text-sm font-bold tap-btn text-slate-400 hover:text-white">
+                            Телефон
                         </button>
                         <button type="button" data-action="auth-tab" data-mode="register" id="authTabRegister" class="py-2 rounded-xl text-xs sm:text-sm font-bold tap-btn text-slate-400 hover:text-white">
                             Тіркелу
                         </button>
                     </div>
 
-                    <!-- ЛОГИН / ПАРОЛЬМЕН КІРУ -->
-                    <form id="loginForm" class="space-y-3.5">
+                    <!-- 1. ЛОГИН / ПАРОЛЬМЕН КІРУ -->
+                    <div id="loginPanel" class="space-y-3.5">
                         <div>
                             <label for="loginEmail" class="block text-xs font-bold text-slate-300 mb-1">Email</label>
-                            <input id="loginEmail" type="email" required autocomplete="email" placeholder="user@domain.kz" class="w-full rounded-xl bg-slate-950/90 border border-white/15 px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-emerald-400">
+                            <input id="loginEmail" type="email" autocomplete="email" placeholder="user@domain.kz" class="auth-enter-login w-full rounded-xl bg-slate-950/90 border border-white/15 px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-emerald-400">
                         </div>
                         <div>
                             <label for="loginPassword" class="block text-xs font-bold text-slate-300 mb-1">Құпиясөз</label>
-                            <input id="loginPassword" type="password" required autocomplete="current-password" placeholder="••••••••" class="w-full rounded-xl bg-slate-950/90 border border-white/15 px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-emerald-400">
+                            <input id="loginPassword" type="password" autocomplete="current-password" placeholder="••••••••" class="auth-enter-login w-full rounded-xl bg-slate-950/90 border border-white/15 px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-emerald-400">
                         </div>
-                        <button type="submit" id="loginSubmitBtn" class="w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-sm font-extrabold tap-btn">
+                        <button type="button" id="loginSubmitBtn" data-action="submit-login" class="w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-sm font-extrabold tap-btn">
                             Кіру
                         </button>
-                    </form>
+                    </div>
 
-                    <!-- ТІРКЕЛУ -->
-                    <form id="registerForm" class="space-y-3 hidden">
+                    <!-- 2. ТЕЛЕФОН НӨМІРІ АРҚЫЛЫ КІРУ (SMS КОД) -->
+                    <div id="phonePanel" class="space-y-3 hidden">
+                        <div>
+                            <label for="phoneNumberInput" class="block text-xs font-bold text-slate-300 mb-1">Телефон нөмірі (халықаралық формат)</label>
+                            <input id="phoneNumberInput" type="tel" autocomplete="tel" value="+7" placeholder="+77001234567" class="auth-enter-phone w-full rounded-xl bg-slate-950/90 border border-white/15 px-3.5 py-2.5 text-sm font-mono text-white placeholder-slate-500 focus:outline-none focus:border-emerald-400">
+                        </div>
+
+                        <!-- Алғаш кірушілерге арналған деректер (қажет болса) -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                            <input id="phoneNameInput" type="text" placeholder="Аты-жөні" class="rounded-xl bg-slate-950/90 border border-white/15 px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-400">
+                            <select id="phoneRoleSelect" class="rounded-xl bg-slate-950/90 border border-white/15 px-2.5 py-2 text-xs text-white font-semibold focus:outline-none focus:border-emerald-400">
+                                <option value="student">Оқушы</option>
+                                <option value="teacher">Мұғалім</option>
+                                <option value="admin">Админ</option>
+                            </select>
+                            <select id="phoneGradeSelect" class="rounded-xl bg-slate-950/90 border border-white/15 px-2.5 py-2 text-xs text-white font-semibold focus:outline-none focus:border-emerald-400"></select>
+                        </div>
+
+                        <!-- reCAPTCHA контейнері -->
+                        <div id="recaptchaContainer" class="flex justify-center"></div>
+
+                        <button type="button" id="sendSmsBtn" data-action="send-phone-sms" class="w-full py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-sm font-extrabold tap-btn">
+                            SMS код жіберу
+                        </button>
+
+                        <!-- SMS код енгізу блогы -->
+                        <div id="smsVerifyBlock" class="hidden pt-2 border-t border-white/10 space-y-2.5">
+                            <div class="flex items-center justify-between text-xs">
+                                <span class="text-emerald-400 font-bold">SMS-тегі 6 таңбалы кодты енгізіңіз</span>
+                                <button type="button" data-action="reset-phone-step" class="text-slate-400 hover:text-white underline">Нөмірді өзгерту</button>
+                            </div>
+                            <div class="flex gap-2">
+                                <input id="smsCodeInput" type="text" inputmode="numeric" maxlength="6" placeholder="000000" class="auth-enter-sms flex-1 rounded-xl bg-slate-950 border border-emerald-400/50 px-3.5 py-2.5 text-center text-base font-mono font-extrabold tracking-[0.28em] text-white focus:outline-none">
+                                <button type="button" id="verifySmsBtn" data-action="verify-phone-sms" class="px-5 py-2.5 rounded-xl bg-indigo-500 hover:bg-indigo-400 text-white text-xs sm:text-sm font-extrabold tap-btn">
+                                    Растау және кіру
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. ТІРКЕЛУ -->
+                    <div id="registerPanel" class="space-y-3 hidden">
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <div>
                                 <label for="regName" class="block text-xs font-bold text-slate-300 mb-1">Аты-жөні</label>
-                                <input id="regName" type="text" required placeholder="Аты-жөні" class="w-full rounded-xl bg-slate-950/90 border border-white/15 px-3 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-emerald-400">
+                                <input id="regName" type="text" placeholder="Аты-жөні" class="auth-enter-reg w-full rounded-xl bg-slate-950/90 border border-white/15 px-3 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-emerald-400">
                             </div>
                             <div>
                                 <label for="regRole" class="block text-xs font-bold text-slate-300 mb-1">Рөл</label>
@@ -238,19 +284,19 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <div>
                                 <label for="regEmail" class="block text-xs font-bold text-slate-300 mb-1">Email</label>
-                                <input id="regEmail" type="email" required placeholder="user@domain.kz" class="w-full rounded-xl bg-slate-950/90 border border-white/15 px-3 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-emerald-400">
+                                <input id="regEmail" type="email" placeholder="user@domain.kz" class="auth-enter-reg w-full rounded-xl bg-slate-950/90 border border-white/15 px-3 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-emerald-400">
                             </div>
                             <div>
                                 <label for="regPassword" class="block text-xs font-bold text-slate-300 mb-1">Құпиясөз</label>
-                                <input id="regPassword" type="password" required minlength="6" placeholder="Кемінде 6 таңба" class="w-full rounded-xl bg-slate-950/90 border border-white/15 px-3 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-emerald-400">
+                                <input id="regPassword" type="password" placeholder="Кемінде 6 таңба" class="auth-enter-reg w-full rounded-xl bg-slate-950/90 border border-white/15 px-3 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-emerald-400">
                             </div>
                         </div>
-                        <button type="submit" id="registerSubmitBtn" class="w-full py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 text-sm font-extrabold tap-btn">
+                        <button type="button" id="registerSubmitBtn" data-action="submit-register" class="w-full py-2.5 rounded-xl bg-indigo-500 hover:bg-indigo-400 text-white text-sm font-extrabold tap-btn">
                             Тіркелу
                         </button>
-                    </form>
+                    </div>
 
-                    <!-- ШЫНАЙЫ GOOGLE AUTH -->
+                    <!-- GOOGLE АККАУНТПЕН КІРУ -->
                     <div class="mt-4 pt-4 border-t border-white/10">
                         <button type="button" id="googleSignInBtn" data-action="google-auth" class="w-full py-2.5 px-4 rounded-xl bg-white hover:bg-slate-100 text-slate-900 text-sm font-extrabold flex items-center justify-center gap-2.5 tap-btn">
                             <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24">
@@ -264,24 +310,24 @@
                     </div>
                 </div>
 
-                <div id="authErrorBox" class="hidden mt-3 px-3.5 py-2.5 rounded-xl bg-rose-500/15 border border-rose-500/40 text-xs text-rose-200 font-medium"></div>
+                <div id="authErrorBox" class="hidden mt-3 px-3.5 py-2.5 rounded-xl bg-rose-500/15 border border-rose-500/40 text-xs text-rose-200 font-medium leading-relaxed"></div>
             </div>
         </div>
     </div>
 
     <!-- =================================================================== -->
-    <!-- 2. GOOGLE-МЕН АЛҒАШ КІРГЕНДЕ РӨЛ ТАҢДАУ ТЕРЕЗЕСІ                    -->
+    <!-- 2. GOOGLE / ТЕЛЕФОНМЕН АЛҒАШ КІРГЕНДЕ РӨЛ ТАҢДАУ ТЕРЕЗЕСІ          -->
     <!-- =================================================================== -->
-    <div id="roleOnboardingModal" class="fixed inset-0 z-[55] hidden items-center justify-center p-4 bg-[#070B14]/90 backdrop-blur-xl">
+    <div id="roleOnboardingModal" class="fixed inset-0 z-[55] hidden items-center justify-center p-4 bg-[#060911]/92 backdrop-blur-xl">
         <div class="w-full max-w-md rounded-3xl glass-elevated p-6 space-y-4 anim-tile">
             <div class="flex items-center justify-between">
                 <h2 class="text-base font-extrabold text-white">Рөлді бекіту</h2>
-                <span id="onboardEmailTag" class="text-xs text-emerald-400 font-semibold truncate max-w-[190px]"></span>
+                <span id="onboardIdentifierTag" class="text-xs text-emerald-400 font-semibold truncate max-w-[200px]"></span>
             </div>
-            <form id="roleOnboardingForm" class="space-y-3.5">
+            <div class="space-y-3.5">
                 <div>
                     <label for="onboardName" class="block text-xs font-bold text-slate-300 mb-1">Аты-жөні</label>
-                    <input id="onboardName" type="text" required class="w-full rounded-xl bg-slate-950 border border-white/15 px-3.5 py-2.5 text-sm text-white">
+                    <input id="onboardName" type="text" class="w-full rounded-xl bg-slate-950 border border-white/15 px-3.5 py-2.5 text-sm text-white">
                 </div>
                 <div>
                     <label for="onboardRole" class="block text-xs font-bold text-slate-300 mb-1">Рөл</label>
@@ -295,10 +341,10 @@
                     <label for="onboardGrade" class="block text-xs font-bold text-slate-300 mb-1">Сынып (1–11)</label>
                     <select id="onboardGrade" class="w-full rounded-xl bg-slate-950 border border-white/15 px-3.5 py-2.5 text-sm text-white font-semibold"></select>
                 </div>
-                <button type="submit" id="onboardSaveBtn" class="w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-sm font-extrabold tap-btn">
+                <button type="button" id="onboardSaveBtn" data-action="save-onboarding" class="w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-sm font-extrabold tap-btn">
                     Сақтау
                 </button>
-            </form>
+            </div>
         </div>
     </div>
 
@@ -315,33 +361,32 @@
                 </button>
 
                 <button type="button" data-action="go-home" class="flex items-center gap-2.5 tap-btn focus:outline-none">
-                    <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-500/20 to-amber-500/20 border border-emerald-400/35 flex items-center justify-center">
+                    <div class="w-9 h-9 rounded-xl liquid-glass-logo flex items-center justify-center">
                         <svg class="w-5 h-5" viewBox="0 0 32 32" fill="none">
                             <defs>
-                                <linearGradient id="bolashaqEmblemGrad2" x1="4" y1="4" x2="28" y2="28" gradientUnits="userSpaceOnUse">
-                                    <stop offset="0%" stop-color="#10B981"/>
-                                    <stop offset="100%" stop-color="#F59E0B"/>
+                                <linearGradient id="bHexGrad2" x1="4" y1="4" x2="28" y2="28" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0%" stop-color="#34D399"/>
+                                    <stop offset="100%" stop-color="#818CF8"/>
                                 </linearGradient>
                             </defs>
-                            <polygon points="16,2 28,9 28,23 16,30 4,23 4,9" stroke="url(#bolashaqEmblemGrad2)" stroke-width="2.2" fill="rgba(16,185,129,0.1)"/>
-                            <path d="M11 10.5H17.5C19.433 10.5 21 12.067 21 14C21 15.1 20.48 16.08 19.68 16.72C20.78 17.34 21.5 18.5 21.5 19.85C21.5 21.86 19.86 23.5 17.85 23.5H11V10.5Z" stroke="#F8FAFC" stroke-width="2" stroke-linejoin="round"/>
-                            <path d="M11 16.8H18.2" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"/>
+                            <polygon points="16,2 28,9 28,23 16,30 4,23 4,9" stroke="url(#bHexGrad2)" stroke-width="2.2" fill="rgba(16,185,129,0.12)"/>
+                            <path d="M11 10.5H17.5C19.433 10.5 21 12.067 21 14C21 15.1 20.48 16.08 19.68 16.72C20.78 17.34 21.5 18.5 21.5 19.85C21.5 21.86 19.86 23.5 17.85 23.5H11V10.5Z" stroke="#ECFDF5" stroke-width="2" stroke-linejoin="round"/>
+                            <path d="M11 16.8H18.2" stroke="#6EE7B7" stroke-width="2" stroke-linecap="round"/>
                         </svg>
                     </div>
                     <span class="brand-wordmark text-base sm:text-lg">BOLASHAQ</span>
                 </button>
             </div>
 
-            <!-- ОҢ ЖАҚ СТАТУС ПАНЕЛІ: iPhone Network + Рөл + Токен + Кабинет -->
             <div class="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
-                <!-- НАҚТЫ УАҚЫТТАҒЫ IPHONE СТИЛІНДЕГІ ЖЕЛІ / WI-FI ИНДИКАТОРЫ -->
-                <div id="headerNetIndicator" class="px-2.5 py-1.5 rounded-xl bg-slate-950/90 border border-white/10 flex items-center gap-1.5 text-[11px] font-bold text-slate-100"></div>
+                <!-- LIQUID GLASS IPHONE ЖЕЛІ / WI-FI ИНДИКАТОРЫ -->
+                <div id="headerNetIndicator" class="liquid-glass-pill px-3 py-1.5 rounded-full flex items-center gap-1.5 text-[11px] font-bold text-slate-100"></div>
 
-                <!-- ТІРКЕЛГЕН БІР ҒАНА РӨЛ БЕЛГІСІ -->
+                <!-- БІР ҒАНА ТІРКЕЛГЕН РӨЛ БЕЛГІСІ -->
                 <span id="lockedRoleBadge" class="px-2.5 py-1.5 rounded-xl bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-xs font-extrabold"></span>
 
                 <!-- ТОКЕН БАЛАНСЫ -->
-                <button type="button" data-action="nav-tab" data-tab="ai" class="px-2.5 py-1.5 rounded-xl bg-amber-500/15 border border-amber-400/30 text-amber-300 text-xs font-extrabold tabular-nums tap-btn">
+                <button type="button" data-action="nav-tab" data-tab="ai" class="px-2.5 py-1.5 rounded-xl bg-indigo-500/15 border border-indigo-400/30 text-indigo-300 text-xs font-extrabold tabular-nums tap-btn">
                     <span id="headerTokensVal">0</span> <span class="hidden sm:inline font-semibold">токен</span>
                 </button>
 
@@ -375,7 +420,7 @@
     </div>
 
     <!-- =================================================================== -->
-    <!-- 4. ТОЛЫҚ ЭКРАНДЫ ПРЕЗЕНТАЦИЯ ОЙНАТҚЫШ (НОУТБУК / ТАҚТА / ТЕЛЕФОН)    -->
+    <!-- 4. ТОЛЫҚ ЭКРАНДЫ ПРЕЗЕНТАЦИЯ ОЙНАТҚЫШ                             -->
     <!-- =================================================================== -->
     <div id="fullscreenPresModal" class="fixed inset-0 z-[70] hidden bg-[#050811] text-white flex-col">
         <div class="px-4 sm:px-6 h-14 border-b border-white/10 bg-slate-950/90 flex items-center justify-between gap-3 shrink-0">
@@ -407,22 +452,8 @@
     </div>
 
     <!-- =================================================================== -->
-    <!-- 5. МОДАЛЬДЫ ТЕРЕЗЕ ЖӘНЕ TOAST ХАБАРЛАМАЛАР                          -->
+    <!-- 5. TOAST ХАБАРЛАМАЛАР                                               -->
     <!-- =================================================================== -->
-    <div id="modalBackdrop" class="fixed inset-0 z-[60] hidden items-center justify-center p-4 bg-black/75 backdrop-blur-xs">
-        <div class="glass-elevated rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl anim-tile">
-            <div class="px-5 py-3.5 border-b border-white/10 flex items-center justify-between">
-                <h3 id="modalTitle" class="text-sm sm:text-base font-extrabold text-white"></h3>
-                <button type="button" data-action="close-modal" class="p-1.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/10 tap-btn">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
-                    </svg>
-                </button>
-            </div>
-            <div id="modalBody" class="p-5 max-h-[84vh] overflow-y-auto text-sm"></div>
-        </div>
-    </div>
-
     <div id="toastContainer" class="fixed bottom-4 right-4 z-[80] flex flex-col gap-2 max-w-sm w-full pointer-events-none px-3 sm:px-0"></div>
 
     <!-- =================================================================== -->
@@ -439,6 +470,8 @@
             signInWithPopup,
             signInWithRedirect,
             getRedirectResult,
+            RecaptchaVerifier,
+            signInWithPhoneNumber,
             signOut,
             updateProfile
         } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
@@ -448,10 +481,12 @@
             getDoc,
             setDoc,
             updateDoc,
+            deleteDoc,
             addDoc,
             collection,
             query,
             where,
+            getDocs,
             onSnapshot,
             serverTimestamp
         } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
@@ -482,20 +517,23 @@
             aiProvider: "Gemini",
             users: [],
             quizzes: [],
-            content: [],
+            lessons: [],
             submissions: [],
-            aiChats: [],
+            aiLogs: [],
             unsubs: [],
             draftQuizQuestions: [{ q: "", opts: ["", "", "", ""], ans: 0, image: "", video: "" }],
             draftSlides: [{ title: "", body: "", image: "", video: "" }],
             fsDeck: null,
             fsIndex: 0,
             quizRunner: null,
-            quizTimer: null
+            quizTimer: null,
+            recaptchaVerifier: null,
+            confirmationResult: null,
+            pendingPhoneMeta: null
         };
 
         // =====================================================================
-        // 1. НАҚТЫ УАҚЫТТАҒЫ IPHONE СТИЛІНДЕГІ ЖЕЛІ / WI-FI ИНДИКАТОРЫ
+        // 1. LIQUID GLASS IPHONE ЖЕЛІ / WI-FI ИНДИКАТОРЫ
         // =====================================================================
         function getNetworkMetrics() {
             const online = navigator.onLine;
@@ -528,44 +566,46 @@
             return { online: true, isWifi: false, bars, label: netTag };
         }
 
-        function buildIphoneNetworkHTML() {
+        function buildLiquidGlassNetworkHTML() {
             const m = getNetworkMetrics();
             if (!m.online) {
                 return `
                     <span class="w-2 h-2 rounded-full bg-rose-500"></span>
-                    <span class="text-rose-400">0</span>
+                    <span class="text-rose-300">Желі жоқ</span>
                 `;
             }
 
             if (m.isWifi) {
-                const c1 = m.bars >= 1 ? "#34D399" : "#334155";
-                const c2 = m.bars >= 2 ? "#34D399" : "#334155";
-                const c3 = m.bars >= 3 ? "#34D399" : "#334155";
+                const c1 = m.bars >= 1 ? "#34D399" : "rgba(255,255,255,0.25)";
+                const c2 = m.bars >= 2 ? "#34D399" : "rgba(255,255,255,0.25)";
+                const c3 = m.bars >= 3 ? "#34D399" : "rgba(255,255,255,0.25)";
                 return `
                     <svg class="w-4 h-4 shrink-0" viewBox="0 0 20 16" fill="none">
-                        <path d="M1.5 5.2C6.3 1.2 13.7 1.2 18.5 5.2" stroke="${c3}" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M4.6 8.6C7.8 6 12.2 6 15.4 8.6" stroke="${c2}" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M7.8 11.8C9.1 10.7 10.9 10.7 12.2 11.8" stroke="${c1}" stroke-width="2" stroke-linecap="round"/>
-                        <circle cx="10" cy="14.2" r="1.3" fill="${c1}"/>
+                        <path d="M1.5 5.2C6.3 1.2 13.7 1.2 18.5 5.2" stroke="${c3}" stroke-width="2.1" stroke-linecap="round"/>
+                        <path d="M4.6 8.6C7.8 6 12.2 6 15.4 8.6" stroke="${c2}" stroke-width="2.1" stroke-linecap="round"/>
+                        <path d="M7.8 11.8C9.1 10.7 10.9 10.7 12.2 11.8" stroke="${c1}" stroke-width="2.1" stroke-linecap="round"/>
+                        <circle cx="10" cy="14.2" r="1.35" fill="${c1}"/>
                     </svg>
-                    <span class="text-[11px] font-bold text-slate-200 whitespace-nowrap">${escapeHtml(m.label)}</span>
+                    <span class="text-[11px] font-bold text-white whitespace-nowrap">${escapeHtml(m.label)}</span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 net-live-dot"></span>
                 `;
             }
 
             const heights = [4, 7, 10, 13];
             const barsSvg = heights.map((h, i) => {
                 const active = (i + 1) <= m.bars;
-                return `<rect x="${i * 4.2 + 1}" y="${14 - h}" width="2.8" height="${h}" rx="1" fill="${active ? "#F8FAFC" : "#334155"}"/>`;
+                return `<rect x="${i * 4.2 + 1}" y="${14 - h}" width="2.8" height="${h}" rx="1.1" fill="${active ? "#A7F3D0" : "rgba(255,255,255,0.24)"}"/>`;
             }).join("");
 
             return `
                 <svg class="w-4 h-3.5 shrink-0" viewBox="0 0 18 15" fill="none">${barsSvg}</svg>
-                <span class="text-[11px] font-bold text-slate-200 whitespace-nowrap">${escapeHtml(m.label)}</span>
+                <span class="text-[11px] font-bold text-white whitespace-nowrap">${escapeHtml(m.label)}</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 net-live-dot"></span>
             `;
         }
 
         function updateNetworkIndicators() {
-            const html = buildIphoneNetworkHTML();
+            const html = buildLiquidGlassNetworkHTML();
             const hEl = document.getElementById("headerNetIndicator");
             const gEl = document.getElementById("gateNetIndicator");
             if (hEl) hEl.innerHTML = html;
@@ -584,29 +624,67 @@
         }
 
         // =====================================================================
-        // 2. АУТЕНТИФИКАЦИЯ ЖӘНЕ FIRESTORE НАҚТЫ УАҚЫТ БАЙЛАНЫСЫ
+        // 2. АУТЕНТИФИКАЦИЯ: EMAIL + ТЕЛЕФОН (SMS) + GOOGLE
         // =====================================================================
         function populateSelectOptions() {
             const gradeOpts = GRADES.map(g => `<option value="${g}">${g}-сынып</option>`).join("");
-            const regGrade = document.getElementById("regGrade");
-            const onboardGrade = document.getElementById("onboardGrade");
-            if (regGrade) {
-                regGrade.innerHTML = gradeOpts;
-                regGrade.value = "9";
-            }
-            if (onboardGrade) {
-                onboardGrade.innerHTML = gradeOpts;
-                onboardGrade.value = "9";
-            }
+            ["regGrade", "onboardGrade", "phoneGradeSelect"].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.innerHTML = gradeOpts;
+                    el.value = "9";
+                }
+            });
         }
 
         function switchAuthTab(mode) {
-            const isLogin = mode === "login";
-            document.getElementById("loginForm").classList.toggle("hidden", !isLogin);
-            document.getElementById("registerForm").classList.toggle("hidden", isLogin);
-            document.getElementById("authTabLogin").className = `py-2 rounded-xl text-xs sm:text-sm font-bold tap-btn ${isLogin ? "bg-emerald-500 text-slate-950" : "text-slate-400 hover:text-white"}`;
-            document.getElementById("authTabRegister").className = `py-2 rounded-xl text-xs sm:text-sm font-bold tap-btn ${!isLogin ? "bg-emerald-500 text-slate-950" : "text-slate-400 hover:text-white"}`;
+            document.getElementById("loginPanel").classList.toggle("hidden", mode !== "login");
+            document.getElementById("phonePanel").classList.toggle("hidden", mode !== "phone");
+            document.getElementById("registerPanel").classList.toggle("hidden", mode !== "register");
+
+            const activeCls = "py-2 rounded-xl text-xs sm:text-sm font-bold tap-btn bg-emerald-500 text-slate-950";
+            const idleCls = "py-2 rounded-xl text-xs sm:text-sm font-bold tap-btn text-slate-400 hover:text-white";
+
+            document.getElementById("authTabLogin").className = mode === "login" ? activeCls : idleCls;
+            document.getElementById("authTabPhone").className = mode === "phone" ? activeCls : idleCls;
+            document.getElementById("authTabRegister").className = mode === "register" ? activeCls : idleCls;
             hideAuthError();
+        }
+
+        function formatFirebaseAuthError(err) {
+            const code = err?.code || "";
+            const host = window.location.hostname || "localhost";
+            if (code === "auth/unauthorized-domain") {
+                return `Firebase Console -> Authentication -> Settings -> Authorized domains бөліміне осы доменді қосыңыз: ${host}`;
+            }
+            if (code === "auth/invalid-credential" || code === "auth/wrong-password" || code === "auth/user-not-found") {
+                return "Email немесе құпиясөз қате. Алдымен «Тіркелу» қойындысында аккаунт құрыңыз.";
+            }
+            if (code === "auth/email-already-in-use") {
+                return "Бұл Email бұрын тіркелген. «Кіру» қойындысынан кіріңіз.";
+            }
+            if (code === "auth/weak-password") {
+                return "Құпиясөз кемінде 6 таңбадан тұруы тиіс.";
+            }
+            if (code === "auth/operation-not-allowed") {
+                return "Firebase Console -> Authentication -> Sign-in method бөлімінде осы әдісті (Email/Password, Phone, Google) қосыңыз.";
+            }
+            if (code === "auth/invalid-phone-number") {
+                return "Телефон нөмірін халықаралық форматта енгізіңіз (мысалы: +77001234567).";
+            }
+            if (code === "auth/invalid-verification-code") {
+                return "SMS растау коды қате. Қайта тексеріңіз.";
+            }
+            if (code === "auth/code-expired") {
+                return "SMS кодтың уақыты өтті. Жаңа код сұратыңыз.";
+            }
+            if (code === "auth/too-many-requests") {
+                return "Тым көп сұраныс жіберілді. Біраз уақыттан кейін қайталап көріңіз.";
+            }
+            if (code === "auth/network-request-failed") {
+                return "Интернет байланысы үзілді. Желіні тексеріңіз.";
+            }
+            return err?.message || "Аутентификация қатесі.";
         }
 
         function showAuthError(msg) {
@@ -619,6 +697,190 @@
             document.getElementById("authErrorBox").classList.add("hidden");
         }
 
+        async function handleEmailLogin() {
+            hideAuthError();
+            const email = document.getElementById("loginEmail").value.trim();
+            const pass = document.getElementById("loginPassword").value;
+            if (!email || !pass) {
+                showAuthError("Email және құпиясөзді толтырыңыз.");
+                return;
+            }
+            const btn = document.getElementById("loginSubmitBtn");
+            setBtnBusy(btn, true, "Кіру...");
+            try {
+                await signInWithEmailAndPassword(auth, email, pass);
+            } catch (err) {
+                showAuthError(formatFirebaseAuthError(err));
+            } finally {
+                setBtnBusy(btn, false);
+            }
+        }
+
+        async function handleEmailRegister() {
+            hideAuthError();
+            const name = document.getElementById("regName").value.trim();
+            const role = document.getElementById("regRole").value;
+            const grade = role === "student" ? Number(document.getElementById("regGrade").value) : null;
+            const email = document.getElementById("regEmail").value.trim();
+            const pass = document.getElementById("regPassword").value;
+
+            if (!name || !email || pass.length < 6) {
+                showAuthError("Аты-жөні, Email және кемінде 6 таңбалы құпиясөз енгізіңіз.");
+                return;
+            }
+
+            const btn = document.getElementById("registerSubmitBtn");
+            setBtnBusy(btn, true, "Тіркелу...");
+            try {
+                const cred = await createUserWithEmailAndPassword(auth, email, pass);
+                await updateProfile(cred.user, { displayName: name });
+                await setDoc(doc(db, "users", cred.user.uid), {
+                    name,
+                    email,
+                    phone: "",
+                    role,
+                    grade,
+                    tokens: 3000,
+                    geminiApiKey: "",
+                    openaiApiKey: "",
+                    createdAt: serverTimestamp()
+                });
+            } catch (err) {
+                showAuthError(formatFirebaseAuthError(err));
+            } finally {
+                setBtnBusy(btn, false);
+            }
+        }
+
+        function ensureRecaptchaVerifier() {
+            if (state.recaptchaVerifier) {
+                try { state.recaptchaVerifier.clear(); } catch {}
+                state.recaptchaVerifier = null;
+            }
+            const container = document.getElementById("recaptchaContainer");
+            if (container) container.innerHTML = "";
+
+            state.recaptchaVerifier = new RecaptchaVerifier(auth, "recaptchaContainer", {
+                size: "invisible",
+                callback: () => {},
+                "expired-callback": () => {
+                    showAuthError("reCAPTCHA уақыты өтті. Қайта басыңыз.");
+                }
+            });
+            return state.recaptchaVerifier;
+        }
+
+        async function handleSendPhoneSms() {
+            hideAuthError();
+            const rawPhone = document.getElementById("phoneNumberInput").value.trim().replace(/\s+/g, "");
+            if (!rawPhone.startsWith("+") || rawPhone.length < 11) {
+                showAuthError("Телефон нөмірін +77001234567 форматында енгізіңіз.");
+                return;
+            }
+
+            const name = document.getElementById("phoneNameInput").value.trim();
+            const role = document.getElementById("phoneRoleSelect").value;
+            const grade = role === "student" ? Number(document.getElementById("phoneGradeSelect").value) : null;
+            state.pendingPhoneMeta = { name, role, grade, phone: rawPhone };
+
+            const btn = document.getElementById("sendSmsBtn");
+            setBtnBusy(btn, true, "SMS жіберілуде...");
+            try {
+                const verifier = ensureRecaptchaVerifier();
+                const confirmationResult = await signInWithPhoneNumber(auth, rawPhone, verifier);
+                state.confirmationResult = confirmationResult;
+                document.getElementById("smsVerifyBlock").classList.remove("hidden");
+                document.getElementById("smsCodeInput").focus();
+                toast("SMS жіберілді", rawPhone, "success");
+            } catch (err) {
+                if (state.recaptchaVerifier) {
+                    try { state.recaptchaVerifier.clear(); } catch {}
+                    state.recaptchaVerifier = null;
+                }
+                showAuthError(formatFirebaseAuthError(err));
+            } finally {
+                setBtnBusy(btn, false);
+            }
+        }
+
+        async function handleVerifyPhoneSms() {
+            hideAuthError();
+            const code = document.getElementById("smsCodeInput").value.trim();
+            if (!state.confirmationResult) {
+                showAuthError("Алдымен SMS код сұратыңыз.");
+                return;
+            }
+            if (code.length < 6) {
+                showAuthError("6 таңбалы SMS кодты енгізіңіз.");
+                return;
+            }
+
+            const btn = document.getElementById("verifySmsBtn");
+            setBtnBusy(btn, true, "Тексеру...");
+            try {
+                const cred = await state.confirmationResult.confirm(code);
+                const userRef = doc(db, "users", cred.user.uid);
+                const snap = await getDoc(userRef);
+
+                if (!snap.exists()) {
+                    const meta = state.pendingPhoneMeta || {};
+                    const finalName = meta.name || cred.user.phoneNumber || "Пайдаланушы";
+                    const finalRole = meta.role || "student";
+                    const finalGrade = finalRole === "student" ? (meta.grade || 9) : null;
+
+                    await setDoc(userRef, {
+                        name: finalName,
+                        email: cred.user.email || "",
+                        phone: cred.user.phoneNumber || meta.phone || "",
+                        role: finalRole,
+                        grade: finalGrade,
+                        tokens: 3000,
+                        geminiApiKey: "",
+                        openaiApiKey: "",
+                        createdAt: serverTimestamp()
+                    });
+                }
+                state.confirmationResult = null;
+            } catch (err) {
+                showAuthError(formatFirebaseAuthError(err));
+            } finally {
+                setBtnBusy(btn, false);
+            }
+        }
+
+        async function handleGoogleSignIn() {
+            hideAuthError();
+            const btn = document.getElementById("googleSignInBtn");
+            setBtnBusy(btn, true, "Google...");
+            const provider = new GoogleAuthProvider();
+            provider.setCustomParameters({ prompt: "select_account" });
+
+            try {
+                await signInWithPopup(auth, provider);
+            } catch (err) {
+                const code = err?.code || "";
+                if (
+                    code === "auth/popup-blocked" ||
+                    code === "auth/cancelled-popup-request" ||
+                    code === "auth/operation-not-supported-in-this-environment"
+                ) {
+                    try {
+                        await signInWithRedirect(auth, provider);
+                        return;
+                    } catch (redirectErr) {
+                        showAuthError(formatFirebaseAuthError(redirectErr));
+                    }
+                } else if (code !== "auth/popup-closed-by-user") {
+                    showAuthError(formatFirebaseAuthError(err));
+                }
+            } finally {
+                setBtnBusy(btn, false);
+            }
+        }
+
+        // =====================================================================
+        // 3. FIRESTORE НАҚТЫ УАҚЫТ БАЙЛАНЫСЫ
+        // =====================================================================
         function clearFirestoreListeners() {
             state.unsubs.forEach(fn => {
                 try { fn(); } catch {}
@@ -629,7 +891,6 @@
         function subscribeUserAndCollections(uid) {
             clearFirestoreListeners();
 
-            // 1) Пайдаланушының жеке профилі мен API кілттерін тікелей Firestore-дан бақылау
             const userRef = doc(db, "users", uid);
             const unsubProfile = onSnapshot(userRef, (snap) => {
                 if (!snap.exists()) {
@@ -662,7 +923,6 @@
             });
             state.unsubs.push(unsubProfile);
 
-            // 2) Квиздер
             const unsubQuizzes = onSnapshot(collection(db, "quizzes"), (snap) => {
                 state.quizzes = snap.docs
                     .map(d => ({ id: d.id, ...d.data() }))
@@ -671,16 +931,14 @@
             });
             state.unsubs.push(unsubQuizzes);
 
-            // 3) Презентациялар, Зертханалар, Практикалар
-            const unsubContent = onSnapshot(collection(db, "content"), (snap) => {
-                state.content = snap.docs
+            const unsubLessons = onSnapshot(collection(db, "lessons"), (snap) => {
+                state.lessons = snap.docs
                     .map(d => ({ id: d.id, ...d.data() }))
                     .sort((a, b) => (b.createdAtMs || 0) - (a.createdAtMs || 0));
                 if (state.profile) renderWorkspace();
             });
-            state.unsubs.push(unsubContent);
+            state.unsubs.push(unsubLessons);
 
-            // 4) Оқушы жауаптары / нәтижелері
             const unsubSubs = onSnapshot(collection(db, "submissions"), (snap) => {
                 state.submissions = snap.docs
                     .map(d => ({ id: d.id, ...d.data() }))
@@ -689,17 +947,15 @@
             });
             state.unsubs.push(unsubSubs);
 
-            // 5) Пайдаланушының жеке ЖИ чаты
-            const chatQuery = query(collection(db, "ai_chats"), where("uid", "==", uid));
-            const unsubChats = onSnapshot(chatQuery, (snap) => {
-                state.aiChats = snap.docs
+            const logsQuery = query(collection(db, "ai_logs"), where("uid", "==", uid));
+            const unsubLogs = onSnapshot(logsQuery, (snap) => {
+                state.aiLogs = snap.docs
                     .map(d => ({ id: d.id, ...d.data() }))
                     .sort((a, b) => (a.createdAtMs || 0) - (b.createdAtMs || 0));
                 if (state.profile && state.activeTab === "ai") renderWorkspace();
             });
-            state.unsubs.push(unsubChats);
+            state.unsubs.push(unsubLogs);
 
-            // 6) Барлық қолданушылар (Админ үшін)
             const unsubUsers = onSnapshot(collection(db, "users"), (snap) => {
                 state.users = snap.docs.map(d => ({ uid: d.id, ...d.data() }));
                 if (state.profile && state.profile.role === "admin") renderWorkspace();
@@ -710,8 +966,9 @@
         function openRoleOnboarding() {
             const u = state.authUser;
             if (!u) return;
-            document.getElementById("onboardEmailTag").textContent = u.email || "";
-            document.getElementById("onboardName").value = u.displayName || (u.email ? u.email.split("@")[0] : "");
+            const ident = u.email || u.phoneNumber || "";
+            document.getElementById("onboardIdentifierTag").textContent = ident;
+            document.getElementById("onboardName").value = u.displayName || (u.email ? u.email.split("@")[0] : (u.phoneNumber || ""));
             const modal = document.getElementById("roleOnboardingModal");
             modal.classList.remove("hidden");
             modal.classList.add("flex");
@@ -738,12 +995,12 @@
         }
 
         // =====================================================================
-        // 3. РӨЛДІК ОҚШАУЛАУ ЖӘНЕ МӘЗІР
+        // 4. РӨЛДІК ОҚШАУЛАУ ЖӘНЕ МӘЗІР
         // =====================================================================
         const ROLE_MENUS = {
             student: [
                 { id: "quizzes", label: "Квиздер" },
-                { id: "materials", label: "Презентация & Материал" },
+                { id: "materials", label: "Презентация" },
                 { id: "labs", label: "Зертхана & Практика" },
                 { id: "ai", label: "Gemini / ChatGPT" },
                 { id: "profile", label: "Жеке кабинет" }
@@ -780,13 +1037,14 @@
             document.getElementById("headerTokensVal").textContent = Number(p.tokens || 0).toLocaleString("ru-RU");
             document.getElementById("headerProfileName").textContent = (p.name || "Кабинет").split(" ")[0];
 
+            const contactLine = p.email || p.phone || "";
             document.getElementById("sidebarUserCard").innerHTML = `
                 <div class="flex items-center justify-between text-[11px]">
                     <span class="font-extrabold uppercase tracking-wider text-emerald-400">${roleLabel(p.role)}</span>
-                    ${p.role === "student" && p.grade ? `<span class="px-2 py-0.5 rounded-md bg-white/10 text-amber-300 font-bold">${p.grade}-сынып</span>` : ""}
+                    ${p.role === "student" && p.grade ? `<span class="px-2 py-0.5 rounded-md bg-white/10 text-indigo-300 font-bold">${p.grade}-сынып</span>` : ""}
                 </div>
                 <div class="text-sm font-extrabold text-white mt-1 truncate">${escapeHtml(p.name || "")}</div>
-                <div class="text-[11px] text-slate-400 truncate">${escapeHtml(p.email || "")}</div>
+                <div class="text-[11px] text-slate-400 truncate">${escapeHtml(contactLine)}</div>
             `;
 
             const menu = ROLE_MENUS[p.role] || [];
@@ -841,7 +1099,7 @@
         }
 
         // =====================================================================
-        // 4. ОҚУШЫ БӨЛІМДЕРІ (ТЕК НАҚТЫ FIRESTORE ДЕРЕКТЕРІ)
+        // 5. ОҚУШЫ БӨЛІМДЕРІ (WAYGROUND STYLE QUIZ + МЕДИА)
         // =====================================================================
         function renderStudentQuizzes() {
             const grade = Number(state.profile.grade || 9);
@@ -894,7 +1152,11 @@
                 timeLeft: Number(quiz.timeLimit || 25),
                 answered: false,
                 chosen: null,
-                finished: false
+                finished: false,
+                doubleActive: false,
+                usedDouble: false,
+                usedFifty: false,
+                hiddenOpts: []
             };
             renderActiveQuizRunner();
             state.quizTimer = setInterval(() => {
@@ -921,10 +1183,12 @@
                 r.correct += 1;
                 r.streak += 1;
                 const bonus = Math.max(0, r.timeLeft * 4);
-                r.score += Math.round((100 + bonus) * (r.streak >= 3 ? 1.5 : 1));
+                const mult = (r.streak >= 3 ? 1.5 : 1) * (r.doubleActive ? 2 : 1);
+                r.score += Math.round((100 + bonus) * mult);
             } else {
                 r.streak = 0;
             }
+            r.doubleActive = false;
             renderActiveQuizRunner();
         }
 
@@ -936,6 +1200,7 @@
                 r.timeLeft = Number(r.quiz.timeLimit || 25);
                 r.answered = false;
                 r.chosen = null;
+                r.hiddenOpts = [];
                 renderActiveQuizRunner();
                 state.quizTimer = setInterval(() => {
                     if (!state.quizRunner || state.quizRunner.answered || state.quizRunner.finished) return;
@@ -979,6 +1244,11 @@
             if (!host || !r) return;
 
             if (r.finished) {
+                const board = state.submissions
+                    .filter(s => s.itemId === r.quiz.id && s.itemType === "quiz")
+                    .sort((a, b) => (b.score || 0) - (a.score || 0))
+                    .slice(0, 5);
+
                 host.innerHTML = `
                     <div class="glass-elevated rounded-3xl p-6 border border-emerald-400/30 space-y-4">
                         <div class="flex items-center justify-between">
@@ -988,6 +1258,16 @@
                             </div>
                             <span class="px-3 py-1.5 rounded-xl bg-emerald-500 text-slate-950 text-xs font-extrabold">${r.correct} / ${r.quiz.questions.length}</span>
                         </div>
+                        ${board.length ? `
+                            <div class="space-y-1.5 pt-2 border-t border-white/10">
+                                ${board.map((b, i) => `
+                                    <div class="flex items-center justify-between text-xs px-3 py-2 rounded-xl bg-white/[0.04]">
+                                        <span class="font-bold text-slate-200">#${i + 1} ${escapeHtml(b.studentName)}</span>
+                                        <span class="font-extrabold text-emerald-400 tabular-nums">${b.score} ұпай</span>
+                                    </div>
+                                `).join("")}
+                            </div>
+                        ` : ""}
                         <div class="flex justify-end gap-2">
                             <button type="button" data-action="close-quiz-runner" class="px-4 py-2 rounded-xl bg-white/10 text-xs font-bold tap-btn">Жабу</button>
                         </div>
@@ -999,11 +1279,12 @@
             const cur = r.quiz.questions[r.index];
             host.innerHTML = `
                 <div class="glass-elevated rounded-3xl p-5 sm:p-6 border border-emerald-400/30 space-y-4">
-                    <div class="flex items-center justify-between text-xs">
+                    <div class="flex flex-wrap items-center justify-between gap-2 text-xs">
                         <span class="font-extrabold text-emerald-400">${escapeHtml(r.quiz.title)} • ${r.index + 1}/${r.quiz.questions.length}</span>
                         <div class="flex items-center gap-2">
+                            ${r.streak >= 2 ? `<span class="px-2 py-1 rounded-lg bg-orange-500/20 text-orange-300 font-extrabold">${r.streak}x</span>` : ""}
                             <span id="qrTimer" class="px-2.5 py-1 rounded-lg bg-rose-500/20 border border-rose-400/40 font-extrabold tabular-nums">${r.timeLeft}с</span>
-                            <span class="px-2.5 py-1 rounded-lg bg-amber-500 text-slate-950 font-extrabold tabular-nums">${r.score}</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-emerald-500 text-slate-950 font-extrabold tabular-nums">${r.score}</span>
                             <button type="button" data-action="close-quiz-runner" class="text-slate-400 hover:text-white font-bold px-1.5">✕</button>
                         </div>
                     </div>
@@ -1013,34 +1294,46 @@
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                         ${(cur.opts || []).map((opt, idx) => {
+                            const hidden = r.hiddenOpts.includes(idx);
                             let cls = "bg-white/[0.06] hover:bg-white/[0.11] border-white/15 text-white";
                             if (r.answered) {
                                 if (idx === Number(cur.ans)) cls = "bg-emerald-600 border-emerald-400 text-white font-bold";
                                 else if (idx === r.chosen) cls = "bg-rose-600 border-rose-400 text-white";
                                 else cls = "bg-white/[0.03] border-white/10 text-slate-500";
+                            } else if (hidden) {
+                                cls = "opacity-25 pointer-events-none bg-white/[0.02] border-white/5 text-slate-600";
                             }
                             return `
-                                <button type="button" data-action="quiz-opt" data-idx="${idx}" ${r.answered ? "disabled" : ""} class="p-3.5 rounded-2xl border text-left text-xs sm:text-sm font-semibold tap-btn ${cls}">
+                                <button type="button" data-action="quiz-opt" data-idx="${idx}" ${r.answered || hidden ? "disabled" : ""} class="p-3.5 rounded-2xl border text-left text-xs sm:text-sm font-semibold tap-btn ${cls}">
                                     ${escapeHtml(opt)}
                                 </button>
                             `;
                         }).join("")}
                     </div>
 
-                    ${r.answered ? `
-                        <div class="flex justify-end">
+                    <div class="flex flex-wrap items-center justify-between gap-2 pt-1">
+                        <div class="flex items-center gap-2">
+                            <button type="button" data-action="powerup-5050" ${r.answered || r.usedFifty ? "disabled" : ""} class="px-3 py-1.5 rounded-xl bg-indigo-500/20 border border-indigo-400/30 text-indigo-200 text-xs font-bold tap-btn disabled:opacity-35">
+                                50/50
+                            </button>
+                            <button type="button" data-action="powerup-2x" ${r.answered || r.usedDouble ? "disabled" : ""} class="px-3 py-1.5 rounded-xl bg-amber-500/20 border border-amber-400/30 text-amber-200 text-xs font-bold tap-btn disabled:opacity-35">
+                                2x Ұпай
+                            </button>
+                        </div>
+
+                        ${r.answered ? `
                             <button type="button" data-action="quiz-next" class="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-extrabold tap-btn">
                                 ${r.index + 1 < r.quiz.questions.length ? "Келесі →" : "Аяқтау"}
                             </button>
-                        </div>
-                    ` : ""}
+                        ` : ""}
+                    </div>
                 </div>
             `;
         }
 
         function renderStudentMaterials() {
             const grade = Number(state.profile.grade || 9);
-            const decks = state.content.filter(c => c.kind === "presentation" && Number(c.grade) === grade);
+            const decks = state.lessons.filter(c => c.kind === "presentation" && Number(c.grade) === grade);
 
             return `
                 <div class="flex items-center justify-between gap-3 mb-5">
@@ -1056,11 +1349,11 @@
                         ${decks.map(d => `
                             <div class="glass-panel rounded-2xl p-5 flex flex-col justify-between gap-4 anim-tile">
                                 <div>
-                                    <span class="text-xs font-bold text-amber-400">${escapeHtml(d.subject)} • ${(d.slides || []).length} слайд</span>
+                                    <span class="text-xs font-bold text-indigo-300">${escapeHtml(d.subject)} • ${(d.slides || []).length} слайд</span>
                                     <h3 class="text-base font-extrabold text-white mt-1">${escapeHtml(d.title)}</h3>
                                     <div class="text-[11px] text-slate-400 mt-1">${escapeHtml(d.teacherName || "")}</div>
                                 </div>
-                                <button type="button" data-action="open-fs-pres" data-content-id="${d.id}" class="w-full py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-extrabold tap-btn">
+                                <button type="button" data-action="open-fs-pres" data-content-id="${d.id}" class="w-full py-2.5 rounded-xl bg-indigo-500 hover:bg-indigo-400 text-white text-xs font-extrabold tap-btn">
                                     Толық экранда ашу
                                 </button>
                             </div>
@@ -1072,7 +1365,7 @@
 
         function renderStudentLabsAndPractice() {
             const grade = Number(state.profile.grade || 9);
-            const items = state.content.filter(c => (c.kind === "lab" || c.kind === "practice") && Number(c.grade) === grade);
+            const items = state.lessons.filter(c => (c.kind === "lab" || c.kind === "practice") && Number(c.grade) === grade);
 
             return `
                 <div class="flex items-center justify-between gap-3 mb-5">
@@ -1101,10 +1394,10 @@
                                             Жіберілді: ${escapeHtml(mySub.answerText || "")}
                                         </div>
                                     ` : `
-                                        <form data-item-id="${it.id}" class="student-work-form flex flex-col sm:flex-row gap-2 pt-1">
-                                            <input type="text" required placeholder="Орындалған нәтиже / жауап..." class="work-answer-input flex-1 rounded-xl bg-slate-950 border border-white/15 px-3.5 py-2.5 text-xs sm:text-sm text-white">
-                                            <button type="submit" class="px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-extrabold tap-btn">Жіберу</button>
-                                        </form>
+                                        <div class="flex flex-col sm:flex-row gap-2 pt-1">
+                                            <input id="workAns_${it.id}" type="text" placeholder="Орындалған нәтиже / жауап..." class="flex-1 rounded-xl bg-slate-950 border border-white/15 px-3.5 py-2.5 text-xs sm:text-sm text-white">
+                                            <button type="button" data-action="submit-student-work" data-item-id="${it.id}" class="px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-extrabold tap-btn">Жіберу</button>
+                                        </div>
                                     `}
                                 </div>
                             `;
@@ -1115,21 +1408,21 @@
         }
 
         // =====================================================================
-        // 5. МҰҒАЛІМ БӨЛІМДЕРІ: КВИЗ, ПРЕЗЕНТАЦИЯ, ЗЕРТХАНА, ПРАКТИКА + ФОТО/ВИДЕО
+        // 6. МҰҒАЛІМ БӨЛІМДЕРІ (МЕДИА + ФОТО/ВИДЕО + ТОЛЫҚ ЭКРАН)
         // =====================================================================
         function renderTeacherQuizBuilder() {
             const myQuizzes = state.quizzes.filter(q => q.teacherUid === state.profile.uid);
             return `
                 <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
                     <h1 class="text-lg sm:text-xl font-extrabold text-white">Квиз құру (Фото & Видео)</h1>
-                    <button type="button" data-action="ai-fill-quiz" class="px-3.5 py-2 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/40 text-amber-300 text-xs font-extrabold tap-btn">
+                    <button type="button" data-action="ai-fill-quiz" class="px-3.5 py-2 rounded-xl bg-indigo-500/20 hover:bg-indigo-500/30 border border-indigo-400/40 text-indigo-200 text-xs font-extrabold tap-btn">
                         ЖИ арқылы сұрақ құру
                     </button>
                 </div>
 
-                <form id="teacherCreateQuizForm" class="glass-panel rounded-2xl p-5 space-y-4 mb-6">
+                <div class="glass-panel rounded-2xl p-5 space-y-4 mb-6">
                     <div class="grid grid-cols-1 sm:grid-cols-12 gap-3">
-                        <input id="qzTitle" type="text" required placeholder="Квиз атауы" class="sm:col-span-6 rounded-xl bg-slate-950 border border-white/15 px-3.5 py-2.5 text-sm text-white">
+                        <input id="qzTitle" type="text" placeholder="Квиз атауы" class="sm:col-span-6 rounded-xl bg-slate-950 border border-white/15 px-3.5 py-2.5 text-sm text-white">
                         <select id="qzGrade" class="sm:col-span-2 rounded-xl bg-slate-950 border border-white/15 px-3 py-2.5 text-xs font-bold text-white">
                             ${GRADES.map(g => `<option value="${g}" ${g === state.selectedGrade ? "selected" : ""}>${g}-сынып</option>`).join("")}
                         </select>
@@ -1147,11 +1440,11 @@
                         <button type="button" data-action="add-quiz-q" class="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/15 text-xs font-bold text-white tap-btn">
                             + Сұрақ қосу
                         </button>
-                        <button type="submit" id="saveQuizBtn" class="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-extrabold tap-btn">
+                        <button type="button" id="saveQuizBtn" data-action="save-quiz" class="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-extrabold tap-btn">
                             Firestore-ға сақтау
                         </button>
                     </div>
-                </form>
+                </div>
 
                 <div class="space-y-3">
                     ${myQuizzes.map(q => `
@@ -1173,18 +1466,17 @@
                         <span class="text-xs font-extrabold text-emerald-400">Сұрақ #${idx + 1}</span>
                         ${state.draftQuizQuestions.length > 1 ? `<button type="button" data-action="remove-quiz-q" data-idx="${idx}" class="text-xs text-rose-400 font-bold">Жою</button>` : ""}
                     </div>
-                    <input type="text" data-q-field="q" data-idx="${idx}" value="${escapeHtml(q.q)}" required placeholder="Сұрақ мәтіні..." class="w-full rounded-xl bg-slate-900 border border-white/15 px-3.5 py-2 text-sm text-white">
+                    <input type="text" data-q-field="q" data-idx="${idx}" value="${escapeHtml(q.q)}" placeholder="Сұрақ мәтіні..." class="w-full rounded-xl bg-slate-900 border border-white/15 px-3.5 py-2 text-sm text-white">
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
                         ${q.opts.map((opt, oIdx) => `
                             <div class="flex items-center gap-2">
                                 <input type="radio" name="correct_q_${idx}" value="${oIdx}" ${Number(q.ans) === oIdx ? "checked" : ""} data-q-field="ans" data-idx="${idx}" class="accent-emerald-500">
-                                <input type="text" required value="${escapeHtml(opt)}" data-q-field="opt" data-idx="${idx}" data-opt-idx="${oIdx}" placeholder="Нұсқа ${oIdx + 1}" class="flex-1 rounded-xl bg-slate-900 border border-white/15 px-3 py-1.5 text-xs text-white">
+                                <input type="text" value="${escapeHtml(opt)}" data-q-field="opt" data-idx="${idx}" data-opt-idx="${oIdx}" placeholder="Нұсқа ${oIdx + 1}" class="flex-1 rounded-xl bg-slate-900 border border-white/15 px-3 py-1.5 text-xs text-white">
                             </div>
                         `).join("")}
                     </div>
 
-                    <!-- ФОТО ЖӘНЕ ВИДЕО МАТЕРИАЛ ТІРКЕУ -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
                         <div>
                             <label class="block text-[11px] font-bold text-slate-400 mb-1">Фотоматериал (Файл немесе URL)</label>
@@ -1207,19 +1499,19 @@
         }
 
         function renderTeacherPresentationBuilder() {
-            const myDecks = state.content.filter(c => c.kind === "presentation" && c.teacherUid === state.profile.uid);
+            const myDecks = state.lessons.filter(c => c.kind === "presentation" && c.teacherUid === state.profile.uid);
 
             return `
                 <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
                     <h1 class="text-lg sm:text-xl font-extrabold text-white">Презентация (Медиа & Толық экран)</h1>
-                    <button type="button" data-action="ai-fill-pres" class="px-3.5 py-2 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/40 text-amber-300 text-xs font-extrabold tap-btn">
+                    <button type="button" data-action="ai-fill-pres" class="px-3.5 py-2 rounded-xl bg-indigo-500/20 hover:bg-indigo-500/30 border border-indigo-400/40 text-indigo-200 text-xs font-extrabold tap-btn">
                         ЖИ арқылы слайд құру
                     </button>
                 </div>
 
-                <form id="teacherCreatePresForm" class="glass-panel rounded-2xl p-5 space-y-4 mb-6">
+                <div class="glass-panel rounded-2xl p-5 space-y-4 mb-6">
                     <div class="grid grid-cols-1 sm:grid-cols-12 gap-3">
-                        <input id="prTitle" type="text" required placeholder="Презентация тақырыбы" class="sm:col-span-6 rounded-xl bg-slate-950 border border-white/15 px-3.5 py-2.5 text-sm text-white">
+                        <input id="prTitle" type="text" placeholder="Презентация тақырыбы" class="sm:col-span-6 rounded-xl bg-slate-950 border border-white/15 px-3.5 py-2.5 text-sm text-white">
                         <select id="prGrade" class="sm:col-span-3 rounded-xl bg-slate-950 border border-white/15 px-3 py-2.5 text-xs font-bold text-white">
                             ${GRADES.map(g => `<option value="${g}" ${g === state.selectedGrade ? "selected" : ""}>${g}-сынып</option>`).join("")}
                         </select>
@@ -1232,11 +1524,11 @@
                         ${state.draftSlides.map((sl, idx) => `
                             <div class="p-4 rounded-2xl bg-slate-950/80 border border-white/10 space-y-3">
                                 <div class="flex items-center justify-between">
-                                    <span class="text-xs font-extrabold text-amber-400">Слайд #${idx + 1}</span>
+                                    <span class="text-xs font-extrabold text-indigo-300">Слайд #${idx + 1}</span>
                                     ${state.draftSlides.length > 1 ? `<button type="button" data-action="remove-slide" data-idx="${idx}" class="text-xs text-rose-400 font-bold">Жою</button>` : ""}
                                 </div>
-                                <input type="text" required value="${escapeHtml(sl.title)}" data-sl-field="title" data-idx="${idx}" placeholder="Слайд тақырыбы" class="w-full rounded-xl bg-slate-900 border border-white/15 px-3.5 py-2 text-sm text-white">
-                                <textarea rows="3" required data-sl-field="body" data-idx="${idx}" placeholder="Негізгі тезистер мен түсіндірме..." class="w-full rounded-xl bg-slate-900 border border-white/15 p-3 text-xs sm:text-sm text-white">${escapeHtml(sl.body)}</textarea>
+                                <input type="text" value="${escapeHtml(sl.title)}" data-sl-field="title" data-idx="${idx}" placeholder="Слайд тақырыбы" class="w-full rounded-xl bg-slate-900 border border-white/15 px-3.5 py-2 text-sm text-white">
+                                <textarea rows="3" data-sl-field="body" data-idx="${idx}" placeholder="Негізгі тезистер мен түсіндірме..." class="w-full rounded-xl bg-slate-900 border border-white/15 p-3 text-xs sm:text-sm text-white">${escapeHtml(sl.body)}</textarea>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                                     <div>
                                         <label class="block text-[11px] font-bold text-slate-400 mb-1">Фотоматериал</label>
@@ -1262,17 +1554,17 @@
                         <button type="button" data-action="add-slide" class="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/15 text-xs font-bold text-white tap-btn">
                             + Слайд қосу
                         </button>
-                        <button type="submit" id="savePresBtn" class="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-extrabold tap-btn">
+                        <button type="button" id="savePresBtn" data-action="save-pres" class="px-5 py-2.5 rounded-xl bg-indigo-500 hover:bg-indigo-400 text-white text-xs font-extrabold tap-btn">
                             Сақтау
                         </button>
                     </div>
-                </form>
+                </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     ${myDecks.map(d => `
                         <div class="glass-panel rounded-2xl p-4 flex flex-col justify-between gap-3">
                             <div>
-                                <div class="text-xs font-bold text-amber-400">${d.grade}-сынып • ${escapeHtml(d.subject)} • ${(d.slides || []).length} слайд</div>
+                                <div class="text-xs font-bold text-indigo-300">${d.grade}-сынып • ${escapeHtml(d.subject)} • ${(d.slides || []).length} слайд</div>
                                 <div class="text-sm font-extrabold text-white mt-1">${escapeHtml(d.title)}</div>
                             </div>
                             <button type="button" data-action="open-fs-pres" data-content-id="${d.id}" class="w-full py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-extrabold tap-btn">
@@ -1285,12 +1577,12 @@
         }
 
         function renderTeacherLabPracticeBuilder() {
-            const myItems = state.content.filter(c => (c.kind === "lab" || c.kind === "practice") && c.teacherUid === state.profile.uid);
+            const myItems = state.lessons.filter(c => (c.kind === "lab" || c.kind === "practice") && c.teacherUid === state.profile.uid);
 
             return `
                 <h1 class="text-lg sm:text-xl font-extrabold text-white mb-5">Зертхана & Практика құру</h1>
 
-                <form id="teacherCreateWorkForm" class="glass-panel rounded-2xl p-5 space-y-4 mb-6">
+                <div class="glass-panel rounded-2xl p-5 space-y-4 mb-6">
                     <div class="grid grid-cols-1 sm:grid-cols-12 gap-3">
                         <select id="wkKind" class="sm:col-span-3 rounded-xl bg-slate-950 border border-white/15 px-3 py-2.5 text-xs font-bold text-white">
                             <option value="lab">Зертханалық жұмыс</option>
@@ -1302,10 +1594,10 @@
                         <select id="wkSubject" class="sm:col-span-3 rounded-xl bg-slate-950 border border-white/15 px-3 py-2.5 text-xs font-bold text-white">
                             ${SUBJECTS.map(s => `<option value="${escapeHtml(s)}" ${s === state.selectedSubject ? "selected" : ""}>${escapeHtml(s)}</option>`).join("")}
                         </select>
-                        <input id="wkTitle" type="text" required placeholder="Жұмыс атауы" class="sm:col-span-4 rounded-xl bg-slate-950 border border-white/15 px-3.5 py-2.5 text-sm text-white">
+                        <input id="wkTitle" type="text" placeholder="Жұмыс атауы" class="sm:col-span-4 rounded-xl bg-slate-950 border border-white/15 px-3.5 py-2.5 text-sm text-white">
                     </div>
 
-                    <textarea id="wkInstructions" rows="4" required placeholder="Орындау барысы, мақсаты және сұрақтары..." class="w-full rounded-xl bg-slate-950 border border-white/15 p-3.5 text-sm text-white"></textarea>
+                    <textarea id="wkInstructions" rows="4" placeholder="Орындау барысы, мақсаты және сұрақтары..." class="w-full rounded-xl bg-slate-950 border border-white/15 p-3.5 text-sm text-white"></textarea>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div>
@@ -1325,11 +1617,11 @@
                     </div>
 
                     <div class="flex justify-end">
-                        <button type="submit" id="saveWorkBtn" class="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-extrabold tap-btn">
+                        <button type="button" id="saveWorkBtn" data-action="save-work" class="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-extrabold tap-btn">
                             Жариялау
                         </button>
                     </div>
-                </form>
+                </div>
 
                 <div class="space-y-3">
                     ${myItems.map(it => `
@@ -1360,7 +1652,7 @@
                                     <div class="text-xs text-slate-400 mt-0.5">${escapeHtml(s.title)} • ${escapeHtml(s.subject || "")}</div>
                                     ${s.answerText ? `<div class="text-xs text-emerald-300 mt-1 font-mono">${escapeHtml(s.answerText)}</div>` : ""}
                                 </div>
-                                ${s.itemType === "quiz" ? `<span class="px-3 py-1 rounded-xl bg-amber-500/20 text-amber-300 text-xs font-extrabold">${s.score} ұпай (${s.correct}/${s.total})</span>` : ""}
+                                ${s.itemType === "quiz" ? `<span class="px-3 py-1 rounded-xl bg-emerald-500/20 text-emerald-300 text-xs font-extrabold">${s.score} ұпай (${s.correct}/${s.total})</span>` : ""}
                             </div>
                         `).join("")}
                     </div>
@@ -1369,10 +1661,10 @@
         }
 
         // =====================================================================
-        // 6. ТОЛЫҚ ЭКРАНДЫ ПРЕЗЕНТАЦИЯ ОЙНАТҚЫШ ЛОГИКАСЫ
+        // 7. ТОЛЫҚ ЭКРАНДЫ ПРЕЗЕНТАЦИЯ ОЙНАТҚЫШ ЛОГИКАСЫ
         // =====================================================================
         function openFullscreenPresentation(contentId) {
-            const deck = state.content.find(c => c.id === contentId && c.kind === "presentation");
+            const deck = state.lessons.find(c => c.id === contentId && c.kind === "presentation");
             if (!deck || !deck.slides?.length) return;
             state.fsDeck = deck;
             state.fsIndex = 0;
@@ -1436,12 +1728,12 @@
         }
 
         // =====================================================================
-        // 7. ОРИГИНАЛЬНЫЙ GEMINI ЖӘНЕ CHATGPT API ИНТЕГРАЦИЯСЫ (FIRESTORE SYNC)
+        // 8. ОРИГИНАЛЬНЫЙ GEMINI ЖӘНЕ CHATGPT API ИНТЕГРАЦИЯСЫ (FIRESTORE SYNC)
         // =====================================================================
         function renderRealAIChat() {
             const p = state.profile;
             const prov = state.aiProvider;
-            const hasKey = prov === "Gemini" ? Boolean(p.geminiKey) : Boolean(p.openaiKey);
+            const hasKey = prov === "Gemini" ? Boolean(p.geminiApiKey) : Boolean(p.openaiApiKey);
 
             return `
                 <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
@@ -1449,25 +1741,25 @@
                     <div class="flex items-center gap-2">
                         <div class="flex bg-slate-950 p-1 rounded-xl border border-white/10">
                             <button type="button" data-action="set-ai-provider" data-prov="Gemini" class="px-3.5 py-1.5 rounded-lg text-xs font-extrabold tap-btn ${prov === "Gemini" ? "bg-emerald-500 text-slate-950" : "text-slate-400 hover:text-white"}">Gemini</button>
-                            <button type="button" data-action="set-ai-provider" data-prov="ChatGPT" class="px-3.5 py-1.5 rounded-lg text-xs font-extrabold tap-btn ${prov === "ChatGPT" ? "bg-amber-500 text-slate-950" : "text-slate-400 hover:text-white"}">ChatGPT</button>
+                            <button type="button" data-action="set-ai-provider" data-prov="ChatGPT" class="px-3.5 py-1.5 rounded-lg text-xs font-extrabold tap-btn ${prov === "ChatGPT" ? "bg-indigo-500 text-white" : "text-slate-400 hover:text-white"}">ChatGPT</button>
                         </div>
                     </div>
                 </div>
 
                 ${!hasKey ? `
-                    <div class="glass-panel rounded-2xl p-4 mb-4 border border-amber-400/40 flex flex-wrap items-center justify-between gap-3">
-                        <span class="text-xs text-amber-200 font-semibold">${escapeHtml(prov)} API кілті енгізілмеген. Жеке кабинетте сақтаңыз.</span>
-                        <button type="button" data-action="nav-tab" data-tab="profile" class="px-3.5 py-1.5 rounded-xl bg-amber-500 text-slate-950 text-xs font-extrabold tap-btn">API кілт қосу</button>
+                    <div class="glass-panel rounded-2xl p-4 mb-4 border border-indigo-400/40 flex flex-wrap items-center justify-between gap-3">
+                        <span class="text-xs text-indigo-200 font-semibold">${escapeHtml(prov)} API кілті енгізілмеген. Жеке кабинетте сақтаңыз.</span>
+                        <button type="button" data-action="nav-tab" data-tab="profile" class="px-3.5 py-1.5 rounded-xl bg-indigo-500 text-white text-xs font-extrabold tap-btn">API кілт қосу</button>
                     </div>
                 ` : ""}
 
                 <div class="glass-panel rounded-2xl overflow-hidden flex flex-col">
                     <div id="aiChatScroll" class="p-4 h-[52vh] overflow-y-auto space-y-3 bg-slate-950/50">
-                        ${state.aiChats.length === 0 ? `
+                        ${state.aiLogs.length === 0 ? `
                             <div class="h-full flex items-center justify-center text-xs text-slate-500">
                                 Нақты сұраныс жіберіңіз (${escapeHtml(prov)} ресми сервері).
                             </div>
-                        ` : state.aiChats.map(m => `
+                        ` : state.aiLogs.map(m => `
                             <div class="flex ${m.sender === "user" ? "justify-end" : "justify-start"}">
                                 <div class="max-w-2xl rounded-2xl px-4 py-3 text-xs sm:text-sm whitespace-pre-wrap leading-relaxed ${
                                     m.sender === "user"
@@ -1481,12 +1773,12 @@
                         `).join("")}
                     </div>
 
-                    <form id="realAiChatForm" class="p-3 border-t border-white/10 bg-slate-950 flex gap-2">
-                        <input id="realAiInput" type="text" required placeholder="${escapeHtml(prov)} моделіне сұраныс..." class="flex-1 rounded-xl bg-slate-900 border border-white/15 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-emerald-400">
-                        <button type="submit" id="realAiSendBtn" class="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-extrabold tap-btn">
+                    <div class="p-3 border-t border-white/10 bg-slate-950 flex gap-2">
+                        <input id="realAiInput" type="text" placeholder="${escapeHtml(prov)} моделіне сұраныс..." class="flex-1 rounded-xl bg-slate-900 border border-white/15 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-emerald-400">
+                        <button type="button" id="realAiSendBtn" data-action="send-ai-prompt" class="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-extrabold tap-btn">
                             Жіберу
                         </button>
-                    </form>
+                    </div>
                 </div>
             `;
         }
@@ -1497,7 +1789,7 @@
             if (Number(p.tokens || 0) <= 0) throw new Error("Токен балансы 0.");
 
             if (provider === "Gemini") {
-                const key = (p.geminiKey || "").trim();
+                const key = (p.geminiApiKey || "").trim();
                 if (!key) throw new Error("Gemini API кілті сақталмаған (Жеке кабинет -> API кілттері).");
 
                 const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${encodeURIComponent(key)}`;
@@ -1518,7 +1810,7 @@
                 return { text, tokens };
             }
 
-            const openaiKey = (p.openaiKey || "").trim();
+            const openaiKey = (p.openaiApiKey || "").trim();
             if (!openaiKey) throw new Error("OpenAI (ChatGPT) API кілті сақталмаған (Жеке кабинет -> API кілттері).");
 
             const resp = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -1543,7 +1835,7 @@
         }
 
         // =====================================================================
-        // 8. АДМИН ЖӘНЕ ЖЕКЕ КАБИНЕТ (FIRESTORE API SYNC + СИСТЕМАДАН ШЫҒУ)
+        // 9. АДМИН ЖӘНЕ ЖЕКЕ КАБИНЕТ (FIRESTORE API SYNC + СИСТЕМАДАН ШЫҒУ)
         // =====================================================================
         function renderAdminUsers() {
             return `
@@ -1553,7 +1845,7 @@
                         <thead class="border-b border-white/10 text-slate-400 text-xs">
                             <tr>
                                 <th class="py-3 px-4">Аты-жөні</th>
-                                <th class="py-3 px-4">Email</th>
+                                <th class="py-3 px-4">Email / Телефон</th>
                                 <th class="py-3 px-4">Рөл</th>
                                 <th class="py-3 px-4">Токен</th>
                                 <th class="py-3 px-4 text-right">Баланс</th>
@@ -1563,11 +1855,11 @@
                             ${state.users.map(u => `
                                 <tr>
                                     <td class="py-3 px-4 font-bold text-white">${escapeHtml(u.name || "")}</td>
-                                    <td class="py-3 px-4 text-slate-400">${escapeHtml(u.email || "")}</td>
+                                    <td class="py-3 px-4 text-slate-400">${escapeHtml(u.email || u.phone || "")}</td>
                                     <td class="py-3 px-4 font-bold text-emerald-400">${roleLabel(u.role)} ${u.grade ? `(${u.grade}-сынып)` : ""}</td>
-                                    <td class="py-3 px-4 font-extrabold text-amber-300 tabular-nums">${Number(u.tokens || 0).toLocaleString("ru-RU")}</td>
+                                    <td class="py-3 px-4 font-extrabold text-indigo-300 tabular-nums">${Number(u.tokens || 0).toLocaleString("ru-RU")}</td>
                                     <td class="py-3 px-4 text-right">
-                                        <button type="button" data-action="admin-grant-tokens" data-uid="${u.uid}" class="px-3 py-1 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 text-xs font-extrabold tap-btn">+2000</button>
+                                        <button type="button" data-action="admin-grant-tokens" data-uid="${u.uid}" class="px-3 py-1 rounded-lg bg-indigo-500/20 hover:bg-indigo-500/30 text-indigo-200 text-xs font-extrabold tap-btn">+2000</button>
                                     </td>
                                 </tr>
                             `).join("")}
@@ -1587,7 +1879,7 @@
                     </div>
                     <div class="glass-panel rounded-2xl p-4">
                         <div class="text-xs text-slate-400">Презентация / Зертхана</div>
-                        <div class="text-2xl font-extrabold text-amber-400 mt-1">${state.content.length}</div>
+                        <div class="text-2xl font-extrabold text-indigo-400 mt-1">${state.lessons.length}</div>
                     </div>
                     <div class="glass-panel rounded-2xl p-4">
                         <div class="text-xs text-slate-400">Тапсырылған жұмыстар</div>
@@ -1608,61 +1900,59 @@
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
-                    <!-- АККАУНТ ДЕРЕКТЕРІ -->
                     <div class="glass-panel rounded-2xl p-5 space-y-4">
                         <div class="flex items-center justify-between">
                             <span class="px-3 py-1 rounded-xl bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-xs font-extrabold">
                                 ${roleLabel(p.role)}
                             </span>
-                            <span class="text-xs font-extrabold text-amber-300 tabular-nums">${Number(p.tokens || 0).toLocaleString("ru-RU")} токен</span>
+                            <span class="text-xs font-extrabold text-indigo-300 tabular-nums">${Number(p.tokens || 0).toLocaleString("ru-RU")} токен</span>
                         </div>
 
-                        <form id="profileUpdateForm" class="space-y-3">
+                        <div class="space-y-3">
                             <div>
                                 <label class="block text-xs font-bold text-slate-400 mb-1">Аты-жөні</label>
-                                <input id="profNameInput" type="text" required value="${escapeHtml(p.name || "")}" class="w-full rounded-xl bg-slate-950 border border-white/15 px-3.5 py-2.5 text-sm text-white">
+                                <input id="profNameInput" type="text" value="${escapeHtml(p.name || "")}" class="w-full rounded-xl bg-slate-950 border border-white/15 px-3.5 py-2.5 text-sm text-white">
                             </div>
                             <div>
-                                <label class="block text-xs font-bold text-slate-400 mb-1">Email</label>
-                                <input type="text" disabled value="${escapeHtml(p.email || "")}" class="w-full rounded-xl bg-slate-950/50 border border-white/10 px-3.5 py-2.5 text-sm text-slate-400">
+                                <label class="block text-xs font-bold text-slate-400 mb-1">Байланыс (Email / Телефон)</label>
+                                <input type="text" disabled value="${escapeHtml(p.email || p.phone || "")}" class="w-full rounded-xl bg-slate-950/50 border border-white/10 px-3.5 py-2.5 text-sm text-slate-400">
                             </div>
-                            <button type="submit" class="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-xs font-extrabold text-white tap-btn">
+                            <button type="button" data-action="save-profile-name" class="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-xs font-extrabold text-white tap-btn">
                                 Аты-жөнін сақтау
                             </button>
-                        </form>
+                        </div>
                     </div>
 
-                    <!-- FIRESTORE-ҒА СИНХРОНДАЛАТЫН GEMINI & OPENAI API КІЛТТЕРІ -->
                     <div class="glass-panel rounded-2xl p-5 space-y-4">
                         <div class="flex items-center justify-between">
                             <h2 class="text-sm font-extrabold text-white">API кілттері (Firestore Sync)</h2>
                             <span class="text-[11px] font-bold text-emerald-400">Барлық құрылғыда ортақ</span>
                         </div>
 
-                        <form id="firestoreApiKeysForm" class="space-y-3">
+                        <div class="space-y-3">
                             <div>
                                 <label for="fsGeminiKey" class="block text-xs font-bold text-slate-300 mb-1">
-                                    Gemini API Key ${p.geminiKey ? '<span class="text-emerald-400">(✓ Сақталған)</span>' : ""}
+                                    Gemini API Key ${p.geminiApiKey ? '<span class="text-emerald-400">(✓ Сақталған)</span>' : ""}
                                 </label>
-                                <input id="fsGeminiKey" type="password" value="${escapeHtml(p.geminiKey || "")}" placeholder="AIza..." class="w-full rounded-xl bg-slate-950 border border-white/15 px-3.5 py-2.5 text-xs font-mono text-white">
+                                <input id="fsGeminiKey" type="password" value="${escapeHtml(p.geminiApiKey || "")}" placeholder="AIza..." class="w-full rounded-xl bg-slate-950 border border-white/15 px-3.5 py-2.5 text-xs font-mono text-white">
                             </div>
                             <div>
                                 <label for="fsOpenaiKey" class="block text-xs font-bold text-slate-300 mb-1">
-                                    ChatGPT (OpenAI) API Key ${p.openaiKey ? '<span class="text-emerald-400">(✓ Сақталған)</span>' : ""}
+                                    ChatGPT (OpenAI) API Key ${p.openaiApiKey ? '<span class="text-emerald-400">(✓ Сақталған)</span>' : ""}
                                 </label>
-                                <input id="fsOpenaiKey" type="password" value="${escapeHtml(p.openaiKey || "")}" placeholder="sk-..." class="w-full rounded-xl bg-slate-950 border border-white/15 px-3.5 py-2.5 text-xs font-mono text-white">
+                                <input id="fsOpenaiKey" type="password" value="${escapeHtml(p.openaiApiKey || "")}" placeholder="sk-..." class="w-full rounded-xl bg-slate-950 border border-white/15 px-3.5 py-2.5 text-xs font-mono text-white">
                             </div>
-                            <button type="submit" id="saveFsKeysBtn" class="w-full py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-extrabold tap-btn">
+                            <button type="button" id="saveFsKeysBtn" data-action="save-api-keys" class="w-full py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-extrabold tap-btn">
                                 Бұлтқа сақтау (Firestore)
                             </button>
-                        </form>
+                        </div>
                     </div>
                 </div>
             `;
         }
 
         // =====================================================================
-        // 9. МЕДИА ПРЕВЬЮ (ФОТО / YOUTUBE / MP4) ЖӘНЕ КӨМЕКШІ ФУНКЦИЯЛАР
+        // 10. МЕДИА ПРЕВЬЮ ЖӘНЕ КӨМЕКШІ ФУНКЦИЯЛАР
         // =====================================================================
         function renderMediaPreview(imageUrl, videoUrl) {
             if (!imageUrl && !videoUrl) return "";
@@ -1722,7 +2012,7 @@
             const border = {
                 success: "border-l-4 border-l-emerald-400",
                 error: "border-l-4 border-l-rose-500",
-                info: "border-l-4 border-l-amber-400"
+                info: "border-l-4 border-l-indigo-400"
             }[type] || "border-l-4 border-l-emerald-400";
 
             const el = document.createElement("div");
@@ -1764,7 +2054,7 @@
         }
 
         // =====================================================================
-        // 10. БАРЛЫҚ ОҚИҒАЛАРДЫ ДЕЛЕГАЦИЯЛАУ
+        // 11. БАРЛЫҚ ОҚИҒАЛАРДЫ ТІКЕЛЕЙ CLICK + ENTER АРҚЫЛЫ ӨҢДЕУ
         // =====================================================================
         function bindAllEvents() {
             document.addEventListener("click", async (e) => {
@@ -1774,26 +2064,41 @@
 
                 if (action === "auth-tab") {
                     switchAuthTab(btn.dataset.mode);
-                } else if (action === "google-auth") {
+                } else if (action === "submit-login") {
+                    await handleEmailLogin();
+                } else if (action === "submit-register") {
+                    await handleEmailRegister();
+                } else if (action === "send-phone-sms") {
+                    await handleSendPhoneSms();
+                } else if (action === "verify-phone-sms") {
+                    await handleVerifyPhoneSms();
+                } else if (action === "reset-phone-step") {
+                    state.confirmationResult = null;
+                    document.getElementById("smsVerifyBlock").classList.add("hidden");
+                    document.getElementById("smsCodeInput").value = "";
                     hideAuthError();
-                    setBtnBusy(btn, true, "Google...");
+                } else if (action === "google-auth") {
+                    await handleGoogleSignIn();
+                } else if (action === "save-onboarding") {
+                    if (!state.authUser) return;
+                    const name = document.getElementById("onboardName").value.trim() || "Пайдаланушы";
+                    const role = document.getElementById("onboardRole").value;
+                    const grade = role === "student" ? Number(document.getElementById("onboardGrade").value) : null;
+                    setBtnBusy(btn, true, "Сақтау...");
                     try {
-                        const provider = new GoogleAuthProvider();
-                        provider.setCustomParameters({ prompt: "select_account" });
-                        await signInWithPopup(auth, provider);
+                        await setDoc(doc(db, "users", state.authUser.uid), {
+                            name,
+                            email: state.authUser.email || "",
+                            phone: state.authUser.phoneNumber || "",
+                            role,
+                            grade,
+                            tokens: 3000,
+                            geminiApiKey: "",
+                            openaiApiKey: "",
+                            createdAt: serverTimestamp()
+                        });
                     } catch (err) {
-                        if (err?.code === "auth/popup-blocked" || err?.code === "auth/operation-not-supported-in-this-environment") {
-                            try {
-                                const provider = new GoogleAuthProvider();
-                                provider.setCustomParameters({ prompt: "select_account" });
-                                await signInWithRedirect(auth, provider);
-                                return;
-                            } catch (e2) {
-                                showAuthError(e2.message);
-                            }
-                        } else if (err?.code !== "auth/popup-closed-by-user") {
-                            showAuthError(err.message);
-                        }
+                        toast("Қате", err.message, "error");
                     } finally {
                         setBtnBusy(btn, false);
                     }
@@ -1833,6 +2138,21 @@
                     renderWorkspace();
                 } else if (action === "quiz-opt") {
                     submitQuizAnswer(Number(btn.dataset.idx));
+                } else if (action === "powerup-5050") {
+                    const r = state.quizRunner;
+                    if (!r || r.answered || r.usedFifty) return;
+                    const cur = r.quiz.questions[r.index];
+                    const wrong = [0, 1, 2, 3].filter(i => i !== Number(cur.ans));
+                    r.hiddenOpts = wrong.slice(0, 2);
+                    r.usedFifty = true;
+                    renderActiveQuizRunner();
+                } else if (action === "powerup-2x") {
+                    const r = state.quizRunner;
+                    if (!r || r.answered || r.usedDouble) return;
+                    r.doubleActive = true;
+                    r.usedDouble = true;
+                    toast("2x Ұпай", "Белсенді", "info");
+                    renderActiveQuizRunner();
                 } else if (action === "quiz-next") {
                     await nextQuizQuestion();
                 } else if (action === "add-quiz-q") {
@@ -1841,12 +2161,128 @@
                 } else if (action === "remove-quiz-q") {
                     state.draftQuizQuestions.splice(Number(btn.dataset.idx), 1);
                     renderWorkspace();
+                } else if (action === "save-quiz") {
+                    const title = document.getElementById("qzTitle")?.value.trim();
+                    if (!title) {
+                        toast("Қате", "Квиз атауын енгізіңіз", "error");
+                        return;
+                    }
+                    setBtnBusy(btn, true, "Сақтау...");
+                    try {
+                        const grade = Number(document.getElementById("qzGrade").value);
+                        const subject = document.getElementById("qzSubject").value;
+                        const timeLimit = Number(document.getElementById("qzTime").value) || 25;
+                        await addDoc(collection(db, "quizzes"), {
+                            title,
+                            grade,
+                            subject,
+                            timeLimit,
+                            teacherUid: state.profile.uid,
+                            teacherName: state.profile.name,
+                            questions: state.draftQuizQuestions,
+                            createdAtMs: Date.now()
+                        });
+                        state.draftQuizQuestions = [{ q: "", opts: ["", "", "", ""], ans: 0, image: "", video: "" }];
+                        toast("Сақталды", title, "success");
+                        renderWorkspace();
+                    } catch (err) {
+                        toast("Қате", err.message, "error");
+                    } finally {
+                        setBtnBusy(btn, false);
+                    }
                 } else if (action === "add-slide") {
                     state.draftSlides.push({ title: "", body: "", image: "", video: "" });
                     renderWorkspace();
                 } else if (action === "remove-slide") {
                     state.draftSlides.splice(Number(btn.dataset.idx), 1);
                     renderWorkspace();
+                } else if (action === "save-pres") {
+                    const title = document.getElementById("prTitle")?.value.trim();
+                    if (!title) {
+                        toast("Қате", "Презентация тақырыбын енгізіңіз", "error");
+                        return;
+                    }
+                    setBtnBusy(btn, true, "Сақтау...");
+                    try {
+                        const grade = Number(document.getElementById("prGrade").value);
+                        const subject = document.getElementById("prSubject").value;
+                        await addDoc(collection(db, "lessons"), {
+                            kind: "presentation",
+                            title,
+                            grade,
+                            subject,
+                            teacherUid: state.profile.uid,
+                            teacherName: state.profile.name,
+                            slides: state.draftSlides,
+                            createdAtMs: Date.now()
+                        });
+                        state.draftSlides = [{ title: "", body: "", image: "", video: "" }];
+                        toast("Сақталды", title, "success");
+                        renderWorkspace();
+                    } catch (err) {
+                        toast("Қате", err.message, "error");
+                    } finally {
+                        setBtnBusy(btn, false);
+                    }
+                } else if (action === "save-work") {
+                    const title = document.getElementById("wkTitle")?.value.trim();
+                    const instructions = document.getElementById("wkInstructions")?.value.trim();
+                    if (!title || !instructions) {
+                        toast("Қате", "Атауы мен нұсқаулығын толтырыңыз", "error");
+                        return;
+                    }
+                    setBtnBusy(btn, true, "Сақтау...");
+                    try {
+                        const kind = document.getElementById("wkKind").value;
+                        const grade = Number(document.getElementById("wkGrade").value);
+                        const subject = document.getElementById("wkSubject").value;
+                        const image = document.getElementById("wkImageUrl").value.trim();
+                        const video = document.getElementById("wkVideoUrl").value.trim();
+                        await addDoc(collection(db, "lessons"), {
+                            kind,
+                            grade,
+                            subject,
+                            title,
+                            instructions,
+                            image,
+                            video,
+                            teacherUid: state.profile.uid,
+                            teacherName: state.profile.name,
+                            createdAtMs: Date.now()
+                        });
+                        toast("Жарияланды", title, "success");
+                        renderWorkspace();
+                    } catch (err) {
+                        toast("Қате", err.message, "error");
+                    } finally {
+                        setBtnBusy(btn, false);
+                    }
+                } else if (action === "submit-student-work") {
+                    const itemId = btn.dataset.itemId;
+                    const item = state.lessons.find(c => c.id === itemId);
+                    const inp = document.getElementById(`workAns_${itemId}`);
+                    const ans = inp?.value.trim();
+                    if (!item || !ans) return;
+                    setBtnBusy(btn, true, "...");
+                    try {
+                        await addDoc(collection(db, "submissions"), {
+                            studentUid: state.profile.uid,
+                            studentName: state.profile.name,
+                            grade: state.profile.grade,
+                            teacherUid: item.teacherUid || "",
+                            itemType: item.kind,
+                            itemId: item.id,
+                            title: item.title,
+                            subject: item.subject,
+                            answerText: ans,
+                            createdAtMs: Date.now()
+                        });
+                        toast("Жіберілді", item.title, "success");
+                    } catch (err) {
+                        toast("Қате", err.message, "error");
+                    } finally {
+                        setBtnBusy(btn, false);
+                    }
                 } else if (action === "open-fs-pres") {
                     openFullscreenPresentation(btn.dataset.contentId);
                 } else if (action === "fs-close") {
@@ -1867,6 +2303,58 @@
                 } else if (action === "set-ai-provider") {
                     state.aiProvider = btn.dataset.prov;
                     renderWorkspace();
+                } else if (action === "send-ai-prompt") {
+                    const inp = document.getElementById("realAiInput");
+                    const promptText = inp?.value.trim();
+                    if (!promptText) return;
+                    inp.value = "";
+                    setBtnBusy(btn, true, "...");
+                    try {
+                        await addDoc(collection(db, "ai_logs"), {
+                            uid: state.profile.uid,
+                            sender: "user",
+                            provider: state.aiProvider,
+                            text: promptText,
+                            createdAtMs: Date.now()
+                        });
+
+                        const res = await executeRealAIRequest(state.aiProvider, promptText);
+                        const newTokens = Math.max(0, Number(state.profile.tokens || 0) - res.tokens);
+                        await updateDoc(doc(db, "users", state.profile.uid), { tokens: newTokens });
+
+                        await addDoc(collection(db, "ai_logs"), {
+                            uid: state.profile.uid,
+                            sender: "ai",
+                            provider: state.aiProvider,
+                            text: res.text,
+                            tokens: res.tokens,
+                            createdAtMs: Date.now() + 1
+                        });
+                    } catch (err) {
+                        toast(`${state.aiProvider} қатесі`, err.message, "error");
+                    } finally {
+                        setBtnBusy(btn, false);
+                    }
+                } else if (action === "save-profile-name") {
+                    const name = document.getElementById("profNameInput")?.value.trim();
+                    if (!name) return;
+                    await updateDoc(doc(db, "users", state.profile.uid), { name });
+                    toast("Сақталды", name, "success");
+                } else if (action === "save-api-keys") {
+                    setBtnBusy(btn, true, "Сақталуда...");
+                    try {
+                        const geminiApiKey = document.getElementById("fsGeminiKey").value.trim();
+                        const openaiApiKey = document.getElementById("fsOpenaiKey").value.trim();
+                        await updateDoc(doc(db, "users", state.profile.uid), {
+                            geminiApiKey,
+                            openaiApiKey
+                        });
+                        toast("Firestore Sync", "API кілттері сақталды", "success");
+                    } catch (err) {
+                        toast("Қате", err.message, "error");
+                    } finally {
+                        setBtnBusy(btn, false);
+                    }
                 } else if (action === "admin-grant-tokens") {
                     const uid = btn.dataset.uid;
                     const target = state.users.find(u => u.uid === uid);
@@ -1930,7 +2418,47 @@
                 }
             });
 
-            // Конструктор өрістерін жаңарту
+            document.addEventListener("keydown", async (e) => {
+                if (e.key === "Enter") {
+                    if (e.target.classList.contains("auth-enter-login")) {
+                        e.preventDefault();
+                        await handleEmailLogin();
+                        return;
+                    }
+                    if (e.target.classList.contains("auth-enter-phone")) {
+                        e.preventDefault();
+                        await handleSendPhoneSms();
+                        return;
+                    }
+                    if (e.target.classList.contains("auth-enter-sms")) {
+                        e.preventDefault();
+                        await handleVerifyPhoneSms();
+                        return;
+                    }
+                    if (e.target.classList.contains("auth-enter-reg")) {
+                        e.preventDefault();
+                        await handleEmailRegister();
+                        return;
+                    }
+                    if (e.target.id === "realAiInput") {
+                        e.preventDefault();
+                        document.getElementById("realAiSendBtn")?.click();
+                        return;
+                    }
+                }
+
+                if (!state.fsDeck) return;
+                if (e.key === "ArrowRight" || e.key === " ") {
+                    state.fsIndex += 1;
+                    renderFullscreenSlide();
+                } else if (e.key === "ArrowLeft") {
+                    state.fsIndex -= 1;
+                    renderFullscreenSlide();
+                } else if (e.key === "Escape") {
+                    closeFullscreenPresentation();
+                }
+            });
+
             document.addEventListener("input", (e) => {
                 const el = e.target;
                 if (el.dataset.qField) {
@@ -1949,6 +2477,8 @@
                 const el = e.target;
                 if (el.id === "regRole") {
                     document.getElementById("regGradeWrap").classList.toggle("hidden", el.value !== "student");
+                } else if (el.id === "phoneRoleSelect") {
+                    document.getElementById("phoneGradeSelect").classList.toggle("hidden", el.value !== "student");
                 } else if (el.id === "onboardRole") {
                     document.getElementById("onboardGradeWrap").classList.toggle("hidden", el.value !== "student");
                 } else if (el.dataset.qField === "ans") {
@@ -1976,262 +2506,10 @@
                     }
                 }
             });
-
-            // Формаларды жіберу
-            document.addEventListener("submit", async (e) => {
-                const form = e.target;
-
-                if (form.id === "loginForm") {
-                    e.preventDefault();
-                    hideAuthError();
-                    const btn = document.getElementById("loginSubmitBtn");
-                    setBtnBusy(btn, true, "Кіру...");
-                    try {
-                        const email = document.getElementById("loginEmail").value.trim();
-                        const pass = document.getElementById("loginPassword").value;
-                        await signInWithEmailAndPassword(auth, email, pass);
-                    } catch (err) {
-                        showAuthError(err.message);
-                    } finally {
-                        setBtnBusy(btn, false);
-                    }
-                } else if (form.id === "registerForm") {
-                    e.preventDefault();
-                    hideAuthError();
-                    const btn = document.getElementById("registerSubmitBtn");
-                    setBtnBusy(btn, true, "Тіркелу...");
-                    try {
-                        const name = document.getElementById("regName").value.trim();
-                        const role = document.getElementById("regRole").value;
-                        const grade = role === "student" ? Number(document.getElementById("regGrade").value) : null;
-                        const email = document.getElementById("regEmail").value.trim();
-                        const pass = document.getElementById("regPassword").value;
-
-                        const cred = await createUserWithEmailAndPassword(auth, email, pass);
-                        await updateProfile(cred.user, { displayName: name });
-                        await setDoc(doc(db, "users", cred.user.uid), {
-                            name,
-                            email,
-                            role,
-                            grade,
-                            tokens: 3000,
-                            geminiKey: "",
-                            openaiKey: "",
-                            createdAt: serverTimestamp()
-                        });
-                    } catch (err) {
-                        showAuthError(err.message);
-                    } finally {
-                        setBtnBusy(btn, false);
-                    }
-                } else if (form.id === "roleOnboardingForm") {
-                    e.preventDefault();
-                    if (!state.authUser) return;
-                    const btn = document.getElementById("onboardSaveBtn");
-                    setBtnBusy(btn, true, "Сақтау...");
-                    try {
-                        const name = document.getElementById("onboardName").value.trim();
-                        const role = document.getElementById("onboardRole").value;
-                        const grade = role === "student" ? Number(document.getElementById("onboardGrade").value) : null;
-                        await setDoc(doc(db, "users", state.authUser.uid), {
-                            name,
-                            email: state.authUser.email || "",
-                            role,
-                            grade,
-                            tokens: 3000,
-                            geminiKey: "",
-                            openaiKey: "",
-                            createdAt: serverTimestamp()
-                        });
-                    } catch (err) {
-                        toast("Қате", err.message, "error");
-                    } finally {
-                        setBtnBusy(btn, false);
-                    }
-                } else if (form.id === "teacherCreateQuizForm") {
-                    e.preventDefault();
-                    const btn = document.getElementById("saveQuizBtn");
-                    setBtnBusy(btn, true, "Сақтау...");
-                    try {
-                        const title = document.getElementById("qzTitle").value.trim();
-                        const grade = Number(document.getElementById("qzGrade").value);
-                        const subject = document.getElementById("qzSubject").value;
-                        const timeLimit = Number(document.getElementById("qzTime").value) || 25;
-                        await addDoc(collection(db, "quizzes"), {
-                            title,
-                            grade,
-                            subject,
-                            timeLimit,
-                            teacherUid: state.profile.uid,
-                            teacherName: state.profile.name,
-                            questions: state.draftQuizQuestions,
-                            createdAtMs: Date.now()
-                        });
-                        state.draftQuizQuestions = [{ q: "", opts: ["", "", "", ""], ans: 0, image: "", video: "" }];
-                        toast("Сақталды", title, "success");
-                        renderWorkspace();
-                    } catch (err) {
-                        toast("Қате", err.message, "error");
-                    } finally {
-                        setBtnBusy(btn, false);
-                    }
-                } else if (form.id === "teacherCreatePresForm") {
-                    e.preventDefault();
-                    const btn = document.getElementById("savePresBtn");
-                    setBtnBusy(btn, true, "Сақтау...");
-                    try {
-                        const title = document.getElementById("prTitle").value.trim();
-                        const grade = Number(document.getElementById("prGrade").value);
-                        const subject = document.getElementById("prSubject").value;
-                        await addDoc(collection(db, "content"), {
-                            kind: "presentation",
-                            title,
-                            grade,
-                            subject,
-                            teacherUid: state.profile.uid,
-                            teacherName: state.profile.name,
-                            slides: state.draftSlides,
-                            createdAtMs: Date.now()
-                        });
-                        state.draftSlides = [{ title: "", body: "", image: "", video: "" }];
-                        toast("Сақталды", title, "success");
-                        renderWorkspace();
-                    } catch (err) {
-                        toast("Қате", err.message, "error");
-                    } finally {
-                        setBtnBusy(btn, false);
-                    }
-                } else if (form.id === "teacherCreateWorkForm") {
-                    e.preventDefault();
-                    const btn = document.getElementById("saveWorkBtn");
-                    setBtnBusy(btn, true, "Сақтау...");
-                    try {
-                        const kind = document.getElementById("wkKind").value;
-                        const grade = Number(document.getElementById("wkGrade").value);
-                        const subject = document.getElementById("wkSubject").value;
-                        const title = document.getElementById("wkTitle").value.trim();
-                        const instructions = document.getElementById("wkInstructions").value.trim();
-                        const image = document.getElementById("wkImageUrl").value.trim();
-                        const video = document.getElementById("wkVideoUrl").value.trim();
-                        await addDoc(collection(db, "content"), {
-                            kind,
-                            grade,
-                            subject,
-                            title,
-                            instructions,
-                            image,
-                            video,
-                            teacherUid: state.profile.uid,
-                            teacherName: state.profile.name,
-                            createdAtMs: Date.now()
-                        });
-                        form.reset();
-                        toast("Жарияланды", title, "success");
-                    } catch (err) {
-                        toast("Қате", err.message, "error");
-                    } finally {
-                        setBtnBusy(btn, false);
-                    }
-                } else if (form.classList.contains("student-work-form")) {
-                    e.preventDefault();
-                    const item = state.content.find(c => c.id === form.dataset.itemId);
-                    if (!item) return;
-                    const ans = form.querySelector(".work-answer-input").value.trim();
-                    try {
-                        await addDoc(collection(db, "submissions"), {
-                            studentUid: state.profile.uid,
-                            studentName: state.profile.name,
-                            grade: state.profile.grade,
-                            teacherUid: item.teacherUid || "",
-                            itemType: item.kind,
-                            itemId: item.id,
-                            title: item.title,
-                            subject: item.subject,
-                            answerText: ans,
-                            createdAtMs: Date.now()
-                        });
-                        toast("Жіберілді", item.title, "success");
-                    } catch (err) {
-                        toast("Қате", err.message, "error");
-                    }
-                } else if (form.id === "realAiChatForm") {
-                    e.preventDefault();
-                    const inp = document.getElementById("realAiInput");
-                    const promptText = inp.value.trim();
-                    if (!promptText) return;
-                    inp.value = "";
-                    const sendBtn = document.getElementById("realAiSendBtn");
-                    setBtnBusy(sendBtn, true, "...");
-
-                    try {
-                        await addDoc(collection(db, "ai_chats"), {
-                            uid: state.profile.uid,
-                            sender: "user",
-                            provider: state.aiProvider,
-                            text: promptText,
-                            createdAtMs: Date.now()
-                        });
-
-                        const res = await executeRealAIRequest(state.aiProvider, promptText);
-                        const newTokens = Math.max(0, Number(state.profile.tokens || 0) - res.tokens);
-                        await updateDoc(doc(db, "users", state.profile.uid), { tokens: newTokens });
-
-                        await addDoc(collection(db, "ai_chats"), {
-                            uid: state.profile.uid,
-                            sender: "ai",
-                            provider: state.aiProvider,
-                            text: res.text,
-                            tokens: res.tokens,
-                            createdAtMs: Date.now() + 1
-                        });
-                    } catch (err) {
-                        toast(`${state.aiProvider} қатесі`, err.message, "error");
-                    } finally {
-                        setBtnBusy(sendBtn, false);
-                    }
-                } else if (form.id === "profileUpdateForm") {
-                    e.preventDefault();
-                    const name = document.getElementById("profNameInput").value.trim();
-                    if (!name) return;
-                    await updateDoc(doc(db, "users", state.profile.uid), { name });
-                    toast("Сақталды", name, "success");
-                } else if (form.id === "firestoreApiKeysForm") {
-                    e.preventDefault();
-                    const btn = document.getElementById("saveFsKeysBtn");
-                    setBtnBusy(btn, true, "Сақталуда...");
-                    try {
-                        const geminiKey = document.getElementById("fsGeminiKey").value.trim();
-                        const openaiKey = document.getElementById("fsOpenaiKey").value.trim();
-                        await updateDoc(doc(db, "users", state.profile.uid), {
-                            geminiKey,
-                            openaiKey
-                        });
-                        toast("Firestore Sync", "API кілттері сақталды", "success");
-                    } catch (err) {
-                        toast("Қате", err.message, "error");
-                    } finally {
-                        setBtnBusy(btn, false);
-                    }
-                }
-            });
-
-            // Пернетақта арқылы толық экранды презентацияны басқару
-            document.addEventListener("keydown", (e) => {
-                if (!state.fsDeck) return;
-                if (e.key === "ArrowRight" || e.key === " ") {
-                    state.fsIndex += 1;
-                    renderFullscreenSlide();
-                } else if (e.key === "ArrowLeft") {
-                    state.fsIndex -= 1;
-                    renderFullscreenSlide();
-                } else if (e.key === "Escape") {
-                    closeFullscreenPresentation();
-                }
-            });
         }
 
         // =====================================================================
-        // 11. ІСКЕ ҚОСУ
+        // 12. ІСКЕ ҚОСУ
         // =====================================================================
         window.addEventListener("DOMContentLoaded", async () => {
             populateSelectOptions();
@@ -2241,7 +2519,7 @@
             try {
                 await getRedirectResult(auth);
             } catch (err) {
-                showAuthError(err.message);
+                showAuthError(formatFirebaseAuthError(err));
             }
 
             onAuthStateChanged(auth, (user) => {
